@@ -178,7 +178,7 @@
 <li>unique_ptr (独占型)</li>
 <li>weak_ptr (观察型，弱引用类型指针)</li>
 </ol>
-<h3 id="auto-ptr"><a href="#auto-ptr" class="headerlink" title="auto_ptr"></a>auto_ptr</h3><p>auto_ptr在C++03标准库中被首次引入，但是该智能指针存在设计缺陷，其“剥夺”所有权的特性容易造成内存崩溃，因此在C++11版本的标准库中auto_ptr已被抛弃，新的标准库提供了其他更加安全方便的智能指针。<br/><br/>以该智能指针的重载 “&#x3D;” 以实现拷贝构造的STL源码为例：</p>
+<h3 id="auto-ptr"><a href="#auto-ptr" class="headerlink" title="auto_ptr"></a>auto_ptr</h3><p>auto_ptr在C++03标准库中被首次引入，但是该智能指针存在设计缺陷，其“剥夺”所有权的特性容易造成内存崩溃，因此在C++11版本的标准库中auto_ptr已被抛弃，新的标准库提供了其他更加安全方便的智能指针。<br/><br/>以该智能指针的重载 “&#x3D;” 以实现拷贝构造的源码为例：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_LIBCPP_INLINE_VISIBILITY auto_ptr&amp; <span class="keyword">operator</span>=(auto_ptr&amp; __p) _NOEXCEPT</span><br><span class="line">    &#123;<span class="built_in">reset</span>(__p.<span class="built_in">release</span>()); <span class="keyword">return</span> *<span class="keyword">this</span>;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">_Up</span>&gt; _LIBCPP_INLINE_VISIBILITY auto_ptr&amp; <span class="keyword">operator</span>=(auto_ptr&lt;_Up&gt;&amp; __p) _NOEXCEPT</span><br><span class="line">    &#123;<span class="built_in">reset</span>(__p.<span class="built_in">release</span>()); <span class="keyword">return</span> *<span class="keyword">this</span>;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看出，使用 “&#x3D;” 运算符对auto_ptr进行赋值时，__p的值不仅会被传递给左值并且__p会被置空。由此可知，一块内存只可以允许一个auto_ptr进行管理，因为在赋值操作时，右值上的auto_ptr被无情地release()掉了。这样的特性设计其实是make sense的，由于auto_ptr的实现是基于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/RAII/7042675?fr=aladdin">RAII</a>（保证在任何情况下，使用对象时先构造对象，最后析构对象）的变性（所有权可以被接管）外部初始化（RAII实例的构造函数接管了在外部被创建资源的所有权）类型，若存在多个auto_ptr指向同一块内存，在析构这些auto_ptr时，同一块内存会因被多次释放而造成错误。<br><br/>基于auto_ptr“剥夺”所有权的特性，需要注意以下几点以防止内存崩溃：<br/></p>
@@ -195,7 +195,7 @@
 <p><strong>2. 不要采用auto_ptr接收数组指针</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_LIBCPP_INLINE_VISIBILITY ~<span class="built_in">auto_ptr</span>() _NOEXCEPT &#123;<span class="keyword">delete</span> __ptr_;&#125;</span><br></pre></td></tr></table></figure>
 
-<p>从以上STL源码可知，当auto_ptr执行其析构函数时，调用的是delete方法而不是delete[]方法，这样做会造成内存泄漏，因为我们仅仅只是释放了数组第一个元素的空间。因此以下程序会造成内存泄漏：</p>
+<p>从以上源码可知，当auto_ptr执行其析构函数时，调用的是delete方法而不是delete[]方法，这样做会造成内存泄漏，因为我们仅仅只是释放了数组第一个元素的空间。因此以下程序会造成内存泄漏：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* array = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];</span><br><span class="line"><span class="function">auto_ptr&lt;<span class="type">int</span>&gt; <span class="title">ptr1</span><span class="params">(array)</span></span>;</span><br></pre></td></tr></table></figure>
 
 <br/>
