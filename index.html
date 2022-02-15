@@ -55,6 +55,8 @@
 			
 				<li><a href="/">HomePage</a></li>
 	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -64,7 +66,7 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -109,6 +111,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -129,7 +133,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">HomePage</a></li>
+					<li style="width: 50%"><a href="/">HomePage</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -145,6 +151,120 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-MySQL学习"
+  class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/15/MySQL%E5%AD%A6%E4%B9%A0/">MySQL学习</a>
+    </h1>
+  
+
+          
+            <a href="/2022/02/15/MySQL%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2022-02-15T13:39:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
+</a>
+              
+      </header>
+      
+
+
+        <div class="article-entry" itemprop="articleBody">
+          
+                    <br/>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从<em>bilibili</em>上的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kr4y1i7ru?p=1">黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）</a>入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深、层层递进，对于初学者及其友好。以下为MySQL学习路线：<br/></p>
+<ol>
+<li>基础篇：<ul>
+<li>MySQL概述</li>
+<li>SQL语句<ul>
+<li>DDL</li>
+<li>DML</li>
+<li>DQL</li>
+<li>DCL</li>
+</ul>
+</li>
+<li>函数</li>
+<li>约束</li>
+<li>多表查询</li>
+<li>事务</li>
+</ul>
+</li>
+<li>进阶篇：<ul>
+<li>存储引擎</li>
+<li>索引</li>
+<li>SQL 优化</li>
+<li>视图&#x2F;存储过程&#x2F;触发器</li>
+<li>锁</li>
+<li>InnoDB核心</li>
+<li>MySQL管理</li>
+</ul>
+</li>
+<li>运维篇：<ul>
+<li>日志</li>
+<li>主从复制</li>
+<li>分库分表</li>
+<li>读写分离</li>
+</ul>
+</li>
+</ol>
+
+                      
+
+                        
+        </div>
+        <div class="article-info article-info-index">
+          
+              
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+                
+
+                  
+                    <p class="article-more-link">
+                      <a class="article-more-a" href="/2022/02/15/MySQL%E5%AD%A6%E4%B9%A0/">
+                        展开全文 >>
+                      </a>
+                    </p>
+                    
+
+                      
+                            <div class="clearfix"></div>
+        </div>
+  </div>
+</article>
+
+      <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+        
   
     <article id="post-浅析C++的四种智能指针"
   class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -186,7 +306,7 @@
 <li>不要访问被用来赋值过的右值(auto_ptr)</li>
 <li>不要采用auto_ptr接收数组指针</li>
 <li>不要将auto_ptr作为参数按照值传递方式传入函数</li>
-<li>不要作为容器对象<br/></li>
+<li>不要将auto_ptr作为容器对象<br/></li>
 </ol>
 <p><strong>1.不要访问被用来赋值过的右值(auto_ptr)</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">auto_ptr&lt;Person&gt; <span class="title">p1</span><span class="params">(<span class="keyword">new</span> Person(<span class="string">&quot;Jason&quot;</span>))</span></span>;</span><br><span class="line">auto_ptr&lt;Person&gt; p2;</span><br><span class="line">p2 = p1;</span><br><span class="line">p1-&gt;<span class="built_in">getName</span>();</span><br></pre></td></tr></table></figure>
@@ -208,19 +328,19 @@
 
 <br/>
 
-<p><strong>4. 不要作为容器对象</strong></p>
+<p><strong>4. 不要将auto_ptr作为容器对象</strong></p>
 <p>使用容器时，通常会伴随着对STL算法或者容器成员函数的使用，若某算法或者成员函数对auto_ptr进行第一次拷贝，则auto_ptr会被置为nullptr，再次对同一个auto_ptr进行拷贝抑或是使用该auto_ptr则会造成内存崩溃，引发不良后果。因此不大推荐使用auto_ptr作为容器的对象。</p>
 <h2 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h2><p>shared_ptr是一种共享型的智能指针，这是因为多个shared_ptr可以被允许指向相同的对象，这一特性与我们之前浅析过的auto_ptr以及下文即将剖析的unique_ptr大不相同。此外，shared_ptr还属于强引用类型智能指针，那么何为“引用”？每个shared_ptr身上都具备一个关联的计数器，其计数结果便称之为“引用计数”(reference count)，引用计数的存在可以让shared_ptr记录程序中总共有多少个shared_ptr指向相同的对象以便智能指针可以在恰当的时机自动释放对象，这一行为依赖于shared_ptr类的析构函数(destructor)所实现。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">smart_ptr::~<span class="built_in">smart_ptr</span>() &#123;</span><br><span class="line">    <span class="keyword">if</span> (ptr_ &amp;&amp; !shared_count_-&gt;<span class="built_in">reduce_count</span>()) &#123;</span><br><span class="line">        <span class="keyword">delete</span> ptr_;</span><br><span class="line">        <span class="keyword">delete</span> shared_count_;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>为了更好地理解shared_ptr析构的全过程，笔者截取了简易版本shared_ptr实现的析构代码做粗略分析。可以看出，当shared_ptr调用析构函数时，其引用计数(shared_count_)会递减，而一旦这个shared_ptr的引用计数变为0，它就会自动释放指向的对象及其内置的引用计数类。换言之，对于一块内存，shared_ptr类可以保证只要有任何其他的shared_ptr对象引用它，它就不会被释放。<br><br/>在使用shared_ptr时，可以关注以下几点注意事项：<br/></p>
+<p>为了更好地理解shared_ptr析构的全过程，笔者截取了简易版本shared_ptr实现的析构代码做粗略分析。可以看出，当shared_ptr调用析构函数时，其引用计数(shared_count_)会递减，而一旦这个shared_ptr的引用计数变为0，它就会自动释放指向的对象及其内置的引用计数类。换言之，对于一块内存，shared_ptr类可以保证只要有任何其他的shared_ptr对象引用它，它就不会被释放。<br><br/>在使用shared_ptr时，需要关注以下几个方面：<br/></p>
 <ol>
-<li>在条件判断中使用智能指针</li>
+<li>条件判断中的智能指针</li>
 <li>利用 make_shared<T> (args) 函数初始化 shared_ptr</li>
-<li>利用 p.use_count() 返回与p共享对象的shared_ptr数量</li>
+<li>p.use_count() 与 p.unique() 的使用</li>
 <li>销毁shared_ptr的两种方法<br/></li>
 </ol>
-<p><strong>1. 在条件判断中使用智能指针</strong></p>
+<p><strong>1. 条件判断中的智能指针</strong></p>
 <p>如果在一个条件判断中使用智能指针，效果就是检测它是否为空。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;string&gt; p1;</span><br><span class="line"><span class="keyword">if</span> (p1) &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;该指针不为空&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;该指针是一个空指针！&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-----------------------------</span><br><span class="line">该指针是一个空指针！</span><br><span class="line">-----------------------------</span><br></pre></td></tr></table></figure>
 
@@ -231,7 +351,7 @@
 
 <br/>
 
-<p><strong>3. 利用 p.use_count() 返回与p共享对象的shared_ptr数量，并且利用 p.unique() 检测p指向的对象是否只有p一个引用者</strong></p>
+<p><strong>3. p.use_count() 与 p.unique() 的使用</strong></p>
 <p>当进行拷贝或赋值操作时，每个 shared_ptr 都会记录总共有多少个 shared_ptr 指向相同的对象。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> p = <span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt; (<span class="number">42</span>);</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 p 共享对象(指向int 42对象)的智能指针数量为：&quot;</span> &lt;&lt; p.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检测 p 是否唯一</span></span><br><span class="line"><span class="keyword">if</span> (p.<span class="built_in">unique</span>())&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p 是唯一一个指向其对象的 shared_ptr&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p 不是唯一一个指向其对象的 shared_ptr&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">q</span><span class="params">(p)</span></span>; <span class="comment">// 此时 q 是 shared_ptr p 的拷贝，此操作会递增 p 中的计数器</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 p 共享对象(指向int 42对象)的智能指针数量为：&quot;</span> &lt;&lt; p.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检测 p 是否唯一</span></span><br><span class="line"><span class="keyword">if</span> (p.<span class="built_in">unique</span>())&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p 是唯一一个指向其对象的 shared_ptr&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p 不是唯一一个指向其对象的 shared_ptr&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// shared_ptr q 同样在记录总共有多少个 shared_ptr 指向相同的对象</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 q 共享对象(指向int 42对象)的智能指针数量为：&quot;</span> &lt;&lt; q.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> r = <span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt; (<span class="number">100</span>);</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 r 共享对象(指向int 100对象)的智能指针数量为：&quot;</span> &lt;&lt; r.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">r = q; <span class="comment">// 此操作让 r 指向 q 指向的对象，会递增 q 指向对象的引用次数，递减 r 指向对象的引用次数，最终导致 r 原来指向的对象没有引用者而被自动释放</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 r 共享对象(指向int 42对象)的智能指针数量为：&quot;</span> &lt;&lt; r.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 p 共享对象(指向int 42对象)的智能指针数量为：&quot;</span> &lt;&lt; p.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;与 q 共享对象(指向int 42对象)的智能指针数量为：&quot;</span> &lt;&lt; q.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">-----------------------------</span><br><span class="line">与 p 共享对象(指向<span class="type">int</span> <span class="number">42</span>对象)的智能指针数量为：<span class="number">1</span></span><br><span class="line">p 是唯一一个指向其对象的 shared_ptr</span><br><span class="line">与 p 共享对象(指向<span class="type">int</span> <span class="number">42</span>对象)的智能指针数量为：<span class="number">2</span></span><br><span class="line">p 不是唯一一个指向其对象的 shared_ptr</span><br><span class="line">与 q 共享对象(指向<span class="type">int</span> <span class="number">42</span>对象)的智能指针数量为：<span class="number">2</span></span><br><span class="line">与 r 共享对象(指向<span class="type">int</span> <span class="number">100</span>对象)的智能指针数量为：<span class="number">1</span></span><br><span class="line">与 r 共享对象(指向<span class="type">int</span> <span class="number">42</span>对象)的智能指针数量为：<span class="number">3</span></span><br><span class="line">与 p 共享对象(指向<span class="type">int</span> <span class="number">42</span>对象)的智能指针数量为：<span class="number">3</span></span><br><span class="line">与 q 共享对象(指向<span class="type">int</span> <span class="number">42</span>对象)的智能指针数量为：<span class="number">3</span></span><br><span class="line">-----------------------------</span><br></pre></td></tr></table></figure>
 
@@ -447,7 +567,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -470,6 +590,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
@@ -524,11 +648,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://space.bilibili.com/37974444?from=search&seid=13617149022824665997&spm_id_from=333.337.0.0" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>黑马程序员</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="https://www.programmercarl.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>代码随想录</a>
             </li>
           
             <li class="search-li">
@@ -555,7 +679,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">The University of Adelaide&lt;br/&gt;Computer Science (Advanced)&lt;br/&gt;a1806320@student.adelaide.edu.au</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">The University of Adelaide&lt;br&gt;Computer Science (Advanced)&lt;br&gt;a1806320@student.adelaide.edu.au</div>
   	  	
     	</section>
     
