@@ -187,7 +187,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">MySQL概述</td>
+<td align="center">数据库概述</td>
 <td align="center">存储引擎</td>
 <td align="center">日志</td>
 </tr>
@@ -220,6 +220,168 @@
 <td align="center"></td>
 <td align="center">MySQL管理</td>
 <td align="center"></td>
+</tr>
+</tbody></table>
+<br/>
+
+<h3 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h3><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">定义</th>
+<th align="center">简称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数据库</td>
+<td align="center">存储有组织数据的仓库</td>
+<td align="center">DataBase(DB)</td>
+</tr>
+<tr>
+<td align="center">数据库管理系统</td>
+<td align="center">操纵和管理数据库的大型软件</td>
+<td align="center">DataBase Management System(DBMS)</td>
+</tr>
+<tr>
+<td align="center">SQL</td>
+<td align="center">操作关系型数据库的编程语言，定义了一套操作关系型数据库的统一标准</td>
+<td align="center">Structured Query Language(SQL)</td>
+</tr>
+</tbody></table>
+<h3 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h3><table>
+<thead>
+<tr>
+<th align="center">DDL - Data Definition Language</th>
+<th align="center">Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">show databases;</td>
+<td align="center">查看所有数据库</td>
+</tr>
+<tr>
+<td align="center">create database 数据库名;</td>
+<td align="center">创建数据库</td>
+</tr>
+<tr>
+<td align="center">use 数据库名;</td>
+<td align="center">切换到某个数据库</td>
+</tr>
+<tr>
+<td align="center">select database();</td>
+<td align="center">当前处于哪个数据库中</td>
+</tr>
+<tr>
+<td align="center">drop database 数据库名称;</td>
+<td align="center">删除数据库</td>
+</tr>
+<tr>
+<td align="center">show tables;</td>
+<td align="center">查询当前数据库所有表</td>
+</tr>
+<tr>
+<td align="center">desc 表名;</td>
+<td align="center">查询表结构</td>
+</tr>
+<tr>
+<td align="center">show create table 表名;</td>
+<td align="center">查询指定表的建表语句</td>
+</tr>
+<tr>
+<td align="center">create table tableName(name type comment ‘xx’, name type comment ‘xx’) comment ‘xx’;</td>
+<td align="center">创建数据表</td>
+</tr>
+<tr>
+<td align="center">alter table 表名 add 字段名 类型 [comment];</td>
+<td align="center">添加字段</td>
+</tr>
+<tr>
+<td align="center">alter table 表名 modify 字段名 新数据类型;</td>
+<td align="center">修改字段数据类型</td>
+</tr>
+<tr>
+<td align="center">alter table 表名 change 旧字段名 新字段名 数据类型;</td>
+<td align="center">修改字段名和字段类型</td>
+</tr>
+<tr>
+<td align="center">alert table 表名 drop 字段名;</td>
+<td align="center">删除字段</td>
+</tr>
+<tr>
+<td align="center">alter table 表名 rename to 新表名;</td>
+<td align="center">修改表名</td>
+</tr>
+<tr>
+<td align="center">drop table [if exists] 表名;</td>
+<td align="center">直接删除表</td>
+</tr>
+<tr>
+<td align="center">truncate table 表名;</td>
+<td align="center">删除表并重新创建该表</td>
+</tr>
+</tbody></table>
+<br/>
+
+<table>
+<thead>
+<tr>
+<th align="center">DML - Data Manipulation Language</th>
+<th align="center">Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">insert into 表名 (字段名1, 字段名2…) values (值1, 值2…);</td>
+<td align="center">给指定字段添加数据</td>
+</tr>
+<tr>
+<td align="center">insert into 表名 (字段名1, 字段名2…) values (值1, 值2…), (值1, 值2…), (值1, 值2…), …;</td>
+<td align="center">给指定字段添加数据（批量）</td>
+</tr>
+<tr>
+<td align="center">insert into 表名 values (值1, 值2…);</td>
+<td align="center">给全部字段添加数据</td>
+</tr>
+<tr>
+<td align="center">insert into 表名 values (值1, 值2…), (值1, 值2…), (值1, 值2…), …;</td>
+<td align="center">给全部字段添加数据（批量）</td>
+</tr>
+<tr>
+<td align="center">注意事项：<br/>关于插入数据</td>
+<td align="center">1: 指定的字段顺序需要与值的顺序一一对应。<br/>2: 字符串与日期型数据应该包含在引号(‘’)中。<br/>3: 插入数据的大小，需要在字段的规定范围内。</td>
+</tr>
+<tr>
+<td align="center">update 表名 set 字段名1 &#x3D; 值1, 字段名2 &#x3D; 值2, …[where condition];</td>
+<td align="center">修改数据</td>
+</tr>
+<tr>
+<td align="center">delete from 表名 [where condition];</td>
+<td align="center">删除数据</td>
+</tr>
+</tbody></table>
+<br/>
+
+<table>
+<thead>
+<tr>
+<th align="center">DQL - Data Query Language</th>
+<th align="center">Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">select 字段名1, 字段名2, 字段名3 from 表名;</td>
+<td align="center">查询指定字段</td>
+</tr>
+<tr>
+<td align="center">select * from 表名;</td>
+<td align="center">查询所有字段 (不推荐在实际开发中使用)</td>
+</tr>
+<tr>
+<td align="center">select 字段名 as ‘别名’ from 表名;</td>
+<td align="center">查询字段并取别名</td>
+</tr>
+<tr>
+<td align="center">select distinct 字段名 from 表名;</td>
+<td align="center">查询字段中不重复的数据</td>
 </tr>
 </tbody></table>
 
@@ -290,7 +452,7 @@
 
           
             <a href="/2022/02/05/%E6%B5%85%E6%9E%90C++%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2022-02-05T12:57:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-05</time>
+  	<time datetime="2022-02-05T10:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-05</time>
 </a>
               
       </header>
