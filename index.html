@@ -55,7 +55,7 @@
 			
 				<li><a href="/">HomePage</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">Essay</a></li>
 	        
 			</ul>
 		</nav>
@@ -135,7 +135,7 @@
 				
 					<li style="width: 50%"><a href="/">HomePage</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">Essay</a></li>
 		        
 				</ul>
 			</nav>
@@ -177,9 +177,8 @@
           
                     <br/>
 
-<h2 id="我的经历"><a href="#我的经历" class="headerlink" title="我的经历"></a>我的经历</h2><img src="https://raw.githubusercontent.com/jiajun2001/markdownPics/main/1.png?token=GHSAT0AAAAAABRHZCYA6BRUF7NFWEANNG3YYQXOMVQ" width = "200" height = "150" alt="Flight" align=right />
-
-<p>经过40个小时漫长的漂洋过海，我于2022年2月22日早晨9:06分抵达澳大利亚阿德莱德国际机场，飞机落地的那一刻意味着我结束了两年的网课生活，开启了真正意义上的留学生涯。说来也巧，在我2020年即将赴澳读预科的前夕，COVID-19疫情爆发，澳大利亚政府关闭了国境，我的航班也紧接着被取消。因此，我不得不开始尝试远程学习，也就是我们俗称的“上网课”。本以为这个COVID-19会像非典那般，在夏天奇迹消失，然后马上就可以见到新同学，可我未曾想到，这网课一上，就是完完整整的2年。<br><br/><br>这是给我造成极大焦虑感的两年，但同样也是收获颇丰的两年。坦言之</p>
+<h2 id="我的经历"><a href="#我的经历" class="headerlink" title="我的经历"></a>我的经历</h2><p>经过40个小时漫长的漂洋过海，我于2022年2月22日早晨9:06分抵达澳大利亚阿德莱德国际机场，飞机落地的那一刻意味着我结束了两年的网课生活，开启了真正意义上的留学生涯。说来也巧，在我2020年即将赴澳读预科的前夕，COVID-19疫情爆发，澳大利亚政府关闭了国境，我的航班也紧接着被取消。因此，我不得不开始尝试远程学习，也就是我们俗称的“上网课”。本以为这个COVID-19会像非典那般，在夏天奇迹消失，然后马上就可以见到新同学，可我未曾想到，这网课一上，就是完完整整的2年。</p>
+<p>这是给我造成极大焦虑感的两年，但同样也是收获颇丰的两年。坦言之  </p>
 
                       
 
@@ -467,7 +466,19 @@
 </tr>
 <tr>
 <td align="center">select 字段名 from 表名 where 条件列表;<br/>between number1 and number2<br/>字段名 in(字段值1, 字段值2, 字段值3…..)<br/>like ‘占位符’<br/>is null &#x2F; is not null</td>
-<td align="center">条件查询<br/>在某个范围内(包括边界值)<br/>查询字段值为字段值1, 字段值2, 字段值3…..的记录<br/>模糊匹配(‘_’匹配单个字符, ‘%’匹配任意多个字符)<br/>字段值为空&#x2F;非空</td>
+<td align="center"><strong>条件查询</strong><br/>在某个范围内(包括边界值)<br/>查询字段值为字段值1, 字段值2, 字段值3…..的记录<br/>模糊匹配(‘_’匹配单个字符, ‘%’匹配任意多个字符)<br/>字段值为空&#x2F;非空</td>
+</tr>
+<tr>
+<td align="center">select 聚合函数(字段名) from 表名;<br/>count()<br/>max()<br/>min()<br/>avg()<br/>sum()</td>
+<td align="center"><strong>聚合函数</strong><br/>统计数量<br/>最大值<br/>最小值<br/>平均值<br/>求和</td>
+</tr>
+<tr>
+<td align="center">select 字段 from 表名 where 条件列表 group by 分组字段名 having 分组后过滤条件</td>
+<td align="center"><strong>分组查询</strong></td>
+</tr>
+<tr>
+<td align="center">注意事项：<br/>关于分组查询</td>
+<td align="center">where是分组之前过滤，having是分组之后过滤<br/>where不能对聚合函数进行判断，而having可以<br/>执行顺序：where &gt; 聚合函数 &gt; having</td>
 </tr>
 </tbody></table>
 
