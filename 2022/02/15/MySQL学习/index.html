@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从bilibili上的黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深、层层递进，对于初学者及其友好。以下为MySQL学习路线：    基础篇 进阶">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-15T11:09:16.000Z">
-<meta property="article:modified_time" content="2022-02-26T02:38:46.442Z">
+<meta property="article:modified_time" content="2022-04-15T07:01:33.417Z">
 <meta property="article:author" content="Jiajun (Jason) Yu">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -395,12 +395,42 @@
 <td align="center"><strong>聚合函数</strong><br/>统计数量<br/>最大值<br/>最小值<br/>平均值<br/>求和</td>
 </tr>
 <tr>
-<td align="center">select 字段 from 表名 where 条件列表 group by 分组字段名 having 分组后过滤条件</td>
-<td align="center"><strong>分组查询</strong></td>
+<td align="center">select 字段 from 表名 where 条件列表 group by 分组字段名 having 分组后过滤条件;<br />注意事项：<br/>关于分组查询</td>
+<td align="center"><strong>分组查询</strong><br />where是分组之前过滤，having是分组之后过滤<br/>where不能对聚合函数进行判断，而having可以<br/>执行顺序：where &gt; 聚合函数 &gt; having</td>
 </tr>
 <tr>
-<td align="center">注意事项：<br/>关于分组查询</td>
-<td align="center">where是分组之前过滤，having是分组之后过滤<br/>where不能对聚合函数进行判断，而having可以<br/>执行顺序：where &gt; 聚合函数 &gt; having</td>
+<td align="center">select 字段 from 表名 order by 字段1 排序方式1, 字段2 排序方式2;</td>
+<td align="center"><strong>排序查询</strong><br />排序方式：asc—升序 ～ desc—降序</td>
+</tr>
+<tr>
+<td align="center">select 字段 from 表名 limit 起始索引, 查询记录数; <br />注意事项：<br />关于分页查询</td>
+<td align="center"><strong>分页查询</strong> <br />起始索引 &#x3D; （查询页码 - 1）* 前面每页显示记录数<br />也可以理解为从起始索引之后一条记录开始查询 <br />若查询第一页数据，可省略起始索引</td>
+</tr>
+<tr>
+<td align="center">FROM 表名 WHERE 条件列表 GROUP BY 分组字段列表 HAVING 分组后条件列表 SELECT 字段列表 ORDER BY 排序字段列表 LIMIT 分页参数</td>
+<td align="center">DQL执行顺序</td>
+</tr>
+</tbody></table>
+<br/>
+
+<table>
+<thead>
+<tr>
+<th align="center">DCL - Data Control Language</th>
+<th align="center">Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">use mysql; select * from user; <br /> create user ‘username‘@’hostname’ identified by ‘password’;<br />alter user ‘username‘@’hostname’ identified with mysql_native_password by ‘new password’;<br />drop user ‘username‘@’hostname’;</td>
+<td align="center">查询用户 <br />创建用户 (%可作为通配符使用)<br />修改用户密码<br />删除用户</td>
+</tr>
+<tr>
+<td align="center">show grants for ‘username‘@’hostname’; <br />grant 权限1, 权限2… on 数据库名.表名 to ‘username‘@’hostname’;<br />revoke 权限1, 权限2… on 数据库名.表名  from ‘username‘@’hostname’;</td>
+<td align="center">查询权限<br />授予权限<br />撤销权限</td>
+</tr>
+<tr>
+<td align="center">ALL—所有权限 · SELECT—查询数据 · INSERT—插入数据 · UPDATE—修改数据 <br /> DELETE—删除数据 · ALTER—修改表 · DROP—删除数据库&#x2F;表&#x2F;视图 · CREATE—创建数据库&#x2F;表</td>
+<td align="center">授权时可使用通配符 *</td>
 </tr>
 </tbody></table>
 
