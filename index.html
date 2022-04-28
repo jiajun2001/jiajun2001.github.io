@@ -599,6 +599,136 @@
 <td align="center">授权时可使用通配符 *</td>
 </tr>
 </tbody></table>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><table>
+<thead>
+<tr>
+<th align="center">字符串函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">concat(S1, S2, …)</td>
+<td align="center">字符串拼接</td>
+</tr>
+<tr>
+<td align="center">lower(str)</td>
+<td align="center">将字符串str全部转为小写</td>
+</tr>
+<tr>
+<td align="center">upper(str)</td>
+<td align="center">将字符串str全部转为大写</td>
+</tr>
+<tr>
+<td align="center">lpad(str, n, pad)</td>
+<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串的长度</td>
+</tr>
+<tr>
+<td align="center">rpad(str, n, pad)</td>
+<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串的长度</td>
+</tr>
+<tr>
+<td align="center">trim(str)</td>
+<td align="center">去掉字符串头部和尾部的空格</td>
+</tr>
+<tr>
+<td align="center">substring(str, start, len)</td>
+<td align="center">返回字符串str从start位置起的len个长度的字符串（MySQL起始索引为1）</td>
+</tr>
+</tbody></table>
+<br />
+
+<table>
+<thead>
+<tr>
+<th align="center">数值函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ceil(x)</td>
+<td align="center">向上取整</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">向下取整</td>
+</tr>
+<tr>
+<td align="center">mod(x, y)</td>
+<td align="center">返回x&#x2F;y的模</td>
+</tr>
+<tr>
+<td align="center">rand()</td>
+<td align="center">返回0～1内的随机数</td>
+</tr>
+<tr>
+<td align="center">round(x, y)</td>
+<td align="center">求参数x的四舍五入的值，保留y位小数</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">日期函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">curdate()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">curtime()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">now()</td>
+<td align="center">返回当前日期和时间</td>
+</tr>
+<tr>
+<td align="center">year(date)</td>
+<td align="center">获取指定date的年份</td>
+</tr>
+<tr>
+<td align="center">month(date)</td>
+<td align="center">获取指定date的月份</td>
+</tr>
+<tr>
+<td align="center">day(date)</td>
+<td align="center">获取指定date的日期</td>
+</tr>
+<tr>
+<td align="center">date_add(date, INTERVAL expr type)</td>
+<td align="center">返回一个日期&#x2F;时间值加上一个时间间隔expr后的时间值</td>
+</tr>
+<tr>
+<td align="center">datediff(date1, date2)</td>
+<td align="center">返回date1(新)和date2(旧)之间的天数</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">流程控制函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">if (value, t, f)</td>
+<td align="center">如果value为true，则返回t，否则返回f</td>
+</tr>
+<tr>
+<td align="center">ifnull(value1, value2)</td>
+<td align="center">如果value1不为空，则返回value1，否则返回value2</td>
+</tr>
+<tr>
+<td align="center">case (字段名) when (value1) then (result1)… else (default) end <br /> eg: case workAddress when “Beijing” then “Big city” else “Small city” end</td>
+<td align="center">如果字段名&#x3D;value1，则返回result1，否则返回default</td>
+</tr>
+<tr>
+<td align="center">case when (expression1) then (result1) when (expression2) then (result2) else (default) end <br /> eg: case when math &gt;&#x3D; 85 then “HD” when math &gt;&#x3D; 60 then “C” else “F” end</td>
+<td align="center">如果 expression1为true，则返回result1，否则返回default</td>
+</tr>
+</tbody></table>
 
                       
 
