@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        Mysql Commands |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+Blogging from Adelaide Australia
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/mysql_command/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Mysql Commands"/>
+<meta name="twitter:description" content="MySQL是一种关系型数据库管理系统，其将数据保存在不同的表中，增加了速度与灵活性。MySQL所使用的SQL语言是用于访问数据库的最常用的标准化语言，由于其体积小、速度快、总体拥有成本低，一般中小型和大型网站的开发都选择MySQL作为网站数据库。此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从bilibili上的黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深，对于初学者及其友好。读者亦可将此博文作为MySQL速查表，以便于快速查找MySQL命令。"/>
+
+
+
+  
+  <meta property="og:title" content="Mysql Commands" />
+<meta property="og:description" content="MySQL是一种关系型数据库管理系统，其将数据保存在不同的表中，增加了速度与灵活性。MySQL所使用的SQL语言是用于访问数据库的最常用的标准化语言，由于其体积小、速度快、总体拥有成本低，一般中小型和大型网站的开发都选择MySQL作为网站数据库。此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从bilibili上的黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深，对于初学者及其友好。读者亦可将此博文作为MySQL速查表，以便于快速查找MySQL命令。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/mysql_command/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-02-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-15T00:00:00+00:00" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Mysql Commands",
+        "headline": "Mysql Commands",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003cp\u003eMySQL是一种关系型数据库管理系统，其将数据保存在不同的表中，增加了速度与灵活性。MySQL所使用的SQL语言是用于访问数据库的最常用的标准化语言，由于其体积小、速度快、总体拥有成本低，一般中小型和大型网站的开发都选择MySQL作为网站数据库。此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从\u003cem\u003ebilibili\u003c\/em\u003e上的\u003ca href=\u0022https:\/\/www.bilibili.com\/video\/BV1Kr4y1i7ru?p=1\u0022\u003e黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）\u003c\/a\u003e入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深，对于初学者及其友好。读者亦可将此博文作为MySQL速查表，以便于快速查找MySQL命令。\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/mysql_command\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-02-15T00:00:00.00Z",
+        "datePublished": "2022-02-15T00:00:00.00Z",
+        "dateModified": "2022-02-15T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun's Blog",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/mysql_command\/",
+        "wordCount" : "527",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "MySQL"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />Blogging from Adelaide Australia<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>Mysql Commands</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  15/2/2022
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">3-minute read</span>
+          </li>
+        </ul>
+
+      <p>MySQL是一种关系型数据库管理系统，其将数据保存在不同的表中，增加了速度与灵活性。MySQL所使用的SQL语言是用于访问数据库的最常用的标准化语言，由于其体积小、速度快、总体拥有成本低，一般中小型和大型网站的开发都选择MySQL作为网站数据库。此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从<em>bilibili</em>上的<a href="https://www.bilibili.com/video/BV1Kr4y1i7ru?p=1">黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）</a>入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深，对于初学者及其友好。读者亦可将此博文作为MySQL速查表，以便于快速查找MySQL命令。</p>
+<h2 id="mysql学习路线">MySQL学习路线</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">基础篇</th>
+<th style="text-align:center">进阶篇</th>
+<th style="text-align:center">运维篇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据库概述</td>
+<td style="text-align:center">存储引擎</td>
+<td style="text-align:center">日志</td>
+</tr>
+<tr>
+<td style="text-align:center">SQL语句</td>
+<td style="text-align:center">索引</td>
+<td style="text-align:center">主从复制</td>
+</tr>
+<tr>
+<td style="text-align:center">函数</td>
+<td style="text-align:center">SQL 优化</td>
+<td style="text-align:center">分库分表</td>
+</tr>
+<tr>
+<td style="text-align:center">约束</td>
+<td style="text-align:center">视图/存储过程/触发器</td>
+<td style="text-align:center">读写分离</td>
+</tr>
+<tr>
+<td style="text-align:center">多表查询</td>
+<td style="text-align:center">锁</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">事务</td>
+<td style="text-align:center">InnoDB核心</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">MySQL管理</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库概述">数据库概述</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">定义</th>
+<th style="text-align:center">简称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据库</td>
+<td style="text-align:center">存储有组织数据的仓库</td>
+<td style="text-align:center">DataBase(DB)</td>
+</tr>
+<tr>
+<td style="text-align:center">数据库管理系统</td>
+<td style="text-align:center">操纵和管理数据库的大型软件</td>
+<td style="text-align:center">DataBase Management System(DBMS)</td>
+</tr>
+<tr>
+<td style="text-align:center">SQL</td>
+<td style="text-align:center">操作关系型数据库的编程语言，定义了一套操作关系型数据库的统一标准</td>
+<td style="text-align:center">Structured Query Language(SQL)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sql语句">SQL语句</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">DDL - Data Definition Language</th>
+<th style="text-align:center">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">show databases;</td>
+<td style="text-align:center">查看所有数据库</td>
+</tr>
+<tr>
+<td style="text-align:center">create database 数据库名;</td>
+<td style="text-align:center">创建数据库</td>
+</tr>
+<tr>
+<td style="text-align:center">use 数据库名;</td>
+<td style="text-align:center">切换到某个数据库</td>
+</tr>
+<tr>
+<td style="text-align:center">select database();</td>
+<td style="text-align:center">当前处于哪个数据库中</td>
+</tr>
+<tr>
+<td style="text-align:center">drop database 数据库名称;</td>
+<td style="text-align:center">删除数据库</td>
+</tr>
+<tr>
+<td style="text-align:center">show tables;</td>
+<td style="text-align:center">查询当前数据库所有表</td>
+</tr>
+<tr>
+<td style="text-align:center">desc 表名;</td>
+<td style="text-align:center">查询表结构</td>
+</tr>
+<tr>
+<td style="text-align:center">show create table 表名;</td>
+<td style="text-align:center">查询指定表的建表语句</td>
+</tr>
+<tr>
+<td style="text-align:center">create table tableName(name type comment &lsquo;xx&rsquo;, name type comment &lsquo;xx&rsquo;) comment &lsquo;xx&rsquo;;</td>
+<td style="text-align:center">创建数据表</td>
+</tr>
+<tr>
+<td style="text-align:center">alter table 表名 add 字段名 类型 [comment];</td>
+<td style="text-align:center">添加字段</td>
+</tr>
+<tr>
+<td style="text-align:center">alter table 表名 modify 字段名 新数据类型;</td>
+<td style="text-align:center">修改字段数据类型</td>
+</tr>
+<tr>
+<td style="text-align:center">alter table 表名 change 旧字段名 新字段名 数据类型;</td>
+<td style="text-align:center">修改字段名和字段类型</td>
+</tr>
+<tr>
+<td style="text-align:center">alert table 表名 drop 字段名;</td>
+<td style="text-align:center">删除字段</td>
+</tr>
+<tr>
+<td style="text-align:center">alter table 表名 rename to 新表名;</td>
+<td style="text-align:center">修改表名</td>
+</tr>
+<tr>
+<td style="text-align:center">drop table [if exists] 表名;</td>
+<td style="text-align:center">直接删除表</td>
+</tr>
+<tr>
+<td style="text-align:center">truncate table 表名;</td>
+<td style="text-align:center">删除表并重新创建该表</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">DML - Data Manipulation Language</th>
+<th style="text-align:center">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">insert into 表名 (字段名1, 字段名2&hellip;) values (值1, 值2&hellip;);</td>
+<td style="text-align:center">给指定字段添加数据</td>
+</tr>
+<tr>
+<td style="text-align:center">insert into 表名 (字段名1, 字段名2&hellip;) values (值1, 值2&hellip;), (值1, 值2&hellip;), (值1, 值2&hellip;), &hellip;;</td>
+<td style="text-align:center">给指定字段添加数据（批量）</td>
+</tr>
+<tr>
+<td style="text-align:center">insert into 表名 values (值1, 值2&hellip;);</td>
+<td style="text-align:center">给全部字段添加数据</td>
+</tr>
+<tr>
+<td style="text-align:center">insert into 表名 values (值1, 值2&hellip;), (值1, 值2&hellip;), (值1, 值2&hellip;), &hellip;;</td>
+<td style="text-align:center">给全部字段添加数据（批量）</td>
+</tr>
+<tr>
+<td style="text-align:center">注意事项：<br/>关于插入数据</td>
+<td style="text-align:center">1: 指定的字段顺序需要与值的顺序一一对应。<br/>2: 字符串与日期型数据应该包含在引号(&rsquo;&rsquo;)中。<br/>3: 插入数据的大小，需要在字段的规定范围内。</td>
+</tr>
+<tr>
+<td style="text-align:center">update 表名 set 字段名1 = 值1, 字段名2 = 值2, &hellip;[where condition];</td>
+<td style="text-align:center">修改数据</td>
+</tr>
+<tr>
+<td style="text-align:center">delete from 表名 [where condition];</td>
+<td style="text-align:center">删除数据</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">DQL - Data Query Language</th>
+<th style="text-align:center">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">select 字段名1, 字段名2, 字段名3 from 表名;</td>
+<td style="text-align:center">查询指定字段</td>
+</tr>
+<tr>
+<td style="text-align:center">select * from 表名;</td>
+<td style="text-align:center">查询所有字段 (不推荐在实际开发中使用)</td>
+</tr>
+<tr>
+<td style="text-align:center">select 字段名 as &lsquo;别名&rsquo; from 表名;</td>
+<td style="text-align:center">查询字段并取别名</td>
+</tr>
+<tr>
+<td style="text-align:center">select distinct 字段名 from 表名;</td>
+<td style="text-align:center">查询字段中不重复的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">select 字段名 from 表名 where 条件列表;<br/>between number1 and number2<br/>字段名 in(字段值1, 字段值2, 字段值3&hellip;..)<br/>like &lsquo;占位符&rsquo;<br/>is null / is not null</td>
+<td style="text-align:center"><strong>条件查询</strong><br/>在某个范围内(包括边界值)<br/>查询字段值为字段值1, 字段值2, 字段值3&hellip;..的记录<br/>模糊匹配(&rsquo;_&lsquo;匹配单个字符, ‘%’匹配任意多个字符)<br/>字段值为空/非空</td>
+</tr>
+<tr>
+<td style="text-align:center">select 聚合函数(字段名) from 表名;<br/>count()<br/>max()<br/>min()<br/>avg()<br/>sum()</td>
+<td style="text-align:center"><strong>聚合函数</strong><br/>统计数量<br/>最大值<br/>最小值<br/>平均值<br/>求和</td>
+</tr>
+<tr>
+<td style="text-align:center">select 字段 from 表名 where 条件列表 group by 分组字段名 having 分组后过滤条件;<br />注意事项：<br/>关于分组查询</td>
+<td style="text-align:center"><strong>分组查询</strong><br />where是分组之前过滤，having是分组之后过滤<br/>where不能对聚合函数进行判断，而having可以<br/>执行顺序：where &gt; 聚合函数 &gt; having</td>
+</tr>
+<tr>
+<td style="text-align:center">select 字段 from 表名 order by 字段1 排序方式1, 字段2 排序方式2;</td>
+<td style="text-align:center"><strong>排序查询</strong><br />排序方式：asc&mdash;升序 ～ desc&mdash;降序</td>
+</tr>
+<tr>
+<td style="text-align:center">select 字段 from 表名 limit 起始索引, 查询记录数; <br />注意事项：<br />关于分页查询</td>
+<td style="text-align:center"><strong>分页查询</strong> <br />起始索引 = （查询页码 - 1）* 前面每页显示记录数<br />也可以理解为从起始索引之后一条记录开始查询 <br />若查询第一页数据，可省略起始索引</td>
+</tr>
+<tr>
+<td style="text-align:center">FROM 表名 WHERE 条件列表 GROUP BY 分组字段列表 HAVING 分组后条件列表 SELECT 字段列表 ORDER BY 排序字段列表 LIMIT 分页参数</td>
+<td style="text-align:center">DQL执行顺序</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">DCL - Data Control Language</th>
+<th style="text-align:center">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">use mysql; select * from user; <br /> create user &lsquo;username&rsquo;@&lsquo;hostname&rsquo; identified by &lsquo;password&rsquo;;<br />alter user &lsquo;username&rsquo;@&lsquo;hostname&rsquo; identified with mysql_native_password by &rsquo;new password&rsquo;;<br />drop user &lsquo;username&rsquo;@&lsquo;hostname&rsquo;;</td>
+<td style="text-align:center">查询用户 <br />创建用户 (%可作为通配符使用)<br />修改用户密码<br />删除用户</td>
+</tr>
+<tr>
+<td style="text-align:center">show grants for &lsquo;username&rsquo;@&lsquo;hostname&rsquo;; <br />grant 权限1, 权限2&hellip; on 数据库名.表名 to &lsquo;username&rsquo;@&lsquo;hostname&rsquo;;<br />revoke 权限1, 权限2&hellip; on 数据库名.表名  from &lsquo;username&rsquo;@&lsquo;hostname&rsquo;;</td>
+<td style="text-align:center">查询权限<br />授予权限<br />撤销权限</td>
+</tr>
+<tr>
+<td style="text-align:center">ALL&mdash;所有权限 · SELECT&mdash;查询数据 · INSERT&mdash;插入数据 · UPDATE&mdash;修改数据 <br /> DELETE&mdash;删除数据 · ALTER&mdash;修改表 · DROP&mdash;删除数据库/表/视图 · CREATE&mdash;创建数据库/表</td>
+<td style="text-align:center">授权时可使用通配符 *</td>
+</tr>
+</tbody>
+</table>
+<h2 id="函数">函数</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符串函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">concat(S1, S2, &hellip;)</td>
+<td style="text-align:center">字符串拼接</td>
+</tr>
+<tr>
+<td style="text-align:center">lower(str)</td>
+<td style="text-align:center">将字符串str全部转为小写</td>
+</tr>
+<tr>
+<td style="text-align:center">upper(str)</td>
+<td style="text-align:center">将字符串str全部转为大写</td>
+</tr>
+<tr>
+<td style="text-align:center">lpad(str, n, pad)</td>
+<td style="text-align:center">左填充，用字符串pad对str的左边进行填充，达到n个字符串的长度</td>
+</tr>
+<tr>
+<td style="text-align:center">rpad(str, n, pad)</td>
+<td style="text-align:center">右填充，用字符串pad对str的右边进行填充，达到n个字符串的长度</td>
+</tr>
+<tr>
+<td style="text-align:center">trim(str)</td>
+<td style="text-align:center">去掉字符串头部和尾部的空格</td>
+</tr>
+<tr>
+<td style="text-align:center">substring(str, start, len)</td>
+<td style="text-align:center">返回字符串str从start位置起的len个长度的字符串（MySQL起始索引为1）</td>
+</tr>
+</tbody>
+</table>
+<br />
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数值函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ceil(x)</td>
+<td style="text-align:center">向上取整</td>
+</tr>
+<tr>
+<td style="text-align:center">floor(x)</td>
+<td style="text-align:center">向下取整</td>
+</tr>
+<tr>
+<td style="text-align:center">mod(x, y)</td>
+<td style="text-align:center">返回x/y的模</td>
+</tr>
+<tr>
+<td style="text-align:center">rand()</td>
+<td style="text-align:center">返回0～1内的随机数</td>
+</tr>
+<tr>
+<td style="text-align:center">round(x, y)</td>
+<td style="text-align:center">求参数x的四舍五入的值，保留y位小数</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">日期函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">curdate()</td>
+<td style="text-align:center">返回当前日期</td>
+</tr>
+<tr>
+<td style="text-align:center">curtime()</td>
+<td style="text-align:center">返回当前时间</td>
+</tr>
+<tr>
+<td style="text-align:center">now()</td>
+<td style="text-align:center">返回当前日期和时间</td>
+</tr>
+<tr>
+<td style="text-align:center">year(date)</td>
+<td style="text-align:center">获取指定date的年份</td>
+</tr>
+<tr>
+<td style="text-align:center">month(date)</td>
+<td style="text-align:center">获取指定date的月份</td>
+</tr>
+<tr>
+<td style="text-align:center">day(date)</td>
+<td style="text-align:center">获取指定date的日期</td>
+</tr>
+<tr>
+<td style="text-align:center">date_add(date, INTERVAL expr type)</td>
+<td style="text-align:center">返回一个日期/时间值加上一个时间间隔expr后的时间值</td>
+</tr>
+<tr>
+<td style="text-align:center">datediff(date1, date2)</td>
+<td style="text-align:center">返回date1(新)和date2(旧)之间的天数</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">流程控制函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">if (value, t, f)</td>
+<td style="text-align:center">如果value为true，则返回t，否则返回f</td>
+</tr>
+<tr>
+<td style="text-align:center">ifnull(value1, value2)</td>
+<td style="text-align:center">如果value1不为空，则返回value1，否则返回value2</td>
+</tr>
+<tr>
+<td style="text-align:center">case (字段名) when (value1) then (result1)&hellip; else (default) end <br /> eg: case workAddress when &ldquo;Beijing&rdquo; then &ldquo;Big city&rdquo; else &ldquo;Small city&rdquo; end</td>
+<td style="text-align:center">如果字段名=value1，则返回result1，否则返回default</td>
+</tr>
+<tr>
+<td style="text-align:center">case when (expression1) then (result1) when (expression2) then (result2) else (default) end <br /> eg: case when math &gt;= 85 then &ldquo;HD&rdquo; when math &gt;= 60 then &ldquo;C&rdquo; else &ldquo;F&rdquo; end</td>
+<td style="text-align:center">如果 expression1为true，则返回result1，否则返回default</td>
+</tr>
+</tbody>
+</table></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/mysql/">MySQL</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

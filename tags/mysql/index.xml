@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on My blog</title>
+    <link>https://jiajun2001.github.io/tags/mysql/</link>
+    <description>Recent content in MySQL on My blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mysql Commands</title>
+      <link>https://jiajun2001.github.io/post/mysql_command/</link>
+      <pubDate>Tue, 15 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/mysql_command/</guid>
+      
+        <description>&lt;p&gt;MySQL是一种关系型数据库管理系统，其将数据保存在不同的表中，增加了速度与灵活性。MySQL所使用的SQL语言是用于访问数据库的最常用的标准化语言，由于其体积小、速度快、总体拥有成本低，一般中小型和大型网站的开发都选择MySQL作为网站数据库。此博文将会记录笔者学习MySQL的全过程，其中包括了MySQL知识的总结归纳与个人的思考启发。对于MySQL的学习，笔者决定从&lt;em&gt;bilibili&lt;/em&gt;上的&lt;a href=&#34;https://www.bilibili.com/video/BV1Kr4y1i7ru?p=1&#34;&gt;黑马程序员教学视频（MySQL数据库入门到精通，从mysql安装到mysql高级、mysql优化全囊括）&lt;/a&gt;入手（嘿嘿^^打个广告，黑马程序员yyds），该教学视频由浅入深，对于初学者及其友好。读者亦可将此博文作为MySQL速查表，以便于快速查找MySQL命令。&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

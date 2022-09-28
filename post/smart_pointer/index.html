@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        Smart Pointers in C&#43;&#43; |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+Blogging from Adelaide Australia
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/smart_pointer/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Smart Pointers in C&#43;&#43;"/>
+<meta name="twitter:description" content="在C&#43;&#43;中，动态内存的管理依赖于 new 和 delete 关键字。当程序员想要在堆(heap)上为对象分配空间并返回一个指向该对象的指针时，可以使用 new 关键字进行，同时也可以利用该类的构造函数(constructor)对其进行初始化(initialization)。当动态对象不再需要被使用时，我们可以使用 delete 关键字销毁该对象，并释放与之关联的内存。使用动态内存容易造成错误，当我们忘记释放内存或者不小心丢失了指向该内存的指针时，内存泄漏(memory leak)便会发生。为了更加方便地使用和管理动态内存，基于类模版的智能指针便应运而生。顾名思义，智能指针的行为类似于常规指针，但其可以智能地释放所指向的对象，避免造成内存泄漏。"/>
+
+
+
+  
+  <meta property="og:title" content="Smart Pointers in C&#43;&#43;" />
+<meta property="og:description" content="在C&#43;&#43;中，动态内存的管理依赖于 new 和 delete 关键字。当程序员想要在堆(heap)上为对象分配空间并返回一个指向该对象的指针时，可以使用 new 关键字进行，同时也可以利用该类的构造函数(constructor)对其进行初始化(initialization)。当动态对象不再需要被使用时，我们可以使用 delete 关键字销毁该对象，并释放与之关联的内存。使用动态内存容易造成错误，当我们忘记释放内存或者不小心丢失了指向该内存的指针时，内存泄漏(memory leak)便会发生。为了更加方便地使用和管理动态内存，基于类模版的智能指针便应运而生。顾名思义，智能指针的行为类似于常规指针，但其可以智能地释放所指向的对象，避免造成内存泄漏。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/smart_pointer/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-02-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-05T00:00:00+00:00" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Smart Pointers in C\u002b\u002b",
+        "headline": "Smart Pointers in C\u002b\u002b",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003cp\u003e在C\u002b\u002b中，动态内存的管理依赖于 new 和 delete 关键字。当程序员想要在堆(heap)上为对象分配空间并返回一个指向该对象的指针时，可以使用 new 关键字进行，同时也可以利用该类的构造函数(constructor)对其进行初始化(initialization)。当动态对象不再需要被使用时，我们可以使用 delete 关键字销毁该对象，并释放与之关联的内存。使用动态内存容易造成错误，当我们忘记释放内存或者不小心丢失了指向该内存的指针时，\u003ca href=\u0022https:\/\/baike.baidu.com\/item\/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F\/6181425\u0022\u003e内存泄漏(memory leak)\u003c\/a\u003e便会发生。为了更加方便地使用和管理动态内存，基于类模版的智能指针便应运而生。顾名思义，智能指针的行为类似于常规指针，但其可以智能地释放所指向的对象，避免造成内存泄漏。\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/smart_pointer\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-02-05T00:00:00.00Z",
+        "datePublished": "2022-02-05T00:00:00.00Z",
+        "dateModified": "2022-02-05T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun's Blog",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/smart_pointer\/",
+        "wordCount" : "631",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "C\u002b\u002b"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />Blogging from Adelaide Australia<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>Smart Pointers in C&#43;&#43;</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  5/2/2022
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">3-minute read</span>
+          </li>
+        </ul>
+
+      <p>在C++中，动态内存的管理依赖于 new 和 delete 关键字。当程序员想要在堆(heap)上为对象分配空间并返回一个指向该对象的指针时，可以使用 new 关键字进行，同时也可以利用该类的构造函数(constructor)对其进行初始化(initialization)。当动态对象不再需要被使用时，我们可以使用 delete 关键字销毁该对象，并释放与之关联的内存。使用动态内存容易造成错误，当我们忘记释放内存或者不小心丢失了指向该内存的指针时，<a href="https://baike.baidu.com/item/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/6181425">内存泄漏(memory leak)</a>便会发生。为了更加方便地使用和管理动态内存，基于类模版的智能指针便应运而生。顾名思义，智能指针的行为类似于常规指针，但其可以智能地释放所指向的对象，避免造成内存泄漏。</p>
+<h2 id="智能指针有哪些">智能指针有哪些</h2>
+<ol>
+<li>auto_ptr (C++11 已抛弃)</li>
+<li>shared_ptr (共享型，强引用类型指针)</li>
+<li>unique_ptr (独占型)</li>
+<li>weak_ptr (观察型，弱引用类型指针)</li>
+</ol>
+<h2 id="auto_ptr">auto_ptr</h2>
+<p>auto_ptr在C++03标准库中被首次引入，但是该智能指针存在设计缺陷，其“剥夺”所有权的特性容易造成内存崩溃，因此在C++11版本的标准库中auto_ptr已被抛弃，新的标准库提供了其他更加安全方便的智能指针。<br/><br/>以该智能指针的重载 “=” 以实现拷贝构造的源码为例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="n">_LIBCPP_INLINE_VISIBILITY</span> <span class="n">auto_ptr</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">auto_ptr</span><span class="o">&amp;</span> <span class="n">__p</span><span class="p">)</span> <span class="n">_NOEXCEPT</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">reset</span><span class="p">(</span><span class="n">__p</span><span class="p">.</span><span class="n">release</span><span class="p">());</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Up</span><span class="o">&gt;</span> <span class="n">_LIBCPP_INLINE_VISIBILITY</span> <span class="n">auto_ptr</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;&amp;</span> <span class="n">__p</span><span class="p">)</span> <span class="n">_NOEXCEPT</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">reset</span><span class="p">(</span><span class="n">__p</span><span class="p">.</span><span class="n">release</span><span class="p">());</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;}</span>
+</span></span></code></pre></div><p>可以看出，使用 “=” 运算符对auto_ptr进行赋值时，__p的值不仅会被传递给左值并且__p会被置空。由此可知，一块内存只可以允许一个auto_ptr进行管理，因为在赋值操作时，右值上的auto_ptr被无情地release()掉了。这样的特性设计其实是make sense的，由于auto_ptr的实现是基于<a href="https://baike.baidu.com/item/RAII/7042675?fr=aladdin">RAII</a>（保证在任何情况下，使用对象时先构造对象，最后析构对象）的变性（所有权可以被接管）外部初始化（RAII实例的构造函数接管了在外部被创建资源的所有权）类型，若存在多个auto_ptr指向同一块内存，在析构这些auto_ptr时，同一块内存会因被多次释放而造成错误。
+<br/>基于auto_ptr“剥夺”所有权的特性，需要注意以下几点以防止内存泄漏及崩溃：<br/></p>
+<ol>
+<li>不要访问被用来赋值过的右值(auto_ptr)</li>
+<li>不要采用auto_ptr接收数组指针</li>
+<li>不要将auto_ptr作为参数按照值传递方式传入函数</li>
+<li>不要将auto_ptr作为容器对象
+<br/></li>
+</ol>
+<p><strong>1.不要访问被用来赋值过的右值(auto_ptr)</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#34;Jason&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p1</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span>
+</span></span></code></pre></div><p>在该程序中，p2“剥夺”了p1对于对象的所有权，与此同时，p1作为右值被auto_ptr的“=”运算符重载操作变为nullptr。因此调用p1的getName()方法时会出现错误，因为本质上的操作是 nullptr-&gt;getName()。</p>
+<p><strong>2. 不要采用auto_ptr接收数组指针</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="n">_LIBCPP_INLINE_VISIBILITY</span> <span class="o">~</span><span class="n">auto_ptr</span><span class="p">()</span> <span class="n">_NOEXCEPT</span> <span class="p">{</span><span class="k">delete</span> <span class="n">__ptr_</span><span class="p">;}</span>
+</span></span></code></pre></div><p>从以上源码可知，当auto_ptr执行其析构函数时，调用的是delete方法而不是delete[]方法，这样做会造成内存泄漏，因为我们仅仅只是释放了数组第一个元素的空间。因此以下程序会造成内存泄漏：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">array</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">auto_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ptr1</span><span class="p">(</span><span class="n">array</span><span class="p">);</span>
+</span></span></code></pre></div><br/>
+<p><strong>3. 不要将auto_ptr作为参数按照值传递方式传入函数</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">FireEmployee</span><span class="p">(</span><span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Fire!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#34;Jason&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">FireEmployee</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ptr</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p>在该程序中，line11造成了错误，这是因为使用了auto_ptr按照值传递方式传参。在函数调用的过程中，FireEmployee()函数会在其作用域中复制传入的ptr，这会导致原本传入的ptr（实参）失去了对Person对象的所有权，因此函数调用结束后，无法再次访问ptr。一种更加安全的方式便是进行引用传参，函数可以修改为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">FireEmployee</span><span class="p">(</span><span class="n">auto_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;&amp;</span> <span class="n">ptr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Fire!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><br/>
+<p><strong>4. 不要将auto_ptr作为容器对象</strong></p>
+<p>使用容器时，通常会伴随着对STL算法或者容器成员函数的使用，若某算法或者成员函数对auto_ptr进行第一次拷贝，则auto_ptr会被置为nullptr，再次对同一个auto_ptr进行拷贝抑或是使用该auto_ptr则会造成内存崩溃，引发不良后果。因此不大推荐使用auto_ptr作为容器的对象。</p>
+<h2 id="shared_ptr">shared_ptr</h2>
+<p>shared_ptr是一种共享型的智能指针，这是因为多个shared_ptr可以被允许指向相同的对象，这一特性与我们之前浅析过的auto_ptr以及下文即将剖析的unique_ptr大不相同。此外，shared_ptr还属于强引用类型智能指针，那么何为“引用”？每个shared_ptr身上都具备一个关联的计数器，其计数结果便称之为“引用计数”(reference count)，引用计数的存在可以让shared_ptr记录程序中总共有多少个shared_ptr指向相同的对象以便智能指针可以在恰当的时机自动释放对象，这一行为依赖于shared_ptr类的析构函数(destructor)所实现。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="n">smart_ptr</span><span class="o">::~</span><span class="n">smart_ptr</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">ptr_</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">shared_count_</span><span class="o">-&gt;</span><span class="n">reduce_count</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">delete</span> <span class="n">ptr_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">delete</span> <span class="n">shared_count_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p>为了更好地理解shared_ptr析构的全过程，笔者截取了简易版本shared_ptr实现的析构代码做粗略分析。可以看出，当shared_ptr调用析构函数时，其引用计数(shared_count_)会递减，而一旦这个shared_ptr的引用计数变为0，它就会自动释放指向的对象及其内置的引用计数类。换言之，对于一块内存，shared_ptr类可以保证只要有任何其他的shared_ptr对象引用它，它就不会被释放。
+<br/>在使用shared_ptr时，需要关注以下几个方面：<br/></p>
+<ol>
+<li>条件判断中的智能指针</li>
+<li>利用 make_shared<T> (args) 函数初始化 shared_ptr</li>
+<li>p.use_count() 与 p.unique() 的使用</li>
+<li>销毁shared_ptr的两种方法
+<br/></li>
+</ol>
+<p><strong>1. 条件判断中的智能指针</strong></p>
+<p>如果在一个条件判断中使用智能指针，效果就是检测它是否为空。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;该指针不为空&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;该指针是一个空指针！&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span><span class="line"><span class="cl">    <span class="err">该指针是一个空指针！</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span></code></pre></div><p>注意：默认初始化的智能指针中保存着一个空指针！</p>
+<p><strong>2. 利用 make_shared<T> (args) 函数初始化 shared_ptr</strong></p>
+<p>在分配和使用动态内存时，调用 make_shared<T> (args) 标准库函数是一种较为推荐的方法。make_shared<T> (args) 函数可以在在动态内存中分配一个对象并用 args 初始化它，最终返回指向此对象的 shared_ptr。使用此方法时要包含头文件“memory”，编译时建议在命令语句后添加 “-std=c++11”。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="c1">// 指向一个值为42的整型 shared_ptr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p2 指向的值是：&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向一个值为 &#34;999999999&#34; (10个&#39;9&#39;) 的 shared_ptr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">p3</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p3 指向的值是：&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p3</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向一个值初始化的 int (0) 的 shared_ptr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">p4</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p4 指向的值是：&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p4</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// (利用 auto 定义对象，较简单) p5 指向一个动态分配的空 vector&lt;string&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">p5</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p5 指向对象的地址(该对象的shared_ptr)为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p5</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 指向一个新创建的 Test 类 (利用构造函数初始化其 data 属性为 10，s 属性为“Hello World!”)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span> <span class="n">p6</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Test</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&#34;Hello World!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p6 指向的对象的 data 为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p6</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p6 指向的对象的 s 为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p6</span><span class="o">-&gt;</span><span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p2</span> <span class="err">指向的值是：</span><span class="mi">42</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p3</span> <span class="err">指向的值是：</span><span class="mi">9999999999</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p4</span> <span class="err">指向的值是：</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p5</span> <span class="err">指向对象的地址</span><span class="p">(</span><span class="err">该对象的</span><span class="n">shared_ptr</span><span class="p">)</span><span class="err">为：</span><span class="mh">0x6000020802b8</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p6</span> <span class="err">指向的对象的</span> <span class="n">data</span> <span class="err">为：</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p6</span> <span class="err">指向的对象的</span> <span class="n">s</span> <span class="err">为：</span><span class="n">Hello</span> <span class="n">World</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span></code></pre></div><br/>
+<p><strong>3. p.use_count() 与 p.unique() 的使用</strong></p>
+<p>当进行拷贝或赋值操作时，每个 shared_ptr 都会记录总共有多少个 shared_ptr 指向相同的对象。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 p 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 检测 p 是否唯一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">unique</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p 是唯一一个指向其对象的 shared_ptr&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p 不是唯一一个指向其对象的 shared_ptr&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">q</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="c1">// 此时 q 是 shared_ptr p 的拷贝，此操作会递增 p 中的计数器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 p 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 检测 p 是否唯一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">unique</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p 是唯一一个指向其对象的 shared_ptr&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;p 不是唯一一个指向其对象的 shared_ptr&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// shared_ptr q 同样在记录总共有多少个 shared_ptr 指向相同的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 q 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 r 共享对象(指向int 100对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span> <span class="c1">// 此操作让 r 指向 q 指向的对象，会递增 q 指向对象的引用次数，递减 r 指向对象的引用次数，最终导致 r 原来指向的对象没有引用者而被自动释放
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 r 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 p 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 q 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">p</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="err">是唯一一个指向其对象的</span> <span class="n">shared_ptr</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">p</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="err">不是唯一一个指向其对象的</span> <span class="n">shared_ptr</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">q</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">r</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">100</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">r</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">p</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">q</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span></code></pre></div><br/>
+<p><strong>4. 销毁shared_ptr的两种方法</strong></p>
+<p>由于在最后一个 shared_ptr 销毁前内存都不会释放，保证 shared_ptr 在无用之后不再保留就非常重要了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">    <span class="c1">// 已知 r，p，q 指向相同的内存空间（均指向int 42对象)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 利用 nullptr 显式销毁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">r</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 r 共享对象(之前指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 p 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 利用 reset() 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">q</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 q 共享对象(之前指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">q</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;与 p 共享对象(指向int 42对象)的智能指针数量为：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">r</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">p</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">q</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="err">与</span> <span class="n">p</span> <span class="err">共享对象</span><span class="p">(</span><span class="err">指向</span><span class="kt">int</span> <span class="mi">42</span><span class="err">对象</span><span class="p">)</span><span class="err">的智能指针数量为：</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-----------------------------</span>
+</span></span></code></pre></div><h2 id="unique_ptr">unique_ptr</h2>
+<p>敬请期待</p>
+<h2 id="weak_ptr">weak_ptr</h2>
+<p>敬请期待</p>
+<h2 id="reference">Reference</h2>
+<ol>
+<li>Lippman, S, Lajoie, J, Moo, B 2013, <em>C++ Primer, Fifth Edition</em>, Pearson Education, Inc., Permissions Department, One Lake Street, Upper Saddle River, New Jersey, US.</li>
+</ol></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/c&#43;&#43;/">C&#43;&#43;</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
