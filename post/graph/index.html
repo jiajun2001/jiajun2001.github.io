@@ -195,7 +195,7 @@
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/graph\/",
-        "wordCount" : "403",
+        "wordCount" : "600",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -509,7 +509,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">3-minute read</span>
           </li>
         </ul>
 
@@ -617,6 +617,71 @@
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">DFS</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="dijkstra-algorithm">Dijkstra Algorithm</h2>
+<p><strong>Idea for Dijkstra Algorithm:</strong> In iteration <em>i</em>, we compute all shortest paths having <em>i</em> edges.</p>
+<h4 id="implementation-2">Implementation:</h4>
+<p>Class Declaration</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">iPair</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Graph</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">nodeNum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">list</span><span class="o">&lt;</span><span class="n">iPair</span><span class="o">&gt;&gt;</span> <span class="n">adjacencyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Graph</span><span class="p">(</span><span class="kt">int</span> <span class="n">nodeNum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Add edges and weights to graph
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">int</span> <span class="n">child</span><span class="p">,</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Dijkstra&#39;s algorithm
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="kt">int</span> <span class="n">startingNode</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">myComparison</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">lhs</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Method Implementation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">Graph</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="kt">int</span> <span class="n">nodeNum</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">nodeNum</span> <span class="o">=</span> <span class="n">nodeNum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adjacencyList</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nodeNum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Graph</span><span class="o">::</span><span class="n">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">int</span> <span class="n">child</span><span class="p">,</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adjacencyList</span><span class="p">[</span><span class="n">parent</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">weight</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adjacencyList</span><span class="p">[</span><span class="n">child</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">weight</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Graph</span><span class="o">::</span><span class="n">dijkstra</span><span class="p">(</span><span class="kt">int</span> <span class="n">startingNode</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">iPair</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">iPair</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">myComparison</span><span class="o">&gt;</span> <span class="n">myQue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">distance</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">nodeNum</span><span class="p">,</span> <span class="n">INT16_MAX</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Initialization
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">myQue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">startingNode</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">distance</span><span class="p">[</span><span class="n">startingNode</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">myQue</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">myQue</span><span class="p">.</span><span class="n">top</span><span class="p">().</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">myQue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Checking its neighboring nodes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">n</span> <span class="p">:</span> <span class="n">adjacencyList</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Update the shortest path
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">distance</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">myQue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Print shortest distances stored in dist[]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h2 id="reference">Reference</h2>
