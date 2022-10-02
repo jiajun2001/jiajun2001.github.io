@@ -195,7 +195,7 @@
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/graph\/",
-        "wordCount" : "285",
+        "wordCount" : "403",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -581,9 +581,45 @@
 </span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Example
-<img src="/static/images/bfs_eg.png" alt="alt" title="aa"></p>
-<h2 id="reference">Reference</h2>
+</span></span></code></pre></div><h2 id="depth-first-search-dfs">Depth First Search (DFS)</h2>
+<p><strong>Idea for depth-first-search:</strong> Whenever you visit a vertex, explore in the next step one of its non-visited neighbors.</p>
+<h4 id="implementation-1">Implementation:</h4>
+<p>Class Declaration</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Graph</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">adjacencyList</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Graph</span><span class="p">(</span><span class="kt">int</span> <span class="n">nodeNum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Add edges to the graph
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">int</span> <span class="n">child</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Depth First Search
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">DFS</span><span class="p">(</span><span class="kt">int</span> <span class="n">startingNode</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>Method Implementation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">Graph</span><span class="o">::</span><span class="n">Graph</span><span class="p">(</span><span class="kt">int</span> <span class="n">nodeNum</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nodeNum</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">adjacencyList</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nodeNum</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Graph</span><span class="o">::</span><span class="n">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">int</span> <span class="n">child</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// There is an edge from &#39;parent&#39; to &#39;child&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">adjacencyList</span><span class="p">[</span><span class="n">parent</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Graph</span><span class="o">::</span><span class="n">DFS</span><span class="p">(</span><span class="kt">int</span> <span class="n">startingNode</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Handle current node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">startingNode</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visited</span><span class="p">[</span><span class="n">startingNode</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Handling neighboring nodes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">n</span> <span class="p">:</span> <span class="n">adjacencyList</span><span class="p">[</span><span class="n">startingNode</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">DFS</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
 <ol>
 <li>Ejonavi, J 2020, <em>Algorithms 101: How to use graph algorithms</em>, Educative, viewed 1 October 2022, <a href="https://www.educative.io/blog/graph-algorithms-tutorial">https://www.educative.io/blog/graph-algorithms-tutorial</a>.</li>
 </ol></div>
