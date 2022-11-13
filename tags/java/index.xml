@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on My blog</title>
+    <link>https://jiajun2001.github.io/tags/java/</link>
+    <description>Recent content in Java on My blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Nov 2022 19:53:11 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Interface</title>
+      <link>https://jiajun2001.github.io/post/java_interface/</link>
+      <pubDate>Sun, 13 Nov 2022 19:53:11 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_interface/</guid>
+      
+        <description>&lt;p&gt;An interface is a reference type in Java. It is similar to class. It is a collection of abstract methods. A class implements an interface, thereby inheriting the abstract methods of the interface. Along with abstract methods, an interface may also contain constants, default methods, static methods, and nested types (TutorialsPoint 2022).&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
