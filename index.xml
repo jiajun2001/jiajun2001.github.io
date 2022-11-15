@@ -14,7 +14,7 @@
       
       <guid>https://jiajun2001.github.io/post/csharp_class_namespace/</guid>
       
-        <description>&lt;p&gt;Summary&lt;/p&gt;</description>
+        <description>&lt;p&gt;This post is the beginning of my journey for learning C#. I will start with the very first program &amp;lsquo;Hello World&amp;rsquo; to illustrate the concepts of class and namespace. And then, I will briefly talk about the reference of class libraries which consists of DDL and project reference. In the end, I will clarify the definition of a good program which should have high cohesion and low coupling.&lt;/p&gt;</description>
       
     </item>
     
