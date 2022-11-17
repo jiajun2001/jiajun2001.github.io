@@ -8,6 +8,17 @@
     <language>en</language>
     <lastBuildDate>Thu, 17 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>&#39;Final&#39; keyword in Java</title>
+      <link>https://jiajun2001.github.io/post/java_final/</link>
+      <pubDate>Thu, 17 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_final/</guid>
+      
+        <description>&lt;p&gt;&amp;lsquo;Final&amp;rsquo; keyword represents &amp;lsquo;ultimate&amp;rsquo; and &amp;lsquo;unchangeable&amp;rsquo;. In this post, I will talk about four usages of the &amp;lsquo;final&amp;rsquo; keyword, including modifying a class, a method, local variables (basic and reference types) and a member variable.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Java Polymorphism</title>
       <link>https://jiajun2001.github.io/post/java_polymorphism/</link>
       <pubDate>Thu, 17 Nov 2022 00:00:00 +0000</pubDate>
