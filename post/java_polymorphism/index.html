@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        Java Polymorphism |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+Blogging from Adelaide Australia
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/java_polymorphism/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Java Polymorphism"/>
+<meta name="twitter:description" content="In this post, I will talk about the concepts and benefits of polymorphism. Then, I will point out some important properties about using class variables and methods when polymorphism happens. Moving on, object down casting and &lsquo;instanceof&rsquo; method will be briefly introduced. Finally, I will demonstrate a case study combining the knowledge of using interface and polymorphism."/>
+
+
+
+  
+  <meta property="og:title" content="Java Polymorphism" />
+<meta property="og:description" content="In this post, I will talk about the concepts and benefits of polymorphism. Then, I will point out some important properties about using class variables and methods when polymorphism happens. Moving on, object down casting and &lsquo;instanceof&rsquo; method will be briefly introduced. Finally, I will demonstrate a case study combining the knowledge of using interface and polymorphism." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/java_polymorphism/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-11-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-17T00:00:00+00:00" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Java Polymorphism",
+        "headline": "Java Polymorphism",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003cp\u003eIn this post, I will talk about the concepts and benefits of polymorphism. Then, I will point out some important properties about using class variables and methods when polymorphism happens. Moving on, object down casting and \u0026lsquo;instanceof\u0026rsquo; method will be briefly introduced. Finally, I will demonstrate a case study combining the knowledge of using interface and polymorphism.\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/java_polymorphism\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun Yu"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun Yu"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun Yu"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun Yu"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-11-17T00:00:00.00Z",
+        "datePublished": "2022-11-17T00:00:00.00Z",
+        "dateModified": "2022-11-17T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun Yu",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/java_polymorphism\/",
+        "wordCount" : "1069",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "Java"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />Blogging from Adelaide Australia<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+      <div class="post__thumbnail-wrapper">
+        <img class="post__thumbnail" src="/images/java/polymorphism.jpeg" alt="Thumbnail image" />
+      </div>
+
+    
+    <div class="post__content">
+      <h1>Java Polymorphism</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  17/11/2022
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">6-minute read</span>
+          </li>
+        </ul>
+
+      <p>In this post, I will talk about the concepts and benefits of polymorphism. Then, I will point out some important properties about using class variables and methods when polymorphism happens. Moving on, object down casting and &lsquo;instanceof&rsquo; method will be briefly introduced. Finally, I will demonstrate a case study combining the knowledge of using interface and polymorphism.</p>
+<h4 id="what-is-polymorphism">What is polymorphism?</h4>
+<p>&lsquo;Extends&rsquo; and &lsquo;implements&rsquo; are prerequisites of polymorphism which lets one object have multiple forms. (E.g. Jason can not only be a student but also be a human.)</p>
+<br />
+<h4 id="polymorphism-in-code">Polymorphism in code</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// (Base class) className = new (Derived class());
+</span></span></span><span class="line"><span class="cl"><span class="c1">// (Base interface) className = new (Derived interface());
+</span></span></span></code></pre></div><br />
+<h4 id="benefits-of-polymorphism">Benefits of polymorphism</h4>
+<p>No matter what type of objects we new on the right side, we do not need to change the method that we want to invoke.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// Without Polymorphism
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Teacher</span> <span class="n">one</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Teacher</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">one</span><span class="o">.</span><span class="na">teach</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Tutor</span> <span class="n">two</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tutor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">two</span><span class="o">.</span><span class="na">tutor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// With Polymorphism
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Employee</span> <span class="n">one</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Teacher</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">one</span><span class="o">.</span><span class="na">work</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Employee</span> <span class="n">two</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tutor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">two</span><span class="o">.</span><span class="na">work</span><span class="o">();</span>
+</span></span></code></pre></div><br />
+<h4 id="class-variables-in-polymorphism">Class variables in polymorphism</h4>
+<p>1: Give a higher priority to use the member variable from the object on the left side of the &lsquo;=&rsquo;. If the complier cannot find the corresponding variable, then it will find this variable upwards.</p>
+<p>2: Check left side when compiling, check left side when running.</p>
+<p>3: If we use class method to access class variable indirectly, the compiler checks which class contains this method and then use it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// Base class
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Parent</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">showNum</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Derived class
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Child</span> <span class="kd">extends</span> <span class="n">Parent</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="n">21</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Class variables in polymorphism
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Parent</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Child</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">age</span><span class="o">);</span> <span class="c1">// Wrong! The object on the left side is &#39;Parent&#39; type, however, there is no variable called &#39;age&#39;. [Rule 1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// This will print 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">num</span><span class="o">);</span> <span class="c1">// Based on the rule of &#39;check left side when compiling, check left side when running.&#39;, we can see that the left side is &#39;Parent&#39;, so this will use the the member variable &#39;num&#39; from the &#39;Parent&#39; class. [Rule 2]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="n">obj</span><span class="o">.</span><span class="na">showNum</span><span class="o">();</span> <span class="c1">// The method belongs to the &#39;Parent&#39; class, therefore, it prints &#39;10&#39;; If we override it on the &#39;Child&#39; class, then it will print &#39;20&#39;. (We can also use Rule 2 in the &#39;Class methods in polymorphism&#39; section to explain it.)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="class-methods-in-polymorphism">Class methods in polymorphism</h4>
+<p>1: Give a higher priority to invoke the method from the object that has been new-ed. If the complier cannot find the corresponding method, then it will find this method upwards.</p>
+<p>2: Check left side when compiling, check right side when running.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Parent</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Child</span><span class="o">();</span> <span class="c1">// Polymorphism
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="n">obj</span><span class="o">.</span><span class="na">methodCommon</span><span class="o">();</span> <span class="c1">// Based on the rule of &#39;check right side when running&#39;, we can see that the right side is &#39;Child&#39;, so the &#39;methodCommon&#39; from the child class is invoked with higher priority.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="n">obj</span><span class="o">.</span><span class="na">methodParent</span><span class="o">();</span> <span class="c1">// Child class does not have this method, then we check this method upwards.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// obj.methodChild(); // Wrong! Compiling error.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// Based on the rule of &#39;Check left side when compiling&#39;, we can see that the left side is &#39;Parent&#39;, but this class does not have &#39;methodChild&#39; method.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="object-down-casting">Object Down Casting</h4>
+<p>Usage: Convert the base object back to the <mark>original</mark> derived object. It is similar to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Animal</span> <span class="n">animal</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cat</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">animal</span><span class="o">.</span><span class="na">eat</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// animal.catchMouse();  (Wrong!)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Correct Object down casting
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Cat</span> <span class="n">cat</span> <span class="o">=</span> <span class="o">(</span><span class="n">Cat</span><span class="o">)</span> <span class="n">animal</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cat</span><span class="o">.</span><span class="na">catchMouse</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Wrong object down casting
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// ClassCastException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// Dog dog = (Dog) animal;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="use-instanceof-to-check-the-type-of-the-object">Use &lsquo;instanceof&rsquo; to check the type of the object</h4>
+<p>Issue: Sometimes, we do not know if the &lsquo;animal&rsquo; object points to &lsquo;Cat&rsquo; object or &lsquo;Dog&rsquo; object. Therefore, we need a method to know the type that the base object refers to.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// If your girl friend wants any animal to be her pet.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">giveMeAPet</span><span class="o">(</span><span class="k">new</span> <span class="n">Dog</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// An example
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">giveMeAPet</span><span class="o">(</span><span class="n">Animal</span> <span class="n">animal</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// We can use &#39;instanceof&#39; to safely down cast the object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// Check if the original derived class is &#39;Dog&#39; or not
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">animal</span> <span class="k">instanceof</span> <span class="n">Dog</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Dog</span> <span class="n">dog</span> <span class="o">=</span> <span class="o">(</span><span class="n">Dog</span><span class="o">)</span> <span class="n">animal</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dog</span><span class="o">.</span><span class="na">watchHouse</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Check if the original derived class is &#39;Cat&#39; or not
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">animal</span> <span class="k">instanceof</span> <span class="n">Cat</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Cat</span> <span class="n">cat</span> <span class="o">=</span> <span class="o">(</span><span class="n">Cat</span><span class="o">)</span> <span class="n">animal</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cat</span><span class="o">.</span><span class="na">catchMouse</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="interface-and-polymorphism-case-study">Interface and polymorphism case study</h4>
+<p>Describe &lsquo;Laptop&rsquo; class which implements &lsquo;USB mouse&rsquo; and &lsquo;USB keyboard&rsquo; inherited from &lsquo;USB&rsquo; interface.</p>
+<ul>
+<li>USB interface: It includes the functionality of power on and power off USB devices (Mouse and Keyboard).</li>
+<li>Laptop class: It includes the functionality of power on and power off itself as well as using USB equipment.</li>
+<li>Mouse class: It implements USB interface and can click.</li>
+<li>Keyboard class: It implements USB interface and can knock on.</li>
+</ul>
+<p>Define the interface USB</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">USB</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Use the interface</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Mouse</span> <span class="kd">implements</span> <span class="n">USB</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The mouse is opened&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The mouse is closed&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">click</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Click&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Keyboard</span> <span class="kd">implements</span> <span class="n">USB</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The keyboard is opened&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;The keyboard is closed&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">type</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Knock on&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Define the laptop class</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Laptop</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">powerOn</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Power on the laptop&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">powerOff</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Power off the laptop&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Use USB device
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">useDevice</span><span class="o">(</span><span class="n">USB</span> <span class="n">myUSB</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">myUSB</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">myUSB</span> <span class="k">instanceof</span> <span class="n">Mouse</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Mouse</span> <span class="n">mouse</span> <span class="o">=</span> <span class="o">(</span><span class="n">Mouse</span><span class="o">)</span> <span class="n">myUSB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mouse</span><span class="o">.</span><span class="na">click</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">myUSB</span> <span class="k">instanceof</span> <span class="n">Keyboard</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Keyboard</span> <span class="n">keyboard</span> <span class="o">=</span> <span class="o">(</span><span class="n">Keyboard</span><span class="o">)</span> <span class="n">myUSB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">keyboard</span><span class="o">.</span><span class="na">type</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">myUSB</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Simulate the process</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Create a laptop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Laptop</span> <span class="n">laptop</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Laptop</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">laptop</span><span class="o">.</span><span class="na">powerOn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Prepare a mouse and use it
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">USB</span> <span class="n">usbMouse</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mouse</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">laptop</span><span class="o">.</span><span class="na">useDevice</span><span class="o">(</span><span class="n">usbMouse</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Prepare a keyboard and use it
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Keyboard</span> <span class="n">usbKeyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Keyboard</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">laptop</span><span class="o">.</span><span class="na">useDevice</span><span class="o">(</span><span class="n">usbKeyboard</span><span class="o">);</span> <span class="c1">// Still correct, automatically execute object up casting (implementing class -&gt; interface)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Power off the laptop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">laptop</span><span class="o">.</span><span class="na">powerOff</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Program Output</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">Power</span> <span class="n">on</span> <span class="n">the</span> <span class="n">laptop</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">mouse</span> <span class="n">is</span> <span class="n">opened</span>
+</span></span><span class="line"><span class="cl"><span class="n">Click</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">mouse</span> <span class="n">is</span> <span class="n">closed</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">keyboard</span> <span class="n">is</span> <span class="n">opened</span>
+</span></span><span class="line"><span class="cl"><span class="n">Knock</span> <span class="n">on</span>
+</span></span><span class="line"><span class="cl"><span class="n">The</span> <span class="n">keyboard</span> <span class="n">is</span> <span class="n">closed</span>
+</span></span><span class="line"><span class="cl"><span class="n">Power</span> <span class="n">off</span> <span class="n">the</span> <span class="n">laptop</span>
+</span></span></code></pre></div></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/java/">Java</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

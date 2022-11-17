@@ -6,7 +6,18 @@
     <description>Recent content in Java on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 13 Nov 2022 19:53:11 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Polymorphism</title>
+      <link>https://jiajun2001.github.io/post/java_polymorphism/</link>
+      <pubDate>Thu, 17 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_polymorphism/</guid>
+      
+        <description>&lt;p&gt;In this post, I will talk about the concepts and benefits of polymorphism. Then, I will point out some important properties about using class variables and methods when polymorphism happens. Moving on, object down casting and &amp;lsquo;instanceof&amp;rsquo; method will be briefly introduced. Finally, I will demonstrate a case study combining the knowledge of using interface and polymorphism.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Java Interface</title>
       <link>https://jiajun2001.github.io/post/java_interface/</link>
