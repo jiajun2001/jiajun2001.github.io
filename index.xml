@@ -6,7 +6,18 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Nov 2022 17:24:33 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Nov 2022 22:36:32 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C# Class Members</title>
+      <link>https://jiajun2001.github.io/post/csharp_class_members/</link>
+      <pubDate>Thu, 17 Nov 2022 22:36:32 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/csharp_class_members/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>Java Inner Class</title>
       <link>https://jiajun2001.github.io/post/java_innerclass/</link>
