@@ -6,7 +6,18 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Nov 2022 12:36:32 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Nov 2022 13:59:38 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Predefined Class</title>
+      <link>https://jiajun2001.github.io/post/java_predefined_class/</link>
+      <pubDate>Fri, 18 Nov 2022 13:59:38 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_predefined_class/</guid>
+      
+        <description>&lt;p&gt;In this post, I will talk about some predefined classes as well as commonly used APIs in Java. The post will cover object class, date class, date format class, calendar class, system class, string builder class and wrapper class. In addition, I will demonstrate some methods of those classes and show some examples.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>C# Class Members</title>
       <link>https://jiajun2001.github.io/post/csharp_class_members/</link>
