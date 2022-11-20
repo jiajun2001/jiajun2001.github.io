@@ -6,7 +6,18 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 19 Nov 2022 17:24:33 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Nov 2022 14:16:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Generic Programming</title>
+      <link>https://jiajun2001.github.io/post/java_generic_programming/</link>
+      <pubDate>Sun, 20 Nov 2022 14:16:22 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_generic_programming/</guid>
+      
+        <description>&lt;p&gt;In this post, I will introduce generic programming in Java and talk about how to define and use generic class, generic method, generic interface and generic wildcard.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Java Iterator</title>
       <link>https://jiajun2001.github.io/post/java_iterator/</link>
