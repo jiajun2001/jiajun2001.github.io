@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Observation on My blog</title>
+    <link>https://jiajun2001.github.io/tags/observation/</link>
+    <description>Recent content in Observation on My blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Nov 2022 15:33:36 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/observation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swapping Numbers in Sorting Algorithms</title>
+      <link>https://jiajun2001.github.io/post/java_swapping_numbers/</link>
+      <pubDate>Tue, 22 Nov 2022 15:33:36 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_swapping_numbers/</guid>
+      
+        <description>&lt;p&gt;In this post, I will demonstrate an interesting observation about swapping numbers in sorting algorithms.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

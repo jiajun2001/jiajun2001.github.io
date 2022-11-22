@@ -6,7 +6,18 @@
     <description>Recent content in Algorithm on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 01 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Nov 2022 12:44:14 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithm and Data Structure Theory Study</title>
+      <link>https://jiajun2001.github.io/post/algorithm_theory/</link>
+      <pubDate>Tue, 22 Nov 2022 12:44:14 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/algorithm_theory/</guid>
+      
+        <description>&lt;p&gt;In this post, I will summarize some important concepts about algorithms and data structures. The contents in this post can be a bit theoretical and require some memorization.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Graph Algorithms</title>
       <link>https://jiajun2001.github.io/post/graph/</link>
