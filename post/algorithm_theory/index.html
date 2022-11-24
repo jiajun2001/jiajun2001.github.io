@@ -128,8 +128,8 @@ Blogging from Adelaide Australia
 <meta property="og:description" content="In this post, I will summarize some important concepts about algorithms and data structures. The contents in this post can be a bit theoretical and require some memorization." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/algorithm_theory/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-11-23T12:44:14+10:30" />
-<meta property="article:modified_time" content="2022-11-23T12:44:14+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2022-11-24T12:44:14+10:30" />
+<meta property="article:modified_time" content="2022-11-24T12:44:14+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -178,9 +178,9 @@ Blogging from Adelaide Australia
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-11-23T12:44:14.00Z",
-        "datePublished": "2022-11-23T12:44:14.00Z",
-        "dateModified": "2022-11-23T12:44:14.00Z",
+        "dateCreated": "2022-11-24T12:44:14.00Z",
+        "datePublished": "2022-11-24T12:44:14.00Z",
+        "dateModified": "2022-11-24T12:44:14.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -203,7 +203,7 @@ Blogging from Adelaide Australia
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/algorithm_theory\/",
-        "wordCount" : "204",
+        "wordCount" : "380",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -494,7 +494,7 @@ Blogging from Adelaide Australia
             <span class="post__meta-text"
               >
                 
-                  23/11/2022
+                  24/11/2022
 
 
                 
@@ -505,7 +505,7 @@ Blogging from Adelaide Australia
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">One-minute read</span>
+            <span class="post__meta-text">2-minute read</span>
           </li>
         </ul>
 
@@ -538,6 +538,126 @@ Blogging from Adelaide Australia
 <ul>
 <li>Advantage: More freedom | Simpler insertions and deletions | Moving pointers is easier and faster</li>
 </ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operation  </th>
+<th style="text-align:center">Unsorted Array  </th>
+<th style="text-align:center">Sorted Array</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Search(L, k)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(logn)</td>
+</tr>
+<tr>
+<td style="text-align:center">Insert(L, x)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:center">Delete(L, x)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:center">Successor(L, x)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Predecessor(L, x)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Minimum(L)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Maximum(L)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When deleting an element x from an unsorted array with size n, we can write over array[x] with array[n], and decrement n.</li>
+</ul>
+<br />
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operation  </th>
+<th style="text-align:center">Singly Unsorted List  </th>
+<th style="text-align:center">Doubly Unsorted List  </th>
+<th style="text-align:center">Singly Sorted List  </th>
+<th style="text-align:center">Doubly Sorted List</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Search(L, k)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:center">Insert(L, x)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:center">Delete(L, x)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Successor(L, x)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Predecessor(L, x)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Minimum(L)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Maximum(L)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>For deletion, assume we are given a pointer x to the item to be deleted. However, we actually need a pointer to the element pointing to x in the list. Therefore, the deletion time complexity for doubly linked list is always O(1).</p>
+</li>
+<li>
+<p>To find the maximum element in a singly sorted list, we can maintain a separate pointer to the list tail. This will not change the cost for deletion.</p>
 </li>
 </ul>
 <h2 id="reference">Reference</h2>
