@@ -203,7 +203,7 @@ Blogging from Adelaide Australia
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/algorithm_theory\/",
-        "wordCount" : "380",
+        "wordCount" : "1211",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -505,7 +505,7 @@ Blogging from Adelaide Australia
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">6-minute read</span>
           </li>
         </ul>
 
@@ -660,7 +660,265 @@ Blogging from Adelaide Australia
 <p>To find the maximum element in a singly sorted list, we can maintain a separate pointer to the list tail. This will not change the cost for deletion.</p>
 </li>
 </ul>
-<h2 id="reference">Reference</h2>
+<h4 id="implementation-of-singly-linked-list">Implementation of singly linked list</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyLinkedList</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">MyLinkedList</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addAtHead</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addAtTail</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addAtIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">size</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteAtIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">--;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h4 id="implementation-of-doubly-linked-list">Implementation of doubly linked list</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">prev</span><span class="o">,</span> <span class="n">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyLinkedList</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">dummyTail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">MyLinkedList</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyHead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyTail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyHead</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">dummyTail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dummyTail</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="o">)</span> <span class="k">return</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyTail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">-</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> 
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addAtHead</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addAtTail</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyTail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">prev</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addAtIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="n">size</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyTail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">-</span> <span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">newNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">newNode</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteAtIndex</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Node</span> <span class="n">currentNode</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyTail</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="o">-</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">currentNode</span> <span class="o">=</span> <span class="n">dummyHead</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">currentNode</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">currentNode</span><span class="o">.</span><span class="na">prev</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">currentNode</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">--;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h4 id="implementation-of-binary-search-tree">Implementation of Binary Search Tree</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Node</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">BST</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">root</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Insert elements
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Node</span> <span class="nf">insert</span><span class="o">(</span><span class="n">Node</span> <span class="n">current</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">current</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">current</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">current</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Insert Helper Function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertHelper</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">root</span> <span class="o">=</span> <span class="n">insert</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Search Function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">search</span><span class="o">(</span><span class="n">Node</span> <span class="n">current</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">val</span><span class="o">)</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">current</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">search</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">search</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Search Helper Function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">searchHelper</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">search</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">val</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// FindMax function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Node</span> <span class="nf">findMax</span><span class="o">(</span><span class="n">Node</span> <span class="n">current</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">current</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Delete Function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Node</span> <span class="nf">delete</span><span class="o">(</span><span class="n">Node</span> <span class="n">current</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">current</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">delete</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">current</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">current</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">delete</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">current</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">current</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Node</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">findMax</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">current</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="na">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">current</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">delete</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">temp</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">current</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Delete Helper Function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteHelper</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">root</span> <span class="o">=</span> <span class="n">delete</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// InOrder Traversal
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">InOrder</span><span class="o">(</span><span class="n">Node</span> <span class="n">current</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InOrder</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="s">&#34; &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InOrder</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="reference">Reference</h2>
 <ol>
 <li>Skiena, S 2012, <em>The Algorithm Design Manual</em>, 2nd edn, Springer Publishing, New York, USA.</li>
 </ol></div>
