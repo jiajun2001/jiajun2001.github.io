@@ -128,8 +128,8 @@ Blogging from Adelaide Australia
 <meta property="og:description" content="In this post, I will summarize some important concepts about algorithms and data structures. The contents in this post can be a bit theoretical and require some memorization." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/algorithm_theory/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-11-24T12:44:14+10:30" />
-<meta property="article:modified_time" content="2022-11-24T12:44:14+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2022-11-27T09:44:14+10:30" />
+<meta property="article:modified_time" content="2022-11-27T09:44:14+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -178,9 +178,9 @@ Blogging from Adelaide Australia
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-11-24T12:44:14.00Z",
-        "datePublished": "2022-11-24T12:44:14.00Z",
-        "dateModified": "2022-11-24T12:44:14.00Z",
+        "dateCreated": "2022-11-27T09:44:14.00Z",
+        "datePublished": "2022-11-27T09:44:14.00Z",
+        "dateModified": "2022-11-27T09:44:14.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -203,7 +203,7 @@ Blogging from Adelaide Australia
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/algorithm_theory\/",
-        "wordCount" : "1211",
+        "wordCount" : "1486",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -494,7 +494,7 @@ Blogging from Adelaide Australia
             <span class="post__meta-text"
               >
                 
-                  24/11/2022
+                  27/11/2022
 
 
                 
@@ -505,7 +505,7 @@ Blogging from Adelaide Australia
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">6-minute read</span>
+            <span class="post__meta-text">7-minute read</span>
           </li>
         </ul>
 
@@ -523,8 +523,10 @@ Blogging from Adelaide Australia
 <p>The average-case complexity of the algorithm is the function defined by the average number of steps over all instances of size n.</p>
 </li>
 </ul>
+<br />
 <h4 id="big-o-notation">Big O Notation</h4>
 <p>The big O notation simplifies analysis by ignoring levels of detail that do not impact the comparison of algorithms.</p>
+<br />
 <h4 id="two-types-of-data-structures">Two Types of Data Structures</h4>
 <ul>
 <li>
@@ -540,6 +542,8 @@ Blogging from Adelaide Australia
 </ul>
 </li>
 </ul>
+<br />
+<h4 id="arrays">Arrays</h4>
 <table>
 <thead>
 <tr>
@@ -590,6 +594,7 @@ Blogging from Adelaide Australia
 <li>When deleting an element x from an unsorted array with size n, we can write over array[x] with array[n], and decrement n.</li>
 </ul>
 <br />
+<h4 id="linked-list">Linked List</h4>
 <table>
 <thead>
 <tr>
@@ -660,6 +665,7 @@ Blogging from Adelaide Australia
 <p>To find the maximum element in a singly sorted list, we can maintain a separate pointer to the list tail. This will not change the cost for deletion.</p>
 </li>
 </ul>
+<br />
 <h4 id="implementation-of-singly-linked-list">Implementation of singly linked list</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
@@ -728,7 +734,8 @@ Blogging from Adelaide Australia
 </span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">--;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h4 id="implementation-of-doubly-linked-list">Implementation of doubly linked list</h4>
+</span></span></code></pre></div><br />
+<h4 id="implementation-of-doubly-linked-list">Implementation of doubly linked list</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">prev</span><span class="o">,</span> <span class="n">next</span><span class="o">;</span>
@@ -828,7 +835,8 @@ Blogging from Adelaide Australia
 </span></span><span class="line"><span class="cl">        <span class="n">size</span><span class="o">--;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h4 id="implementation-of-binary-search-tree">Implementation of Binary Search Tree</h4>
+</span></span></code></pre></div><br />
+<h4 id="implementation-of-binary-search-tree">Implementation of Binary Search Tree</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">;</span>
@@ -918,9 +926,107 @@ Blogging from Adelaide Australia
 </span></span><span class="line"><span class="cl">        <span class="n">InOrder</span><span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="reference">Reference</h2>
+</span></span></code></pre></div><br />
+<h4 id="hashing-tables">Hashing Tables</h4>
+<ul>
+<li>
+<p>Closed addressing hashing (Open Hashing) handles collision by storing all elements with the same hashed key in one table entry.</p>
+</li>
+<li>
+<p>Open addressing hashing (Closed Hashing) handles collision by storing subsequent elements with the same hashed key in different table entries.</p>
+</li>
+</ul>
+<br />
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operation  </th>
+<th style="text-align:center">Hash Table (expected)  </th>
+<th style="text-align:center">Hash Table (worst case)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Search(L, k)</td>
+<td style="text-align:center">O(n/m)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:center">Insert(L, x)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Delete(L, x)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">Successor(L, x)</td>
+<td style="text-align:center">O(n+m)</td>
+<td style="text-align:center">O(n+m)</td>
+</tr>
+<tr>
+<td style="text-align:center">Predecessor(L, x)</td>
+<td style="text-align:center">O(n+m)</td>
+<td style="text-align:center">O(n+m)</td>
+</tr>
+<tr>
+<td style="text-align:center">Minimum(L)</td>
+<td style="text-align:center">O(n+m)</td>
+<td style="text-align:center">O(n+m)</td>
+</tr>
+<tr>
+<td style="text-align:center">Maximum(L)</td>
+<td style="text-align:center">O(n+m)</td>
+<td style="text-align:center">O(n+m)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Using chaining with doubly-linked lists to resolve collisions in an m-elements hash table with n items</li>
+</ul>
+<br />
+<h4 id="selection-sort">Selection Sort</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">selection</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">[</span><span class="n">min</span><span class="o">])</span> <span class="n">min</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">array</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">min</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">array</span><span class="o">[</span><span class="n">min</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="heap-and-heap-sort">Heap and Heap Sort</h4>
+<ul>
+<li>
+<p>Heap is a simple and elegant data structure for efficient supporting the priority queue operations insert and extract-min/max. They work by maintaining a partial order on the set of elements which is weaker than the sorted order.</p>
+</li>
+<li>
+<p>A heap-labeled tree is defined to be a binary tree such that the key labeling of each node dominates the key labeling of each of its children.</p>
+</li>
+<li>
+<p>In a min-heap, a node dominates its children by containing a smaller key than they do.</p>
+</li>
+<li>
+<p>In a max-heap, parent nodes dominate by begin bigger.</p>
+</li>
+<li>
+<p>Heaps are mostly used to implement Priority Queues.</p>
+</li>
+</ul>
+<br />
+<h2 id="reference">Reference</h2>
 <ol>
-<li>Skiena, S 2012, <em>The Algorithm Design Manual</em>, 2nd edn, Springer Publishing, New York, USA.</li>
+<li>
+<p>Skiena, S 2012, <em>The Algorithm Design Manual</em>, 2nd edn, Springer Publishing, New York, USA.</p>
+</li>
+<li>
+<p>What Is A Heap Data Structure In Java 2022, <em>What Is A Heap Data Structure In Java</em>, SoftwareTestingHelp, viewed 27 November 2022, <a href="https://www.softwaretestinghelp.com/heap-data-structure-in-java/">https://www.softwaretestinghelp.com/heap-data-structure-in-java/</a>.</p>
+</li>
 </ol></div>
     <div class="post__footer">
       
