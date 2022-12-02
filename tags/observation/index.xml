@@ -6,7 +6,18 @@
     <description>Recent content in Observation on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 22 Nov 2022 15:33:36 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/observation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Dec 2022 12:16:53 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/observation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Three Loops for Novice Programmers</title>
+      <link>https://jiajun2001.github.io/post/loop/</link>
+      <pubDate>Fri, 02 Dec 2022 12:16:53 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/loop/</guid>
+      
+        <description>&lt;p&gt;Do you know how these three loops work? Take your time and think about the output of them. ^ ^&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Swapping Numbers in Sorting Algorithms</title>
       <link>https://jiajun2001.github.io/post/java_swapping_numbers/</link>
