@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jiajun2001.github.io/</loc>
-    <lastmod>2022-12-02T12:16:53+10:30</lastmod>
+    <lastmod>2022-12-02T12:34:15+10:30</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -15,11 +15,17 @@
                 href="https://jiajun2001.github.io/"
                 />
   </url><url>
-    <loc>https://jiajun2001.github.io/tags/observation/</loc>
-    <lastmod>2022-12-02T12:16:53+10:30</lastmod>
+    <loc>https://jiajun2001.github.io/tags/data-structure/</loc>
+    <lastmod>2022-12-02T12:34:15+10:30</lastmod>
+  </url><url>
+    <loc>https://jiajun2001.github.io/tags/java/</loc>
+    <lastmod>2022-12-02T12:34:15+10:30</lastmod>
+  </url><url>
+    <loc>https://jiajun2001.github.io/post/java_set/</loc>
+    <lastmod>2022-12-02T12:34:15+10:30</lastmod>
   </url><url>
     <loc>https://jiajun2001.github.io/post/</loc>
-    <lastmod>2022-12-02T12:16:53+10:30</lastmod>
+    <lastmod>2022-12-02T12:34:15+10:30</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -32,7 +38,7 @@
                 />
   </url><url>
     <loc>https://jiajun2001.github.io/tags/</loc>
-    <lastmod>2022-12-02T12:16:53+10:30</lastmod>
+    <lastmod>2022-12-02T12:34:15+10:30</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -43,6 +49,9 @@
                 hreflang="en"
                 href="https://jiajun2001.github.io/tags/"
                 />
+  </url><url>
+    <loc>https://jiajun2001.github.io/tags/observation/</loc>
+    <lastmod>2022-12-02T12:16:53+10:30</lastmod>
   </url><url>
     <loc>https://jiajun2001.github.io/post/loop/</loc>
     <lastmod>2022-12-02T12:16:53+10:30</lastmod>
@@ -55,9 +64,6 @@
   </url><url>
     <loc>https://jiajun2001.github.io/post/java_swapping_numbers/</loc>
     <lastmod>2022-11-22T15:33:36+10:30</lastmod>
-  </url><url>
-    <loc>https://jiajun2001.github.io/tags/java/</loc>
-    <lastmod>2022-11-20T14:16:22+10:30</lastmod>
   </url><url>
     <loc>https://jiajun2001.github.io/post/java_generic_programming/</loc>
     <lastmod>2022-11-20T14:16:22+10:30</lastmod>
