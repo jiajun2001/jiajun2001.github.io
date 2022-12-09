@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        Install Hyperstyle for checking the code quality |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+Blogging from Adelaide Australia
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/install_hyperstyle/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Install Hyperstyle for checking the code quality"/>
+<meta name="twitter:description" content="This post is about one of the tasks of my Summer Research. For this task, we had to install Hyperstyle (a powerful code quality analyzer) from the paper &lsquo;Hyperstyle: A Tool for Assessing the Code Quality of Solutions to Programming Assignments&rsquo;. During the installation process, we realized that it is a bit tricky especially for Windows users. Therefore, we decided to make a documentation that includes clear, concise steps and issues that we encountered as well as how we resolved them."/>
+
+
+
+  
+  <meta property="og:title" content="Install Hyperstyle for checking the code quality" />
+<meta property="og:description" content="This post is about one of the tasks of my Summer Research. For this task, we had to install Hyperstyle (a powerful code quality analyzer) from the paper &lsquo;Hyperstyle: A Tool for Assessing the Code Quality of Solutions to Programming Assignments&rsquo;. During the installation process, we realized that it is a bit tricky especially for Windows users. Therefore, we decided to make a documentation that includes clear, concise steps and issues that we encountered as well as how we resolved them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/install_hyperstyle/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-12-09T14:13:16+10:30" />
+<meta property="article:modified_time" content="2022-12-09T14:13:16+10:30" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Install Hyperstyle for checking the code quality",
+        "headline": "Install Hyperstyle for checking the code quality",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003cp\u003eThis post is about one of the tasks of my Summer Research. For this task, we had to install Hyperstyle (a powerful code quality analyzer) from the paper \u0026lsquo;Hyperstyle: A Tool for Assessing the Code Quality of Solutions to Programming Assignments\u0026rsquo;. During the installation process, we realized that it is a bit tricky especially for Windows users. Therefore, we decided to make a documentation that includes clear, concise steps and issues that we encountered as well as how we resolved them.\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/install_hyperstyle\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightYear" : "2022",
+        "dateCreated": "2022-12-09T14:13:16.00Z",
+        "datePublished": "2022-12-09T14:13:16.00Z",
+        "dateModified": "2022-12-09T14:13:16.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun's Blog",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/install_hyperstyle\/",
+        "wordCount" : "644",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "Summer Research"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />Blogging from Adelaide Australia<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>Install Hyperstyle for Checking the Code Quality</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  9/12/2022
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">4-minute read</span>
+          </li>
+        </ul>
+
+      <p>This post is about one of the tasks of my Summer Research. For this task, we had to install Hyperstyle (a powerful code quality analyzer) from the paper &lsquo;Hyperstyle: A Tool for Assessing the Code Quality of Solutions to Programming Assignments&rsquo;. During the installation process, we realized that it is a bit tricky especially for Windows users. Therefore, we decided to make a documentation that includes clear, concise steps and issues that we encountered as well as how we resolved them.</p>
+<p>Authors: Jiajun (Jason) Yu and Jian Zhe Chan</p>
+<br />
+<h4 id="step-1-go-to-the-github-repo-and-clone-the-project">Step 1: Go to the github repo and clone the project</h4>
+<ul>
+<li>Go to the directory that you want to install Hyperstyle</li>
+<li>git clone <a href="https://github.com/hyperskill/hyperstyle">https://github.com/hyperskill/hyperstyle</a></li>
+</ul>
+<br />
+<h4 id="step-2-install-the-environment">Step 2: Install the environment</h4>
+<ul>
+<li>Windows:
+<ul>
+<li>Copy and Paste the following commands into the Terminal</li>
+<li>If you can not use &lsquo;pip install&rsquo; in bash, try using the Windows PowerShell.</li>
+<li>Try to install eslint by the third command, if you get an error like permission denied, try following steps:
+<ul>
+<li>Press “Windows + I” to open settings and click on “Update &amp; Security”.</li>
+<li>On the left sidebar, click “For developers”, then scroll down to the “PowerShell” subheading.</li>
+<li>Tick “change execution policy to allow local PowerShell scripts to run without signing. Require signing for remote scripts.”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mac OS:
+<ul>
+<li>Just Copy and Paste the following commands into the Terminal</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Copy and Paste</span>
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span><span class="line"><span class="cl">pip install -r requirements-test.txt
+</span></span><span class="line"><span class="cl">npm install eslint@7.5.0 -g 
+</span></span><span class="line"><span class="cl">eslint --init
+</span></span></code></pre></div><br />
+<h4 id="step-3-set-up-environment-variables">Step 3: Set up environment variables</h4>
+<ul>
+<li>Find the inspector folder file path: &hellip;(Specified by yourself) /hyperstyle/hyperstyle/src/python/review/inspectors</li>
+<li>Set up the environment variable <em>LINTERS_DIRECTORY</em> to be the file path above</li>
+<li>Note: All of these environment variables are <strong>not permanent</strong>, so if you close the bash window or open a new bash window, remember to set them again.</li>
+<li>Windows:
+<ul>
+<li>For your inspector folder file (LINTERS_DIRECTORY) path, if you clone the github repo in your Windows file system instead of your Unix file system, you need to add &ldquo;/mnt/c/&rdquo; in front of your path.
+<ul>
+<li>Example: export LINTERS_DIRECTORY=/mnt/c/Users/Jason/&hellip;</li>
+</ul>
+</li>
+<li>Copy and Paste the following commands into the Terminal</li>
+</ul>
+</li>
+<li>Mac OS:
+<ul>
+<li>Just Copy and Paste the following commands into the Terminal</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="c1"># Command for setting LINTERS_DIRECTORY (Windows):</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LINTERS_DIRECTORY</span><span class="o">=</span>...<span class="o">(</span>Specified by yourself<span class="o">)</span> <span class="se">\h</span>yperstyle<span class="se">\h</span>yperstyle<span class="se">\s</span>rc<span class="se">\p</span>ython<span class="se">\r</span>eview<span class="se">\i</span>nspectors
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Command for setting LINTERS_DIRECTORY (Mac OS):</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LINTERS_DIRECTORY</span><span class="o">=</span>...<span class="o">(</span>Specified by yourself<span class="o">)</span> /hyperstyle/hyperstyle/src/python/review/inspectors
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Command for checking:</span>
+</span></span><span class="line"><span class="cl">printevn <span class="p">|</span> grep <span class="s2">&#34;LINTERS&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Make sure the environment variable is correctly set</span>
+</span></span></code></pre></div><ul>
+<li>Copy and paste the following bash commands
+<ul>
+<li>You can open &lsquo;Dockerfile&rsquo; to find these commands and check if their versions or directories have been changed or not. If you find any difference, use their command.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="c1"># Copy and Paste</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CHECKSTYLE_VERSION</span><span class="o">=</span>8.44
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CHECKSTYLE_DIRECTORY</span><span class="o">=</span><span class="si">${</span><span class="nv">LINTERS_DIRECTORY</span><span class="si">}</span>/checkstyle
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DETEKT_VERSION</span><span class="o">=</span>1.14.2
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DETEKT_DIRECTORY</span><span class="o">=</span><span class="si">${</span><span class="nv">LINTERS_DIRECTORY</span><span class="si">}</span>/detekt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PMD_VERSION</span><span class="o">=</span>6.37.0
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PMD_DIRECTORY</span><span class="o">=</span><span class="si">${</span><span class="nv">LINTERS_DIRECTORY</span><span class="si">}</span>/pmd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GOLANG_LINT_VERSION</span><span class="o">=</span>1.49.0
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GOLANG_LINT_DIRECTORY</span><span class="o">=</span><span class="si">${</span><span class="nv">LINTERS_DIRECTORY</span><span class="si">}</span>/golangci-lint
+</span></span></code></pre></div><br />
+<h4 id="step-4-install-curl-and-unzip">Step 4: Install Curl and Unzip</h4>
+<ul>
+<li>For Mac OS, if these commands do not work, just skip.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="c1"># Copy and Paste</span>
+</span></span><span class="line"><span class="cl">sudo apt -y update
+</span></span><span class="line"><span class="cl">sudo apt -y upgrade
+</span></span><span class="line"><span class="cl">sudo apt -y install curl unzip
+</span></span></code></pre></div><br />
+<h4 id="step-5-create-directories">Step 5: Create Directories</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="c1"># Copy and Paste the following commands</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="si">${</span><span class="nv">CHECKSTYLE_DIRECTORY</span><span class="si">}</span> 
+</span></span><span class="line"><span class="cl">mkdir -p <span class="si">${</span><span class="nv">DETEKT_DIRECTORY</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="si">${</span><span class="nv">PMD_DIRECTORY</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="si">${</span><span class="nv">GOLANG_LINT_DIRECTORY</span><span class="si">}</span>
+</span></span></code></pre></div><br />
+<h4 id="step-6-install-external-linters">Step 6: Install external linters</h4>
+<ul>
+<li>Copy and Paste the following commands into the Terminal</li>
+<li>If you have a space in your directory path, make sure to put double quotation around your environment variables when you are trying to access those values.
+Example: CHECKSTYLE_DIRECTORY=&quot;${LINTERS_DIRECTORY}&quot;/checkstyle</li>
+<li>If you encounter &lsquo;curl: (35) OpenSSL SSL_connect: Connection reset by peer in connection to github.com:443&rsquo; issue, just try to run these commands in GitBash. Remember to set those environment variables in GitBash again. If you are a Windows user, do not include &ldquo;/mnt/c/&rdquo; in front of your path.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="c1"># CHECKSTYLE</span>
+</span></span><span class="line"><span class="cl">curl -L https://github.com/checkstyle/checkstyle/releases/download/checkstyle-<span class="si">${</span><span class="nv">CHECKSTYLE_VERSION</span><span class="si">}</span>/checkstyle-<span class="si">${</span><span class="nv">CHECKSTYLE_VERSION</span><span class="si">}</span>-all.jar &gt; <span class="si">${</span><span class="nv">CHECKSTYLE_DIRECTORY</span><span class="si">}</span>/checkstyle-<span class="si">${</span><span class="nv">CHECKSTYLE_VERSION</span><span class="si">}</span>-all.jar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># DETEKT</span>
+</span></span><span class="line"><span class="cl">curl -sSLO https://github.com/detekt/detekt/releases/download/v<span class="si">${</span><span class="nv">DETEKT_VERSION</span><span class="si">}</span>/detekt-cli-<span class="si">${</span><span class="nv">DETEKT_VERSION</span><span class="si">}</span>.zip <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="o">&amp;&amp;</span> unzip detekt-cli-<span class="si">${</span><span class="nv">DETEKT_VERSION</span><span class="si">}</span>.zip -d <span class="si">${</span><span class="nv">DETEKT_DIRECTORY</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="o">&amp;&amp;</span>  curl -H <span class="s2">&#34;Accept: application/zip&#34;</span> https://repo.maven.apache.org/maven2/io/gitlab/arturbosch/detekt/detekt-formatting/<span class="si">${</span><span class="nv">DETEKT_VERSION</span><span class="si">}</span>/detekt-formatting-<span class="si">${</span><span class="nv">DETEKT_VERSION</span><span class="si">}</span>.jar -o <span class="si">${</span><span class="nv">DETEKT_DIRECTORY</span><span class="si">}</span>/detekt-formatting-<span class="si">${</span><span class="nv">DETEKT_VERSION</span><span class="si">}</span>.jar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># PMD</span>
+</span></span><span class="line"><span class="cl">curl -sSLO https://github.com/pmd/pmd/releases/download/pmd_releases/<span class="si">${</span><span class="nv">PMD_VERSION</span><span class="si">}</span>/pmd-bin-<span class="si">${</span><span class="nv">PMD_VERSION</span><span class="si">}</span>.zip <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="o">&amp;&amp;</span> unzip pmd-bin-<span class="si">${</span><span class="nv">PMD_VERSION</span><span class="si">}</span>.zip -d <span class="si">${</span><span class="nv">PMD_DIRECTORY</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># GOLANG_LINT</span>
+</span></span><span class="line"><span class="cl">curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh <span class="p">|</span> sh -s -- -b <span class="si">${</span><span class="nv">GOLANG_LINT_DIRECTORY</span><span class="si">}</span> v<span class="si">${</span><span class="nv">GOLANG_LINT_VERSION</span><span class="si">}</span>
+</span></span></code></pre></div></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/summer-research/">Summer Research</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2022
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
