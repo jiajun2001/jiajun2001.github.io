@@ -128,8 +128,8 @@ Blogging from Adelaide Australia
 <meta property="og:description" content="In this post, I will summarize some important concepts about algorithms and data structures. The contents in this post can be a bit theoretical and require some memorization." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/algorithm_theory/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-12-10T09:44:14+10:30" />
-<meta property="article:modified_time" content="2022-12-10T09:44:14+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2022-12-11T09:44:14+10:30" />
+<meta property="article:modified_time" content="2022-12-11T09:44:14+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -178,9 +178,9 @@ Blogging from Adelaide Australia
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-12-10T09:44:14.00Z",
-        "datePublished": "2022-12-10T09:44:14.00Z",
-        "dateModified": "2022-12-10T09:44:14.00Z",
+        "dateCreated": "2022-12-11T09:44:14.00Z",
+        "datePublished": "2022-12-11T09:44:14.00Z",
+        "dateModified": "2022-12-11T09:44:14.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -203,7 +203,7 @@ Blogging from Adelaide Australia
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/algorithm_theory\/",
-        "wordCount" : "2399",
+        "wordCount" : "2879",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -494,7 +494,7 @@ Blogging from Adelaide Australia
             <span class="post__meta-text"
               >
                 
-                  10/12/2022
+                  11/12/2022
 
 
                 
@@ -505,7 +505,7 @@ Blogging from Adelaide Australia
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">12-minute read</span>
+            <span class="post__meta-text">14-minute read</span>
           </li>
         </ul>
 
@@ -1255,16 +1255,23 @@ Blogging from Adelaide Australia
 </span></span></code></pre></div><br />
 <h4 id="trie">Trie</h4>
 <ul>
-<li>Prefix Tree</li>
-<li>Special type of tree to efficiently store strings
-<ul>
-<li>Applications: Auto-complete, Spell-checker</li>
-</ul>
+<li>
+<p>Trie is a tree data structure used for locating specific keys from a set. It is also known as prefix tree or digital tree.</p>
 </li>
-<li>Main functions: insert(word), search(word), startsWith(word)
-<ul>
-<li>Main advantage of trie: startsWith() is very efficient. (To check if there is a word that starts with b from 1,000,000 words we don’t have to loop through all words. Worst case is we check the 26 nodes of the first layer)</li>
-</ul>
+<li>
+<p>Trie can be used to build Auto-complete and Spell-checker.</p>
+</li>
+<li>
+<p>It allows efficient storage of words with common prefixes. Each node in a trie represents a character in the string and also indicates the termination of the string.</p>
+</li>
+<li>
+<p>There are three main functions: insert(word), search(word), startsWith(word).</p>
+</li>
+<li>
+<p>Main advantage of trie: startsWith() is very efficient.</p>
+</li>
+<li>
+<p>The time complexity of insert, search and startWith are all O(k), where k is the length of the string.</p>
 </li>
 </ul>
 <p>Implementation</p>
@@ -1317,8 +1324,79 @@ Blogging from Adelaide Australia
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br />
+<h4 id="amortized-analysis">Amortized Analysis</h4>
+<ul>
+<li>
+<p>Amortized analysis is used for algorithms where an occasional operation is very slow, but most of the other operations are faster. In amortized analysis, we analyze a sequence of operations and guarantee a worst-case average time that is lower than the worst case of a particular expensive operation. (GeeksforGeeks)</p>
+</li>
+<li>
+<p>A good example is to analyze the dynamic array. For dynamic array, we need to double the size of the array whenever it becomes full. If the array becomes full, we need to allocate memory for larger array size, typically twice the old array, copy the contents of the old array to a new array, and free the old array. All of the steps above can take O(n). If we use simple analysis, we can draw the conclusion that the worst-case cost of n insertions is n * O(n) which is O(n^2). This analysis gives an upper bound, but not a tight upper bound for n insertions as all insertions don’t take Θ(n) time.</p>
+</li>
+<li>
+<p>However, by using amortized analysis, we list the cost of inserting each element and divide the sum of the insertion cost by the total number of insertions, we can get the amortized cost and find that the time complexity of dynamic array insertion is actually O(1).</p>
+</li>
+</ul>
+<br />
+<h4 id="bit-manipulation">Bit Manipulation</h4>
+<ul>
+<li>Shifting
+<ul>
+<li>
+<p>For positive numbers:</p>
+<ul>
+<li>Left Shift: Multiplying a number by 2.</li>
+<li>Right Shift: Divide a number by 2 (Round Down: 3 -&gt; 1)</li>
+</ul>
+</li>
+<li>
+<p>For negative numbers:</p>
+<ul>
+<li>Logical Right Shift: Adding 0 in front (Get a meaningless number).</li>
+<li>Arithmatic Right Shift: Adding its original sign bit in front (Round Down: -5 -&gt; -3).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Masking
+<ul>
+<li>Get c-th bit: ((1 &laquo; c) &amp; x) != 0</li>
+<li>Set c-th bit to be 1: (1 &laquo; c) | x</li>
+<li>Set c-th bit to be 0: (~(1 &laquo; c)) &amp; x</li>
+</ul>
+</li>
+</ul>
+<br />
+<h4 id="singleton-design-pattern">Singleton Design Pattern</h4>
+<ul>
+<li>
+<p>Singleton design pattern is used when we need to ensure that only one object of a particular class need to be created. All further reference to this object are referred to the same underlying instance created.</p>
+</li>
+<li>
+<p>Singleton classes are used for logging, driver objects, caching and thread pool, database connections.</p>
+</li>
+<li>
+<p>Issues: Coupling issue / Concurrency issue</p>
+</li>
+</ul>
+<br />
+<h4 id="factory-design-pattern">Factory Design Pattern</h4>
+<ul>
+<li>
+<p>Factory design pattern deals with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory methods.</p>
+</li>
+<li>
+<p>We use it when a method returns one of several possible classes that share a common parent class, and we do not know ahead what class to use.</p>
+</li>
+<li>
+<p>All potential classes are in the same subclass hierarchy.</p>
+</li>
+</ul>
+<br />
 <h2 id="reference">Reference</h2>
 <ol>
+<li>
+<p>GeeksforGeeks 2022, <em>Introduction to Amortized Analysis</em>, GeeksforGeeks, viewed 11 November 2022, <a href="https://www.geeksforgeeks.org/introduction-to-amortized-analysis/">https://www.geeksforgeeks.org/introduction-to-amortized-analysis/</a>.</p>
+</li>
 <li>
 <p>Skiena, S 2012, <em>The Algorithm Design Manual</em>, 2nd edn, Springer Publishing, New York, USA.</p>
 </li>
