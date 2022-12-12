@@ -128,8 +128,8 @@ Blogging from Adelaide Australia
 <meta property="og:description" content="In this post, I will summarize some important concepts about algorithms and data structures. The contents in this post can be a bit theoretical and require some memorization." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/algorithm_theory/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-12-11T09:44:14+10:30" />
-<meta property="article:modified_time" content="2022-12-11T09:44:14+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2022-12-12T09:44:14+10:30" />
+<meta property="article:modified_time" content="2022-12-12T09:44:14+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -178,9 +178,9 @@ Blogging from Adelaide Australia
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-12-11T09:44:14.00Z",
-        "datePublished": "2022-12-11T09:44:14.00Z",
-        "dateModified": "2022-12-11T09:44:14.00Z",
+        "dateCreated": "2022-12-12T09:44:14.00Z",
+        "datePublished": "2022-12-12T09:44:14.00Z",
+        "dateModified": "2022-12-12T09:44:14.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -203,7 +203,7 @@ Blogging from Adelaide Australia
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/algorithm_theory\/",
-        "wordCount" : "2879",
+        "wordCount" : "3177",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -494,7 +494,7 @@ Blogging from Adelaide Australia
             <span class="post__meta-text"
               >
                 
-                  11/12/2022
+                  12/12/2022
 
 
                 
@@ -505,7 +505,7 @@ Blogging from Adelaide Australia
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">14-minute read</span>
+            <span class="post__meta-text">15-minute read</span>
           </li>
         </ul>
 
@@ -1382,16 +1382,79 @@ Blogging from Adelaide Australia
 <h4 id="factory-design-pattern">Factory Design Pattern</h4>
 <ul>
 <li>
-<p>Factory design pattern deals with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory methods.</p>
+<p>Factory design pattern deals with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method.</p>
 </li>
 <li>
-<p>We use it when a method returns one of several possible classes that share a common parent class, and we do not know ahead what class to use.</p>
+<p>We use it when a method returns one of several possible classes that share a common parent class.</p>
 </li>
 <li>
 <p>All potential classes are in the same subclass hierarchy.</p>
 </li>
 </ul>
 <br />
+<h4 id="union-find">Union Find</h4>
+<ul>
+<li>
+<p>A disjoint-set data structure is defined as a data structure that keeps track of set of elements partitioned into a number of disjoint subsets.</p>
+</li>
+<li>
+<p>A union-find algorithm is an algorithm that performs two useful operations on such a data structure:</p>
+<ul>
+<li>Find: Determine which subset a particular element is in. This can also be used for determining if two elements are in the same subset.</li>
+<li>Union: Join two subsets into a single subset.</li>
+</ul>
+</li>
+<li>
+<p>For naïve linking, a Union or Find operation can take O(n) time in the worst case, where n is the number of elements.</p>
+<ul>
+<li>Proof: Find takes proportional time to the height of the tree. In the worst case, the tree can be degenerated to a list. Union(1, 2), Union(2, 3), Union(3, 4)&hellip;..</li>
+</ul>
+</li>
+</ul>
+<br />
+<h4 id="quickselect">QuickSelect</h4>
+<ul>
+<li>
+<p>Quick Select can be used to find the k-th largest element in an array with time complexity of O(n).</p>
+</li>
+<li>
+<p>The average time complexity is O(n)</p>
+<ul>
+<li>Assume we keep on executing quick select on half of the array: n + (n / 2) + (n / 4) + &hellip; = 2n</li>
+</ul>
+</li>
+<li>
+<p>The worst case time complexity os O(n^2)</p>
+<ul>
+<li>Assume each quick select we can only eliminate one element, therefore, we need to run the algorithm n times</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">findKthLargest</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">quickSelect</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">k</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">quickSelect</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">swap</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">ptr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ptr</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">swap</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">ptr</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">ptr</span><span class="o">)</span> <span class="k">return</span> <span class="n">quickSelect</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">ptr</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="n">ptr</span><span class="o">)</span> <span class="k">return</span> <span class="n">quickSelect</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">ptr</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">right</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
 <h2 id="reference">Reference</h2>
 <ol>
 <li>
