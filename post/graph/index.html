@@ -195,7 +195,7 @@
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/graph\/",
-        "wordCount" : "513",
+        "wordCount" : "953",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -504,7 +504,7 @@
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">3-minute read</span>
+            <span class="post__meta-text">5-minute read</span>
           </li>
         </ul>
 
@@ -587,7 +587,20 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br />
 <h2 id="dijkstra-algorithm">Dijkstra Algorithm</h2>
-<p><strong>Idea for Dijkstra Algorithm:</strong> In iteration <em>i</em>, we compute all shortest paths having <em>i</em> edges.</p>
+<ul>
+<li>
+<p>Dijkstra&rsquo;s algorithm is a dynamic programming-like strategy. It checks all the outgoing edges of x to see whether there is a better path from s to some unknown vertex through x.</p>
+</li>
+<li>
+<p>At most V deleteMin and insert operations, and at most E decreaseKey operations.</p>
+<ul>
+<li>T<sub>Dijkstra</sub> = O(E * T<sub>decreaseKey</sub>(n) + V * (T<sub>deleteMin</sub>(n) + T<sub>insert</sub>(n)))</li>
+<li>Original: O(E + V<sup>2</sup>)</li>
+<li>Binary Heap: O((E + V)log(V))</li>
+<li>Fibonacci Heap: O(E + Vlog(V))</li>
+</ul>
+</li>
+</ul>
 <h4 id="implementation-2">Implementation:</h4>
 <p>Class Declaration</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="o">{</span>
@@ -650,6 +663,96 @@
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br />
+<h2 id="minimum-spanning-tree-and-algorithms">Minimum Spanning Tree and Algorithms</h2>
+<ul>
+<li>
+<p>Minimum Spanning Tree: A spanning tree of a graph G = (V, E) is a subset of edges from E forming a tree connecting all vertices of V. A minimum spanning tree minimizes the total length over all possible spanning trees.</p>
+</li>
+<li>
+<p>Prim&rsquo;s Algorithm: Prim’s algorithm starts from one vertex and grows the rest of the tree one edge at a time until all vertices are included. This algorithm works in a greedy manner such that it picks the best local optimum which is the shortest path to connect with a new unvisited node in each iteration. The time complexity of Prim&rsquo;s algorithm is O(E + Vlog(V)) when using Fibonacci heaps for implementation of the priority queue.</p>
+</li>
+</ul>
+<h4 id="implementation-3">Implementation</h4>
+<p>Class Declaration</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Node</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span><span class="o">(</span><span class="kt">int</span> <span class="n">node</span><span class="o">,</span> <span class="kt">int</span> <span class="n">cost</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">cost</span> <span class="o">=</span> <span class="n">cost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Node</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">cost</span> <span class="o">-</span> <span class="n">o</span><span class="o">.</span><span class="na">cost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Node{&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="s">&#34;node=&#34;</span> <span class="o">+</span> <span class="n">node</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="s">&#34;, cost=&#34;</span> <span class="o">+</span> <span class="n">cost</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="sc">&#39;}&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Implementation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Prim</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;[]</span> <span class="n">adjacencyList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">visited</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">nodeNum</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Prim</span><span class="o">(</span><span class="kt">int</span> <span class="n">nodeNum</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">adjacencyList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">[</span><span class="n">nodeNum</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nodeNum</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">adjacencyList</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">Collections</span><span class="o">.</span><span class="na">nCopies</span><span class="o">(</span><span class="n">nodeNum</span><span class="o">,</span> <span class="kc">false</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">nodeNum</span> <span class="o">=</span> <span class="n">nodeNum</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addEdge</span><span class="o">(</span><span class="kt">int</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">child</span><span class="o">,</span> <span class="kt">int</span> <span class="n">cost</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">adjacencyList</span><span class="o">[</span><span class="n">parent</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">child</span><span class="o">,</span> <span class="n">cost</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">adjacencyList</span><span class="o">[</span><span class="n">child</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">cost</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">prim</span><span class="o">(</span><span class="kt">int</span> <span class="n">startingNode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">outcome</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">Collections</span><span class="o">.</span><span class="na">nCopies</span><span class="o">(</span><span class="n">nodeNum</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">myQue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">distance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">Collections</span><span class="o">.</span><span class="na">nCopies</span><span class="o">(</span><span class="n">nodeNum</span><span class="o">,</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">myQue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">startingNode</span><span class="o">,</span> <span class="n">0</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">distance</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">startingNode</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">outcome</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">startingNode</span><span class="o">,</span> <span class="n">startingNode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(!</span><span class="n">myQue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">node</span> <span class="o">=</span> <span class="n">myQue</span><span class="o">.</span><span class="na">poll</span><span class="o">().</span><span class="na">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">visited</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">node</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="o">(</span><span class="n">Node</span> <span class="n">neighbour</span> <span class="o">:</span> <span class="n">adjacencyList</span><span class="o">[</span><span class="n">node</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">neighbour</span><span class="o">.</span><span class="na">cost</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">vertex</span> <span class="o">=</span> <span class="n">neighbour</span><span class="o">.</span><span class="na">node</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(!</span><span class="n">visited</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">vertex</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">distance</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">vertex</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">weight</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">distance</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">vertex</span><span class="o">,</span> <span class="n">weight</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">outcome</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">vertex</span><span class="o">,</span> <span class="n">node</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">myQue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Node</span><span class="o">(</span><span class="n">vertex</span><span class="o">,</span> <span class="n">distance</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">vertex</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">outcome</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Kruskal&rsquo;s Algorithm: Kruskal&rsquo;s algorithm repeatedly considers the lightest remaining edge and tests whether its two endpoints lie within the same connected component. This algorithm works by sorting edges based on their weight. The time complexity of Kruskal&rsquo;s algorithm is O(Elog(E)).</p>
+<ul>
+<li>2E find operation and (n - 1) union operation.</li>
+<li>O(2E + Vlog(V)) | Sorting takes O(Elog(E)) | E &gt; V</li>
+<li>O(Elog(E))</li>
+</ul>
+</li>
+<li>
+<p>Prim&rsquo;s algorithm is more efficient for dense graphs, while Kruskal&rsquo;s algorithm is more efficient for sparse graphs.</p>
+</li>
+</ul>
+<br />
 <h2 id="reference">Reference</h2>
 <ol>
 <li>Ejonavi, J 2020, <em>Algorithms 101: How to use graph algorithms</em>, Educative, viewed 1 October 2022, <a href="https://www.educative.io/blog/graph-algorithms-tutorial">https://www.educative.io/blog/graph-algorithms-tutorial</a>.</li>
