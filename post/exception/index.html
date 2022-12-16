@@ -125,17 +125,17 @@ Pandas | Matplotlib
 <meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
 
 <meta name="twitter:title" content="Java Exception"/>
-<meta name="twitter:description" content="Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception."/>
+<meta name="twitter:description" content="Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception. In this post, I will talk about five keywords about Java exception, how to catch multiple exceptions and demonstrate how to define our own exception class."/>
 
 
 
   
   <meta property="og:title" content="Java Exception" />
-<meta property="og:description" content="Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception." />
+<meta property="og:description" content="Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception. In this post, I will talk about five keywords about Java exception, how to catch multiple exceptions and demonstrate how to define our own exception class." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/exception/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-12-05T23:42:12+10:30" />
-<meta property="article:modified_time" content="2022-12-05T23:42:12+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2022-12-14T13:42:12+10:30" />
+<meta property="article:modified_time" content="2022-12-14T13:42:12+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -154,7 +154,7 @@ Pandas | Matplotlib
         "alternativeHeadline": "",
         "description": "
       
-        \u003cp\u003eException mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception.\u003c\/p\u003e
+        \u003cp\u003eException mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception. In this post, I will talk about five keywords about Java exception, how to catch multiple exceptions and demonstrate how to define our own exception class.\u003c\/p\u003e
 
 
       
@@ -184,9 +184,9 @@ Pandas | Matplotlib
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-12-05T23:42:12.00Z",
-        "datePublished": "2022-12-05T23:42:12.00Z",
-        "dateModified": "2022-12-05T23:42:12.00Z",
+        "dateCreated": "2022-12-14T13:42:12.00Z",
+        "datePublished": "2022-12-14T13:42:12.00Z",
+        "dateModified": "2022-12-14T13:42:12.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/exception\/",
-        "wordCount" : "460",
+        "wordCount" : "760",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -484,7 +484,7 @@ Pandas | Matplotlib
             <span class="post__meta-text"
               >
                 
-                  5/12/2022
+                  14/12/2022
 
 
                 
@@ -495,11 +495,11 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">3-minute read</span>
+            <span class="post__meta-text">4-minute read</span>
           </li>
         </ul>
 
-      <p>Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception.</p>
+      <p>Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception. In this post, I will talk about five keywords about Java exception, how to catch multiple exceptions and demonstrate how to define our own exception class.</p>
 <br />
 <h4 id="types-of-throwable-derived-class">Types of Throwable Derived Class</h4>
 <ul>
@@ -601,7 +601,76 @@ Pandas | Matplotlib
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><br />
 <h4 id="keyword-5-finally">KeyWord 5: finally</h4>
-<p>We can use &lsquo;finally&rsquo; keyword to force the execution of some code blocks.</p></div>
+<p>We can use &lsquo;finally&rsquo; keyword to force the execution of some code blocks no matter if there are exceptions or not.</p>
+<p>If readFile() function throws an exception, then the following printing function will not be executed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">readFile</span><span class="o">(</span><span class="s">&#34;c:\\a.txt&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;If the program is wrong, this sentence will not be printed!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span> 
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Following code&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>To force the printing function to execute, we can use &lsquo;finally&rsquo; keyword.</p>
+<p>&lsquo;finally&rsquo; keyword is normally used to recycle resources.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">readFile</span><span class="o">(</span><span class="s">&#34;c:\\a.txt&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;This sentence will be printed anyway!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Following code&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="handle-multiple-exceptions">Handle Multiple Exceptions</h4>
+<p>Approach 1: Try and catch exceptions separately</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">3</span><span class="o">]);</span> <span class="c1">// java.lang.ArrayIndexOutOfBoundsException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">3</span><span class="o">));</span> <span class="c1">// java.lang.ArrayIndexOutOfBoundsException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Following Code&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Following Code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>Approach 2: Try once and catch exceptions one by one</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="o">{</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">3</span><span class="o">]);</span> <span class="c1">// java.lang.ArrayIndexOutOfBoundsException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">15</span> <span class="o">/</span> <span class="n">0</span><span class="o">);</span> <span class="c1">// java.lang.ArithmeticException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ArrayIndexOutOfBoundsException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Following Code&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Following Code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>Derived exception must be caught first.
+<ul>
+<li>Because of polymorphism, derived exception object can be accepted by the base exception class. Therefore, derived exception class defined in the next catch branch will not be invoked.</li>
+</ul>
+</li>
+</ul></div>
     <div class="post__footer">
       
 
