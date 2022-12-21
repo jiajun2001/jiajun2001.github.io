@@ -134,8 +134,8 @@ Pandas | Matplotlib
 <meta property="og:description" content="Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception. In this post, I will talk about five keywords about Java exception, how to catch multiple exceptions and demonstrate how to define our own exception class." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/exception/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-12-14T13:42:12+10:30" />
-<meta property="article:modified_time" content="2022-12-14T13:42:12+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2022-12-21T13:42:12+10:30" />
+<meta property="article:modified_time" content="2022-12-21T13:42:12+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -184,9 +184,9 @@ Pandas | Matplotlib
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2022",
-        "dateCreated": "2022-12-14T13:42:12.00Z",
-        "datePublished": "2022-12-14T13:42:12.00Z",
-        "dateModified": "2022-12-14T13:42:12.00Z",
+        "dateCreated": "2022-12-21T13:42:12.00Z",
+        "datePublished": "2022-12-21T13:42:12.00Z",
+        "dateModified": "2022-12-21T13:42:12.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/exception\/",
-        "wordCount" : "760",
+        "wordCount" : "987",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -484,7 +484,7 @@ Pandas | Matplotlib
             <span class="post__meta-text"
               >
                 
-                  14/12/2022
+                  21/12/2022
 
 
                 
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">4-minute read</span>
+            <span class="post__meta-text">5-minute read</span>
           </li>
         </ul>
 
@@ -670,7 +670,81 @@ Pandas | Matplotlib
 <li>Because of polymorphism, derived exception object can be accepted by the base exception class. Therefore, derived exception class defined in the next catch branch will not be invoked.</li>
 </ul>
 </li>
-</ul></div>
+</ul>
+<br />
+<h4 id="exceptions-in-inheritance">Exceptions in inheritance</h4>
+<ul>
+<li>When derived class overrides the method of the base class:
+<ul>
+<li>The overridden method can throw the same exceptions.</li>
+<li>The overridden method can throw derived exceptions.</li>
+<li>The overridden method can throw no exceptions.</li>
+<li>The overridden method can not throw exceptions, if the base class method does not throw any exceptions.
+<ul>
+<li>The overridden method can use try catch to handle exceptions generated.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BaseClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show01</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">NullPointerException</span><span class="o">,</span> <span class="n">ClassCastException</span><span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show02</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IndexOutOfBoundsException</span><span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show03</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IndexOutOfBoundsException</span><span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show04</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">DerivedClass</span> <span class="kd">extends</span> <span class="n">BaseClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show01</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">NullPointerException</span><span class="o">,</span> <span class="n">ClassCastException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">show01</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show02</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ArrayIndexOutOfBoundsException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">show02</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show03</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">show03</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">show04</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">show04</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
+<h4 id="user-defined-exceptions">User-defined Exceptions</h4>
+<p>Define the exception class</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegisterException</span> <span class="kd">extends</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">RegisterException</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">RegisterException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Demo</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoRegisterException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="n">userNames</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;Jason&#34;</span><span class="o">,</span> <span class="s">&#34;Kevin&#34;</span><span class="o">,</span> <span class="s">&#34;Joey&#34;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">RegisterException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Please enter the user name that you want to register: &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">userName</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">check</span><span class="o">(</span><span class="n">userName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">check</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">RegisterException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">name</span> <span class="o">:</span> <span class="n">userNames</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">userName</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">RegisterException</span><span class="o">(</span><span class="s">&#34;This user name has been occupied!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Success in registering this user name!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></div>
     <div class="post__footer">
       
 
