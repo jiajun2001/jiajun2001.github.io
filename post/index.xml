@@ -6,13 +6,35 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 Dec 2022 13:42:12 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Dec 2022 17:08:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Forum Project</title>
+      <link>https://jiajun2001.github.io/post/java_project_forum/</link>
+      <pubDate>Thu, 22 Dec 2022 17:08:09 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_project_forum/</guid>
+      
+        <description>&lt;p&gt;On December 22, 2022, I started my Java forum project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Multithreading</title>
+      <link>https://jiajun2001.github.io/post/multithreading/</link>
+      <pubDate>Wed, 21 Dec 2022 20:34:16 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/multithreading/</guid>
+      
+        <description>&lt;p&gt;In computer architecture, multithreading is the ability of a central processing unit (CPU) (or a single core in a multi-core processor) to provide multiple threads of execution concurrently, supported by the operating system. In this post, I will talk about multithreading in Java.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Java Exception</title>
-      <link>https://jiajun2001.github.io/post/exception/</link>
+      <link>https://jiajun2001.github.io/post/java_exception/</link>
       <pubDate>Wed, 21 Dec 2022 13:42:12 +1030</pubDate>
       
-      <guid>https://jiajun2001.github.io/post/exception/</guid>
+      <guid>https://jiajun2001.github.io/post/java_exception/</guid>
       
         <description>&lt;p&gt;Exception mechanism helps developers find issues of their programs. Its base class is java.lang.Throwable which consists of java.lang.Error and java.lang.Exception. In this post, I will talk about five keywords about Java exception, how to catch multiple exceptions and demonstrate how to define our own exception class.&lt;/p&gt;</description>
       

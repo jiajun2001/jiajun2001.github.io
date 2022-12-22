@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OS on My blog</title>
+    <link>https://jiajun2001.github.io/tags/os/</link>
+    <description>Recent content in OS on My blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 21 Dec 2022 20:34:16 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Multithreading</title>
+      <link>https://jiajun2001.github.io/post/multithreading/</link>
+      <pubDate>Wed, 21 Dec 2022 20:34:16 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/multithreading/</guid>
+      
+        <description>&lt;p&gt;In computer architecture, multithreading is the ability of a central processing unit (CPU) (or a single core in a multi-core processor) to provide multiple threads of execution concurrently, supported by the operating system. In this post, I will talk about multithreading in Java.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
