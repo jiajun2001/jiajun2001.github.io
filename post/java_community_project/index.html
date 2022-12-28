@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "1214",
+        "wordCount" : "1323",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">6-minute read</span>
+            <span class="post__meta-text">7-minute read</span>
           </li>
         </ul>
 
@@ -779,7 +779,35 @@ Pandas | Matplotlib
 <li>When a new page index is clicked, a new page&rsquo;s link will be generated (href).</li>
 <li>This link will be parsed by HomeController and the &lsquo;current&rsquo; value will be fetched and passed to the page entity.</li>
 <li>HomeController will get the post data and package them for thymeleaf view template to render.</li>
-</ul></div>
+</ul>
+<br />
+<h2 id="2022-12-27">2022-12-27</h2>
+<h4 id="sending-email-development-logic">Sending email development logic</h4>
+<ul>
+<li>Open the SMTP service of your email account</li>
+<li>Load <strong>Spring Boot Starter Mail</strong> from Maven Repository</li>
+<li>Config <strong>MailProperties</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">host</span> <span class="o">=</span> <span class="n">smtp</span><span class="o">.</span><span class="na">sina</span><span class="o">.</span><span class="na">com</span>
+</span></span><span class="line"><span class="cl"><span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">port</span> <span class="o">=</span> <span class="n">465</span>
+</span></span><span class="line"><span class="cl"><span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">username</span> <span class="o">=</span> <span class="n">xxxxx</span>
+</span></span><span class="line"><span class="cl"><span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">password</span> <span class="o">=</span> <span class="n">xxxxx</span>
+</span></span><span class="line"><span class="cl"><span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">protocal</span> <span class="o">=</span> <span class="n">smtps</span>
+</span></span><span class="line"><span class="cl"><span class="n">spring</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">properties</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">enable</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><ul>
+<li>Using <strong>MimeMessageHelper</strong> to assemble <strong>MimeMessage</strong>, and then invoke the method of <strong>mailSender.send(helper.getMimeMessage());</strong></li>
+</ul>
+<p><Mark>Trouble Shooting: </Mark></p>
+<ul>
+<li>org.springframework.mail.MailAuthenticationException: Authentication failed
+<ul>
+<li>This issue is caused by entering the wrong spring.mail.password in <strong>application.properties</strong> file. Note, you cannot fill in your email login password if you get an authentication code after setting up SMTP service of your email client side. Please fill in that property by the code you get.</li>
+</ul>
+</li>
+</ul>
+<br />
+<h2 id="2022-12-28">2022-12-28</h2>
+<h4 id="develop-sign-up-module">Develop sign-up module</h4></div>
     <div class="post__footer">
       
 
