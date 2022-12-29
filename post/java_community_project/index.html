@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "1567",
+        "wordCount" : "1673",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -873,7 +873,40 @@ Session operations</p>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">session</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">));</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s">&#34;get session&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div></div>
+</span></span></code></pre></div><h4 id="generate-captcha">Generate captcha</h4>
+<ul>
+<li>Load <strong>Kaptcha » 2.3.2</strong> from Maven Repository</li>
+<li>Config for this module manually</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">KaptchaConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Producer</span> <span class="nf">kaptchaProducer</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.image.width&#34;</span><span class="o">,</span> <span class="s">&#34;100&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.image.height&#34;</span><span class="o">,</span> <span class="s">&#34;40&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.textproducer.font.size&#34;</span><span class="o">,</span> <span class="s">&#34;32&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.textproducer.font.color&#34;</span><span class="o">,</span> <span class="s">&#34;0,0,0&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.textproducer.char.string&#34;</span><span class="o">,</span> <span class="s">&#34;0123456789abcdefghijklmnopqrstuvwxyz&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.textproducer.char.length&#34;</span><span class="o">,</span> <span class="s">&#34;4&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">properties</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;kaptcha.noise.impl&#34;</span><span class="o">,</span> <span class="s">&#34;com.google.code.kaptcha.impl.NoNoise&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">DefaultKaptcha</span> <span class="n">kaptcha</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultKaptcha</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Config</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Config</span><span class="o">(</span><span class="n">properties</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">kaptcha</span><span class="o">.</span><span class="na">setConfig</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">kaptcha</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>Inside of LoginController, define a method called &lsquo;getKaptcha&rsquo;
+<ul>
+<li>Use <strong>kaptchaProcuder.createText()</strong> to generate a kaptcha text</li>
+<li>Use the text to generate a kaptcha image</li>
+<li>Store the text into the session for future verification</li>
+</ul>
+</li>
+<li>In login page, set the <strong>src</strong> attribute of <strong>img</strong> tag to be the path of <strong>getKaptcha</strong></li>
+</ul></div>
     <div class="post__footer">
       
 
