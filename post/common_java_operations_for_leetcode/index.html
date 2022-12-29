@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/common_java_operations_for_leetcode\/",
-        "wordCount" : "206",
+        "wordCount" : "245",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -509,7 +509,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">One-minute read</span>
+            <span class="post__meta-text">2-minute read</span>
           </li>
         </ul>
 
@@ -551,7 +551,7 @@ Pandas | Matplotlib
 </span></span></code></pre></div><h4 id="initialize-an-arraylist">Initialize an ArrayList</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">myList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]));</span>
 </span></span><span class="line"><span class="cl"><span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">left</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">right</span><span class="o">]));</span>
-</span></span></code></pre></div><h4 id="stack-and-queue">Stack and Queue</h4>
+</span></span></code></pre></div><h4 id="deque">Deque</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Deque</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">myDeque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;();</span>
 </span></span><span class="line"><span class="cl">
@@ -566,7 +566,17 @@ Pandas | Matplotlib
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myDeque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myDeque</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h4 id="map">Map</h4>
+</span></span></code></pre></div><h4 id="stack">Stack</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayDeque</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">st</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span>
+</span></span></code></pre></div><h4 id="priority-queue">Priority Queue</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">pQue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">arr1</span><span class="o">,</span> <span class="n">arr2</span><span class="o">)-&gt;</span><span class="n">arr1</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">arr2</span><span class="o">[</span><span class="n">1</span><span class="o">]);</span> <span class="c1">// small -&gt; big
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">pQue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">pQue</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span> <span class="c1">// Get the top element of PriorityQueue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">pQue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span> <span class="c1">// Get the top element and removing it
+</span></span></span></code></pre></div><h4 id="map">Map</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">myMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">myMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>

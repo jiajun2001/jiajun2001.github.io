@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "1323",
+        "wordCount" : "1459",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -687,39 +687,20 @@ Pandas | Matplotlib
 <h4 id="mybatis">MyBatis</h4>
 <p>MyBatis is an open source, lightweight, persistence framework. It is an alternative to JDBC and Hibernate. It automates the mapping between SQL databases and objects in Java, NET, and Ruby on Rails.</p>
 <ul>
-<li>
-<p>Go to <a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.31">https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.31</a></p>
-</li>
-<li>
-<p>Select Maven and copy the code</p>
-</li>
-<li>
-<p>Paste them into pom.xml</p>
-</li>
-<li>
-<p>Go to <a href="https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter/3.0.1">https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter/3.0.1</a></p>
-</li>
-<li>
-<p>Select Maven and copy the code</p>
-</li>
-<li>
-<p>Paste them into pom.xml</p>
-</li>
-<li>
-<p>Create an entity file (A Java class) under the entity folder</p>
+<li>Load <strong>MySQL Connector Java</strong> from Maven Repository</li>
+<li>Load <strong>MyBatis Spring Boot Starter</strong> from Maven Repository</li>
+<li>Create an entity file (A Java class) under the entity folder
 <ul>
 <li>It contains attributes of database columns, getter and setter methods, and toString method.</li>
 </ul>
 </li>
-<li>
-<p>Create a mapper file (A Java interface) under the dao (Data Access Object) folder</p>
+<li>Create a mapper file (A Java interface) under the dao (Data Access Object) folder
 <ul>
 <li>It contains methods for interfacing with the database</li>
 <li>E.g. User selectById(int id); int updateHeader(int id, String headerUrl);</li>
 </ul>
 </li>
-<li>
-<p>Create a XML file under resources/mapper folder</p>
+<li>Create a XML file under resources/mapper folder
 <ul>
 <li>Basic Structure:</li>
 </ul>
@@ -784,7 +765,7 @@ Pandas | Matplotlib
 <h2 id="2022-12-27">2022-12-27</h2>
 <h4 id="sending-email-development-logic">Sending email development logic</h4>
 <ul>
-<li>Open the SMTP service of your email account</li>
+<li>Open the <strong>SMTP</strong> service of your email account</li>
 <li>Load <strong>Spring Boot Starter Mail</strong> from Maven Repository</li>
 <li>Config <strong>MailProperties</strong></li>
 </ul>
@@ -807,7 +788,49 @@ Pandas | Matplotlib
 </ul>
 <br />
 <h2 id="2022-12-28">2022-12-28</h2>
-<h4 id="develop-sign-up-module">Develop sign-up module</h4></div>
+<h4 id="develop-sign-up-module">Develop sign-up module</h4>
+<ul>
+<li>Clicking sign up button redirects the user to the page for signing up</li>
+<li>Using form to submit data</li>
+<li>Server verifies the validation of submitted data
+<ul>
+<li>If account, password, email are empty or not</li>
+<li>If the account is existed or not</li>
+<li>If the email is existed or not</li>
+</ul>
+</li>
+<li>Create a new user
+<ul>
+<li>Generate a random salt for password</li>
+<li>Use md5 to encrypt the password + salt and set this attribute</li>
+<li>Set some attributes for this user
+<ul>
+<li>type, status, activation code, headerURL, createTime</li>
+</ul>
+</li>
+<li>Insert the user into database</li>
+</ul>
+</li>
+<li>Server sends verification emails
+<ul>
+<li>Set the activation URL for the email</li>
+<li>Feed this variable into the template</li>
+<li>Send the verification email</li>
+</ul>
+</li>
+<li>Activate the account
+<ul>
+<li>Clicking the link in the verification email</li>
+<li>LoginController will process the link
+<ul>
+<li>Invoke the &lsquo;activate&rsquo; method from UserService</li>
+<li>Based on the code returned by UserService to generate operate-result.html</li>
+</ul>
+</li>
+<li>Redirect to another page according to the activation result</li>
+</ul>
+</li>
+</ul></div>
     <div class="post__footer">
       
 
