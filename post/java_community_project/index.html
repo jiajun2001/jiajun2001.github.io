@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "1673",
+        "wordCount" : "1932",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">8-minute read</span>
+            <span class="post__meta-text">10-minute read</span>
           </li>
         </ul>
 
@@ -906,6 +906,69 @@ Session operations</p>
 </ul>
 </li>
 <li>In login page, set the <strong>src</strong> attribute of <strong>img</strong> tag to be the path of <strong>getKaptcha</strong></li>
+</ul>
+<br />
+<h2 id="2022-12-30">2022-12-30</h2>
+<h4 id="login">Login</h4>
+<ul>
+<li>Build LoginTicket entity</li>
+<li>Develop UserService to add a login function
+<ul>
+<li>Check empty values
+<ul>
+<li>Username, password</li>
+</ul>
+</li>
+<li>Check if the account is existed or not</li>
+<li>Check if the account is activated or not</li>
+<li>Check if the password is correct or not
+<ul>
+<li>Encrypt the password and its salt and compare it with the one stored in the database</li>
+</ul>
+</li>
+<li>Generate a &lsquo;session&rsquo; for the user
+<ul>
+<li>Create a LoginTicket object and store it in the database</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Develop LoginController
+<ul>
+<li>Check captcha
+<ul>
+<li>Check if the captcha from the user and the captcha stored in the session are empty or not</li>
+<li>Ckeck if they are equal or not (Do not distinguish between capital letters or lowercase letters)</li>
+</ul>
+</li>
+<li>Check account and password
+<ul>
+<li>Set expiredSeconds based on if the user selected &lsquo;Remember me&rsquo; checkbox</li>
+<li>Invoke <strong>userService.login</strong> method and use a map to receive the value</li>
+<li>Based on if the map has the key called &rsquo;ticket&rsquo;, determine the following control logic:
+<ul>
+<li>If the map has the key &rsquo;ticket&rsquo;, set the cookie and redirect the user to the homepage. (Success)</li>
+<li>If the map does not have this key, set attributes to <strong>model</strong> and stay in the login page. (Fail)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Connect with the frontend login page
+<ul>
+<li>Retain old information if login fails</li>
+<li>Set th:text for div labels to display if there are some error messages</li>
+<li>Control &lsquo;is-invalid&rsquo; attribute based on the existence of error messages</li>
+</ul>
+</li>
+</ul>
+<h4 id="logout">Logout</h4>
+<ul>
+<li>Get the ticket of the user from cookies</li>
+<li>Set the <strong>status</strong> attribute of the ticket in the database to be 1</li>
+<li>Redirect the user to the login page</li>
+<li>Connect with the frontend page header</li>
 </ul></div>
     <div class="post__footer">
       
