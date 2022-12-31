@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "1932",
+        "wordCount" : "2064",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -545,7 +545,7 @@ Pandas | Matplotlib
 </ul>
 <h4 id="using-spring-initializr">Using Spring Initializr</h4>
 <p>Spring Initializr is a web-based tool provided by the Pivotal Web Service. With the help of Spring Initializr, we can easily generate the structure of the Spring Boot Project. It offers extensible API for creating JVM-based projects.</p>
-<p><img src="/SpringInitializr.png" alt="image"></p>
+<p><img src="/JavaCommunity/SpringInitializr.png" alt="image"></p>
 <p><Mark>Trouble Shooting: </Mark></p>
 <ul>
 <li>If the spring boot project does not run. Go to preference -&gt; Build, Execution, Deployment -&gt; Build Tools -&gt; Maven. Set the Maven home path to <strong>Bundled (Maven 3)</strong>. And then click apply and ok.</li>
@@ -582,7 +582,7 @@ Pandas | Matplotlib
 </span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
 </span></span></code></pre></div><h4 id="spring-mvc">Spring MVC</h4>
 <p>Spring MVC is a library within the Spring framework that simplifies handling HTTP requests and responses. It’s built on the Servlet API and is an essential component of the Spring Framework. The MVC stands for Model-View-Controller, which is its core function, allowing separation of the business logic, presentation logic, and navigation logic.
-<img src="/SpringMVC.png" alt="image"></p>
+<img src="/JavaCommunity/SpringMVC.png" alt="image"></p>
 <p>Two ways of passing parameters into GET request</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// /students?current=1&amp;limit=20
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#34;/students&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
@@ -856,7 +856,7 @@ Pandas | Matplotlib
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s">&#34;get cookie&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>Session mechanism
-<img src="/session.png" alt="image">
+<img src="/JavaCommunity/session.png" alt="image">
 Session operations</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#34;/session/set&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="nd">@ResponseBody</span>
@@ -969,6 +969,52 @@ Session operations</p>
 <li>Set the <strong>status</strong> attribute of the ticket in the database to be 1</li>
 <li>Redirect the user to the login page</li>
 <li>Connect with the frontend page header</li>
+</ul>
+<br />
+<h2 id="2022-12-31-last-day-of-2022">2022-12-31 (Last day of 2022)</h2>
+<h4 id="display-login-information">Display login information</h4>
+<p><img src="/JavaCommunity/displayLoginInfo.jpg" alt="image"></p>
+<ul>
+<li>Define an interceptor to handle logined users (It reduces the coupling of the system.)
+<ul>
+<li>preHandle() method
+<ul>
+<li>Get the cookie of the user</li>
+<li>Use the cookie to get the loginTicket from login_ticket database</li>
+<li>Validate the loginTicket
+<ul>
+<li>if the loginTicket is null or not</li>
+<li>if the status of the loginTicket is 0 (valid) or not</li>
+<li>if the loginTicket is expired or not</li>
+</ul>
+</li>
+<li>Get the user based on the user_id from the loginTicket</li>
+<li>Hold the user for current thread</li>
+</ul>
+</li>
+<li>postHandle() method
+<ul>
+<li>Get the user from current thread</li>
+<li>Validate user and modelAndView objects
+<ul>
+<li>Add the user to the model</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>afterCompletion() method
+<ul>
+<li>Clear the data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Config for the interceptor</li>
+<li>Connect with the frontend page header
+<ul>
+<li>Based on if the attribute &rsquo;loginUser&rsquo; is null or not to display some labels</li>
+</ul>
+</li>
 </ul></div>
     <div class="post__footer">
       
