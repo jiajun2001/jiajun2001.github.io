@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "2341",
+        "wordCount" : "2482",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">11-minute read</span>
+            <span class="post__meta-text">12-minute read</span>
           </li>
         </ul>
 
@@ -1082,12 +1082,46 @@ Session operations</p>
 <li>Check if original password is correct or not</li>
 <li>Check if new password is strong enough or not</li>
 <li>Check if new password is identical to confirmed password</li>
+<li>Check if original password is the same as new password</li>
 </ul>
 </li>
 <li>In UserController side
 <ul>
 <li>Fetch current user in the thread</li>
 <li>Invoke <strong>changePassword</strong> method from userService</li>
+</ul>
+</li>
+</ul>
+<h4 id="optimization">Optimization</h4>
+<ul>
+<li>Restrict file types that can be uploaded</li>
+<li>Delete old profile images to reduce the service load</li>
+<li>Compress the image if its size is greater than 0.125 Mb (under construction)</li>
+</ul>
+<h4 id="check-login-status-restrict-users-who-have-not-logged-in-to-access-some-pages-using-specific-paths">Check login status (Restrict users who have not logged in to access some pages using specific paths)</h4>
+<ul>
+<li>Define an user-defined annotation</li>
+<li>Put the annotation before methods that we want to intercept</li>
+<li>Define an interceptor
+<ul>
+<li>Override its preHandle method
+<ul>
+<li>Check if <strong>handler</strong> is a HandlerMethod or not</li>
+<li>Typecast <strong>handler</strong> from Object to HandlerMethod</li>
+<li>Get the method from the HandlerMethod</li>
+<li>Find if we can get the specific annotation from the method</li>
+<li>If the method has the specific annotation and the user (from hostHolder) is not logged in
+<ul>
+<li>Redirect the visitor to the login page</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Config for interceptor
+<ul>
+<li>Exclude the access for static resource</li>
 </ul>
 </li>
 </ul></div>
