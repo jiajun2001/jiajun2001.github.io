@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "2064",
+        "wordCount" : "2341",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -325,7 +325,7 @@ Pandas | Matplotlib
       &copy;
       
         Jiajun&#39;s Blog
-        2022
+        2023
 
 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">10-minute read</span>
+            <span class="post__meta-text">11-minute read</span>
           </li>
         </ul>
 
@@ -723,7 +723,7 @@ Pandas | Matplotlib
 </ul>
 <br />
 <h2 id="2022-12-25-merry-christmas">2022-12-25 (Merry Christmas!)</h2>
-<h4 id="develop-home-page">Develop Home Page</h4>
+<h4 id="home-page">Home Page</h4>
 <ul>
 <li>Build entity file -&gt; Build mapper file -&gt; Build XML file</li>
 </ul>
@@ -755,7 +755,7 @@ Pandas | Matplotlib
 </ul>
 <br />
 <h2 id="2022-12-26">2022-12-26</h2>
-<h4 id="page-selection-development-logic">Page selection development logic:</h4>
+<h4 id="page-selection">Page selection</h4>
 <ul>
 <li>When a new page index is clicked, a new page&rsquo;s link will be generated (href).</li>
 <li>This link will be parsed by HomeController and the &lsquo;current&rsquo; value will be fetched and passed to the page entity.</li>
@@ -763,7 +763,7 @@ Pandas | Matplotlib
 </ul>
 <br />
 <h2 id="2022-12-27">2022-12-27</h2>
-<h4 id="sending-email-development-logic">Sending email development logic</h4>
+<h4 id="sending-email">Sending email</h4>
 <ul>
 <li>Open the <strong>SMTP</strong> service of your email account</li>
 <li>Load <strong>Spring Boot Starter Mail</strong> from Maven Repository</li>
@@ -788,7 +788,7 @@ Pandas | Matplotlib
 </ul>
 <br />
 <h2 id="2022-12-28">2022-12-28</h2>
-<h4 id="develop-sign-up-module">Develop sign-up module</h4>
+<h4 id="sign-up-module">Sign-up module</h4>
 <ul>
 <li>Clicking sign up button redirects the user to the page for signing up</li>
 <li>Using form to submit data</li>
@@ -1015,6 +1015,81 @@ Session operations</p>
 <li>Based on if the attribute &rsquo;loginUser&rsquo; is null or not to display some labels</li>
 </ul>
 </li>
+</ul>
+<br />
+<h2 id="2023-01-01-happy-new-year">2023-01-01 (Happy New Year)</h2>
+<h4 id="setting-a-new-profile-image">Setting a new profile image</h4>
+<ul>
+<li>Access the user setting page
+<ul>
+<li>Modify UserController</li>
+</ul>
+</li>
+<li>Upload the new profile picture
+<ul>
+<li>Config for the path for storing images</li>
+<li>Create a &lsquo;updateHeader&rsquo; method in UserService
+<ul>
+<li>Update headerURL attribute in the database</li>
+</ul>
+</li>
+<li>Create a &lsquo;updateHeader&rsquo; method in UserController
+<ul>
+<li>public String uploadHeader(MultipartFile headerImage, Model model)</li>
+<li>Check the validity of the headerImage
+<ul>
+<li>If it is empty, add attribute to the model and redirect to the same page</li>
+<li>If the suffix of the image is empty, add attribute to the model and redirect to the same page</li>
+</ul>
+</li>
+<li>Generate a new file name with a randomly generated string</li>
+<li>Find the path of storing the file to the local server</li>
+<li>Store the file to the local server</li>
+<li>Update the path of the headerURL in the database</li>
+<li>Redirect to the home page</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Get the profile picture
+<ul>
+<li>Get the file address of the local server</li>
+<li>Get the suffix of the file</li>
+<li>Set response content type (pass the suffix of the file)</li>
+<li>Use IO to load the image</li>
+</ul>
+</li>
+<li>Connect with the frontend page
+<ul>
+<li>Add <strong>enctype=&ldquo;multipart/form-data&rdquo; th:action=&quot;@{/user/upload}</strong> to form labels</li>
+</ul>
+</li>
+</ul>
+<p><mark>Trouble Shooting: </mark></p>
+<ul>
+<li>To store profile images in the server side, we need to manually create a folder based on the path first.</li>
+<li>In application.properties, when configurating for the path of uploading images, do not put double quotation marks around the path.</li>
+</ul>
+<h4 id="change-password">Change password</h4>
+<ul>
+<li>In UserService side
+<ul>
+<li>Check the validity of three inputs
+<ul>
+<li>If original password, new password and confirmed password are empty or not</li>
+</ul>
+</li>
+<li>Check if original password is correct or not</li>
+<li>Check if new password is strong enough or not</li>
+<li>Check if new password is identical to confirmed password</li>
+</ul>
+</li>
+<li>In UserController side
+<ul>
+<li>Fetch current user in the thread</li>
+<li>Invoke <strong>changePassword</strong> method from userService</li>
+</ul>
+</li>
 </ul></div>
     <div class="post__footer">
       
@@ -1039,7 +1114,7 @@ Session operations</p>
       &copy;
       
         Jiajun&#39;s Blog
-        2022
+        2023
 
 
       
