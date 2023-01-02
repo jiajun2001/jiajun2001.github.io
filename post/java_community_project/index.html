@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "2689",
+        "wordCount" : "2757",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -1149,12 +1149,34 @@ Session operations</p>
 <li>If we can find the character in the prefix tree and it is not a termination of a sensitive word, move &rsquo;end&rsquo; one character back.</li>
 </ul>
 </li>
+<li>Handle the trailing characters because &lsquo;begin&rsquo; pointer may not be able to reach to the end</li>
 </ul>
 </li>
 </ul>
 <h4 id="optimization-1">Optimization</h4>
 <ul>
 <li>When constructing the prefix tree, convert all English letters to lowercase letters, so that the tool can filter sensitive words no matter if they are uppercase or lowercase.</li>
+</ul>
+<h4 id="posting">Posting</h4>
+<ul>
+<li>Load <strong>fastjson</strong> from Maven Repository</li>
+<li>Add <strong>insertDiscussPost</strong> into <strong>DiscussPostMapper</strong></li>
+<li>Add <strong>addDiscussPost</strong> into <strong>DiscussPostService</strong>
+<ul>
+<li>Check if discussPost is empty or not</li>
+<li>Filter labels for safety</li>
+<li>Filter sensitive words</li>
+<li>Invoke <strong>insertDiscussPost</strong></li>
+</ul>
+</li>
+<li>Develop <strong>DiscussPostController</strong>
+<ul>
+<li>Check if there exists a user</li>
+<li>New a DiscussPost entity</li>
+<li>Invoke <strong>addDiscussPost</strong></li>
+</ul>
+</li>
+<li>Using AJAX to render the page without refreshing</li>
 </ul></div>
     <div class="post__footer">
       
