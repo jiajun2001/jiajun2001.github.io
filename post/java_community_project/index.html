@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "2482",
+        "wordCount" : "2689",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">12-minute read</span>
+            <span class="post__meta-text">13-minute read</span>
           </li>
         </ul>
 
@@ -1124,6 +1124,37 @@ Session operations</p>
 <li>Exclude the access for static resource</li>
 </ul>
 </li>
+</ul>
+<br />
+<h2 id="2023-01-02">2023-01-02</h2>
+<h4 id="filter-sensitive-words">Filter sensitive words</h4>
+<ul>
+<li>Make a txt file defining the words that will be filtered</li>
+<li>Define the prefix tree</li>
+<li>Initialize the prefix tree based on words in the txt file defined before</li>
+<li>Develop &lsquo;filter&rsquo; method
+<ul>
+<li>If original text is empty, return null</li>
+<li>Define three pointers, two of them iterate through the original text, the other points to the prefix tree.</li>
+<li>Handle symbol characters
+<ul>
+<li>If the prefix tree pointer points to the root node, skip</li>
+<li>Else, move the end pointer one character to skip the symbol</li>
+</ul>
+</li>
+<li>Check if a word is a sensitive
+<ul>
+<li>If the prefix tree pointer is null, append the character, move &lsquo;begin&rsquo; and &rsquo;end&rsquo; one character back, make the prefix tree pointer point to the root node.</li>
+<li>If we detect a sensitive word, append a filtered word to the string builder, move &rsquo;end&rsquo; one character back, set &lsquo;begin&rsquo; to be &rsquo;end&rsquo;, make the prefix tree pointer point to the root node.</li>
+<li>If we can find the character in the prefix tree and it is not a termination of a sensitive word, move &rsquo;end&rsquo; one character back.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="optimization-1">Optimization</h4>
+<ul>
+<li>When constructing the prefix tree, convert all English letters to lowercase letters, so that the tool can filter sensitive words no matter if they are uppercase or lowercase.</li>
 </ul></div>
     <div class="post__footer">
       
