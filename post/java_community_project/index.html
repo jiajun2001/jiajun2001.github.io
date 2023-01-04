@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "2807",
+        "wordCount" : "3348",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">14-minute read</span>
+            <span class="post__meta-text">16-minute read</span>
           </li>
         </ul>
 
@@ -1189,6 +1189,119 @@ Session operations</p>
 <p><mark>Trouble Shooting: </mark></p>
 <ul>
 <li>In the frontend page, make sure using the same attribute names of the model passed from the backend implementation.</li>
+</ul>
+<br />
+<h2 id="2023-01-04">2023-01-04</h2>
+<h4 id="transaction-maganement">Transaction Maganement</h4>
+<ul>
+<li>Transactions are a set of operations used to perform a logical set of work. A transaction usually means that the data in the database has changed. One of the major uses of DBMS is to protect the user’s data from system failures. It is done by ensuring that all the data is restored to a consistent state when the computer is restarted after a crash. The transaction is any one execution of the user program in a DBMS. Executing the same program multiple times will generate multiple transactions.</li>
+<li>ACID Properties are used for maintaining the integrity of database during transaction processing. ACID in DBMS stands for Atomicity, Consistency, Isolation, and Durability.
+<ul>
+<li>Atomicity: A transaction is a single unit of operation. You either execute it entirely or do not execute it at all. There cannot be partial execution.</li>
+<li>Consistency: Once the transaction is executed, it should move from one consistent state to another.</li>
+<li>Isolation: Transaction should be executed in isolation from other transactions (no Locks). During concurrent transaction execution, intermediate transaction results from simultaneously executed transactions should not be made available to each other. (Level 0,1,2,3)</li>
+<li>Durability: · After successful completion of a transaction, the changes in the database should persist. Even in the case of system failures.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/JavaCommunity/transaction1.png" alt="image">
+<img src="/JavaCommunity/transaction2.png" alt="image">
+<img src="/JavaCommunity/transaction3.png" alt="image"></p>
+<ul>
+<li>
+<p>Mechanism of transaction management</p>
+<ul>
+<li>Lock-based protocols help you to manage the order between the conflicting transactions when they will execute. Timestamp-based protocols manage conflicts as soon as an operation is created.</li>
+<li>Lock-based
+<ul>
+<li>Shared Lock: A shared lock is also called a Read-only lock. With the shared lock, the data item can be shared between transactions. This is because you will never have permission to update data on the data item.</li>
+<li>Exclusive Lock: With the Exclusive Lock, a data item can be read as well as written. This is exclusive and can’t be held concurrently on the same data item. Transactions may unlock the data item after finishing the ‘write’ operation.</li>
+</ul>
+</li>
+<li>Timestamp-based:
+<ul>
+<li>Timestamp based Protocol in DBMS is an algorithm which uses the System Time or Logical Counter as a timestamp to serialize the execution of concurrent transactions. The Timestamp-based protocol ensures that every conflicting read and write operations are executed in a timestamp order.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Two ways of managing transactions</p>
+<ul>
+<li>Declarative Transactions
+<ul>
+<li>Declare the attributes of a transaction for one method using XML configuration</li>
+<li>Using annotation to declare the attributes of a transaction for one method</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Transactional</span><span class="o">(</span><span class="n">isolation</span> <span class="o">=</span> <span class="n">Isolation</span><span class="o">.</span><span class="na">READ_COMMITTED</span><span class="o">,</span> <span class="n">propagation</span> <span class="o">=</span> <span class="n">Propagation</span><span class="o">.</span><span class="na">REQUIRED</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Object</span> <span class="nf">save1</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Add a new user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;alpha&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">setSalt</span><span class="o">(</span><span class="n">CommunityUtil</span><span class="o">.</span><span class="na">generateUUID</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">5</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">CommunityUtil</span><span class="o">.</span><span class="na">md5</span><span class="o">(</span><span class="s">&#34;123&#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getSalt</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">&#34;alpha@qq.com&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">setHeaderURL</span><span class="o">(</span><span class="s">&#34;http://image.newcoder.com/head/99t.png&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">setCreateTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userMapper</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Add a new post
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">DiscussPost</span> <span class="n">discussPost</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DiscussPost</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discussPost</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discussPost</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Hello&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discussPost</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="s">&#34;NEW NEW USER&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discussPost</span><span class="o">.</span><span class="na">setCreateTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discussPostMapper</span><span class="o">.</span><span class="na">insertDiscussPost</span><span class="o">(</span><span class="n">discussPost</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Create an error, see if it can roll back
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">&#34;abc&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s">&#34;ok&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
+<li>Programmatic Transactions
+<ul>
+<li>Using TransactionTemplate to manage transactions</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="n">TransactionTemplate</span> <span class="n">transactionTemplate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Object</span> <span class="nf">save2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transactionTemplate</span><span class="o">.</span><span class="na">setIsolationLevel</span><span class="o">(</span><span class="n">TransactionDefinition</span><span class="o">.</span><span class="na">ISOLATION_READ_COMMITTED</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transactionTemplate</span><span class="o">.</span><span class="na">setPropagationBehavior</span><span class="o">(</span><span class="n">TransactionDefinition</span><span class="o">.</span><span class="na">PROPAGATION_REQUIRED</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">transactionTemplate</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">TransactionCallback</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Object</span> <span class="nf">doInTransaction</span><span class="o">(</span><span class="n">TransactionStatus</span> <span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Add a new user
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">user</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;beta&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">user</span><span class="o">.</span><span class="na">setSalt</span><span class="o">(</span><span class="n">CommunityUtil</span><span class="o">.</span><span class="na">generateUUID</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">5</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">user</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">CommunityUtil</span><span class="o">.</span><span class="na">md5</span><span class="o">(</span><span class="s">&#34;123&#34;</span> <span class="o">+</span> <span class="n">user</span><span class="o">.</span><span class="na">getSalt</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">&#34;beta@qq.com&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">user</span><span class="o">.</span><span class="na">setHeaderURL</span><span class="o">(</span><span class="s">&#34;http://image.newcoder.com/head/999t.png&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">user</span><span class="o">.</span><span class="na">setCreateTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">userMapper</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Add a new post
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">DiscussPost</span> <span class="n">discussPost</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DiscussPost</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">discussPost</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">discussPost</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Hola&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">discussPost</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="s">&#34;NEW NEW USER USER&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">discussPost</span><span class="o">.</span><span class="na">setCreateTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">discussPostMapper</span><span class="o">.</span><span class="na">insertDiscussPost</span><span class="o">(</span><span class="n">discussPost</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// Create an error, see if it can roll back
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="s">&#34;abc&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;ok&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></li>
 </ul></div>
     <div class="post__footer">
       
