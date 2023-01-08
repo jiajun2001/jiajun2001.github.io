@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jiajun2001.github.io/</loc>
-    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -15,14 +15,14 @@
                 href="https://jiajun2001.github.io/"
                 />
   </url><url>
-    <loc>https://jiajun2001.github.io/tags/java/</loc>
-    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+    <loc>https://jiajun2001.github.io/post/daily_thought/</loc>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jiajun2001.github.io/post/java_community_project/</loc>
-    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+    <loc>https://jiajun2001.github.io/tags/observation/</loc>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://jiajun2001.github.io/post/</loc>
-    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -34,11 +34,8 @@
                 href="https://jiajun2001.github.io/post/"
                 />
   </url><url>
-    <loc>https://jiajun2001.github.io/tags/project/</loc>
-    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
-  </url><url>
     <loc>https://jiajun2001.github.io/tags/</loc>
-    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
@@ -49,6 +46,15 @@
                 hreflang="en"
                 href="https://jiajun2001.github.io/tags/"
                 />
+  </url><url>
+    <loc>https://jiajun2001.github.io/tags/java/</loc>
+    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+  </url><url>
+    <loc>https://jiajun2001.github.io/post/java_community_project/</loc>
+    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
+  </url><url>
+    <loc>https://jiajun2001.github.io/tags/project/</loc>
+    <lastmod>2022-12-25T01:08:09+10:30</lastmod>
   </url><url>
     <loc>https://jiajun2001.github.io/tags/algorithm/</loc>
     <lastmod>2022-12-24T10:25:39+10:30</lastmod>
@@ -91,9 +97,6 @@
   </url><url>
     <loc>https://jiajun2001.github.io/post/java_set/</loc>
     <lastmod>2022-12-02T12:34:15+10:30</lastmod>
-  </url><url>
-    <loc>https://jiajun2001.github.io/tags/observation/</loc>
-    <lastmod>2022-12-02T12:16:53+10:30</lastmod>
   </url><url>
     <loc>https://jiajun2001.github.io/post/loop/</loc>
     <lastmod>2022-12-02T12:16:53+10:30</lastmod>
