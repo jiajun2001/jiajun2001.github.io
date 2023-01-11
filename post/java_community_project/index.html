@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "3403",
+        "wordCount" : "3485",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">16-minute read</span>
+            <span class="post__meta-text">17-minute read</span>
           </li>
         </ul>
 
@@ -1321,6 +1321,19 @@ Session operations</p>
 <li>Display layer
 <ul>
 <li>Display the post as well as its comments</li>
+</ul>
+</li>
+</ul>
+<p><mark>Trouble Shooting:</mark></p>
+<ul>
+<li>Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; bad SQL grammar
+<ul>
+<li>To address this issue, remember to put a <strong>comma</strong> between two parameters of &rsquo;limit&rsquo; keyword in the selection query.</li>
+</ul>
+</li>
+<li>Caused by: org.apache.ibatis.executor.ExecutorException: A query was run and no Result Maps were found for the Mapped Statement &lsquo;io.github.jiajun2001.community.community.dao.CommentMapper.selectCountByEntity&rsquo;.  It&rsquo;s likely that neither a Result Type nor a Result Map was specified.
+<ul>
+<li>To address this issue, remember to specify the <strong>resultType</strong> inside of the SQL label of XML file.</li>
 </ul>
 </li>
 </ul></div>
