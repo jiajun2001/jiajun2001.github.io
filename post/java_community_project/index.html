@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "3676",
+        "wordCount" : "3848",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,11 +502,61 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">18-minute read</span>
+            <span class="post__meta-text">19-minute read</span>
           </li>
         </ul>
 
       <p>On December 22, 2022, I started my Java forum project. This post will keep track of my progress of developing this project and my notes of learning.</p>
+<br />
+<h2 id="2023-01-12">2023-01-12</h2>
+<h4 id="message-list">Message List</h4>
+<ul>
+<li>Data Layer
+<ul>
+<li>Get the latest message for each conversation of the user</li>
+<li>Get the number of conversations of the user</li>
+<li>Get all messages of a particular conversation</li>
+<li>Get the number of messages of a particular conversation</li>
+<li>Get the number of unread messages (from a particular conversation or all conversations)</li>
+</ul>
+</li>
+<li>Service Layer
+<ul>
+<li>Use methods defined in the mapper file</li>
+</ul>
+</li>
+<li>Display Layer
+<ul>
+<li>Set page limit information</li>
+<li>Define a List&lt;Map&lt;String, Object&raquo; called conversations, each map inside contains:
+<ul>
+<li>&ldquo;conversation&rdquo;: the latest message of one conversation</li>
+<li>&ldquo;messageCount&rdquo;: the number of messages of the conversation</li>
+<li>&ldquo;unreadCount&rdquo;: the number of unread message of the conversation</li>
+<li>&ldquo;target&rdquo;: another user of the conversation</li>
+</ul>
+</li>
+<li>Get the total number of unread messages of all conversations</li>
+<li>Connect with the frontend page</li>
+</ul>
+</li>
+</ul>
+<h4 id="display-specific-message">Display specific message</h4>
+<ul>
+<li>Display Layer
+<ul>
+<li>Set page limit information</li>
+<li>Define a List&lt;Map&lt;String, Object&raquo; called messages, each map inside contains:
+<ul>
+<li>&ldquo;message&rdquo;: a message of the conversation</li>
+<li>&ldquo;fromUser&rdquo;: the user entity who sent this message</li>
+</ul>
+</li>
+<li>Get the target user of this conversation (relative to the user itself)</li>
+<li>Connect with the frontend page</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="2023-01-11">2023-01-11</h2>
 <h4 id="add-comments">Add comments</h4>
