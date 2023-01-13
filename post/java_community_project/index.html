@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "3848",
+        "wordCount" : "3977",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -507,6 +507,56 @@ Pandas | Matplotlib
         </ul>
 
       <p>On December 22, 2022, I started my Java forum project. This post will keep track of my progress of developing this project and my notes of learning.</p>
+<br />
+<h2 id="2023-01-13">2023-01-13</h2>
+<h4 id="send-message">Send message</h4>
+<ul>
+<li>Data Layer
+<ul>
+<li>Insert a message</li>
+<li>Update message status (unread -&gt; read)</li>
+</ul>
+</li>
+<li>Service Layer
+<ul>
+<li>Develop <strong>addMessage()</strong> method
+<ul>
+<li>Filter HTML labels for safety concerns</li>
+<li>Filter sensitive words of the comment content</li>
+</ul>
+</li>
+<li>Develop <strong>readMessage()</strong> method
+<ul>
+<li>Invoke the method defined in the mapper file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Display Layer
+<ul>
+<li>Develop asynchronous method <strong>sendMessage()</strong></li>
+<li>Modify js file to send the message using AJAX</li>
+</ul>
+</li>
+</ul>
+<h4 id="read-message">Read message</h4>
+<ul>
+<li>Display Layer
+<ul>
+<li>Define a method <strong>getMessageIds()</strong> to collect all message ids that need to be set to <em>read</em> status
+<ul>
+<li>Pass into a message list</li>
+<li>Collect message ids if the current user is the receiver of the message and the message status is <em>unread</em></li>
+</ul>
+</li>
+<li>Invoke the method <strong>getMessageIds()</strong> inside of the method <strong>getMessageDetail()</strong>
+<ul>
+<li>If the list collected is not empty, invoke <strong>readMessage()</strong> method to change the status of those messages</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="2023-01-12">2023-01-12</h2>
 <h4 id="message-list">Message List</h4>
