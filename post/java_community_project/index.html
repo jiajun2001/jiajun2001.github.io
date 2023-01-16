@@ -134,8 +134,8 @@ Pandas | Matplotlib
 <meta property="og:description" content="On December 22, 2022, I started my Java forum project. This post will keep track of my progress of developing this project and my notes of learning." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/java_community_project/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-01-12T20:08:09+10:30" />
-<meta property="article:modified_time" content="2023-01-12T20:08:09+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2023-01-17T00:08:09+10:30" />
+<meta property="article:modified_time" content="2023-01-17T00:08:09+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -184,9 +184,9 @@ Pandas | Matplotlib
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2023",
-        "dateCreated": "2023-01-12T20:08:09.00Z",
-        "datePublished": "2023-01-12T20:08:09.00Z",
-        "dateModified": "2023-01-12T20:08:09.00Z",
+        "dateCreated": "2023-01-17T00:08:09.00Z",
+        "datePublished": "2023-01-17T00:08:09.00Z",
+        "dateModified": "2023-01-17T00:08:09.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "3977",
+        "wordCount" : "4161",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -491,7 +491,7 @@ Pandas | Matplotlib
             <span class="post__meta-text"
               >
                 
-                  12/1/2023
+                  17/1/2023
 
 
                 
@@ -502,12 +502,49 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">19-minute read</span>
+            <span class="post__meta-text">20-minute read</span>
           </li>
         </ul>
 
       <p>On December 22, 2022, I started my Java forum project. This post will keep track of my progress of developing this project and my notes of learning.</p>
 <br />
+<h2 id="2023-01-17">2023-01-17</h2>
+<h4 id="handle-exceptions">Handle exceptions</h4>
+<ul>
+<li>We handle exceptions at the display layer by redirecting the user to some specific pages</li>
+<li>Make sure the <strong>error</strong> folder is under the <strong>templates</strong> folder and the name of those HTML files is <strong>XXX.html</strong> (XXX is the error code, e.g 404, 500)</li>
+<li>Make an folder called <strong>advice</strong> under the <strong>controller</strong> folder and define a class called <strong>ExceptionAdvice</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="c1">// Handle exceptions for all classes with &#34;Controller&#34; annotation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@ControllerAdvice</span><span class="o">(</span><span class="n">annotations</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionAdvice</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="o">(</span><span class="n">Logger</span><span class="o">)</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">ExceptionAdvice</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@ExceptionHandler</span><span class="o">({</span><span class="n">Exception</span><span class="o">.</span><span class="na">class</span><span class="o">})</span> <span class="c1">// Handle all exception classes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleException</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Logging errors
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;500: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">StackTraceElement</span> <span class="n">element</span> <span class="o">:</span> <span class="n">e</span><span class="o">.</span><span class="na">getStackTrace</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">element</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// Check if it is an asynchronous request or not
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">xRequestedWith</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="s">&#34;x-requested-with&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="s">&#34;XMLHttpRequest&#34;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">xRequestedWith</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// If it is an asynchronous request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// Return a plain text for AJAX to convert it to JSON format 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">response</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="s">&#34;application/plain;charset=utf-8&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">PrintWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getWriter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">CommunityUtil</span><span class="o">.</span><span class="na">getJSONString</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="s">&#34;Server Error!&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// If it is a normal request
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">// Redirect the user to error pages
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">response</span><span class="o">.</span><span class="na">sendRedirect</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getContextPath</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;/error&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><br />
 <h2 id="2023-01-13">2023-01-13</h2>
 <h4 id="send-message">Send message</h4>
 <ul>
