@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on My blog</title>
+    <link>https://jiajun2001.github.io/tags/javascript/</link>
+    <description>Recent content in Javascript on My blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 17 Jan 2023 23:50:29 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Javascript Study Notes</title>
+      <link>https://jiajun2001.github.io/post/javascript/</link>
+      <pubDate>Tue, 17 Jan 2023 23:50:29 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/javascript/</guid>
+      
+        <description>&lt;p&gt;JavaScript, often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. As of 2022, 98% of websites use JavaScript on the client side for webpage behavior, often incorporating third-party libraries. In this post, I will make some notes about my further study about JavaScript.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
