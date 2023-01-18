@@ -6,7 +6,22 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Jan 2023 00:36:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 17:08:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adelaide CS Community Project</title>
+      <link>https://jiajun2001.github.io/post/java_community_project/</link>
+      <pubDate>Wed, 18 Jan 2023 17:08:09 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
+      
+        <description>&lt;blockquote&gt;
+&lt;p&gt;In Java, the programmer allocates memory by creating a new object. There is no way to de-allocate that memory.
+Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Daily Thought</title>
       <link>https://jiajun2001.github.io/post/daily_thought/</link>
@@ -14,7 +29,7 @@
       
       <guid>https://jiajun2001.github.io/post/daily_thought/</guid>
       
-        <description>2023-01-18 Technically, I only have one month holiday left. To make the full use of the following days, I want to make a plan about my independent learning.</description>
+        <description>2023-01-19 Doing LeetCode makes me feel dying&amp;hellip;.. I want to relax and then go back to solve them&amp;hellip;.</description>
       
     </item>
     
@@ -26,17 +41,6 @@
       <guid>https://jiajun2001.github.io/post/javascript/</guid>
       
         <description>&lt;p&gt;JavaScript, often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. As of 2022, 98% of websites use JavaScript on the client side for webpage behavior, often incorporating third-party libraries. In this post, I will make some notes about my further study about JavaScript.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Java Community Project</title>
-      <link>https://jiajun2001.github.io/post/java_community_project/</link>
-      <pubDate>Tue, 17 Jan 2023 00:08:09 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
-      
-        <description>&lt;p&gt;On December 22, 2022, I started my Java forum project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
       
     </item>
     
