@@ -142,8 +142,8 @@ Periodically the Garbage Collector sweeps through the memory allocated to the pr
 When I first knew about this feature, I felt it was quite appealing to me, especially for a C&#43;&#43; programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/java_community_project/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-01-18T17:08:09+10:30" />
-<meta property="article:modified_time" content="2023-01-18T17:08:09+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2023-01-19T16:08:09+10:30" />
+<meta property="article:modified_time" content="2023-01-19T16:08:09+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -192,9 +192,9 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2023",
-        "dateCreated": "2023-01-18T17:08:09.00Z",
-        "datePublished": "2023-01-18T17:08:09.00Z",
-        "dateModified": "2023-01-18T17:08:09.00Z",
+        "dateCreated": "2023-01-19T16:08:09.00Z",
+        "datePublished": "2023-01-19T16:08:09.00Z",
+        "dateModified": "2023-01-19T16:08:09.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -217,7 +217,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "4927",
+        "wordCount" : "5000",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -499,7 +499,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
             <span class="post__meta-text"
               >
                 
-                  18/1/2023
+                  19/1/2023
 
 
                 
@@ -520,8 +520,55 @@ Periodically the Garbage Collector sweeps through the memory allocated to the pr
 </blockquote>
 <p>When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.</p>
 <br />
+<h2 id="2023-01-19">2023-01-19</h2>
+<h4 id="integrating-redis-with-spring">Integrating Redis with Spring</h4>
+<ul>
+<li>Load <strong>spring-boot-starter-data-redis</strong> from Maven Repository</li>
+<li>Configure for Redis
+<ul>
+<li>Add configuration in <strong>application.properties</strong>
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl">  <span class="n">spring</span><span class="o">.</span><span class="na">redis</span><span class="o">.</span><span class="na">database</span> <span class="o">=</span> <span class="n">11</span>
+</span></span><span class="line"><span class="cl">  <span class="n">spring</span><span class="o">.</span><span class="na">redis</span><span class="o">.</span><span class="na">host</span> <span class="o">=</span> <span class="n">localhost</span>
+</span></span><span class="line"><span class="cl">  <span class="n">spring</span><span class="o">.</span><span class="na">redis</span><span class="o">.</span><span class="na">port</span> <span class="o">=</span> <span class="n">6379</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>Create a configuration file for Redis
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl">  <span class="nd">@Configuration</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedisConfig</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">RedisTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">redisTemplate</span><span class="o">(</span><span class="n">RedisConnectionFactory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">RedisTemplate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">template</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RedisTemplate</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">          <span class="n">template</span><span class="o">.</span><span class="na">setConnectionFactory</span><span class="o">(</span><span class="n">factory</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="c1">// Specify a way for serialize
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="c1">// Key:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">template</span><span class="o">.</span><span class="na">setKeySerializer</span><span class="o">(</span><span class="n">RedisSerializer</span><span class="o">.</span><span class="na">string</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// Value:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">template</span><span class="o">.</span><span class="na">setValueSerializer</span><span class="o">(</span><span class="n">RedisSerializer</span><span class="o">.</span><span class="na">json</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// Hash:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">template</span><span class="o">.</span><span class="na">setHashKeySerializer</span><span class="o">(</span><span class="n">RedisSerializer</span><span class="o">.</span><span class="na">string</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// Hash-Value:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">template</span><span class="o">.</span><span class="na">setHashValueSerializer</span><span class="o">(</span><span class="n">RedisSerializer</span><span class="o">.</span><span class="na">json</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          <span class="n">template</span><span class="o">.</span><span class="na">afterPropertiesSet</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="n">template</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br />
 <h2 id="2023-01-18">2023-01-18</h2>
-<h4 id="basic-to-redis">Basic to Redis</h4>
+<h4 id="redis-basis">Redis basis</h4>
 <ul>
 <li>Redis is an in-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker, with optional durability. Redis supports different kinds of abstract data structures, such as strings, lists, maps, sets, sorted sets, HyperLogLogs, bitmaps, streams, and spatial indices.</li>
 <li>Redis can be utilized for implementing cache, ranking list, counter, social networking, and message list.</li>
