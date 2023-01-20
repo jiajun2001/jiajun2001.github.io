@@ -217,7 +217,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "5000",
+        "wordCount" : "5154",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -510,7 +510,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">24-minute read</span>
+            <span class="post__meta-text">25-minute read</span>
           </li>
         </ul>
 
@@ -519,6 +519,37 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.</p>
 </blockquote>
 <p>When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.</p>
+<br />
+<h2 id="2023-01-20">2023-01-20</h2>
+<h4 id="like">Like</h4>
+<ul>
+<li>Develop a utility for redis key
+<ul>
+<li>Define a method to get the key for entities that are up voted (format: like:entity:entityType:entityId)</li>
+</ul>
+</li>
+<li>Develop a service for redis key
+<ul>
+<li>Define a method called &rsquo;like()&rsquo; to let the user up vote
+<ul>
+<li>If the user has liked the post before, remove the user id from the set.</li>
+<li>Else add the user id into the set.</li>
+</ul>
+</li>
+<li>Define a method called &lsquo;findEntityLikeCount()&rsquo; to count the number of likes that an entity receives</li>
+<li>Define a method called &lsquo;findEntityLikeStatus()&rsquo; to check if the user liked the entity before or not</li>
+</ul>
+</li>
+<li>Develop a controller for &rsquo;like&rsquo;
+<ul>
+<li>Invoke the method called &rsquo;like()&rsquo; to let the user like the post</li>
+<li>Invoke the method called &lsquo;findEntityLikeCount()&rsquo; to count the number of likes that an entity receives</li>
+<li>Invoke the method called &lsquo;findEntityLikeStatus()&rsquo; to check if the user liked the entity before or not</li>
+<li>Send back the JSON format of these information</li>
+</ul>
+</li>
+<li>Connect with frontend pages</li>
+</ul>
 <br />
 <h2 id="2023-01-19">2023-01-19</h2>
 <h4 id="integrating-redis-with-spring">Integrating Redis with Spring</h4>
