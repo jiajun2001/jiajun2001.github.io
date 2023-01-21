@@ -134,8 +134,8 @@ Pandas | Matplotlib
 <meta property="og:description" content="At the Summer of 2022, I converted my main programming language from C&#43;&#43; to Java. This is because some Java&rsquo;s great features are appealing to me and Java is also widely used in software development industry. In this post, I will put some commonly used Java operations for doing leetCode." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/leetcode_operation/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2022-12-24T10:25:39+10:30" />
-<meta property="article:modified_time" content="2022-12-24T10:25:39+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2023-01-21T10:25:39+10:30" />
+<meta property="article:modified_time" content="2023-01-21T10:25:39+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -183,10 +183,10 @@ Pandas | Matplotlib
             "@type": "Person",
             "name": "Jiajun\u0027s Blog"
         },
-        "copyrightYear" : "2022",
-        "dateCreated": "2022-12-24T10:25:39.00Z",
-        "datePublished": "2022-12-24T10:25:39.00Z",
-        "dateModified": "2022-12-24T10:25:39.00Z",
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-01-21T10:25:39.00Z",
+        "datePublished": "2023-01-21T10:25:39.00Z",
+        "dateModified": "2023-01-21T10:25:39.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/leetcode_operation\/",
-        "wordCount" : "276",
+        "wordCount" : "285",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -498,7 +498,7 @@ Pandas | Matplotlib
             <span class="post__meta-text"
               >
                 
-                  24/12/2022
+                  21/1/2023
 
 
                 
@@ -540,9 +540,6 @@ Pandas | Matplotlib
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">posOfE</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="sc">&#39;E&#39;</span><span class="o">);</span>
 </span></span></code></pre></div><h4 id="substring">SubString</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">sOutcome</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// s.charAt(j + 1) is not included.
-</span></span></span></code></pre></div><h4 id="stringbuilder">StringBuilder</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;  &#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span> <span class="c1">// Using StringBuilder to construct a new string
 </span></span></span></code></pre></div><h4 id="string---char">String -&gt; char[]</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
 </span></span></code></pre></div><h4 id="char---string">char[] -&gt; String</h4>
@@ -589,7 +586,11 @@ Pandas | Matplotlib
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">myMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">myMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">myMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
-</span></span></code></pre></div></div>
+</span></span></code></pre></div><h4 id="stringbuilder">StringBuilder</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;Hello World!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">sb</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">0</span><span class="o">);</span> <span class="c1">// Delete a character in the string builder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span> <span class="c1">// Using StringBuilder to construct a new string
+</span></span></span></code></pre></div></div>
     <div class="post__footer">
       
 

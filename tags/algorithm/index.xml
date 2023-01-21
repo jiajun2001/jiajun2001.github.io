@@ -6,7 +6,18 @@
     <description>Recent content in Algorithm on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Jan 2023 17:22:56 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Jan 2023 10:25:39 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Common Java Operations For LeetCode</title>
+      <link>https://jiajun2001.github.io/post/leetcode_operation/</link>
+      <pubDate>Sat, 21 Jan 2023 10:25:39 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/leetcode_operation/</guid>
+      
+        <description>&lt;p&gt;At the Summer of 2022, I converted my main programming language from C++ to Java. This is because some Java&amp;rsquo;s great features are appealing to me and Java is also widely used in software development industry. In this post, I will put some commonly used Java operations for doing leetCode.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>LeetCode Trick</title>
       <link>https://jiajun2001.github.io/post/leetcode_trick/</link>
@@ -15,17 +26,6 @@
       <guid>https://jiajun2001.github.io/post/leetcode_trick/</guid>
       
         <description>&lt;p&gt;In this summer, I spend a lot of time in doing LeetCode questions to improve my problem solving and software developing skills. However, it is normal for us to forget some questions that we have done. Therefore, in this post, I will make a summary about all tricks of approaching LeetCode questions that I have found. In general, I will include some templates, observations of solving a bunch of similar LeetCode questions.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Common Java Operations For LeetCode</title>
-      <link>https://jiajun2001.github.io/post/leetcode_operation/</link>
-      <pubDate>Sat, 24 Dec 2022 10:25:39 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/leetcode_operation/</guid>
-      
-        <description>&lt;p&gt;At the Summer of 2022, I converted my main programming language from C++ to Java. This is because some Java&amp;rsquo;s great features are appealing to me and Java is also widely used in software development industry. In this post, I will put some commonly used Java operations for doing leetCode.&lt;/p&gt;</description>
       
     </item>
     
