@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        C&#43;&#43; Revision |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+------------- SKILLS -------------
+Java SE | C&#43;&#43; | C | C# | Python 
+R | MATLAB | Visual Basic
+HTML | CSS | JavaScript | Vue.js | React.js 
+Node.js | AJAX | MySQL
+Git | Vim | Linux (Ubuntu)
+Pandas | Matplotlib
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/c&#43;&#43;_revision/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="C&#43;&#43; Revision"/>
+<meta name="twitter:description" content="In this post, I will quickly go through some concepts and basic STL operations of C&#43;&#43;."/>
+
+
+
+  
+  <meta property="og:title" content="C&#43;&#43; Revision" />
+<meta property="og:description" content="In this post, I will quickly go through some concepts and basic STL operations of C&#43;&#43;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/c&#43;&#43;_revision/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-01-24T15:25:06+10:30" />
+<meta property="article:modified_time" content="2023-01-24T15:25:06+10:30" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "C\u002b\u002b Revision",
+        "headline": "C\u002b\u002b Revision",
+        "alternativeHeadline": "",
+        "description": "
+      
+        In this post, I will quickly go through some concepts and basic STL operations of C\u002b\u002b.
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_revision\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-01-24T15:25:06.00Z",
+        "datePublished": "2023-01-24T15:25:06.00Z",
+        "dateModified": "2023-01-24T15:25:06.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun's Blog",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_revision\/",
+        "wordCount" : "356",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "C\u002b\u002b"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />------------- SKILLS -------------<br />Java SE | C++ | C | C# | Python <br />R | MATLAB | Visual Basic<br />HTML | CSS | JavaScript | Vue.js | React.js <br />Node.js | AJAX | MySQL<br />Git | Vim | Linux (Ubuntu)<br />Pandas | Matplotlib<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>C&#43;&#43; Revision</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  24/1/2023
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">2-minute read</span>
+          </li>
+        </ul>
+
+      <p>In this post, I will quickly go through some concepts and basic STL operations of C++.</p>
+<!-- more -->
+<br />
+<h4 id="introduction-to-c">Introduction to C++</h4>
+<ul>
+<li>C++ is a cross-platform language that can be used to create high-performance applications.
+<ul>
+<li>Operating System, Game Engines, Browsers&hellip;</li>
+</ul>
+</li>
+<li>C++ was developed as an extension to the C language and C++ support classes and objects.</li>
+<li>C++ gives programmers a high level of control over system resources and memory.</li>
+</ul>
+<br />
+<h4 id="c-variable-size">C++ Variable Size</h4>
+<img src="/CPP/cppVariable.png" width="500"/>
+<ul>
+<li>On 32-bit machine sizeof pointer is 32 bits (4 bytes), while on 64 bit machine it&rsquo;s 8 bytes. Regardless of what data type they are pointing to, they have fixed size.</li>
+</ul>
+<br />
+<h4 id="array">Array</h4>
+<ul>
+<li>An array is a collection of elements of the same type placed in contiguous memory locations that can be individually referenced by using an index to a unique identifier.</li>
+<li>Loop through an array
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="c1">// Using index
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">myNumbers</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">myNumbers</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">myNumbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Enhanced for loop
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">myNumbers</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">i</span> <span class="p">:</span> <span class="n">myNumbers</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<br />
+<h4 id="string">String</h4>
+<ul>
+<li>String Concatenation:
+<ul>
+<li><strong>string fullName = firstName + lastName;</strong></li>
+<li><strong>string fullName = firstName.append(lastName);</strong></li>
+</ul>
+</li>
+<li>String Size:
+<ul>
+<li><strong>int size = txt.size();</strong></li>
+</ul>
+</li>
+</ul>
+<br />
+<h4 id="c-math">C++ Math</h4>
+<ul>
+<li>Max: <strong>cout &laquo; max(5, 10);</strong></li>
+<li>Min: <strong>cout &laquo; min(5, 10);</strong></li>
+</ul>
+<br />
+<h4 id="c-switch-statement">C++ Switch Statement</h4>
+<ul>
+<li>Example code:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">switch</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="nl">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// code block
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="nl">y</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// code block
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// code block
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<br />
+<h4 id="structure">Structure</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="p">{</span>             <span class="c1">// Structure declaration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">myNum</span><span class="p">;</span>         <span class="c1">// Member (int variable)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">string</span> <span class="n">myString</span><span class="p">;</span>   <span class="c1">// Member (string variable)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> <span class="n">myStructure</span><span class="p">;</span>       <span class="c1">// Structure variable
+</span></span></span></code></pre></div><br />
+<h4 id="stl-vector">STL Vector</h4>
+<ul>
+<li>Method: vec.size(), vec.empty(), vec.push_back(ele), vec.pop_back(), vec.front(), vec.back()</li>
+</ul>
+<br />
+<h4 id="stl-set">STL Set</h4>
+<ul>
+<li>Method: set.insert(ele), s.erase(ele / iterator), s.count(ele), s.find(ele)</li>
+</ul>
+<br />
+<h4 id="stl-map">STL Map</h4>
+<ul>
+<li>Method: map.insert(pair&lt;int,int&gt; (1,10)), map.insert(make_pair(2,200)), map.count(3), map.find(3)</li>
+</ul>
+<br />
+<h4 id="stl-pair">STL Pair</h4>
+<ul>
+<li>Initialize
+<ul>
+<li>pair&lt;string,int&gt; p(&ldquo;Jason&rdquo;,20);</li>
+<li>pair&lt;string,int&gt; p2 = make_pair(&ldquo;Larry&rdquo;,16);</li>
+</ul>
+</li>
+</ul>
+<br />
+<h4 id="stl-list">STL List</h4>
+<ul>
+<li>Implemented by a doubly linked list</li>
+<li>Insertion and deletion operations are fast</li>
+<li>Access elements is slower that array and takes more space</li>
+</ul>
+<br />
+<h4 id="stl-deque">STL Deque</h4>
+<ul>
+<li>Double Ended Queue: Inserting at head is faster than vector</li>
+<li>Provide random access</li>
+</ul>
+<br />
+<h4 id="stl-stack">STL Stack</h4>
+<ul>
+<li>Methods: s.push(ele), s.pop(), s.size(), s.empty(), s.top()</li>
+</ul>
+<br />
+<h4 id="stl-queue">STL Queue</h4>
+<ul>
+<li>Methods: q.push(ele), q.pop(), q.size(), q.empty(), q.front(), q.back()</li>
+</ul>
+<br /></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/c&#43;&#43;/">C&#43;&#43;</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>
