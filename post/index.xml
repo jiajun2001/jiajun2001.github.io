@@ -6,7 +6,22 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Jan 2023 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 16:08:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adelaide CS Community Project</title>
+      <link>https://jiajun2001.github.io/post/java_community_project/</link>
+      <pubDate>Fri, 27 Jan 2023 16:08:09 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
+      
+        <description>&lt;blockquote&gt;
+&lt;p&gt;In Java, the programmer allocates memory by creating a new object. There is no way to de-allocate that memory.
+Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>C&#43;&#43; Revision</title>
       <link>https://jiajun2001.github.io/post/c&#43;&#43;_revision/</link>
@@ -26,21 +41,6 @@
       <guid>https://jiajun2001.github.io/post/leetcode_operation/</guid>
       
         <description>&lt;p&gt;At the Summer of 2022, I converted my main programming language from C++ to Java. This is because some Java&amp;rsquo;s great features are appealing to me and Java is also widely used in software development industry. In this post, I will put some commonly used Java operations for doing leetCode.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Adelaide CS Community Project</title>
-      <link>https://jiajun2001.github.io/post/java_community_project/</link>
-      <pubDate>Thu, 19 Jan 2023 16:08:09 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
-      
-        <description>&lt;blockquote&gt;
-&lt;p&gt;In Java, the programmer allocates memory by creating a new object. There is no way to de-allocate that memory.
-Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
       
     </item>
     
