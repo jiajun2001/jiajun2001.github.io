@@ -6,7 +6,18 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Jan 2023 10:25:39 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Jan 2023 00:36:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Daily Thought</title>
+      <link>https://jiajun2001.github.io/post/daily_thought/</link>
+      <pubDate>Sun, 29 Jan 2023 00:36:09 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/daily_thought/</guid>
+      
+        <description>2023-01-29 Today I did a mock interview with Gary Chen.</description>
+      
+    </item>
+    
     <item>
       <title>Common Java Operations For LeetCode</title>
       <link>https://jiajun2001.github.io/post/leetcode_operation/</link>
@@ -41,17 +52,6 @@ Periodically the Garbage Collector sweeps through the memory allocated to the pr
       <guid>https://jiajun2001.github.io/post/c&#43;&#43;_revision/</guid>
       
         <description>In this post, I will quickly go through some concepts and basic STL operations of C++.</description>
-      
-    </item>
-    
-    <item>
-      <title>Daily Thought</title>
-      <link>https://jiajun2001.github.io/post/daily_thought/</link>
-      <pubDate>Wed, 18 Jan 2023 00:36:09 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/daily_thought/</guid>
-      
-        <description>2023-01-19 Doing LeetCode makes me feel dying&amp;hellip;.. I want to relax and then go back to solve them&amp;hellip;.</description>
       
     </item>
     
