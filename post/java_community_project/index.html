@@ -217,7 +217,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "5318",
+        "wordCount" : "5450",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -510,7 +510,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">25-minute read</span>
+            <span class="post__meta-text">26-minute read</span>
           </li>
         </ul>
 
@@ -519,6 +519,40 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.</p>
 </blockquote>
 <p>When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.</p>
+<br />
+<h2 id="2023-01-31">2023-01-31</h2>
+<h4 id="follower-and-following">Follower and following</h4>
+<ul>
+<li>Define redis key
+<ul>
+<li>A user follows: <strong>followee:userId:entityType -&gt; zset(entityId, date)</strong></li>
+<li>An entity being followed by: <strong>follower:entityType:entityId -&gt; zset(userId, date)</strong></li>
+</ul>
+</li>
+<li>Define a service called <strong>FollowService</strong>
+<ul>
+<li>Define a method called <strong>follow()</strong> by using transaction management</li>
+<li>Define a method called <strong>unFollow()</strong> by using transaction management</li>
+</ul>
+</li>
+<li>Defind a controller called <strong>FollowController</strong>
+<ul>
+<li>Define an asynchronous method called <strong>follow()</strong></li>
+<li>Define an asynchronous method called <strong>unFollow()</strong></li>
+<li>Define a method called <strong>findFolloweeCount()</strong> to count the followee for a user</li>
+<li>Define a method called <strong>findFollowerCount()</strong> to count the follower for a user</li>
+<li>Define a method called <strong>hasFollowed()</strong> to check if the user has followed the entity</li>
+</ul>
+</li>
+<li>Modify the method <strong>getProfilePage()</strong> in the <strong>UserController</strong> to:
+<ul>
+<li>Count the followee number</li>
+<li>Count the follower number</li>
+<li>Check if the user has followed the entity or not</li>
+</ul>
+</li>
+<li>Connect with the frontend page</li>
+</ul>
 <br />
 <h2 id="2023-01-27">2023-01-27</h2>
 <h4 id="likes-that-i-received">Likes that I received</h4>
