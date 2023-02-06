@@ -6,7 +6,18 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 03 Feb 2023 00:50:29 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Feb 2023 14:22:56 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode Trick</title>
+      <link>https://jiajun2001.github.io/post/leetcode_trick/</link>
+      <pubDate>Mon, 06 Feb 2023 14:22:56 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/leetcode_trick/</guid>
+      
+        <description>&lt;p&gt;In this summer, I spend a lot of time in doing LeetCode questions to improve my problem solving and software developing skills. However, it is normal for us to forget some questions that we have done. Therefore, in this post, I will make a summary about all tricks of approaching LeetCode questions that I have found. In general, I will include some templates, observations of solving a bunch of similar LeetCode questions.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Javascript Study Notes</title>
       <link>https://jiajun2001.github.io/post/javascript/</link>
@@ -63,17 +74,6 @@ Periodically the Garbage Collector sweeps through the memory allocated to the pr
       <guid>https://jiajun2001.github.io/post/c&#43;&#43;_revision/</guid>
       
         <description>In this post, I will quickly go through some concepts and basic STL operations of C++.</description>
-      
-    </item>
-    
-    <item>
-      <title>LeetCode Trick</title>
-      <link>https://jiajun2001.github.io/post/leetcode_trick/</link>
-      <pubDate>Wed, 11 Jan 2023 17:22:56 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/leetcode_trick/</guid>
-      
-        <description>&lt;p&gt;In this summer, I spend a lot of time in doing LeetCode questions to improve my problem solving and software developing skills. However, it is normal for us to forget some questions that we have done. Therefore, in this post, I will make a summary about all tricks of approaching LeetCode questions that I have found. In general, I will include some templates, observations of solving a bunch of similar LeetCode questions.&lt;/p&gt;</description>
       
     </item>
     

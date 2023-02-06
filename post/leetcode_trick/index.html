@@ -134,8 +134,8 @@ Pandas | Matplotlib
 <meta property="og:description" content="In this summer, I spend a lot of time in doing LeetCode questions to improve my problem solving and software developing skills. However, it is normal for us to forget some questions that we have done. Therefore, in this post, I will make a summary about all tricks of approaching LeetCode questions that I have found. In general, I will include some templates, observations of solving a bunch of similar LeetCode questions." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/leetcode_trick/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-01-11T17:22:56+10:30" />
-<meta property="article:modified_time" content="2023-01-11T17:22:56+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2023-02-06T14:22:56+10:30" />
+<meta property="article:modified_time" content="2023-02-06T14:22:56+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -184,9 +184,9 @@ Pandas | Matplotlib
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2023",
-        "dateCreated": "2023-01-11T17:22:56.00Z",
-        "datePublished": "2023-01-11T17:22:56.00Z",
-        "dateModified": "2023-01-11T17:22:56.00Z",
+        "dateCreated": "2023-02-06T14:22:56.00Z",
+        "datePublished": "2023-02-06T14:22:56.00Z",
+        "dateModified": "2023-02-06T14:22:56.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/leetcode_trick\/",
-        "wordCount" : "294",
+        "wordCount" : "370",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -491,7 +491,7 @@ Pandas | Matplotlib
             <span class="post__meta-text"
               >
                 
-                  11/1/2023
+                  6/2/2023
 
 
                 
@@ -559,6 +559,32 @@ Pandas | Matplotlib
 <li>Sort the input array</li>
 <li>Each recursion starts from picking the first element</li>
 <li><strong>used</strong> array helps to skip duplicated elements in the same path and layer of the recursion tree</li>
+</ul>
+</li>
+</ul>
+<br />
+<h2 id="knapsack-questions">Knapsack Questions</h2>
+<ul>
+<li>
+<p>0-1 Knapsack Question (An object can only be added once)</p>
+<ul>
+<li>1D dynamic table:
+<ul>
+<li><strong>Outer for loop - object</strong> and <strong>Inner for loop - knapsack capacity</strong></li>
+</ul>
+</li>
+<li>Avoid an object being added to the knapsack multiple times</li>
+</ul>
+</li>
+<li>
+<p>Multi Knapsack Question (An object can be added multiple times)</p>
+<ul>
+<li>1D dynamic table:
+<ul>
+<li><strong>Outer for loop - object</strong> and <strong>Inner for loop - knapsack capacity</strong>: combination</li>
+<li><strong>Outer for loop - knapsack capacity</strong> and <strong>Inner for loop - object</strong>: permutation</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul></div>
