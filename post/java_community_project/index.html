@@ -142,8 +142,8 @@ Periodically the Garbage Collector sweeps through the memory allocated to the pr
 When I first knew about this feature, I felt it was quite appealing to me, especially for a C&#43;&#43; programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/java_community_project/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-02-02T16:08:09+10:30" />
-<meta property="article:modified_time" content="2023-02-02T16:08:09+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2023-02-11T16:08:09+10:30" />
+<meta property="article:modified_time" content="2023-02-11T16:08:09+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -192,9 +192,9 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2023",
-        "dateCreated": "2023-02-02T16:08:09.00Z",
-        "datePublished": "2023-02-02T16:08:09.00Z",
-        "dateModified": "2023-02-02T16:08:09.00Z",
+        "dateCreated": "2023-02-11T16:08:09.00Z",
+        "datePublished": "2023-02-11T16:08:09.00Z",
+        "dateModified": "2023-02-11T16:08:09.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -217,7 +217,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "5575",
+        "wordCount" : "5812",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -499,7 +499,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
             <span class="post__meta-text"
               >
                 
-                  2/2/2023
+                  11/2/2023
 
 
                 
@@ -510,7 +510,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">27-minute read</span>
+            <span class="post__meta-text">28-minute read</span>
           </li>
         </ul>
 
@@ -519,6 +519,70 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.</p>
 </blockquote>
 <p>When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.</p>
+<br />
+<h2 id="2023-02-11">2023-02-11</h2>
+<h4 id="optimize-login-module">Optimize login module</h4>
+<ul>
+<li>Using redis to store captcha
+<ul>
+<li>Reason
+<ul>
+<li>Captcha requires constant access and refresh</li>
+<li>Captcha does not need to be stored permanently, it will expire after a short period of time</li>
+<li>There will be some problems about session sharing when it comes to distributed system</li>
+</ul>
+</li>
+<li>Implementation
+<ul>
+<li>Define redis key which consists of a random generated string called &lsquo;captcha owner&rsquo;</li>
+<li>Refactor method <strong>getKaptcha()</strong> from <strong>LoginController</strong> to store the generated captcha into redis</li>
+<li>Refactor method <strong>login()</strong> from <strong>LoginController</strong> to get the generated captcha from redis and verify it
+<ul>
+<li>To get the redisKey, we will get the captcha owner from cookies</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Using redis to store login session
+<ul>
+<li>Reason
+<ul>
+<li>We need to frequently check the login session every time when handling some requests</li>
+</ul>
+</li>
+<li>Implementation
+<ul>
+<li>Define redis key for login ticket</li>
+<li>Refactor method <strong>login()</strong> from <strong>UserService</strong> to store the login ticket into redis</li>
+<li>Refactor method <strong>logout()</strong> from <strong>UserService</strong> to destroy the login ticket when users log out</li>
+<li>Refactor method <strong>findLoginTicket()</strong> from <strong>UserService</strong> to get the login ticket from redis</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Using redis to store the user information
+<ul>
+<li>Reason
+<ul>
+<li>We need to frequently check the user information based on the login session every time when handling some requests</li>
+</ul>
+</li>
+<li>Logic
+<ul>
+<li>Check if the data we want is stored in redis or not, if not, access database and store that data into redis</li>
+</ul>
+</li>
+<li>Implementation
+<ul>
+<li>Define 3 methods called <strong>getCache()</strong>, <strong>initCache()</strong>, <strong>clearCache()</strong></li>
+<li>Put these 3 methods into other methods that will update the user information</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="2023-02-02">2023-02-02</h2>
 <h4 id="following-list-and-follower-list">Following list and follower list</h4>
