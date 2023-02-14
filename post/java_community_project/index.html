@@ -217,7 +217,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "5849",
+        "wordCount" : "6025",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -510,7 +510,7 @@ When I first knew about this feature, I felt it was quite appealing to me, espec
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">28-minute read</span>
+            <span class="post__meta-text">29-minute read</span>
           </li>
         </ul>
 
@@ -522,6 +522,56 @@ Periodically the Garbage Collector sweeps through the memory allocated to the pr
 <br />
 <h2 id="2023-02-14">2023-02-14</h2>
 <h4 id="kafka---building-terabyte-scale-asynchronous-messaging-systems">Kafka - Building terabyte-scale asynchronous messaging systems</h4>
+<ul>
+<li>Kafka is a distributed streaming platform</li>
+<li>Applications: messaging systems, log collection, user behavior tracking, stream processing</li>
+<li>Features: high throughput, message persistence, high reliability, high scalability</li>
+<li>Kafka keywords
+<ul>
+<li>Broker: Kafka server</li>
+<li>Zookeeper: An application to manage Kafka clusters</li>
+<li>Topic: The place where the producer puts the data in (A container for data)</li>
+<li>Partition: Segmentation for topic space (To boost concurrency capability)</li>
+<li>Offset: The index of a message in the partition</li>
+<li>Leader Replica: Main Back-up for data (When consumer requests for data, leader replica can respond)</li>
+<li>Follower Replica: Back-up for data (Just back-up)</li>
+</ul>
+</li>
+<li>Install Kafka
+<ul>
+<li>brew install kafka</li>
+</ul>
+</li>
+<li>Start Zookeeper and Kafka
+<ul>
+<li>zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties</li>
+<li>kafka-server-start /usr/local/etc/kafka/server.properties</li>
+</ul>
+</li>
+<li>Create a topic
+<ul>
+<li>kafka-topics - -create - -bootstrap-server localhost:9092 - -replication-factor 1 - -partitions 1 - -topic test</li>
+</ul>
+</li>
+<li>Check the list of topics at a specific server and port
+<ul>
+<li>kafka-topics - -list - -bootstrap-server localhost:9092</li>
+</ul>
+</li>
+<li>Put messages into Kafka
+<ul>
+<li>kafka-console-producer - -broker-list localhost:9092 - -topic test</li>
+<li>After seeing <em>&gt;</em>, we can put messages into Kafka</li>
+</ul>
+</li>
+<li>Take messages from Kafka
+<ul>
+<li>kafka-console-consumer - -bootstrap-server localhost:9092 - -topic test - -from-beginning</li>
+</ul>
+</li>
+</ul>
+<img src="/JavaCommunity/Kafka.png" width="600"/>
+<h4 id="introduction-to-blocking-queue">Introduction to blocking queue</h4>
 <ul>
 <li>BlockingQueue
 <ul>
