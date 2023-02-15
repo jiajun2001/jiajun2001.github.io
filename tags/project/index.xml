@@ -14,11 +14,7 @@
       
       <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
       
-        <description>&lt;blockquote&gt;
-&lt;p&gt;In Java, the programmer allocates memory by creating a new object. There is no way to de-allocate that memory.
-Periodically the Garbage Collector sweeps through the memory allocated to the program, and determines which objects it can safely destroy, therefore releasing the memory.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;When I first knew about this feature, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
+        <description>&lt;p&gt;When I first knew Garbage Collection Mechanism in Java, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project and my notes of learning.&lt;/p&gt;</description>
       
     </item>
     
