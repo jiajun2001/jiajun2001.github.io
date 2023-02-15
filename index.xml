@@ -6,7 +6,18 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Feb 2023 10:25:39 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Feb 2023 20:07:43 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Project</title>
+      <link>https://jiajun2001.github.io/post/linuxproject/</link>
+      <pubDate>Wed, 15 Feb 2023 20:07:43 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/linuxproject/</guid>
+      
+        <description>&lt;p&gt;In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Java commonly used functions</title>
       <link>https://jiajun2001.github.io/post/java_functions/</link>
