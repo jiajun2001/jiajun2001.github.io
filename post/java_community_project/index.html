@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "6108",
+        "wordCount" : "6210",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,11 +502,35 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">29-minute read</span>
+            <span class="post__meta-text">30-minute read</span>
           </li>
         </ul>
 
       <p>When I first knew Garbage Collection Mechanism in Java, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project.</p>
+<br />
+<h2 id="heading"></h2>
+<br />
+<h2 id="2023-02-17">2023-02-17</h2>
+<h4 id="displaying-system-notifications">Displaying system notifications</h4>
+<ul>
+<li>Display three types of system notifications: comment, up-vote, and follow.</li>
+<li>Count the number of unread messages</li>
+<li>Implementation
+<ul>
+<li>Get the latest notification for one topic</li>
+<li>Get the number of notifications for one topic</li>
+<li>Get the number of unread notifications for one topic</li>
+</ul>
+</li>
+</ul>
+<p><mark>Trouble Shooting:</mark></p>
+<ul>
+<li>Issue: ParseException: Exception evaluating SpringEL expression: &ldquo;followNotice.message!=null&rdquo;
+<ul>
+<li>I spent around 2 hours in solving this bug. In my back-end implementation, if there is no following system notice, then an empty followNotice view object map will be added to the attribute of the template. Therefore, when the front-end trying to access <strong>followNotice.message</strong>, the issue will arise.</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="2023-02-16">2023-02-16</h2>
 <h4 id="sending-system-notifications">Sending system notifications</h4>
