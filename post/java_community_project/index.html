@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/java_community_project\/",
-        "wordCount" : "6337",
+        "wordCount" : "6369",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -526,6 +526,26 @@ Pandas | Matplotlib
 <li>Install Elasticsearch
 <ul>
 <li>brew install elastic/tap/elasticsearch-full</li>
+</ul>
+</li>
+<li>Check the status of cluster
+<ul>
+<li>curl -X GET &ldquo;localhost:9200/_cat/health?v&rdquo;</li>
+</ul>
+</li>
+<li>Check the number of index
+<ul>
+<li>curl -X GET &ldquo;localhost:9200/_cat/indices?v&rdquo;</li>
+</ul>
+</li>
+<li>Create an index
+<ul>
+<li>curl -X PUT &ldquo;localhost:9200/test&rdquo;</li>
+</ul>
+</li>
+<li>Detele an index
+<ul>
+<li>curl -X DELETE &ldquo;localhost:9200/test&rdquo;</li>
 </ul>
 </li>
 </ul>
