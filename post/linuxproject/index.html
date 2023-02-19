@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "261",
+        "wordCount" : "415",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -522,6 +522,66 @@ Pandas | Matplotlib
 
       <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.</p>
 <br />
+<h2 id="2023-02-19">2023-02-19</h2>
+<h4 id="static-library">Static library</h4>
+<ul>
+<li>Two types of libraries
+<ul>
+<li>Static library is copied into the program during the linking stage.</li>
+<li>Dynamic library is loaded into the memory for program to invoke during the running stage.</li>
+</ul>
+</li>
+<li>Advantages of using libraries
+<ul>
+<li>Code are confidential.</li>
+<li>Convenient to deploy and distribute</li>
+</ul>
+</li>
+<li>Naming convention
+<ul>
+<li>Linux
+<ul>
+<li>libxxx.a (lib: prefix, xxx: name of the library, .a: postfix)</li>
+</ul>
+</li>
+<li>Windows
+<ul>
+<li>libxxx.lib</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Generate static library
+<ul>
+<li>Use gcc to get .o files
+<ul>
+<li>gcc -c file1.c file2.c</li>
+</ul>
+</li>
+<li>Pack .o files using ar tool (archive)
+<ul>
+<li>ar rcs libxxx.a file1.o file2.o
+<ul>
+<li>r: insert files into library files</li>
+<li>c: build library files</li>
+<li>s: create index for files</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use static library
+<img src="/LinuxProject/staticLibTree.png" width="200"/>
+<ul>
+<li><strong>gcc main.c -o app -I ./include/ -l calc -L ./lib/</strong></li>
+<li>-I specifies the search directory for the header file</li>
+<li>-l specifies the name of the library to be used when the program is compiled</li>
+<li>-L specifies the path of the library to be used when the program is compiled</li>
+</ul>
+</li>
+</ul>
+<br />
 <h2 id="2023-02-15">2023-02-15</h2>
 <h4 id="gcc">GCC</h4>
 <ul>
@@ -553,13 +613,13 @@ Pandas | Matplotlib
 <li>Tip: C++ program can also be compiled by gcc. However, it cannot automatically link with libraries that C++ program uses. That&rsquo;s why we use g++ to compile C++ code. (can also use gcc -lstdc++)</li>
 <li>GCC Parameters:
 <ul>
-<li>-I directory: Specify the search directory for the include include file</li>
+<li>-I directory: Specify the search directory for the header file</li>
 <li>-g: Generate debugging information at compile time so that the program can be debugged by a debugger</li>
 <li>-D: At program compile time, specify a macro</li>
 <li>-w: Does not generate any warning message</li>
 <li>-Wall: Generate all error messages</li>
 <li>-On: n can be 0 - 3, four levels of compiler optimization options. -O0 means no optimization, -O1 is default option</li>
-<li>-l: Specify the library to be used when the program is compiled</li>
+<li>-l: Specify the name of the library to be used when the program is compiled</li>
 <li>-L: Specify the path of the library to be used when the program is compiled</li>
 <li>-fPIC/fpic: Generate location-independent code</li>
 <li>-shared: Generate shared target files</li>
