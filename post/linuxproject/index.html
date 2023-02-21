@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "663",
+        "wordCount" : "749",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -522,6 +522,48 @@ Pandas | Matplotlib
 
       <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.</p>
 <br />
+<h2 id="2023-02-21">2023-02-21</h2>
+<h4 id="makefile">Makefile</h4>
+<ul>
+<li></li>
+</ul>
+<h4 id="comparison-between-static-library-and-dynamic-library">Comparison between static library and dynamic library</h4>
+<ul>
+<li>Static Library
+<ul>
+<li>Advantages:
+<ul>
+<li>Loading is fast</li>
+<li>Do not need to provide static library when publishing the software</li>
+</ul>
+</li>
+<li>Disadvantages:
+<ul>
+<li>Consume system resource and waste memory (if two programs share the same static library)</li>
+<li>Difficult to update, deploy and publish the software</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dynamic Library
+<ul>
+<li>Advantages:
+<ul>
+<li>Can share resources between different processes</li>
+<li>Easy to update, deploy and publish the software</li>
+<li>Can control when to load dynamic libraries</li>
+</ul>
+</li>
+<li>Disadvantages:
+<ul>
+<li>Loading is slow</li>
+<li>Need to provide dynamic library when publishing the software</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br />
 <h2 id="2023-02-20">2023-02-20</h2>
 <h4 id="dynamic-library">Dynamic library</h4>
 <ul>
@@ -555,7 +597,7 @@ Pandas | Matplotlib
 </li>
 <li>Use dynamic library
 <ul>
-<li>gcc main.c -o main -I ./include/ -l calc -L ./lib/</li>
+<li><strong>gcc main.c -o main -I ./include/ -l calc -L ./lib/</strong></li>
 <li>./main: error while loading shared libraries: libcalc.so: cannot open shared object file: No such file or directory
 <ul>
 <li>Explanation: When the program starts, dynamic library will be loaded into the memory and the program will use ldd (list dynamic dependencies) to check the dependency of dynamic library. However, our executable program only knows the name of the dynamic library; therefore we need to use system dynamic loader to get the absolute path.</li>
