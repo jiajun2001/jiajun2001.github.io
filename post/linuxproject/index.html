@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "415",
+        "wordCount" : "663",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -516,11 +516,86 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">4-minute read</span>
           </li>
         </ul>
 
       <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.</p>
+<br />
+<h2 id="2023-02-20">2023-02-20</h2>
+<h4 id="dynamic-library">Dynamic library</h4>
+<ul>
+<li>Naming convention for dynamic library
+<ul>
+<li>Linux
+<ul>
+<li>libxxx.so (lib: prefix, xxx: name of the library, .so: postfix)</li>
+</ul>
+</li>
+<li>Windows
+<ul>
+<li>libxxx.dll</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Generate dynamic library
+<ul>
+<li>Use gcc to get .o files
+<ul>
+<li>gcc -c -fpic/-fPIC file1.c file2.c</li>
+</ul>
+</li>
+<li>Use gcc to get dynamic library
+<ul>
+<li>gcc -shared a.o b.o -o libxxx.so</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use dynamic library
+<ul>
+<li>gcc main.c -o main -I ./include/ -l calc -L ./lib/</li>
+<li>./main: error while loading shared libraries: libcalc.so: cannot open shared object file: No such file or directory
+<ul>
+<li>Explanation: When the program starts, dynamic library will be loaded into the memory and the program will use ldd (list dynamic dependencies) to check the dependency of dynamic library. However, our executable program only knows the name of the dynamic library; therefore we need to use system dynamic loader to get the absolute path.</li>
+<li>ld-linux.so will be responsible for loading dynamic library for executable files with elf format. It will search elf file in this order: DT_RPATH segment -&gt; Environment variables (LD_LIBRARY_PATH) -&gt; /etc/ld.so.cache file list -&gt; /lib/, /usr/lib/. When the loader finds the target dynamic library file, it will load it into the memory.</li>
+</ul>
+</li>
+<li>Correct methods
+<ul>
+<li>Approach1: Set up the environment variable (Temporary):
+<ul>
+<li><strong>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jason/Linux/lesson06/library/lib</strong></li>
+<li><strong>echo $LD_LIBRARY_PATH</strong></li>
+</ul>
+</li>
+<li>Approach2: Set up the environment variable (Permanent | User Level):
+<ul>
+<li><strong>vim .bashrc</strong></li>
+<li>insert the command</li>
+<li><strong>. .bashrc</strong></li>
+</ul>
+</li>
+<li>Approach3: Set up the environment variable (Permanent | System Level):
+<ul>
+<li><strong>sudo vim /etc/profile</strong></li>
+<li>insert the command</li>
+<li><strong>. /etc/profile</strong></li>
+</ul>
+</li>
+<li>Approach4: Modify /etc/ld.so.cache file list
+<ul>
+<li><strong>sudo vim /etc/ld.so.conf</strong></li>
+<li>paste the path (eg: /home/jason/Linux/lesson06/library/lib)</li>
+<li><strong>sudo ldconfig</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="2023-02-19">2023-02-19</h2>
 <h4 id="static-library">Static library</h4>
@@ -537,7 +612,7 @@ Pandas | Matplotlib
 <li>Convenient to deploy and distribute</li>
 </ul>
 </li>
-<li>Naming convention
+<li>Naming convention for static library
 <ul>
 <li>Linux
 <ul>
