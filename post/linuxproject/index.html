@@ -125,17 +125,17 @@ Pandas | Matplotlib
 <meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
 
 <meta name="twitter:title" content="Linux Project"/>
-<meta name="twitter:description" content="In this post, I will put some C&#43;&#43;, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge."/>
+<meta name="twitter:description" content="In this post, I will put some C&#43;&#43;, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge."/>
 
 
 
   
   <meta property="og:title" content="Linux Project" />
-<meta property="og:description" content="In this post, I will put some C&#43;&#43;, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge." />
+<meta property="og:description" content="In this post, I will put some C&#43;&#43;, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/linuxproject/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-02-15T20:07:43+10:30" />
-<meta property="article:modified_time" content="2023-02-15T20:07:43+10:30" /><meta property="og:site_name" content="My blog" />
+<meta property="article:published_time" content="2023-02-21T10:07:43+10:30" />
+<meta property="article:modified_time" content="2023-02-21T10:07:43+10:30" /><meta property="og:site_name" content="My blog" />
 
 
 
@@ -154,7 +154,7 @@ Pandas | Matplotlib
         "alternativeHeadline": "",
         "description": "
       
-        \u003cp\u003eIn this post, I will put some C\u002b\u002b, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.\u003c\/p\u003e
+        \u003cp\u003eIn this post, I will put some C\u002b\u002b, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.\u003c\/p\u003e
 
 
       
@@ -184,9 +184,9 @@ Pandas | Matplotlib
             "name": "Jiajun\u0027s Blog"
         },
         "copyrightYear" : "2023",
-        "dateCreated": "2023-02-15T20:07:43.00Z",
-        "datePublished": "2023-02-15T20:07:43.00Z",
-        "dateModified": "2023-02-15T20:07:43.00Z",
+        "dateCreated": "2023-02-21T10:07:43.00Z",
+        "datePublished": "2023-02-21T10:07:43.00Z",
+        "dateModified": "2023-02-21T10:07:43.00Z",
         "publisher":{
             "@type":"Organization",
             "name": "Jiajun's Blog",
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "749",
+        "wordCount" : "1000",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -505,7 +505,7 @@ Pandas | Matplotlib
             <span class="post__meta-text"
               >
                 
-                  15/2/2023
+                  21/2/2023
 
 
                 
@@ -516,16 +516,78 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">4-minute read</span>
+            <span class="post__meta-text">5-minute read</span>
           </li>
         </ul>
 
-      <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.</p>
+      <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.</p>
 <br />
-<h2 id="2023-02-21">2023-02-21</h2>
+<h2 id="2023-02-22">2023-02-22</h2>
 <h4 id="makefile">Makefile</h4>
 <ul>
-<li></li>
+<li>Makefile sets a set of rules to determine which parts of a program need to be recompile, and issues command to recompile them. Makefile is a way of automating software building procedure and other complex tasks with dependencies.</li>
+<li>Makefile Rule:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH"><span class="line"><span class="cl">Target ... : Dependency ...
+</span></span><span class="line"><span class="cl">    Shell commands
+</span></span><span class="line"><span class="cl">    ...
+</span></span></code></pre></div></li>
+<li>How does makefile work
+<ul>
+<li>Before executing the command, makefile will check if dependencies exist or not
+<ul>
+<li>If exist, execute the command</li>
+<li>If not exist, check commands after this command and execute them to generate the dependencies needed</li>
+</ul>
+</li>
+<li>Check update, when running the command, makefile will compare the edit time of target and dependencies
+<ul>
+<li>If dependencies are edited after generating target, target will be re-generated</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Some other symbols and commands for makefile
+<ul>
+<li>User-defined variable: var = hello</li>
+<li>Pre-defined variables:
+<ul>
+<li>AR: name of the archive maintenance program, default value: ar</li>
+<li>CC: name of C compiler, default value: cc</li>
+<li>CXX: name of C++ compiler, default value: g++</li>
+<li>$@: get the full name of target</li>
+<li>$&lt;: get the name of the first dependency</li>
+<li>$^: get all dependencies</li>
+</ul>
+</li>
+<li>Get the value of variable: $(variable name)</li>
+<li>Pattern match
+<ul>
+<li>%: wildcard character, can be any string</li>
+</ul>
+</li>
+<li>Functions
+<ul>
+<li>$(wildcard PATTERN &hellip;): Get the file list with specific type from specific directory</li>
+<li>$(patsubst <pattern>, <replacement>, <text>): check &rsquo;text&rsquo;, if &rsquo;text&rsquo; matches &lsquo;pattern&rsquo;, then replace it with &lsquo;replacement&rsquo;</li>
+</ul>
+</li>
+<li>Example
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH"><span class="line"><span class="cl"><span class="c1"># Define variable</span>
+</span></span><span class="line"><span class="cl"><span class="nv">src</span> <span class="o">=</span> <span class="k">$(</span>patsubst %.c, %.o, <span class="k">$(</span>wildcard ./*.c <span class="k">))</span>
+</span></span><span class="line"><span class="cl"><span class="nv">target</span> <span class="o">=</span> app
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">$(</span>target<span class="k">)</span>: <span class="k">$(</span>src<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">$(</span>CC<span class="k">)</span> $^ -o <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">%.o : %.c
+</span></span><span class="line"><span class="cl">    <span class="k">$(</span>CC<span class="k">)</span> -c $&lt; -o <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.PHONY:clean
+</span></span><span class="line"><span class="cl">clean:
+</span></span><span class="line"><span class="cl">    rm <span class="k">$(</span>src<span class="k">)</span> -f
+</span></span></code></pre></div></li>
+</ul>
+</li>
 </ul>
 <h4 id="comparison-between-static-library-and-dynamic-library">Comparison between static library and dynamic library</h4>
 <ul>

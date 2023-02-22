@@ -6,7 +6,18 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 16 Feb 2023 10:08:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Feb 2023 10:07:43 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Project</title>
+      <link>https://jiajun2001.github.io/post/linuxproject/</link>
+      <pubDate>Tue, 21 Feb 2023 10:07:43 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/linuxproject/</guid>
+      
+        <description>&lt;p&gt;In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Adelaide CS Community Project</title>
       <link>https://jiajun2001.github.io/post/java_community_project/</link>
@@ -15,17 +26,6 @@
       <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
       
         <description>&lt;p&gt;When I first knew Garbage Collection Mechanism in Java, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Linux Project</title>
-      <link>https://jiajun2001.github.io/post/linuxproject/</link>
-      <pubDate>Wed, 15 Feb 2023 20:07:43 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/linuxproject/</guid>
-      
-        <description>&lt;p&gt;In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency server project in the end to consolidate these knowledge.&lt;/p&gt;</description>
       
     </item>
     
