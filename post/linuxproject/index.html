@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "1000",
+        "wordCount" : "1348",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -516,11 +516,82 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">5-minute read</span>
+            <span class="post__meta-text">7-minute read</span>
           </li>
         </ul>
 
       <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.</p>
+<br />
+<h2 id="2023-02-23">2023-02-23</h2>
+<h4 id="gdb">GDB</h4>
+<ul>
+<li>Gdb is a debugger for C (and C++). It allows you to do things like run the program up to a certain point then stop and print out the values of certain variables at that point, or step through the program one line at a time and print out the values of each variable after executing each line.</li>
+<li>Preparation for GDB
+<ul>
+<li>Switch off compiler optimization option (-O).</li>
+<li>Switch on debugging option (-g).</li>
+<li>It is better to use &lsquo;-Wall&rsquo; if it does not affect the behaviors of program.</li>
+<li>Generate gdb file: gcc test.c -o test -g</li>
+</ul>
+</li>
+<li>Some commands for GDB
+<ul>
+<li>General commands
+<ul>
+<li>Start: gdb executable program</li>
+<li>Quit: quit</li>
+<li>Set parameters for program: set args 10 20&hellip;</li>
+<li>Check parameters: show args</li>
+</ul>
+</li>
+<li>Browse code
+<ul>
+<li>Check code of current file: list line number / list function name</li>
+<li>Check code of other files: list file name : line number / list file name : function name</li>
+<li>Show list size: show listsize</li>
+<li>Set list size: set listsize number</li>
+</ul>
+</li>
+<li>Set up breakpoint
+<ul>
+<li>Set up breakpoint: break line number / function name / file name : line number / file name : function name</li>
+<li>Check breakpoints: info break</li>
+<li>Delete breakpoint: delete breakpoint ID</li>
+<li>Disable breakpoint: disable breakpoint ID</li>
+<li>Enable breakpoint: enable breakpoint ID</li>
+<li>Set conditional breakpoint: break 16 if i = 3</li>
+</ul>
+</li>
+<li>Run the program with GDB
+<ul>
+<li>Run GDB program: start (program will stop at line 1) / run (program will stop until the first breakpoint)</li>
+<li>Continue executing the program until next breakpoint: continue</li>
+<li>Execute one line of code: next (It won&rsquo;t go inside of the function body)</li>
+<li>Execute one line of code: step (It will go inside of the function body) / finish (jump out of the function body)</li>
+<li>Variable operations:
+<ul>
+<li>Print variable value: print variable name</li>
+<li>Print variable type: ptype variable name</li>
+<li>Automatic operations:
+<ul>
+<li>Set automatic printing variable: display variable name</li>
+<li>Check automatic printing variable list: info display</li>
+<li>Delete automatic printing variable: undisplay breakpoint ID</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Other operations:
+<ul>
+<li>Change the value of a variable: set var variable name = variable value</li>
+<li>Jump out of loop: until (make sure to disable the breakpoint)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="2023-02-22">2023-02-22</h2>
 <h4 id="makefile">Makefile</h4>
@@ -589,6 +660,8 @@ Pandas | Matplotlib
 </ul>
 </li>
 </ul>
+<br />
+<h2 id="2023-02-21">2023-02-21</h2>
 <h4 id="comparison-between-static-library-and-dynamic-library">Comparison between static library and dynamic library</h4>
 <ul>
 <li>Static Library
