@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "1399",
+        "wordCount" : "1545",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -516,16 +516,48 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">7-minute read</span>
+            <span class="post__meta-text">8-minute read</span>
           </li>
         </ul>
 
       <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.</p>
 <br />
+<h2 id="2023-02-24">2023-02-24</h2>
+<h4 id="io-functions-of-linux-system">IO functions of Linux system</h4>
+<ul>
+<li><strong>int open(const char *pathname, int flags)</strong>: open an existed file and return a file descriptor.
+<ul>
+<li>pathname: file path</li>
+<li>flags: permission of the file and other settings (O_RDONLY, O_WRONLY, or O_RDWR)</li>
+</ul>
+</li>
+<li><strong>void perror(const char *s)</strong>: print the error description for message.
+<ul>
+<li>s: message (e.g. &ldquo;open&rdquo;)</li>
+</ul>
+</li>
+<li><strong>int close(int fd)</strong>: closes a file descriptor, so that it no longer refers to any file and may be reused.
+<ul>
+<li>fd: file descriptor</li>
+</ul>
+</li>
+<li><strong>int open(const char *pathname, int flags, mode_t mode)</strong>:
+<ul>
+<li>mode_t: Octal, indicating the user&rsquo;s permission to operate on the newly created file (e.g 0775 rwx-rwx-rwx, final permission: mode_t &amp; ~umask)</li>
+</ul>
+</li>
+</ul>
+<h4 id="file-descriptors">File Descriptors</h4>
+<ul>
+<li>File descriptor is in the PCB (Process Control Block) of linux kernel of virtual memory segment</li>
+<li>In PCB, there is an array called &lsquo;file descriptor table&rsquo;</li>
+<li>A file can be opened multiple times and &lsquo;fopen&rsquo; function will take up different file descriptors</li>
+</ul>
+<br />
 <h2 id="2023-02-23">2023-02-23</h2>
 <h4 id="virtual-address">Virtual Address</h4>
 <ul>
-<li>This is the structure of Linux virtual memory segment. When the program is running, they will be mapped to real memory address by CPU.
+<li>This is the structure of Linux virtual memory segment. When the program is running, they will be mapped to real memory address by MMU.
 <img src="/LinuxProject/virtualMemory.png" width="600"/></li>
 </ul>
 <h4 id="comparison-between-io-funtions-of-c-library-and-linux-system">Comparison between IO funtions of C library and linux system</h4>
