@@ -6,7 +6,18 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 23 Feb 2023 10:07:43 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Feb 2023 07:55:16 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Machine Learning Tools</title>
+      <link>https://jiajun2001.github.io/post/comp-sci-3317-usingmltools/</link>
+      <pubDate>Fri, 24 Feb 2023 07:55:16 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/comp-sci-3317-usingmltools/</guid>
+      
+        <description>This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools.</description>
+      
+    </item>
+    
     <item>
       <title>Linux Project</title>
       <link>https://jiajun2001.github.io/post/linuxproject/</link>
