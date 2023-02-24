@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "1545",
+        "wordCount" : "1628",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -541,9 +541,23 @@ Pandas | Matplotlib
 <li>fd: file descriptor</li>
 </ul>
 </li>
-<li><strong>int open(const char *pathname, int flags, mode_t mode)</strong>:
+<li><strong>int open(const char *pathname, int flags, mode_t mode)</strong>: create and open a file
 <ul>
 <li>mode_t: Octal, indicating the user&rsquo;s permission to operate on the newly created file (e.g 0775 rwx-rwx-rwx, final permission: mode_t &amp; ~umask)</li>
+</ul>
+</li>
+<li><strong>ssize_t read(int fd, void *buf, size_t count)</strong>: read a file
+<ul>
+<li>fd: file descriptor</li>
+<li>buf: buffer area, the address of the array</li>
+<li>count: the size of the buffer area</li>
+<li>ssize_t: on success, the number of bytes read is returned. On error, -1 is returned and &rsquo;errno&rsquo; is set properly.</li>
+</ul>
+</li>
+<li><strong>ssize_t write(int fd, const void *buf, size_t count)</strong>: write a file
+<ul>
+<li>buf: data which is going to be written</li>
+<li>count: size of the data which are going to be written</li>
 </ul>
 </li>
 </ul>
