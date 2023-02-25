@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "1628",
+        "wordCount" : "1784",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -516,13 +516,12 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">8-minute read</span>
+            <span class="post__meta-text">9-minute read</span>
           </li>
         </ul>
 
       <p>In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.</p>
 <br />
-<h2 id="2023-02-24">2023-02-24</h2>
 <h4 id="io-functions-of-linux-system">IO functions of Linux system</h4>
 <ul>
 <li><strong>int open(const char *pathname, int flags)</strong>: open an existed file and return a file descriptor.
@@ -560,7 +559,46 @@ Pandas | Matplotlib
 <li>count: size of the data which are going to be written</li>
 </ul>
 </li>
+<li><strong>off_t lseek(int fd, off_t offset, int whence)</strong>: move the file pointer
+<ul>
+<li>whence: can be SEEK_SET (set the offset of the file descriptor), SEEK_CUR (current position + offset), SEEK_END (file size + offset)</li>
+<li>off_t (return value) is the position of the file pointer after the invoke of the function</li>
+<li>Usage:
+<ul>
+<li>move the file pointer to the head of the file
+<ul>
+<li>lseek(fd, 0, SEEK_SET);</li>
 </ul>
+</li>
+<li>get the position of current file pointer
+<ul>
+<li>lseek(fd, 0, SEEK_CUR)</li>
+</ul>
+</li>
+<li>get the length of the file
+<ul>
+<li>lseek(fd, 0, SEEK_END)</li>
+</ul>
+</li>
+<li>expand the length of the file (e.g. 10b -&gt; 110b)
+<ul>
+<li>lseek(fd, 100, SEEK_END)</li>
+<li>Need to write data once</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>int stat(const char *pathname, struct stat *statbuf)</strong>: return information about a file, in the buffer pointed to by statbuf
+<ul>
+<li>statbuf: a pointer to a struct which saves the information of the file</li>
+<li>return value: on success, returns 1. On error, -1 is returned and &rsquo;errno&rsquo; is set properly.</li>
+</ul>
+</li>
+<li><strong>int lstat(const char *pathname, struct stat *statbuf)</strong>: same as stat but is used for soft link</li>
+</ul>
+<br />
 <h4 id="file-descriptors">File Descriptors</h4>
 <ul>
 <li>File descriptor is in the PCB (Process Control Block) of linux kernel of virtual memory segment</li>
@@ -568,12 +606,12 @@ Pandas | Matplotlib
 <li>A file can be opened multiple times and &lsquo;fopen&rsquo; function will take up different file descriptors</li>
 </ul>
 <br />
-<h2 id="2023-02-23">2023-02-23</h2>
 <h4 id="virtual-address">Virtual Address</h4>
 <ul>
 <li>This is the structure of Linux virtual memory segment. When the program is running, they will be mapped to real memory address by MMU.
 <img src="/LinuxProject/virtualMemory.png" width="600"/></li>
 </ul>
+<br />
 <h4 id="comparison-between-io-funtions-of-c-library-and-linux-system">Comparison between IO funtions of C library and linux system</h4>
 <ul>
 <li>
@@ -585,6 +623,7 @@ Pandas | Matplotlib
 <img src="/LinuxProject/cLinuxRelation.png" width="800"/></p>
 </li>
 </ul>
+<br />
 <h4 id="gdb">GDB</h4>
 <ul>
 <li>Gdb is a debugger for C (and C++). It allows you to do things like run the program up to a certain point then stop and print out the values of certain variables at that point, or step through the program one line at a time and print out the values of each variable after executing each line.</li>
@@ -655,7 +694,6 @@ Pandas | Matplotlib
 </li>
 </ul>
 <br />
-<h2 id="2023-02-22">2023-02-22</h2>
 <h4 id="makefile">Makefile</h4>
 <ul>
 <li>Makefile sets a set of rules to determine which parts of a program need to be recompile, and issues command to recompile them. Makefile is a way of automating software building procedure and other complex tasks with dependencies.</li>
@@ -723,7 +761,6 @@ Pandas | Matplotlib
 </li>
 </ul>
 <br />
-<h2 id="2023-02-21">2023-02-21</h2>
 <h4 id="comparison-between-static-library-and-dynamic-library">Comparison between static library and dynamic library</h4>
 <ul>
 <li>Static Library
@@ -761,7 +798,6 @@ Pandas | Matplotlib
 </li>
 </ul>
 <br />
-<h2 id="2023-02-20">2023-02-20</h2>
 <h4 id="dynamic-library">Dynamic library</h4>
 <ul>
 <li>Naming convention for dynamic library
@@ -836,7 +872,6 @@ Pandas | Matplotlib
 </li>
 </ul>
 <br />
-<h2 id="2023-02-19">2023-02-19</h2>
 <h4 id="static-library">Static library</h4>
 <ul>
 <li>Two types of libraries
@@ -896,7 +931,6 @@ Pandas | Matplotlib
 </li>
 </ul>
 <br />
-<h2 id="2023-02-15">2023-02-15</h2>
 <h4 id="gcc">GCC</h4>
 <ul>
 <li>GCC is called GNU C Compiler. GNU compiler collection includes compilers for C, C++, Objective-C, Java, and libraries for these programming languages.</li>
