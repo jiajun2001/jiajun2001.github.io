@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "1784",
+        "wordCount" : "1904",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -597,6 +597,30 @@ Pandas | Matplotlib
 </ul>
 </li>
 <li><strong>int lstat(const char *pathname, struct stat *statbuf)</strong>: same as stat but is used for soft link</li>
+<li><strong>int access(const char *pathname, int mode)</strong>: check access permission or if the file exists
+<ul>
+<li>mode: can be R_OK, W_OK, X_OK, F_OK (check if the file exists)</li>
+<li>return value: on success, return 0. On failure, return -1.</li>
+</ul>
+</li>
+<li><strong>int chmod(const char *pathname, mode_t mode)</strong>: change the mode of the file
+<ul>
+<li>mode: see documentation (e.g. 0777, 0775)</li>
+<li>return value: on success, return 0. On failure, return -1.</li>
+</ul>
+</li>
+<li><strong>int chown(const char *pathname, uid_t owner, gid_t group)</strong>: change the owner and group of the file
+<ul>
+<li>owner: uid</li>
+<li>group: gid</li>
+</ul>
+</li>
+<li><strong>int truncate(const char *path, off_t length)</strong>: truncates the file to a size of precisely length bytes
+<ul>
+<li>length: specified size</li>
+<li>return value: on success, 0 is returned. On error, -1 is returned, and errno is set appropriately.</li>
+</ul>
+</li>
 </ul>
 <br />
 <h4 id="file-descriptors">File Descriptors</h4>
