@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "1904",
+        "wordCount" : "2029",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -516,7 +516,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">9-minute read</span>
+            <span class="post__meta-text">10-minute read</span>
           </li>
         </ul>
 
@@ -615,10 +615,36 @@ Pandas | Matplotlib
 <li>group: gid</li>
 </ul>
 </li>
-<li><strong>int truncate(const char *path, off_t length)</strong>: truncates the file to a size of precisely length bytes
+<li><strong>int truncate(const char *path, off_t length)</strong>: truncate the file to a size of precisely length bytes
 <ul>
 <li>length: specified size</li>
-<li>return value: on success, 0 is returned. On error, -1 is returned, and errno is set appropriately.</li>
+<li>return value: on success, 0 is returned. On error, -1 is returned, and &rsquo;errno&rsquo; is set appropriately.</li>
+</ul>
+</li>
+<li><strong>int mkdir(const char *pathname, mode_t mode)</strong>: create a directory
+<ul>
+<li>pathname: the path for created directory</li>
+<li>mode: permission (octal)</li>
+<li>return value: on success, 0 is returned. On error, -1 is returned, and &rsquo;errno&rsquo; is set appropriately.</li>
+</ul>
+</li>
+<li><strong>int rename(const char *oldpath, const char *newpath)</strong>:
+<ul>
+<li>oldpath: old directory name</li>
+<li>newpath: new directory name</li>
+<li>return value: on success, zero is returned.  On error, -1 is returned, and &rsquo;errno&rsquo; is set appropriately.</li>
+</ul>
+</li>
+<li><strong>int chdir(const char *path)</strong>: change the working directory of current process
+<ul>
+<li>path: the working directory that we want to change to</li>
+</ul>
+</li>
+<li><strong>char *getcwd(char *buf, size_t size)</strong>: equal to pwd
+<ul>
+<li>buf: a pointer that points to an array that saves the current working directory</li>
+<li>size: the size of the array</li>
+<li>return value: returns a pointer that points to buf</li>
 </ul>
 </li>
 </ul>

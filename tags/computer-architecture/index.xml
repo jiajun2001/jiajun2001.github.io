@@ -6,7 +6,18 @@
     <description>Recent content in Computer Architecture on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 23 Feb 2023 10:07:43 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Feb 2023 11:26:17 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Computer Architecture</title>
+      <link>https://jiajun2001.github.io/post/elec-eng-3088-computerarchitecture/</link>
+      <pubDate>Mon, 27 Feb 2023 11:26:17 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/elec-eng-3088-computerarchitecture/</guid>
+      
+        <description>This is my notes for the course ELEC ENG 3088 - Computer Architecture.</description>
+      
+    </item>
+    
     <item>
       <title>Linux Project</title>
       <link>https://jiajun2001.github.io/post/linuxproject/</link>
