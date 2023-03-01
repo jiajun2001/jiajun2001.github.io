@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/comp-sci-3317-usingmltools\/",
-        "wordCount" : "516",
+        "wordCount" : "626",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -503,8 +503,11 @@ Pandas | Matplotlib
 <!-- more -->
 <h2 id="week-1">Week 1</h2>
 <ul>
-<li>Machine learning: program a computer to learn from the data how to solve the problem.</li>
-<li>Machine learning characters:
+<li>
+<p>Machine learning: program a computer to learn from the data how to solve the problem.</p>
+</li>
+<li>
+<p>Machine learning characters:</p>
 <ul>
 <li>Avoid hand turning of parameters</li>
 <li>Adapt to new environments and settings (Model may forget things)</li>
@@ -512,12 +515,23 @@ Pandas | Matplotlib
 <li>Analysis and mining of large datasets</li>
 </ul>
 </li>
-<li>Types of machine learning
+<li>
+<p>Types of machine learning (Supervised or not)</p>
 <ul>
 <li>Supervised learning: your training data includes labels or values (the desired result)
 <ul>
 <li>Classification: uses discrete labels (integers, set of possible outcomes)</li>
 <li>Regression: uses real values to predict a real number, based on training data that contains values and possibly other features.</li>
+<li>Supervised learning algorithms
+<ul>
+<li>K-nearest-neighbors</li>
+<li>Linear regression</li>
+<li>Logistic regression</li>
+<li>Support Vector Machines (SVMs)</li>
+<li>Decision Trees and Random Forests</li>
+<li>Neural networks</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Unsupervised learning: your training data <strong>DOES NOT</strong> include labels or values
@@ -525,19 +539,46 @@ Pandas | Matplotlib
 <li>Clustering data: market research / Image segmentation</li>
 <li>Dimension reduction: visualization / preprocessing (Throw some useless features)</li>
 <li>Anomaly detection: fraud detection / security / pathology in medical data</li>
+<li>Association rule learning: dig into large amount of data and discover interesting relations between attributes</li>
+<li>Unsupervised learning algorithms
+<ul>
+<li>Clustering
+<ul>
+<li>K-Means</li>
+<li>DBSCAN</li>
+<li>Hierarchical Cluster Analysis (HCA)</li>
 </ul>
 </li>
+<li>Anomaly detection and novelty detection
+<ul>
+<li>One-class SVM</li>
+<li>Isolation Forest</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Semi-supervised learning: a lot of unlabelled data and a little bit of labelled data</li>
 <li>Reinforcement learning: algorithm actively collects data, by interacting with the environment (environment provides reward signals, algorithm learns a policy to maximize reward over time)</li>
 </ul>
 </li>
-<li>Approaches to machine learning
+<li>
+<p>Batch and online learning</p>
 <ul>
-<li>Example based approach
-<ul>
-<li>K-nearest-neighbors (KNN): follow the example of nearby training data points</li>
+<li>Batch learning: system cannot learn incrementally (AKA offline learning)</li>
+<li>Online learning: system can be trained incrementally, great to receive data as a continuous flow, also can do out-of-core learning</li>
 </ul>
 </li>
-<li>Model based approach
+<li>
+<p>Approaches to machine learning</p>
+<ul>
+<li>Instanced-based learning
+<ul>
+<li>K-nearest-neighbors (KNN): follow the Instanced-of nearby training data points</li>
+</ul>
+</li>
+<li>Model-based learning
 <ul>
 <li>Fit a model to existing data
 <ul>
@@ -549,19 +590,31 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>Problems with data
+<li>
+<p>Problems with data</p>
 <ul>
 <li>Quantity of data</li>
 <li>Range or domain of data (Try to cover more)</li>
 <li>Real data contains noise, errors and outliers
 <ul>
-<li>Detect, discard, fix, fill (impute)</li>
+<li>Detect, discard, fix, fill</li>
 </ul>
 </li>
-<li>Some features are less useful than others (Try to select and combine features)</li>
+<li>Some features are less useful than others (Try to select and combine features)
+<ul>
+<li>Feature engineering
+<ul>
+<li>Feature selection</li>
+<li>Feature extraction</li>
+<li>Create new features</li>
 </ul>
 </li>
-<li>Problem with models
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Problem with models</p>
 <ul>
 <li>Overfitting: model is too complex for the data, essentially fitting to noise in the data
 <ul>
@@ -592,13 +645,15 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>Selecting a model
+<li>
+<p>Selecting a model</p>
 <ul>
 <li>Pick a few likely candidates</li>
 <li>Select the best model by comparing them by measuring generalization error</li>
 </ul>
 </li>
-<li>Training and test sets
+<li>
+<p>Training and test sets</p>
 <ul>
 <li>We split data into
 <ul>
@@ -614,9 +669,10 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>Model validation
+<li>
+<p>Model validation</p>
 <ul>
-<li>By training and testing on the same training/test split, we select for best performance on this split.</li>
+<li>By training and testing on the same training / test split, we select for best performance on this split.</li>
 <li>We further split our dataset into 3 parts: training set, validation set, test set.
 <ul>
 <li>Train candidate models on reduced training set, measure error on validation set.</li>
@@ -626,7 +682,8 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>Cross validation (K - fold CV, leave one out CV)
+<li>
+<p>Cross validation (K - fold CV, leave one out CV)</p>
 <ul>
 <li>Select multiple validation sets (test set is fixed) and train multiple times</li>
 <li>Take the model with the lowest mean validation error</li>

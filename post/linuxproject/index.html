@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "2029",
+        "wordCount" : "2083",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -647,6 +647,19 @@ Pandas | Matplotlib
 <li>return value: returns a pointer that points to buf</li>
 </ul>
 </li>
+<li><strong>DIR *opendir(const char *name)</strong>: open a directory stream
+<ul>
+<li>name: name of the directory that needed to be opened</li>
+<li>return value: directory stream, if on error, return null.</li>
+</ul>
+</li>
+<li><strong>struct dirent *readdir(DIR *dirp)</strong>: read directory files
+<ul>
+<li>dirp: the outcome of opendir()</li>
+<li>return value: the file information that we get</li>
+</ul>
+</li>
+<li><strong>int closedir(DIR *dirp)</strong>: close the directory stream</li>
 </ul>
 <br />
 <h4 id="file-descriptors">File Descriptors</h4>
