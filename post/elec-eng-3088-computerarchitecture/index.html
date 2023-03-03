@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/elec-eng-3088-computerarchitecture\/",
-        "wordCount" : "441",
+        "wordCount" : "655",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">3-minute read</span>
+            <span class="post__meta-text">4-minute read</span>
           </li>
         </ul>
 
@@ -510,6 +510,121 @@ Pandas | Matplotlib
 <!-- more -->
 <br />
 <h2 id="week-1">Week 1</h2>
+<h3 id="lecture-content">Lecture content</h3>
+<ul>
+<li>
+<p>Different types of computers</p>
+<ul>
+<li>Personal computers
+<ul>
+<li>Used by an individual</li>
+</ul>
+</li>
+<li>Server computers
+<ul>
+<li>Used for running larger programs for multiple users, typically accessed only via a network</li>
+</ul>
+</li>
+<li>Supercomputers
+<ul>
+<li>Used for high-end scientific and engineering calculations</li>
+</ul>
+</li>
+<li>Embedded computers
+<ul>
+<li>Used for running one pre-determined application or collection of software</li>
+<li>It has stringent limitations on cost or power</li>
+<li>Dependability is achieved primarily through simplicity</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Post-PC Era</p>
+<ul>
+<li>Personal mobile device (PMD)</li>
+<li>Cloud computing</li>
+</ul>
+</li>
+<li>
+<p>Levels of program code</p>
+<ul>
+<li>High-level language</li>
+<li>Assembly language</li>
+<li>Hardware representation</li>
+</ul>
+</li>
+<li>
+<p>CPU components</p>
+<ul>
+<li>Data path: performs operations on data</li>
+<li>Control: sequences data path, memory</li>
+<li>Cache memory
+<ul>
+<li>Small fast SRAM memory for immediate access to data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Data storage</p>
+<ul>
+<li>Based on memory hierarchy
+<ul>
+<li>Main/primary memory: Memory used to hold programs while they are running</li>
+<li>Secondary memory: Memory used to store programs and data between runs</li>
+</ul>
+</li>
+<li>Based on if it is volatile or not
+<ul>
+<li>Volatile main memory: lose instructions and data when power off
+<ul>
+<li>SRAM: memory built as an integrated circuit, but faster and less dense than DRAM</li>
+<li>DRAM: memory built as an integrated circuit. It provides random access to any location</li>
+</ul>
+</li>
+<li>Non-volatile secondary memory: A form of memory that retains data even in the absence of a power source
+<ul>
+<li>Flash memory: a memory that is the standard secondary memory for PMDs. It is slower and much cheaper than DRAM. However, costing more per bit than disks.</li>
+<li>Magnetic disk: also called hard disk which composed of rotating platters coated with a magnetic recording material</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Networks</p>
+<ul>
+<li>Local area network (LAN): Ethernet</li>
+<li>Wide area network (WAN): the internet</li>
+<li>Wireless network: WiFi, Bluetooth</li>
+</ul>
+</li>
+<li>
+<p>Instruction set architecture (architecture)</p>
+<ul>
+<li>An abstract interface between the hardware and the lowest-level software that encompasses all the information necessary to write a machine language program that will run correctly, including instructions, registers, memory access, I/O, and so on.</li>
+</ul>
+</li>
+<li>
+<p>Application binary interface (ABI)</p>
+<ul>
+<li>The user portion of the instruction set plus the operating system interfaces used by application programmers. It defines a standard for binary portability across computers.</li>
+</ul>
+</li>
+<li>
+<p>CPU Clocking</p>
+<ul>
+<li>Clock Period: duration of a clock cycle</li>
+<li>Clock Frequency (rate): cycles per second</li>
+</ul>
+</li>
+<li>
+<p>CPU Time = CPU Clock Cycles * Clock Period = CPU Clock Cycles / Clock Frequency</p>
+</li>
+</ul>
+<br />
 <h3 id="background-knowledge-study">Background knowledge study</h3>
 <ul>
 <li><strong>Byte addressing</strong>:
@@ -552,78 +667,6 @@ Pandas | Matplotlib
 </li>
 <li><strong>SI</strong> (International System of Units) multiplier prefixes:
 <img src="/ComputerArchitecture/SI.jpeg" width="600"/></li>
-</ul>
-<h3 id="lecture-content">Lecture content</h3>
-<ul>
-<li>Different types of computers
-<ul>
-<li>Personal computers
-<ul>
-<li>Used by an individual</li>
-</ul>
-</li>
-<li>Server computers
-<ul>
-<li>Used for running larger programs for multiple users, typically accessed only via a network</li>
-</ul>
-</li>
-<li>Supercomputers
-<ul>
-<li>Used for high-end scientific and engineering calculations</li>
-</ul>
-</li>
-<li>Embedded computers
-<ul>
-<li>Used for running one pre-determined application or collection of software</li>
-<li>It has stringent limitations on cost or power</li>
-<li>Dependability is achieved primarily through simplicity</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Post-PC Era
-<ul>
-<li>Personal mobile device (PMD)</li>
-<li>Cloud computing</li>
-</ul>
-</li>
-<li>Levels of program code
-<ul>
-<li>High-level language</li>
-<li>Assembly language</li>
-<li>Hardware representation</li>
-</ul>
-</li>
-<li>CPU components
-<ul>
-<li>Data path: performs operations on data</li>
-<li>Control: sequences data path, memory</li>
-<li>Cache memory
-<ul>
-<li>Small fast SRAM memory for immediate access to data</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Data storage
-<ul>
-<li>Volatile main memory: lose instructions and data when power off</li>
-<li>Non-volatile secondary memory
-<ul>
-<li>Magnetic disk</li>
-<li>Flash memory</li>
-<li>Optical disk</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Networks
-<ul>
-<li>Local area network (LAN): Ethernet</li>
-<li>Wide area network (WAN): the internet</li>
-<li>Wireless network: WiFi, Bluetooth</li>
-</ul>
-</li>
 </ul>
 </div>
     <div class="post__footer">
