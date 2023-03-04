@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/linuxproject\/",
-        "wordCount" : "2094",
+        "wordCount" : "2227",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -516,7 +516,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">10-minute read</span>
+            <span class="post__meta-text">11-minute read</span>
           </li>
         </ul>
 
@@ -660,7 +660,18 @@ Pandas | Matplotlib
 </ul>
 </li>
 <li><strong>int closedir(DIR *dirp)</strong>: close the directory stream</li>
-<li><strong>int dup(int oldfd)</strong>: create a copy of the file descriptor oldfd</li>
+<li><strong>int dup(int oldfd)</strong>: create a copy of the file descriptor oldfd, using the lowest-numbered unused file descriptor number for the new descriptor
+<ul>
+<li>return value: On success, these system calls return the new file descriptor.  On error, -1 is returned, and errno is set appropriately.</li>
+</ul>
+</li>
+<li><strong>int dup2(int oldfd, int newfd)</strong>: perform the same task as dup(), but instead of using the lowest-numbered unused  file descriptor, it uses the file descriptor number specified in newfd. If the file descriptor newfd was previously open, it is silently closed before being reused</li>
+<li><strong>int fcntl(int fd, int cmd, &hellip; [arg&hellip;] )</strong>: duplicate a file descriptor / return the file access mode and the file status flags (arg is ignored) / set the file status flags to the value specified by arg
+<ul>
+<li>fd: the file descriptor that we need to operate</li>
+<li>cmd: command for operations (F_DUPFD / F_GETFL / F_SETFL)</li>
+</ul>
+</li>
 </ul>
 <br />
 <h4 id="file-descriptors">File Descriptors</h4>
