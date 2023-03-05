@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/comp-sci-3317-usingmltools\/",
-        "wordCount" : "651",
+        "wordCount" : "876",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,12 +502,77 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">4-minute read</span>
+            <span class="post__meta-text">5-minute read</span>
           </li>
         </ul>
 
       <p>This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools.</p>
 <!-- more -->
+<br />
+<h2 id="week-2">Week 2</h2>
+<ul>
+<li>
+<p>A typical workflow for supervised learning</p>
+<ul>
+<li>Check and clean data</li>
+<li>Choose some candidate models based on data and task</li>
+<li>Split data into training and test sets</li>
+<li>Split training data into (reduced) training and validation sets</li>
+<li>Train candidate models on (reduced) training sets</li>
+<li>Select best model based on validation set errors</li>
+<li>Retrain best model on full training set</li>
+<li>Apply best model to test data which gives an unbiased estimate of the generalization error</li>
+</ul>
+</li>
+<li>
+<p>Missing data</p>
+<ul>
+<li>If there are missing features
+<ul>
+<li>can remove data, but bad if large amounts of missing data</li>
+<li>can replace them with estimated / non-informative values</li>
+</ul>
+</li>
+<li>Using imputers</li>
+</ul>
+</li>
+<li>
+<p>Scaling data</p>
+<ul>
+<li>Why
+<ul>
+<li>Often distance is used by the ML method, and without scaling the features with the largest values would dominate</li>
+<li>Safer to use it in general as it does not harm</li>
+</ul>
+</li>
+<li>Using MinMaxScaler</li>
+<li>Using StandardScaler</li>
+</ul>
+</li>
+<li>
+<p>Pipelines in sklearn</p>
+<ul>
+<li>Best practice: chain them together as a Pipeline</li>
+</ul>
+</li>
+<li>
+<p>Linear regression</p>
+<ul>
+<li>When we fit the model, we optimize the parameter vector to minimize an error/loss/cost function over data points</li>
+<li>For a linear model, there is an analytic formula for the optimal result, otherwise use iterative method to find it</li>
+<li>Linear for each parameter but not for data values</li>
+</ul>
+</li>
+<li>
+<p>Parameters and hyper-parameters</p>
+<ul>
+<li>Models have parameters that are fit to data internally</li>
+<li>Hyper-parameters are not changed during fitting</li>
+<li>Best hyper-parameter is usually measured by validation error</li>
+</ul>
+</li>
+</ul>
+<br />
 <h2 id="week-1">Week 1</h2>
 <ul>
 <li>
