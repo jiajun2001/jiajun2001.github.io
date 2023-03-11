@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/comp-sci-3317-usingmltools\/",
-        "wordCount" : "933",
+        "wordCount" : "1328",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,12 +502,112 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">5-minute read</span>
+            <span class="post__meta-text">7-minute read</span>
           </li>
         </ul>
 
       <p>This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools.</p>
 <!-- more -->
+<br />
+<h2 id="week-3">Week 3</h2>
+<ul>
+<li>
+<p>Data pipeline</p>
+<ul>
+<li>A sequence of data processing components</li>
+<li>There is a lot of data to manipulate and many data transformations to apply</li>
+<li>Components typically run asynchronously</li>
+<li>Each components is self-contained which makes the architecture quite robust</li>
+<li>On the other hand, a broken component can go unnoticed so the data gets stale and the overall system&rsquo;s performance drops</li>
+</ul>
+</li>
+<li>
+<p>Classifier</p>
+<ul>
+<li>Linear model as a binary classifier
+<ul>
+<li>Using linear model for regression and apply a threshold</li>
+</ul>
+</li>
+<li>Stochastic gradient descent classifier
+<ul>
+<li>Binary classifier using a linear model</li>
+<li>SGD is a fitting algorithm which iteratively follows the derivative of the loss function</li>
+</ul>
+</li>
+<li>Decision tree
+<ul>
+<li>Iterative splitting</li>
+<li>Maximize class separation</li>
+<li>One feature at a time</li>
+<li>Up to maximum depth</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Inner workings</p>
+<ul>
+<li>Gini impurity metric measures the class distribution in a node (G = 0 for impurity, best)</li>
+<li>Decision boundaries</li>
+</ul>
+</li>
+<li>
+<p>Performance measure</p>
+<ul>
+<li>Regression
+<ul>
+<li>RMSE (L<sup>2</sup>norm): It gives an idea of how much error the system typically makes in its predictions, with a higher weight given to large errors.</li>
+<li>MAE (L<sup>1</sup>norm): also called the average absolute deviation
+<ul>
+<li>The higher the norm index, the more it focuses on large values and neglects small ones. This is why the RMSE is more sensitive to outliers than MAE</li>
+</ul>
+</li>
+<li>Median / Max absolute error</li>
+<li>R<sup>2</sup> / correlation coefficient</li>
+</ul>
+</li>
+<li>Classification
+<ul>
+<li>Precision / Recall
+<ul>
+<li>Precision: the fraction of positive predictions are correct</li>
+<li>Recall: the fraction of the real positive class are detected</li>
+<li>Trade-Off
+<ul>
+<li>Low threshold -&gt; everything is positive -&gt; recall = 1</li>
+<li>High threshold -&gt; everything is negative -&gt; precision = 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Accuracy
+<ul>
+<li>(TP + TN) / (TP + TN + FP + FN)</li>
+<li>Accuracy is not reliable when dealing with imbalanced classes because it may be misleading and biased towards the major class</li>
+</ul>
+</li>
+<li>F1-score
+<ul>
+<li>It is the harmonic mean of precision and recall.</li>
+<li>Whereas the regular mean treats all values equally, the harmonic mean gives much more weight to low values.</li>
+<li>As a result, the classifier will only get a high F1-score if both recall and precision are high.</li>
+<li>The F1-score may not be the best metric to use when precision and recall are not equally important</li>
+</ul>
+</li>
+<li>ROC curve
+<ul>
+<li>The FPR (false positive rate) is the ratio of negative instances that are incorrectly classified as positive</li>
+<li>Should use Precision / Recall curve whenever the positive class is rare or when we care more about the false positives than the false negatives</li>
+</ul>
+</li>
+<li>AUC curve</li>
+<li>Confusion matrix</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="week-2">Week 2</h2>
 <ul>
