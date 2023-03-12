@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/comp-sci-3305-parallelanddistributedcomputing\/",
-        "wordCount" : "270",
+        "wordCount" : "681",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,12 +495,63 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">4-minute read</span>
           </li>
         </ul>
 
       <p>This is my notes for the course COMP SCI 3305 - Parallel And Distributed Computing.</p>
 <!-- more -->
+<br />
+<h2 id="week-3">Week 3</h2>
+<ul>
+<li>
+<p>Distributed-memory systems using message-passing</p>
+<ul>
+<li>Process: a program running on one core-memory pair</li>
+<li>Message-Passing Interface (MPI): one process calls a send function and the other calls a receive function</li>
+</ul>
+</li>
+<li>
+<p>MPI functions</p>
+<ul>
+<li>MPI_Init(): tells MPI system to do all of the necessary setup. It might allocate storage for message buffers, and it might decide which process gets which rank. No other MPI functions should be called before the program calls MPI_Init().</li>
+<li>MPI_Finalize(): tells MPI system that we are done using MPI, and that any resources allocated for MPI can be freed. No MPI functions should be called after the call to MPI_Finalize().</li>
+<li>MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_size): returns in its second argument the number of processes in the communicator</li>
+<li>MPI_Comm_rand(MPI_COMM_WORLD, &amp;comm_rank): returns in its second argument the calling process&rsquo;s rank in the communicator</li>
+<li>MPI_Send(msg_buf_p, msg_size, msg_type, dest, tag, communicator)
+<ul>
+<li>msg_buf_p: a pointer points to the block memory containing the contents of the message</li>
+<li>msg_size: amount of data to be sent</li>
+<li>msg_type: type of data to be sent</li>
+<li>dest: specifies the rank of the process that should receive the message</li>
+<li>tag: it can be used to distinguish messages that are otherwise identical</li>
+<li>communicator: a message sent by a process using one communicator cannot be received by a process that&rsquo;s using a different communicator</li>
+</ul>
+</li>
+<li>MPI_Recv(msg_buf_p, buf_size, buf_type, source, tag, communicator, status_p)
+<ul>
+<li>msg_buf_p: points to the block of memory</li>
+<li>buf_size: determines the number of objects that can be stored in the block</li>
+<li>buf_type: indicates the type of the objects</li>
+<li>source: specifies the process from which the message should be received (can use MPI_ANY_SOURCE)</li>
+<li>tag: should match the communicator used by the sending process (can use MPI_ANY_TAG)</li>
+<li>communicator: match the communicator used by the sending process</li>
+<li>status_p: it is a structure with at least three members MPI_SOURCE, MPI_TAG, MPI_ERROR, after a call to MPI_Recv in which &amp;status is passed as the last argument, we can determine the sender and tag.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Semantics of MPI_Send and MPI_Recv</p>
+<ul>
+<li>The sending process will assemble the message</li>
+<li>If the sending process buffers the message, the MPI system will place the message into its own internal storage</li>
+<li>If the system blocks, it will wait until it can begin transmitting the message, and the call to MPI_Send may not return immediately</li>
+<li>MPI_Recv always blocks until a matching message has been received</li>
+<li>MPI requires that messages be non-overtaking. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message.</li>
+</ul>
+</li>
+</ul>
 <br />
 <h2 id="week-1">Week 1</h2>
 <ul>
