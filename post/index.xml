@@ -6,7 +6,18 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Mar 2023 15:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 May 2023 00:36:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Daily Status</title>
+      <link>https://jiajun2001.github.io/post/daily_thought/</link>
+      <pubDate>Sat, 20 May 2023 00:36:09 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/daily_thought/</guid>
+      
+        <description>&lt;p&gt;This is my daily status summary. I learned this from my company and I think it is a good idea to keep track of what we did every day for reflection and making progress. It also helps us keep track of our time and makes sure we only focus on important things each day.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>COMP SCI 3305 - Parallel And Distributed Computing</title>
       <link>https://jiajun2001.github.io/post/comp-sci-3305-parallelanddistributedcomputing/</link>
@@ -92,17 +103,6 @@
       <guid>https://jiajun2001.github.io/post/javascript/</guid>
       
         <description>&lt;p&gt;JavaScript, often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. As of 2022, 98% of websites use JavaScript on the client side for webpage behavior, often incorporating third-party libraries. In this post, I will make some notes about my further study about JavaScript.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Daily Thought</title>
-      <link>https://jiajun2001.github.io/post/daily_thought/</link>
-      <pubDate>Sun, 29 Jan 2023 00:36:09 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/daily_thought/</guid>
-      
-        <description>2023-02-08 I feel like I am making progress in doing LeetCode every day, keep on going!</description>
       
     </item>
     
