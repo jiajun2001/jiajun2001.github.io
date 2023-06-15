@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "1295",
+        "wordCount" : "1419",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -726,8 +726,34 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>TCP connection establishment
-*</li>
+<li>TCP connection establishment and termination
+<ul>
+<li>Connection
+<ul>
+<li>TCP connections are established by a 3-way handshake: request connection, grant connection, acknowledge</li>
+<li>Why not 2 way handshake:
+<ul>
+<li>1: Server does not know the client is able to receive its message</li>
+<li>2: If the first ACK is lost, client will send another request which will result in the server allocating more resources to make  unnecessary establishment</li>
+</ul>
+</li>
+<li>Why picking random values for starting sequence numbers
+<ul>
+<li>It is possible that a server establishes two connections, retransmitted data will be delivered to the second connection</li>
+<li>Security issue, if an attacker knows all sequence numbers starting with the same value, he is able to inject some data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Termination
+<ul>
+<li>Client -&gt; Server: FIN</li>
+<li>Server -&gt; Client: ACK / FIN</li>
+<li>Client -&gt; Server: ACK</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>TCP flow control
 <ul>
 <li>Receiver informs sender of the receive window size in the header of TCP segments</li>
@@ -735,6 +761,8 @@ Pandas | Matplotlib
 <li>If the receive buffer is full, the sender will just send one byte</li>
 </ul>
 </li>
+<li>TCP congestion control
+*</li>
 </ul></div>
     <div class="post__footer">
       
