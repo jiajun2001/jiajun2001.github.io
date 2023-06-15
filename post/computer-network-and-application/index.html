@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "329",
+        "wordCount" : "1295",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,21 +495,36 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">2-minute read</span>
+            <span class="post__meta-text">7-minute read</span>
           </li>
         </ul>
 
       <p>This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge.</p>
 <br />
-<h3 id="propagation-delay">Propagation Delay</h3>
+<h3 id="measuring-performance">Measuring Performance</h3>
+<ul>
+<li>Propagation Delay
 <ul>
 <li>The time it takes for a signal to travel from the sender to the receiver in a communication system.</li>
 <li>Formula: Distance / Transmission speed</li>
 </ul>
-<h3 id="transmission-delay">Transmission Delay</h3>
+</li>
+<li>Transmission Delay
 <ul>
 <li>The time it takes to put bits (1/0) into a medium controlled by bandwidth of a link (data carrying capacity of a link)</li>
 <li>Formula: Data size / Link bandwidth</li>
+</ul>
+</li>
+<li>Queuing Delay
+<ul>
+<li>Queuing delay refers to the time a packet spends waiting in a queue before it can be transmitted or processed further.</li>
+</ul>
+</li>
+<li>Processing Delay
+<ul>
+<li>Processing delay refers to the time taken to process a packet at a network node before it can be forwarded or transmitted.</li>
+</ul>
+</li>
 </ul>
 <h3 id="application-architecture">Application Architecture</h3>
 <ul>
@@ -549,14 +564,175 @@ Pandas | Matplotlib
 <li>Socket: A software interface that allows a process to send messages into, and receive messages from the network. A socket is the interface between the application layer and the transport layer within a host.</li>
 <li>Socket programming for C/S and P2P
 <ul>
-<li>C/S</li>
-<li>P2P</li>
+<li>C/S:
+<ul>
+<li>CS systems follow a centralized approach where a server listens on a specific socket for clients connections</li>
+<li>In CS architecture, the server creates and binds a socket to a specific IP address and port number. It listens for incoming client connections on this socket using functions like &lsquo;socket()&rsquo;, &lsquo;bind()&rsquo;, and &rsquo;listen()&rsquo;.</li>
+<li>Clients create a socket and connect it to the server&rsquo;s IP address and port number using functions like &lsquo;socket()&rsquo; and &lsquo;connect()&rsquo;.</li>
+<li>Communication in CS architecture usually involves a request-response model, where clients send requests to the server, and the server responds to those requests.</li>
+</ul>
+</li>
+<li>P2P:
+<ul>
+<li>P2P systems are decentralized, and peers communicate directly with each other without relying on a central server.</li>
+<li>Each peer in a P2P network creates a socket to listen for incoming connections from other peers, as well as initiate connections to other peers.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Socket programming for TCP and UDP
 <ul>
-<li>TCP</li>
-<li>UDP</li>
+<li>TCP
+<ul>
+<li>Server: socket(), bind(), listen()</li>
+<li>Client: socket(), connect(), send()</li>
+</ul>
+</li>
+<li>UDP: (no connection between client and server)
+<ul>
+<li>Server: socket(), bind()</li>
+<li>Client: socket(), sendto()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="domain-name-system-dns">Domain Name System (DNS)</h3>
+<ul>
+<li>A DNS server provides name resolution (conversion from a domain name to an IP address). A name server is a process listening on UDP/TCP port 53 for requests. When a domain name is detected, it will be resolved and a reply will be sent.</li>
+<li>DNS hierarchical database
+<ul>
+<li>Root name server: able to resolve all queries or another intermediate name server</li>
+<li>Top-level domain servers (TLD): responsible for com, org, net, edu, etc, and all top-level country domains uk, fr, ca, jp.</li>
+<li>Authoritative DNS servers: organization&rsquo;s DNS servers, providing authoritative hostname to IP mappings for organization&rsquo;s servers</li>
+<li>Local name server: handles local DNS requests. Caches resolved addresses.</li>
+</ul>
+</li>
+<li>Queries
+<ul>
+<li>Iterative: contacted server replies with name of server to contact</li>
+<li>Recursive: puts burden of name resolution on contacted name server</li>
+</ul>
+</li>
+<li>DNS records (stored in distributed database)
+<ul>
+<li>Resource records (RR) format: (name, value, type, ttl)</li>
+<li>Type = A: name = hostname, value = IP address</li>
+<li>Type = NS: name = domain, value = hostname of authoritative name server</li>
+<li>Type = CNAME: name = alias name, value: canonical name</li>
+<li>Type = MX: value = name of mail server associated with the name</li>
+</ul>
+</li>
+</ul>
+<h3 id="http">HTTP</h3>
+<ul>
+<li>Behaviors of HTTP
+<ul>
+<li>Requests methods: GET, POST, HEAD, PUT(update), DELETE(remove)</li>
+<li>Responses: 2xx(success), 3xx(redirection), 4xx(client error), 5xx(server error)</li>
+</ul>
+</li>
+<li>Difference between HTTP 1.0 and HTTP 1.1
+<ul>
+<li>Persistent connections: HTTP 1.0 requires 2 RTTs per object. HTTP 1.1 allows multiple requests to be sent and received over the same connection, reducing the overhead of establishing new connections for each request.</li>
+<li>Pipelining: HTTP 1.1 enables sending multiple requests without waiting for each response. In HTTP 1.0, the client had to wait for a response before sending the next request.</li>
+<li>Host header: HTTP 1.1 introduced the host header which allows hosting multiple websites on a single IP address, and enables server to identify the appropriate website to handle the request.</li>
+</ul>
+</li>
+<li>Caching/proxies:
+<ul>
+<li>Goal: satisfy client request without involving origin server</li>
+<li>Advantages
+<ul>
+<li>Reduce response time for client request</li>
+<li>Reduce traffic on an institution&rsquo;s access link</li>
+<li>Enables &lsquo;poor&rsquo; content providers to effectively deliver content</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="transport-layer">Transport Layer</h3>
+<ul>
+<li>The transport layer is responsible for providing logical communication between processes. It uses the services of the network layer to transfer data between processes.</li>
+<li>Offered services:
+<ul>
+<li>TCP: in-order delivery / connection oriented / reliable delivery</li>
+<li>UDP: out of order delivery / no connection establishment / best effort</li>
+<li>TCP and UDP both provide multiplexing and de-multiplexing of data from several processes
+<ul>
+<li>Multiplexing at sender: handle data from multiple sockets, add transport header</li>
+<li>De-multiplexing at receiver: use header info to deliver received segments to correct socket</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Port numbers and IP address in TCP and UDP
+<ul>
+<li>TCP: Datagram must specify: source IP address / source port number / destination IP address / destination port number</li>
+<li>UDP: Datagram must specify: destination IP address / destination port number</li>
+</ul>
+</li>
+<li>Reliable data transfer
+<ul>
+<li>rdt1.0: underlying channel perfectly reliable</li>
+<li>rdt2.0: underlying channel may flip bits in packet
+<ul>
+<li>checksum to detect bit errors</li>
+<li>sender retransmits packet on receipt of NAK</li>
+</ul>
+</li>
+<li>rdt2.1: handles garbled ACK/NAKs
+<ul>
+<li>sender: sequence number added to packet / must check if received ACK/NAK corrupted</li>
+<li>receiver: must check if received packet is duplicated or not</li>
+</ul>
+</li>
+<li>rdt2.2: a NAK-free protocal
+<ul>
+<li>receiver sends ACK for last packet received OK (receiver must include sequence number of packet being ACKed)</li>
+</ul>
+</li>
+<li>rdt3.0 (Alternating Bit Protocol): channels with errors and loss
+<ul>
+<li>sender waits &lsquo;reasonable&rsquo; amount of time for ACK</li>
+<li>retransmits if no ACK received in this time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Go-Back-N (GBN)
+<ul>
+<li>One timer, on timeout, retransmit all packets in window from last ACK + 1</li>
+<li>Receiver discards out of order packets and sends back cumulative ACK</li>
+</ul>
+</li>
+<li>Selective Repeat (SR)
+<ul>
+<li>Sender keeps track of the ACK received from the receiver and retransmits only the lost or damaged packets, instead of retransmitting the entire window of packets.</li>
+<li>Receiver acknowledges the receipt of each packet, and uses a buffer to store out-of-order packets.</li>
+<li>If the window size is N, we need 2N sequence numbers</li>
+</ul>
+</li>
+<li>TCP
+<ul>
+<li>TCP is designed to provide the appearance of a reliable channel over the unreliable network layer (IP). TCP is a modified hybrid of go-Back-N and selective repeat.</li>
+<li>Sequence number and ACKs in TCP: Acknowledge the next expecting packet</li>
+<li>Timeout formula: Timeout = EstimatedRTT + 4 * Deviation
+<ul>
+<li>EstimatedRTT = (1 - x) * EstimatedRTT + x * SampleRTT</li>
+<li>Deviation = (1 - x) * Deviation + x * |SampleRTT - EstimatedRTT|</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP connection establishment
+*</li>
+<li>TCP flow control
+<ul>
+<li>Receiver informs sender of the receive window size in the header of TCP segments</li>
+<li>At the sender, LastByteSent - LastByteAcked &lt;= Receive Window</li>
+<li>If the receive buffer is full, the sender will just send one byte</li>
 </ul>
 </li>
 </ul></div>
