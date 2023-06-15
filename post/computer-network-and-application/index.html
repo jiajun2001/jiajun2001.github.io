@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "1419",
+        "wordCount" : "1630",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">7-minute read</span>
+            <span class="post__meta-text">8-minute read</span>
           </li>
         </ul>
 
@@ -762,7 +762,14 @@ Pandas | Matplotlib
 </ul>
 </li>
 <li>TCP congestion control
-*</li>
+<ul>
+<li>Slow start: the value of the congestion window begins at 1 MSS and increase by 1 MSS every time a transmitted segment is first acknowledged (grows exponentially). If there is a loss event indicated by a timeout, TCP sender sets the value of congestion window to be 1 and &lsquo;ssthresh&rsquo; to be &lsquo;cwnd / 2&rsquo;. Slow start will end when the value of &lsquo;cwnd&rsquo; equals &lsquo;ssthresh&rsquo;, or three duplicated ACKs detected.</li>
+<li>Congestion avoidance mode: TCP increases the value of &lsquo;cwnd&rsquo; by just a single MSS every RTT (grows linearly). If there is a loss event indicated by a timeout, TCP sender sets the value of congestion window to be 1 and &lsquo;ssthresh&rsquo; to be &lsquo;cwnd / 2&rsquo;. Congestion avoidance will end when a loss event occurs, or there are three duplicated ACKs detected.</li>
+<li>Fast recovery (TCP Reno incorporated): TCP sender sets &lsquo;ssthresh&rsquo; to be &lsquo;cwnd / 2&rsquo;, and &lsquo;cwnd&rsquo; to be ssthresh + 3 * MSS.</li>
+<li>Fast retransmit: For TCP Reno - 1990, if there are three duplicated ACKs detected, retransmit immediately.</li>
+<li>If there is timeout, TCP Reno will behave the same as TCP Tahoe. They behave differently when there are three duplicated ACKs detected. TCP Reno will go to fast recovery mode, while TCP Tahoe will go to slow start mode.</li>
+</ul>
+</li>
 </ul></div>
     <div class="post__footer">
       
