@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "2276",
+        "wordCount" : "2499",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">11-minute read</span>
+            <span class="post__meta-text">12-minute read</span>
           </li>
         </ul>
 
@@ -782,15 +782,88 @@ Pandas | Matplotlib
 </li>
 <li>Network layer
 <ul>
-<li>Data plane</li>
 <li>Control plane
 <ul>
+<li>network-wide logic</li>
+<li>determines how datagram is routed among routers along end-end path from source host to destination host</li>
 <li>Two control-plane approaches
 <ul>
-<li>Traditional routing algorithms: implemented in routers</li>
+<li>Traditional routing algorithms: implemented in routers
+<ul>
+<li>Classification
+<ul>
+<li>Global or decentralized
+<ul>
+<li>Global: all routers have complete topology, link cost info (link state algorithms)</li>
+<li>Decentralized: router knows physically-connected neighbors, link cost to neighbors / Iterative process of computation, exchange of info with neighbors</li>
+</ul>
+</li>
+<li>Static or dynamic
+<ul>
+<li>Static: routers change slowly over time</li>
+<li>Dynamic: routers change more quickly (periodic update / in response to link cost changes)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dijkstra&rsquo;s algorithm
+<ul>
+<li>Complexity: O(n<sup>2</sup>), more efficient: O(nlogn). Requires O(nE) messages</li>
+<li>Might have oscillations</li>
+</ul>
+</li>
+<li>Distance Vector algorithm
+<ul>
+<li>Attributes
+<ul>
+<li>iterative: continues until no nodes exchange info (self-terminating)</li>
+<li>asynchronous: nodes need not exchange info / iterate in lock step</li>
+<li>distributed: each node communicates only with directly-attached neighbors</li>
+</ul>
+</li>
+<li>Formula
+<ul>
+<li>D<sup>X</sup>(Y, Z) = distance from X to Y, via Z as next hop</li>
+<li>D<sup>X</sup>(Y, Z) = c(X, Z) + min<sub>w</sub>{D<sup>Z</sup>(Y, w)}</li>
+</ul>
+</li>
+<li>Process
+<ul>
+<li>Each node waits for message from neighbors</li>
+<li>Recomputes distance table</li>
+<li>If least cost path to any dest has changed, notify neighbors</li>
+</ul>
+</li>
+<li>Convergence time varies</li>
+<li>May be routing loops / count-to-infinity problem</li>
+</ul>
+</li>
+<li>Comparison
+<ul>
+<li>Link state algorithm
+<ul>
+<li>Faster convergence / Efficient routing</li>
+</ul>
+</li>
+<li>Distance vector
+<ul>
+<li>Simple to implement / Lower overhead</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Software-defined networking (SDN): implemented in remote servers</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>Data plane
+<ul>
+<li>local, per-router function</li>
+<li>determines how datagram arriving on router input port is forwarded to router output port</li>
+<li>forwarding table</li>
 </ul>
 </li>
 </ul>
@@ -834,7 +907,7 @@ Pandas | Matplotlib
 </li>
 <li>Intra-AS Routing (Interior Gateway Protocol - IGP):
 <ul>
-<li>Intra-AS routing refers to the routing protocols and mechanisms used within an individual Autonomous System (AS). An AS is a collection of networks under a single administrative control, such as an Internet Service Provider (ISP) or a large enterprise network. Intra-AS routing protocols, also known as Interior Gateway Protocols (IGPs), are used to exchange routing information and determine the best paths for routing packets within the boundaries of the AS.</li>
+<li>Intra-AS routing refers to the routing protocols and mechanisms used within an individual Autonomous System (AS). All routers in AS must run same intra-domain protocol. An AS is a collection of networks under a single administrative control, such as an Internet Service Provider (ISP) or a large enterprise network. Intra-AS routing protocols, also known as Interior Gateway Protocols (IGPs), are used to exchange routing information and determine the best paths for routing packets within the boundaries of the AS.</li>
 </ul>
 </li>
 <li>Inter-AS Routing (Exterior Gateway Protocol - EGP):
@@ -887,6 +960,11 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="link-layer">Link Layer</h3>
+<ul>
+<li>Functions
+*</li>
 </ul></div>
     <div class="post__footer">
       
