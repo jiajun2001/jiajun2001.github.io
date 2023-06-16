@@ -125,13 +125,13 @@ Pandas | Matplotlib
 <meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
 
 <meta name="twitter:title" content="Computer Network and Application"/>
-<meta name="twitter:description" content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge."/>
+<meta name="twitter:description" content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security."/>
 
 
 
   
   <meta property="og:title" content="Computer Network and Application" />
-<meta property="og:description" content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge." />
+<meta property="og:description" content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/computer-network-and-application/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-06-14T12:00:00+10:30" />
@@ -154,7 +154,7 @@ Pandas | Matplotlib
         "alternativeHeadline": "",
         "description": "
       
-        \u003cp\u003eThis is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge.\u003c\/p\u003e
+        \u003cp\u003eThis is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security.\u003c\/p\u003e
 
 
       
@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "3089",
+        "wordCount" : "3779",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,11 +495,11 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">15-minute read</span>
+            <span class="post__meta-text">18-minute read</span>
           </li>
         </ul>
 
-      <p>This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge.</p>
+      <p>This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security.</p>
 <br />
 <h3 id="measuring-performance">Measuring Performance</h3>
 <ul>
@@ -965,14 +965,23 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
+<li>Internet Control Message Protocol (ICMP)
+<ul>
+<li>ICMP is primarily used for diagnostic and error reporting purposes in IP networks. It provides a means for network devices, such as routers and hosts, to communicate with each other regarding network-related issues.</li>
+<li>Main functions
+<ul>
+<li>Error Reporting: ICMP is used to report errors and anomalies in IP packet delivery. For example, if a router encounters a problem while forwarding an IP packet, it can generate an ICMP error message and send it back to the source IP address to inform the sender about the issue.</li>
+<li>Network Reachability: ICMP is used to check the reachability of hosts or networks. The most common example is the ICMP Echo Request and Echo Reply messages, also known as &ldquo;ping.&rdquo; By sending an Echo Request message, a device can determine if another device on the network is reachable and functioning properly.</li>
+<li>Path MTU Discovery: ICMP is involved in the process of Path Maximum Transmission Unit (PMTU) Discovery. It helps determine the maximum size of IP packets that can be transmitted without fragmentation along a path between two hosts. ICMP messages, such as &ldquo;Packet Too Big,&rdquo; are used to inform the sender that the packet is too large and needs to be fragmented or reduced in size.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h3 id="link-layer">Link Layer</h3>
 <ul>
-<li>
-<p>Data-link layer has responsibility of transferring datagram from one node to physically adjacent node over a link</p>
-</li>
-<li>
-<p>Offered services:</p>
+<li>Data-link layer has responsibility of transferring datagram from one node to physically adjacent node over a link</li>
+<li>Offered services:
 <ul>
 <li>Framing</li>
 <li>Link access</li>
@@ -981,8 +990,7 @@ Pandas | Matplotlib
 <li>Error detection / correction</li>
 </ul>
 </li>
-<li>
-<p>Error detection and correction</p>
+<li>Error detection and correction
 <ul>
 <li>Parity
 <ul>
@@ -1016,8 +1024,7 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>
-<p>Multiple access protocols</p>
+<li>Multiple access protocols
 <ul>
 <li>Channel partitioning
 <ul>
@@ -1111,15 +1118,13 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>
-<p>LAN / MAC / physical address</p>
+<li>LAN / MAC / physical address
 <ul>
 <li>Used locally to get frame from one interface to another physically-connected interface</li>
 <li>Format: 48 bit MAC address burned in the adapter ROM (hexadecimal notation)</li>
 </ul>
 </li>
-<li>
-<p>Address Resolution Protocol (ARP)</p>
+<li>Address Resolution Protocol (ARP)
 <ul>
 <li>Given a destination IP address, work out the MAC address of the destination</li>
 <li>ARP Table: IP/MAC address mappings for some LAN nodes
@@ -1136,15 +1141,134 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>
-<p>Ethernet
-*</p>
+<li>Ethernet
+<ul>
+<li>Dominant wired LAN technology</li>
+<li>Sending adapter encapsulates IP datagram in Ethernet frame</li>
+<li>Physical topology
+<ul>
+<li>Bus: all nodes in same collision domain (can collide with each other | CSMA/CD)</li>
+<li>Star: active switch in center / each &ldquo;spoke&rdquo; runs a separate Ethernet protocol (nodes do not collide with each other)</li>
+</ul>
 </li>
-<li>
-<p>Switches</p>
+</ul>
 </li>
-<li>
-<p>MPLS</p>
+<li>Switches
+<ul>
+<li>Functions
+<ul>
+<li>Filtering, storing, forwarding Ethernet frames</li>
+<li>Examine incoming frame&rsquo;s MAC address, selectively forward frame to one-or-more outgoing links when frame is to be forwarded on segment.</li>
+</ul>
+</li>
+<li>Plug and play, self-learning
+<ul>
+<li>Switch table entry: [node LAN address, switch interface, time stamp, TTL]</li>
+<li>If a frame&rsquo;s destination is unknown, flood (flood learning)</li>
+</ul>
+</li>
+<li>Cycles result
+<ul>
+<li>organize switches in a spanning tree by disabling subset of interfaces</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MPLS
+<ul>
+<li>Initial goal: high-speed IP forwarding using fixed length labels
+<ul>
+<li>Fast lookup using fixed length identifier (rather than longest prefix matching)</li>
+</ul>
+</li>
+<li>MPLS routing: path to destination can be based on source and destination addresses
+<ul>
+<li>Fast reroute: pre-compute backup routes in case of link failure</li>
+</ul>
+</li>
+<li>MPLS operations: push / swap / pop</li>
+<li>MPLS equipment: Label Edge Routers / Label Switch Routers</li>
+<li>MPLS features
+<ul>
+<li>Flexibility: MPLS forwarding decisions can differ from those of IP
+<ul>
+<li>Use destination and source addresses to route flows to same destination differently.</li>
+<li>Re-route flows quickly if link fails: pre-computed backup paths</li>
+</ul>
+</li>
+<li>MPLS can support multiple levels of connection tunnelling through label stacking (VPN support)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Traceroute
+<ul>
+<li>A network diagnostic tool used to trace the path that an IP packet takes from a source device to a destination device over an IP network. It provides valuable information about the routers or network devices traversed by the packet, helping identify network connectivity issues, bottlenecks, and routing problems</li>
+</ul>
+</li>
+</ul>
+<h3 id="security">Security</h3>
+<ul>
+<li>Confidentiality: only sender, intended receiver should understand message contents
+<ul>
+<li>Sender encrypts message / Receiver decrypts message</li>
+</ul>
+</li>
+<li>Authentication: sender, receiver want to confirm identity of each other</li>
+<li>Message integrity: sender, receiver want to ensure message not altered without detection</li>
+<li>Access and availability: services must be accessible and available to users</li>
+<li>Attacks
+<ul>
+<li>Eavesdrop: intercept messages</li>
+<li>Actively insert messages into connections</li>
+<li>Impersonation: Fake (spoof) source address in packet (or any field in packet)</li>
+<li>Hijacking: take over ongoing connection by removing sender or receiver, inserting himself in place</li>
+<li>Deny of service: prevent service from being used by others</li>
+</ul>
+</li>
+<li>Nonce: number used only once-in-a-lifetime</li>
+<li>Hash function
+<ul>
+<li>produces fixed-size message digest (fingerprint)</li>
+<li>given message digest x, computationally infeasible to find m such that x = H(m)</li>
+</ul>
+</li>
+<li>Public key encryption algorithm
+<ul>
+<li>Requirements
+<ul>
+<li>1: need K<sup>+</sup>(B) and K<sup>-</sup>(B) such that K<sup>-</sup>(K<sup>+</sup>(m)) = m</li>
+<li>2: given public key K<sup>+</sup>(B), it should be impossible to compute private key K<sup>-</sup>(B).</li>
+</ul>
+</li>
+<li>Important property
+<ul>
+<li>K<sup>-</sup>(K<sup>+</sup>(m)) = m = K<sup>+</sup>(K<sup>-</sup>(m))</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Certification authority (CA): binds public key to particular entry, E.
+<ul>
+<li>E registers its public key with CA by providing &ldquo;proof of identity&rdquo; to CA</li>
+<li>CA creates certificate binding E to its public key</li>
+</ul>
+</li>
+<li>Secure e-mail
+<ul>
+<li>Alice wants to provide confidentiality, sender authentication, message integrity.
+<ul>
+<li>Confidentiality: encryption</li>
+<li>Sender authentication: digital signature</li>
+<li>Message integrity: Hashing</li>
+</ul>
+</li>
+<li>Approach
+<ul>
+<li>K<sub>s</sub>{K<sup>-</sup><sub>A</sub>(H(m)), m}, K<sup>+</sup><sub>B</sub>(K<sub>s</sub>)</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul></div>
     <div class="post__footer">
