@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "2499",
+        "wordCount" : "3089",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">12-minute read</span>
+            <span class="post__meta-text">15-minute read</span>
           </li>
         </ul>
 
@@ -854,7 +854,12 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>Software-defined networking (SDN): implemented in remote servers</li>
+<li>Software-defined networking (SDN): implemented in remote servers
+<ul>
+<li>Each router contains a flow table that is computed and distributed by a logically centralized routing controller</li>
+<li>programmable control applications</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -963,8 +968,184 @@ Pandas | Matplotlib
 </ul>
 <h3 id="link-layer">Link Layer</h3>
 <ul>
-<li>Functions
-*</li>
+<li>
+<p>Data-link layer has responsibility of transferring datagram from one node to physically adjacent node over a link</p>
+</li>
+<li>
+<p>Offered services:</p>
+<ul>
+<li>Framing</li>
+<li>Link access</li>
+<li>Reliable delivery between two physically connected devices</li>
+<li>Flow control</li>
+<li>Error detection / correction</li>
+</ul>
+</li>
+<li>
+<p>Error detection and correction</p>
+<ul>
+<li>Parity
+<ul>
+<li>Single bit parity (detect single bit errors)
+<ul>
+<li>odd parity: number of 1, if odd, parity bit = 0</li>
+<li>even parity: number of 1, if odd, parity bit = 1</li>
+</ul>
+</li>
+<li>Two dimensional bit parity (detect and correct single bit errors)</li>
+</ul>
+</li>
+<li>Checksums
+<ul>
+<li>Errors do not occur as a one-off single bit error, we normally have an error burst</li>
+<li>Internet checksum is 1&rsquo;s compliment sum of the segment contents</li>
+</ul>
+</li>
+<li>Cyclic Redundancy Check polynomials (CRCs)
+<ul>
+<li>Choose r + 1 bit pattern (Generator) G</li>
+<li>Goal: choose r CRC bits, R such that
+<ul>
+<li>&lt;D, R&gt; exactly divisible by G</li>
+<li>receiver knows G and divides &lt;D, R&gt; by G</li>
+<li>can detect all burst errors less that r + 1 bits</li>
+</ul>
+</li>
+<li>If G(x) with degree of r (length r + 1), then it is guaranteed to detect burst length errors of r or less</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Multiple access protocols</p>
+<ul>
+<li>Channel partitioning
+<ul>
+<li>Frequency Division Multiple Access (FDMA)
+<ul>
+<li>Channel spectrum divided into frequency bands</li>
+<li>Each station assigned fixed frequency band</li>
+<li>Unused transmission time in frequency bands go idle</li>
+</ul>
+</li>
+<li>Time Division Multiple Access (TDMA)
+<ul>
+<li>Access to channel in &lsquo;rounds&rsquo;</li>
+<li>Each station gets fixed length slot (length = packet transmission time) in each round</li>
+<li>Unused slots go idle</li>
+</ul>
+</li>
+<li>Code Division Multiple Access (CDMA)
+<ul>
+<li>Unique code assigned to each user to encode data</li>
+<li>Allows multiple users to &lsquo;coexist&rsquo; and transmit simultaneously with minimal interference (if codes are orthogonal)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Random access
+<ul>
+<li>Slotted ALOHA
+<ul>
+<li>Time is divided into equal size slots</li>
+<li>Node with new arriving packets: transmit at beginning of next slot</li>
+<li>If there is a collision: re-transmit the packet in future slots with probability p, until successful</li>
+<li>At best: channel used for useful transmissions 37% of time (Np = 1)</li>
+</ul>
+</li>
+<li>Pure (unslotted) ALOHA
+<ul>
+<li>Transmit immediately without awaiting for beginning of slot</li>
+<li>Collision probability increases: frame sent at t<sub>0</sub> collides with other packets sent in [t<sub>0</sub> - 1, t<sub>0</sub> + 1]</li>
+<li>At best: 18% of time (Np = 0.5)</li>
+</ul>
+</li>
+<li>Carrier Sense Multiple Access (CSMA)
+<ul>
+<li>Listen before transmit</li>
+<li>Types of CSMA
+<ul>
+<li>Persistent CSMA: retry immediately with probability p when channel becomes idle</li>
+<li>Non-persistent CSMA: retry after random interval</li>
+</ul>
+</li>
+<li>CSMA collisions
+<ul>
+<li>Collisions can occur due to propagation delay</li>
+<li>Collisions means entire packet transmission time is wasted - up to 2 packet times</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Carrier Sense Multiple Access with Collision Detection (CSMA/CD)
+<ul>
+<li>Colliding transmissions aborted, reducing channel wastage</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Taking turns
+<ul>
+<li>Polling
+<ul>
+<li>Master node invites slave nodes to transmit in turn</li>
+</ul>
+</li>
+<li>Token passing
+<ul>
+<li>Control token passed from one node to next sequentially</li>
+</ul>
+</li>
+<li>Distributed polling
+<ul>
+<li>Begins with N short reservation slots
+<ul>
+<li>Stations with message to send posts reservation</li>
+<li>Reservation seen by all stations</li>
+</ul>
+</li>
+<li>After reservation slots, message transmissions ordered by known priority</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>LAN / MAC / physical address</p>
+<ul>
+<li>Used locally to get frame from one interface to another physically-connected interface</li>
+<li>Format: 48 bit MAC address burned in the adapter ROM (hexadecimal notation)</li>
+</ul>
+</li>
+<li>
+<p>Address Resolution Protocol (ARP)</p>
+<ul>
+<li>Given a destination IP address, work out the MAC address of the destination</li>
+<li>ARP Table: IP/MAC address mappings for some LAN nodes
+<ul>
+<li>Table entry format: &lt;IP Address; MAC Address; TTL&gt;</li>
+</ul>
+</li>
+<li>Process
+<ul>
+<li>1: A broadcasts ARP query packet, containing B&rsquo;s IP address</li>
+<li>2: B receives ARP packet, replies to A with its MAC address</li>
+<li>3: A caches IP-to-MAC address pair in its ARP table until timeout</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Ethernet
+*</p>
+</li>
+<li>
+<p>Switches</p>
+</li>
+<li>
+<p>MPLS</p>
+</li>
 </ul></div>
     <div class="post__footer">
       
