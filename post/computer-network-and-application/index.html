@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "1957",
+        "wordCount" : "2276",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">10-minute read</span>
+            <span class="post__meta-text">11-minute read</span>
           </li>
         </ul>
 
@@ -780,6 +780,21 @@ Pandas | Matplotlib
 <li>Call setup: some network architectures require router call setup along path before data flows</li>
 </ul>
 </li>
+<li>Network layer
+<ul>
+<li>Data plane</li>
+<li>Control plane
+<ul>
+<li>Two control-plane approaches
+<ul>
+<li>Traditional routing algorithms: implemented in routers</li>
+<li>Software-defined networking (SDN): implemented in remote servers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>IP Addressing
 <ul>
 <li>Classfull addressing
@@ -825,6 +840,51 @@ Pandas | Matplotlib
 <li>Inter-AS Routing (Exterior Gateway Protocol - EGP):
 <ul>
 <li>Inter-AS routing refers to the routing protocols and mechanisms used for exchanging routing information between different Autonomous Systems (ASes) in the Internet. Inter-AS routing protocols, also known as Exterior Gateway Protocols (EGPs), are responsible for facilitating the exchange of routing information and enabling communication between ASes.</li>
+</ul>
+</li>
+<li>Fragmentation
+<ul>
+<li>Large IP datagram divided (fragmented) within net
+<ul>
+<li>One datagram becomes several datagrams</li>
+<li>Reassembled only at final destination</li>
+<li>IP header bits used to identify order related fragments</li>
+</ul>
+</li>
+<li>16-bit identifier: Examine the identification numbers of the datagrams to determine which of the datagrams are actually fragments of the same larger datagram</li>
+<li>Flags: In order for the destination host be absolutely sure it has received the last fragment of the original datagram, the last fragment has a flag bit set to 0, whereas all the other fragments have this flag bit set to 1</li>
+<li>Fragment offset: Specify where the fragment fits within the original IP datagram</li>
+</ul>
+</li>
+<li>IPv6
+<ul>
+<li>Why do we transition to IPv6
+<ul>
+<li>Address space exhaustion / Enhance security / Improved network performance</li>
+</ul>
+</li>
+<li>Features
+<ul>
+<li>128 bit address are written in hex: x : x : x : x : x : x : x : x, each x is 4 hex digits, sequence of zero fields given by &ldquo;::&rdquo;</li>
+<li>IPv6 8 fields in base header vs 13 fields in IPv4 can provide faster processing, simpler management, and more flexibility</li>
+<li>Fragmentation is no longer performed at intermediate routers. The source host should choose datagram size so fragmentation is not necessary. (e.g. send datagram with different sizes to target until they don&rsquo;t arrive)</li>
+<li>No checksum design reduces the processing overhead on intermediate routers and simplifies packet forwarding. The link-layer protocols in modern networks, such as Ethernet, already have their own error detection mechanisms, such as CRC (Cyclic Redundancy Check), which ensure data integrity during transmission.</li>
+</ul>
+</li>
+<li>Additional support
+<ul>
+<li>Multicast and anycast routing</li>
+<li>Security</li>
+<li>Mobile hosts and auto-configuration</li>
+<li>Real time applications</li>
+</ul>
+</li>
+<li>Transition from IPv4 to IPv6
+<ul>
+<li>Dual stack: some routers with dual stack can translate between formats (tend to lose some functionalities)</li>
+<li>Tunneling: IPv6 carried as payload in IPv4 datagram among IPv4 routers</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul></div>
