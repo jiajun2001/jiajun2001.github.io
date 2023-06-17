@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "3779",
+        "wordCount" : "3824",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -717,7 +717,7 @@ Pandas | Matplotlib
 <li>TCP
 <ul>
 <li>TCP is designed to provide the appearance of a reliable channel over the unreliable network layer (IP). TCP is a modified hybrid of go-Back-N and selective repeat.</li>
-<li>Sequence number and ACKs in TCP: Acknowledge the next expecting packet</li>
+<li>Sequence number and ACKs in TCP: Acknowledge the next expecting packet / Cumulative ACKs</li>
 <li>Timeout formula: Timeout = EstimatedRTT + 4 * Deviation
 <ul>
 <li>EstimatedRTT = (1 - x) * EstimatedRTT + x * SampleRTT</li>
@@ -897,6 +897,12 @@ Pandas | Matplotlib
 <li>The network administrator takes a network with a given IP address range and subnet mask and further divides it into smaller subnets by borrowing bits from the host portion of the IP address.</li>
 </ul>
 </li>
+<li>Reserved address
+<ul>
+<li>Network identifiers have a host part of all 0s</li>
+<li>Broadcast addresses have a host part of all 1s</li>
+</ul>
+</li>
 <li>Dynamic Host Configuration Protocol (DHCP)
 <ul>
 <li>Dynamically get an IP address (plug and play)</li>
@@ -1007,6 +1013,7 @@ Pandas | Matplotlib
 <ul>
 <li>Errors do not occur as a one-off single bit error, we normally have an error burst</li>
 <li>Internet checksum is 1&rsquo;s compliment sum of the segment contents</li>
+<li>When information is received, sum the contents and add with the checksums. If it is &ldquo;FFFFFFFF&rdquo;, then the information received is correct</li>
 </ul>
 </li>
 <li>Cyclic Redundancy Check polynomials (CRCs)
