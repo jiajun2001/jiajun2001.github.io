@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/computer-network-and-application\/",
-        "wordCount" : "3824",
+        "wordCount" : "4425",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">18-minute read</span>
+            <span class="post__meta-text">21-minute read</span>
           </li>
         </ul>
 
@@ -556,6 +556,12 @@ Pandas | Matplotlib
 <li>Assume file size: F, server upload rate: u<sub>s</sub>, N peers, lowest download rate of the peer: d<sub>min</sub></li>
 <li>C/S: max{ NF/u<sub>s</sub>, F/d<sub>min</sub> }</li>
 <li>P2P: max{ F/u<sub>s</sub>, F/d<sub>min</sub>, NF/(u<sub>s</sub> + u<sub>1</sub> + &hellip; + u<sub>N</sub>) }</li>
+<li>C/S faster than P2P conditions
+<ul>
+<li>Participating peers: In a P2P network, the availability of the file depends on the peers hosting it, and if these peers go offline or become unreliable, it can impact the file distribution speed</li>
+<li>Network infrastructure: If the network infrastructure is well-designed and optimized, a C/S architecture can take advantage of high speed connections and low latency</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -670,7 +676,11 @@ Pandas | Matplotlib
 <li>Port numbers and IP address in TCP and UDP
 <ul>
 <li>TCP: Datagram must specify: source IP address / source port number / destination IP address / destination port number</li>
-<li>UDP: Datagram must specify: destination IP address / destination port number</li>
+<li>UDP: Datagram must specify: destination IP address / destination port number
+<ul>
+<li>UDP de-multiplexing: IP datagrams with same destination port, but different source IP address and/or source port numbers will be directed to same socket at destination</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Reliable data transfer
@@ -717,7 +727,17 @@ Pandas | Matplotlib
 <li>TCP
 <ul>
 <li>TCP is designed to provide the appearance of a reliable channel over the unreliable network layer (IP). TCP is a modified hybrid of go-Back-N and selective repeat.</li>
-<li>Sequence number and ACKs in TCP: Acknowledge the next expecting packet / Cumulative ACKs</li>
+<li>TCP segment
+<ul>
+<li>Source and destination ports: The combination of the source port and destination port fields allows TCP to establish and maintain multiple simultaneous connections between different applications or services running on the same or different hosts.</li>
+<li>SYN: indicating that this segment is a synchronous request to initialize a TCP connection. It is used during the TCP handshake process to establish a connection</li>
+<li>ACK (cumulative ACKS): indicating that this segment is an acknowledgment of a previously received segment. It confirms that the recipient has received the segment identified by the ACKNUM field</li>
+<li>SEQNUM: specifies the sequence number assigned by the sender to this segment. It is used to number the data bytes in a TCP stream. By using sequence numbers, TCP ensures that data is received in the correct order and any missing or duplicate segments can be detected.</li>
+<li>Window size: The window size field is a 16-bit value that indicates the amount of data, in bytes, that a receiver is willing to accept before requiring the sender to pause and wait for acknowledgement.</li>
+<li>ACKNUM: indicates the sequence number that the sender of this segment expects to receive next</li>
+<li>Checksum: used for error detection. The TCP checksum is a 16-bit field that helps ensure the integrity of the TCP segment during transmission. It is calculated by the sender and verified by the recipient to detect errors that may have occurred during transmission.</li>
+</ul>
+</li>
 <li>Timeout formula: Timeout = EstimatedRTT + 4 * Deviation
 <ul>
 <li>EstimatedRTT = (1 - x) * EstimatedRTT + x * SampleRTT</li>
@@ -749,7 +769,11 @@ Pandas | Matplotlib
 <ul>
 <li>Client -&gt; Server: FIN</li>
 <li>Server -&gt; Client: ACK / FIN</li>
-<li>Client -&gt; Server: ACK</li>
+<li>Client -&gt; Server: ACK
+<ul>
+<li>Time wait increases the chance of server receiving the final ACK</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -773,6 +797,12 @@ Pandas | Matplotlib
 </ul>
 <h3 id="network-layer">Network Layer</h3>
 <ul>
+<li>Datagram protocol
+<ul>
+<li>A connectionless protocol where each packet, also known as a datagram, is treated independently and can take different routes to reach its destination. In the case of IP, each IP packet (datagram) contains the source and destination IP addresses, as well as the data payload.</li>
+<li>Limitation: Reliable delivery / ordering / congestion control / Fragmentation and reassembly</li>
+</ul>
+</li>
 <li>Functions
 <ul>
 <li>Path determination: route taken by packets from source to dest</li>
@@ -979,6 +1009,7 @@ Pandas | Matplotlib
 <li>Error Reporting: ICMP is used to report errors and anomalies in IP packet delivery. For example, if a router encounters a problem while forwarding an IP packet, it can generate an ICMP error message and send it back to the source IP address to inform the sender about the issue.</li>
 <li>Network Reachability: ICMP is used to check the reachability of hosts or networks. The most common example is the ICMP Echo Request and Echo Reply messages, also known as &ldquo;ping.&rdquo; By sending an Echo Request message, a device can determine if another device on the network is reachable and functioning properly.</li>
 <li>Path MTU Discovery: ICMP is involved in the process of Path Maximum Transmission Unit (PMTU) Discovery. It helps determine the maximum size of IP packets that can be transmitted without fragmentation along a path between two hosts. ICMP messages, such as &ldquo;Packet Too Big,&rdquo; are used to inform the sender that the packet is too large and needs to be fragmented or reduced in size.</li>
+<li>Trace the path taken by a packet over the network: By sending packets with increasing TTL values, traceroute effectively maps the network path from the source to the destination. The ICMP &ldquo;Time Exceeded&rdquo; messages indicate the presence of routers along the path, while the &ldquo;Echo Reply&rdquo; message confirms the packet&rsquo;s successful arrival at the destination.</li>
 </ul>
 </li>
 </ul>
@@ -1027,6 +1058,7 @@ Pandas | Matplotlib
 </ul>
 </li>
 <li>If G(x) with degree of r (length r + 1), then it is guaranteed to detect burst length errors of r or less</li>
+<li>Advantages: CRCs are popular because they are simple to implement in binary hardware, easy to analyze mathematically, and particularly good at detecting common errors caused by noise in transmission channels.</li>
 </ul>
 </li>
 </ul>
@@ -1177,6 +1209,7 @@ Pandas | Matplotlib
 <li>Cycles result
 <ul>
 <li>organize switches in a spanning tree by disabling subset of interfaces</li>
+<li>The Spanning Tree Protocol (STP) is a network protocol used in Layer 2 Ethernet networks to prevent loops and ensure the creation of a loop-free topology. Its main role is to establish a tree-like structure within a network by selectively blocking redundant paths.</li>
 </ul>
 </li>
 </ul>
@@ -1197,6 +1230,7 @@ Pandas | Matplotlib
 <li>MPLS equipment: Label Edge Routers / Label Switch Routers</li>
 <li>MPLS features
 <ul>
+<li>Traffic Engineering: MPLS allows network administrators to control the path and flow of traffic through the network.</li>
 <li>Flexibility: MPLS forwarding decisions can differ from those of IP
 <ul>
 <li>Use destination and source addresses to route flows to same destination differently.</li>
@@ -1234,10 +1268,12 @@ Pandas | Matplotlib
 </ul>
 </li>
 <li>Nonce: number used only once-in-a-lifetime</li>
+<li>Challenge-response protocols are authentication protocols that involve a challenge presented by the verifier to the prover, who must provide a response that proves their identity or possession of a secret key.</li>
 <li>Hash function
 <ul>
 <li>produces fixed-size message digest (fingerprint)</li>
 <li>given message digest x, computationally infeasible to find m such that x = H(m)</li>
+<li>process data quickly and hashed value is efficient for verification</li>
 </ul>
 </li>
 <li>Public key encryption algorithm
@@ -1261,6 +1297,7 @@ Pandas | Matplotlib
 <li>CA creates certificate binding E to its public key</li>
 </ul>
 </li>
+<li>Key distribution problem: refers to the challenge of securely distributing encryption keys between parties involved in secure communication or cryptographic systems. The key distribution problem arises from the need to establish and exchange encryption keys in a secure and reliable manner.</li>
 <li>Secure e-mail
 <ul>
 <li>Alice wants to provide confidentiality, sender authentication, message integrity.
