@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        Using Machine Learning Tools |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+------------- SKILLS -------------
+Java SE | C&#43;&#43; | C | C# | Python 
+R | MATLAB | Visual Basic
+HTML | CSS | JavaScript | Vue.js | React.js 
+Node.js | AJAX | MySQL
+Git | Vim | Linux (Ubuntu)
+Pandas | Matplotlib
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/using-machine-learning-tools/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Using Machine Learning Tools"/>
+<meta name="twitter:description" content="This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools."/>
+
+
+
+  
+  <meta property="og:title" content="Using Machine Learning Tools" />
+<meta property="og:description" content="This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/using-machine-learning-tools/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-24T07:55:16+10:30" />
+<meta property="article:modified_time" content="2023-02-24T07:55:16+10:30" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Using Machine Learning Tools",
+        "headline": "Using Machine Learning Tools",
+        "alternativeHeadline": "",
+        "description": "
+      
+        This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools.
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/using-machine-learning-tools\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-02-24T07:55:16.00Z",
+        "datePublished": "2023-02-24T07:55:16.00Z",
+        "dateModified": "2023-02-24T07:55:16.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun's Blog",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/using-machine-learning-tools\/",
+        "wordCount" : "1342",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "Machine Learning"
+
+    
+      
+        ,
+
+      
+      "Notes"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />------------- SKILLS -------------<br />Java SE | C++ | C | C# | Python <br />R | MATLAB | Visual Basic<br />HTML | CSS | JavaScript | Vue.js | React.js <br />Node.js | AJAX | MySQL<br />Git | Vim | Linux (Ubuntu)<br />Pandas | Matplotlib<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>Using Machine Learning Tools</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  24/2/2023
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">7-minute read</span>
+          </li>
+        </ul>
+
+      <p>This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools.</p>
+<!-- more -->
+<br />
+<h2 id="week-3">Week 3</h2>
+<ul>
+<li>
+<p>Data pipeline</p>
+<ul>
+<li>A sequence of data processing components</li>
+<li>There is a lot of data to manipulate and many data transformations to apply</li>
+<li>Components typically run asynchronously</li>
+<li>Each components is self-contained which makes the architecture quite robust</li>
+<li>Data pipelines are easy to understand and enables teams to focus on different components</li>
+<li>On the other hand, a broken component can go unnoticed so the data gets stale and the overall system&rsquo;s performance drops</li>
+</ul>
+</li>
+<li>
+<p>Classifier</p>
+<ul>
+<li>Linear model as a binary classifier
+<ul>
+<li>Using linear model for regression and apply a threshold</li>
+</ul>
+</li>
+<li>Stochastic gradient descent classifier
+<ul>
+<li>Binary classifier using a linear model</li>
+<li>SGD is a fitting algorithm which iteratively follows the derivative of the loss function</li>
+</ul>
+</li>
+<li>Decision tree
+<ul>
+<li>Iterative splitting</li>
+<li>Maximize class separation</li>
+<li>One feature at a time</li>
+<li>Up to maximum depth</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Inner workings</p>
+<ul>
+<li>Gini impurity metric measures the class distribution in a node (G = 0 for impurity, best)</li>
+<li>Decision boundaries</li>
+</ul>
+</li>
+<li>
+<p>Performance measure</p>
+<ul>
+<li>Regression
+<ul>
+<li>RMSE (L<sup>2</sup>norm): It gives an idea of how much error the system typically makes in its predictions, with a higher weight given to large errors.</li>
+<li>MAE (L<sup>1</sup>norm): also called the average absolute deviation
+<ul>
+<li>The higher the norm index, the more it focuses on large values and neglects small ones. This is why the RMSE is more sensitive to outliers than MAE</li>
+</ul>
+</li>
+<li>Median / Max absolute error</li>
+<li>R<sup>2</sup> / correlation coefficient</li>
+</ul>
+</li>
+<li>Classification
+<ul>
+<li>Precision / Recall
+<ul>
+<li>Precision: the fraction of positive predictions are correct</li>
+<li>Recall: the fraction of the real positive class are detected</li>
+<li>Trade-Off
+<ul>
+<li>Low threshold -&gt; everything is positive -&gt; recall = 1</li>
+<li>High threshold -&gt; everything is negative -&gt; precision = 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Accuracy
+<ul>
+<li>(TP + TN) / (TP + TN + FP + FN)</li>
+<li>Accuracy is not reliable when dealing with imbalanced classes because it may be misleading and biased towards the major class</li>
+</ul>
+</li>
+<li>F1-score
+<ul>
+<li>It is the harmonic mean of precision and recall.</li>
+<li>Whereas the regular mean treats all values equally, the harmonic mean gives much more weight to low values.</li>
+<li>As a result, the classifier will only get a high F1-score if both recall and precision are high.</li>
+<li>The F1-score may not be the best metric to use when precision and recall are not equally important</li>
+</ul>
+</li>
+<li>ROC curve
+<ul>
+<li>The FPR (false positive rate) is the ratio of negative instances that are incorrectly classified as positive</li>
+<li>Should use Precision / Recall curve whenever the positive class is rare or when we care more about the false positives than the false negatives</li>
+</ul>
+</li>
+<li>AUC curve</li>
+<li>Confusion matrix</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br />
+<h2 id="week-2">Week 2</h2>
+<ul>
+<li>
+<p>A typical workflow for supervised learning</p>
+<ul>
+<li>Check and clean data</li>
+<li>Choose some candidate models based on data and task</li>
+<li>Split data into training and test sets</li>
+<li>Split training data into (reduced) training and validation sets</li>
+<li>Train candidate models on (reduced) training sets</li>
+<li>Select best model based on validation set errors</li>
+<li>Retrain best model on full training set</li>
+<li>Apply best model to test data which gives an unbiased estimate of the generalization error</li>
+</ul>
+</li>
+<li>
+<p>Missing data</p>
+<ul>
+<li>If there are missing features
+<ul>
+<li>can remove data, but bad if large amounts of missing data</li>
+<li>can replace them with estimated / non-informative values</li>
+</ul>
+</li>
+<li>Using imputers</li>
+</ul>
+</li>
+<li>
+<p>Scaling data</p>
+<ul>
+<li>Why
+<ul>
+<li>Often distance is used by the ML method, and without scaling the features with the largest values would dominate</li>
+<li>Safer to use it in general as it does not harm</li>
+</ul>
+</li>
+<li>Using MinMaxScaler</li>
+<li>Using StandardScaler</li>
+</ul>
+</li>
+<li>
+<p>Pipelines in sklearn</p>
+<ul>
+<li>Best practice: chain them together as a Pipeline</li>
+</ul>
+</li>
+<li>
+<p>Linear regression</p>
+<ul>
+<li>When we fit the model, we optimize the parameter vector to minimize an error/loss/cost function over data points</li>
+<li>For a linear model, there is an analytic formula for the optimal result, otherwise use iterative method to find it</li>
+<li>Linear for each parameter but not for data values</li>
+</ul>
+</li>
+<li>
+<p>Parameters and hyper-parameters</p>
+<ul>
+<li>Models have parameters that are fit to data internally</li>
+<li>Hyper-parameters are not changed during fitting</li>
+<li>Best hyper-parameter is usually measured by validation error</li>
+</ul>
+</li>
+</ul>
+<br />
+<h2 id="week-1">Week 1</h2>
+<ul>
+<li>
+<p>Machine learning: program a computer to learn from the data how to solve the problem.</p>
+</li>
+<li>
+<p>Machine learning characters:</p>
+<ul>
+<li>Avoid hand turning of parameters</li>
+<li>Adapt to new environments and settings (Model may forget things)</li>
+<li>Complex problem with no known solution</li>
+<li>Analysis and mining of large datasets</li>
+</ul>
+</li>
+<li>
+<p>Types of machine learning (Supervised or not)</p>
+<ul>
+<li>Supervised learning: your training data includes labels or values (the desired result)
+<ul>
+<li>Classification: uses discrete labels (integers, set of possible outcomes)</li>
+<li>Regression: uses real values to predict a real number, based on training data that contains values and possibly other features.</li>
+<li>Supervised learning algorithms
+<ul>
+<li>K-nearest-neighbors</li>
+<li>Linear regression</li>
+<li>Logistic regression</li>
+<li>Support Vector Machines (SVMs)</li>
+<li>Decision Trees and Random Forests</li>
+<li>Neural networks</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unsupervised learning: your training data <strong>DOES NOT</strong> include labels or values
+<ul>
+<li>Clustering data: market research / Image segmentation</li>
+<li>Dimension reduction: visualization / preprocessing (Throw some useless features)</li>
+<li>Anomaly detection: fraud detection / security / pathology in medical data
+<ul>
+<li>To detect unusual instances based on mostly normal instances during training</li>
+</ul>
+</li>
+<li>Association rule learning
+<ul>
+<li>Dig into large amount of data and discover interesting relations between attributes</li>
+</ul>
+</li>
+<li>Unsupervised learning algorithms
+<ul>
+<li>Clustering
+<ul>
+<li>K-Means</li>
+<li>DBSCAN</li>
+<li>Hierarchical Cluster Analysis (HCA)</li>
+</ul>
+</li>
+<li>Anomaly detection and novelty detection
+<ul>
+<li>One-class SVM</li>
+<li>Isolation Forest</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Semi-supervised learning: a lot of unlabelled data and a little bit of labelled data</li>
+<li>Self-supervised learning
+<ul>
+<li>During self-supervised learning, a model is trained to recover the original image by using masked images as input and original images as labels</li>
+<li>Self-supervised learning is generally used for classification and regression tasks</li>
+<li>Self-supervised learning generates a fully labelled dataset from an unlabeled one</li>
+</ul>
+</li>
+<li>Reinforcement learning: algorithm actively collects data, by interacting with the environment (environment provides reward signals, algorithm learns a policy to maximize reward over time)</li>
+</ul>
+</li>
+<li>
+<p>Batch and online learning</p>
+<ul>
+<li>Batch learning: system cannot learn incrementally (AKA offline learning)
+<ul>
+<li>Model rot or data drift: A model&rsquo;s performance tents to decay slowly overtime, simply because the world continues to evolve while the model remains unchanged.</li>
+</ul>
+</li>
+<li>Online learning: system can be trained incrementally, great to receive data as a continuous flow, also can do out-of-core learning</li>
+</ul>
+</li>
+<li>
+<p>Approaches to machine learning</p>
+<ul>
+<li>Instanced-based learning
+<ul>
+<li>K-nearest-neighbors (KNN): follow the Instanced-of nearby training data points</li>
+</ul>
+</li>
+<li>Model-based learning
+<ul>
+<li>Fit a model to existing data
+<ul>
+<li>Fit: optimize model parameters</li>
+<li>Model: linear model, support vector machine, deep neural network</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Problems with data</p>
+<ul>
+<li>Quantity of data</li>
+<li>Range or domain of data (Try to cover more)</li>
+<li>Real data contains noise, errors and outliers
+<ul>
+<li>Detect, discard, fix, fill</li>
+</ul>
+</li>
+<li>Some features are less useful than others (Try to select and combine features)
+<ul>
+<li>Feature engineering
+<ul>
+<li>Feature selection</li>
+<li>Feature extraction</li>
+<li>Create new features</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Problem with models</p>
+<ul>
+<li>Overfitting: model is too complex for the data, essentially fitting to noise in the data
+<ul>
+<li>Solve:
+<ul>
+<li>Try to collect more data or reduce noise (averaging)</li>
+<li>Choose a less complex model with fewer parameters</li>
+<li>Regularization
+<ul>
+<li>&ldquo;soft&rdquo; reduction in parameters</li>
+<li>penalize parameter values that are far from zero</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Underfitting: model is too simple for the data
+<ul>
+<li>Solve:
+<ul>
+<li>Feature reduction, preprocessing</li>
+<li>Choose a more powerful model</li>
+<li>Reduce regularization penalty</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Selecting a model</p>
+<ul>
+<li>Pick a few likely candidates</li>
+<li>Select the best model by comparing them by measuring generalization error</li>
+</ul>
+</li>
+<li>
+<p>Training and test sets</p>
+<ul>
+<li>We split data into
+<ul>
+<li>Training set: used to fit model parameters</li>
+<li>Test set: used to measure prediction accuracy after fitting</li>
+</ul>
+</li>
+<li>Train model on training set, measure prediction error on both training and test sets, but separately
+<ul>
+<li>High training set error: underfitting</li>
+<li>Low training set error, high test set error: overfitting</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Model validation</p>
+<ul>
+<li>By training and testing on the same training / test split, we select for best performance on this split.</li>
+<li>We further split our dataset into 3 parts: training set, validation set, test set.
+<ul>
+<li>Train candidate models on reduced training set, measure error on validation set.</li>
+<li>Choose model/settings with lowest validation error</li>
+<li>Estimate generalization error using test set</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Cross validation (K - fold CV, leave one out CV)</p>
+<ul>
+<li>Select multiple validation sets (test set is fixed) and train multiple times</li>
+<li>Take the model with the lowest mean validation error</li>
+<li>Re-train chosen model on the full training set (training set + validation set)</li>
+<li>Test it once to estimate the generalization error</li>
+<li>Trade off
+<ul>
+<li>Better for smaller training sets, not dependent on a single (small) split.</li>
+<li>More time consuming</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/machine-learning/">Machine Learning</a><a class="tag" href="/tags/notes/">Notes</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

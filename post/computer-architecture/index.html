@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  class="html"
+><head>
+  <title>
+    
+      
+        Computer Architecture (RISC-V) |
+
+      Jiajun&#39;s Blog
+
+  </title>
+
+  
+  <meta charset="utf-8" /><meta name="generator" content="Hugo 0.104.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Jiajun&#39;s Blog" />
+  <meta
+    name="description"
+    content="Call me Jason
+Student from The University of Adelaide
+Penultimate Computer Science Undergraduate
+------------- SKILLS -------------
+Java SE | C&#43;&#43; | C | C# | Python 
+R | MATLAB | Visual Basic
+HTML | CSS | JavaScript | Vue.js | React.js 
+Node.js | AJAX | MySQL
+Git | Vim | Linux (Ubuntu)
+Pandas | Matplotlib
+"
+  />
+  
+  
+    
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.b2e0cb07595e3519ab1193bb421914e06c0e26b0cc561fef23b3c6131d4d2ffa.css"
+      integrity="sha256-suDLB1leNRmrEZO7QhkU4GwOJrDMVh/vI7PGEx1NL/o="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+
+  
+
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.31b0a1f317f55c529a460897848c97436bb138b19c399b37de70d463a8bf6ed5.css"
+    integrity="sha256-MbCh8xf1XFKaRgiXhIyXQ2uxOLGcOZs33nDUY6i/btU="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.7d272de35b410fb165377550cdf9c4d3a80fbbcc961e111914e4d5c0eaf5729f.css"
+    integrity="sha256-fSct41tBD7FlN3VQzfnE06gPu8yWHhEZFOTVwOr1cp8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.55d8333481b07a08e07cf6f37319753a2b47e99f4c395394c5747b48b495aa9b.css"
+    integrity="sha256-VdgzNIGwegjgfPbzcxl1OitH6Z9MOVOUxXR7SLSVqps="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.a7448d02590b43449364b6b5922ed9af5410abb4de4238412a830316dedb850b.css"
+    integrity="sha256-p0SNAlkLQ0STZLa1ki7Zr1QQq7TeQjhBKoMDFt7bhQs="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.9ed75a5d670c953fe4df935937674b4646f92674367e9e66eb995bb04e821647.css"
+    integrity="sha256-ntdaXWcMlT/k35NZN2dLRkb5JnQ2fp5m65lbsE6CFkc="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="https://jiajun2001.github.io/post/computer-architecture/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.738c0e3a493854876aeab9e2316fd43f1936aeeac4cc6b3e60bb26456dba72ad.js"
+      integrity="sha256-c4wOOkk4VIdq6rniMW/UPxk2rurEzGs&#43;YLsmRW26cq0="
+      crossorigin="anonymous"
+    ></script>
+
+  
+
+  
+
+
+  
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Computer Architecture (RISC-V)"/>
+<meta name="twitter:description" content="This is my revision notes for Computer Architecture (based on RISC-V). In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), RISC-V instructions, arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs."/>
+
+
+
+  
+  <meta property="og:title" content="Computer Architecture (RISC-V)" />
+<meta property="og:description" content="This is my revision notes for Computer Architecture (based on RISC-V). In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), RISC-V instructions, arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiajun2001.github.io/post/computer-architecture/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-06-21T11:26:17+10:30" />
+<meta property="article:modified_time" content="2023-06-21T11:26:17+10:30" /><meta property="og:site_name" content="My blog" />
+
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "post",
+        "name": "Computer Architecture (RISC-V)",
+        "headline": "Computer Architecture (RISC-V)",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003cp\u003eThis is my revision notes for Computer Architecture (based on RISC-V). In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), RISC-V instructions, arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs.\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "inLanguage": "en",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jiajun2001.github.io\/post\/computer-architecture\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Jiajun\u0027s Blog"
+        },
+        "copyrightYear" : "2023",
+        "dateCreated": "2023-06-21T11:26:17.00Z",
+        "datePublished": "2023-06-21T11:26:17.00Z",
+        "dateModified": "2023-06-21T11:26:17.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Jiajun's Blog",
+            "url": "https://jiajun2001.github.io/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/jiajun2001.github.io\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+        
+        "https://jiajun2001.github.io/images/site-feature-image.png"
+
+
+      
+      ]
+
+    ,
+        "url" : "https:\/\/jiajun2001.github.io\/post\/computer-architecture\/",
+        "wordCount" : "740",
+        "genre" : [ ],
+        "keywords" : [ 
+      
+      "Computer Architecture"
+
+    
+      
+        ,
+
+      
+      "Notes"
+
+    ]
+    }
+  </script>
+
+
+
+</head>
+<body
+    
+      class="body theme--light"
+
+    
+  >
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/">My blog</a>
+        </div>
+
+      
+      <div class="sidebar__introduction-description">
+        <p>Call me Jason<br />Student from The University of Adelaide<br />Penultimate Computer Science Undergraduate<br />------------- SKILLS -------------<br />Java SE | C++ | C | C# | Python <br />R | MATLAB | Visual Basic<br />HTML | CSS | JavaScript | Vue.js | React.js <br />Node.js | AJAX | MySQL<br />Git | Vim | Linux (Ubuntu)<br />Pandas | Matplotlib<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:jiajunyu@yahoo.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/jiajun2001"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://api.whatsapp.com/send?phone=61466659310"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/post/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/portfolio/"
+              
+              title=""
+              >Portfolio</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/awards/"
+              
+              title=""
+              >Awards</a
+            >
+          </li>
+
+        
+
+
+      
+        
+        
+          <li class="nav__list-item">
+            <a
+              
+              href="/certifications/"
+              
+              title=""
+              >Certifications</a
+            >
+          </li>
+
+        
+
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+
+    "
+  >
+    
+    <div class="post__content">
+      <h1>Computer Architecture (RISC-V)</h1>
+      
+        <ul class="post__meta">
+          <li class="post__meta-item">
+            <em class="fas fa-calendar-day post__meta-icon"></em>
+            <span class="post__meta-text"
+              >
+                
+                  21/6/2023
+
+
+                
+
+
+              
+            </span>
+          </li>
+          <li class="post__meta-item">
+            <em class="fas fa-stopwatch post__meta-icon"></em>
+            <span class="post__meta-text">4-minute read</span>
+          </li>
+        </ul>
+
+      <p>This is my revision notes for Computer Architecture (based on RISC-V). In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), RISC-V instructions, arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs.</p>
+<br />
+<h2 id="week-1">Week 1</h2>
+<h3 id="lecture-content">Lecture content</h3>
+<ul>
+<li>
+<p>Different types of computers</p>
+<ul>
+<li>Personal computers
+<ul>
+<li>Used by an individual</li>
+</ul>
+</li>
+<li>Server computers
+<ul>
+<li>Used for running larger programs for multiple users, typically accessed only via a network</li>
+</ul>
+</li>
+<li>Supercomputers
+<ul>
+<li>Used for high-end scientific and engineering calculations</li>
+</ul>
+</li>
+<li>Embedded computers
+<ul>
+<li>Used for running one pre-determined application or collection of software</li>
+<li>It has stringent limitations on cost or power</li>
+<li>Dependability is achieved primarily through simplicity</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Post-PC Era</p>
+<ul>
+<li>Personal mobile device (PMD)</li>
+<li>Cloud computing</li>
+</ul>
+</li>
+<li>
+<p>Levels of program code</p>
+<ul>
+<li>High-level language</li>
+<li>Assembly language</li>
+<li>Hardware representation</li>
+</ul>
+</li>
+<li>
+<p>CPU components</p>
+<ul>
+<li>Data path: performs operations on data</li>
+<li>Control: sequences data path, memory</li>
+<li>Cache memory
+<ul>
+<li>Small fast SRAM memory for immediate access to data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Data storage</p>
+<ul>
+<li>Based on memory hierarchy
+<ul>
+<li>Main/primary memory: Memory used to hold programs while they are running</li>
+<li>Secondary memory: Memory used to store programs and data between runs</li>
+</ul>
+</li>
+<li>Based on if it is volatile or not
+<ul>
+<li>Volatile main memory: lose instructions and data when power off
+<ul>
+<li>SRAM: memory built as an integrated circuit, but faster and less dense than DRAM</li>
+<li>DRAM: memory built as an integrated circuit. It provides random access to any location</li>
+</ul>
+</li>
+<li>Non-volatile secondary memory: A form of memory that retains data even in the absence of a power source
+<ul>
+<li>Flash memory: a memory that is the standard secondary memory for PMDs. It is slower and much cheaper than DRAM. However, costing more per bit than disks.</li>
+<li>Magnetic disk: also called hard disk which composed of rotating platters coated with a magnetic recording material</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Networks</p>
+<ul>
+<li>Local area network (LAN): Ethernet</li>
+<li>Wide area network (WAN): the internet</li>
+<li>Wireless network: WiFi, Bluetooth</li>
+</ul>
+</li>
+<li>
+<p>Instruction set architecture (architecture)</p>
+<ul>
+<li>An abstract interface between the hardware and the lowest-level software that encompasses all the information necessary to write a machine language program that will run correctly, including instructions, registers, memory access, I/O, and so on.</li>
+</ul>
+</li>
+<li>
+<p>Application binary interface (ABI)</p>
+<ul>
+<li>The user portion of the instruction set plus the operating system interfaces used by application programmers. It defines a standard for binary portability across computers.</li>
+</ul>
+</li>
+<li>
+<p>CPU Clocking</p>
+<ul>
+<li>Clock Period: duration of a clock cycle</li>
+<li>Clock Frequency (rate): cycles per second</li>
+</ul>
+</li>
+<li>
+<p>CPU Time: the time spent processing a given job</p>
+<ul>
+<li>CPU Time = CPU Clock Cycles * Clock Period = CPU Clock Cycles / Clock Frequency</li>
+<li>Performance improved by
+<ul>
+<li>Reducing number of clock cycles</li>
+<li>Increasing clock rate (clock frequency)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Clock Cycles = Instruction Count * Clock per Instruction</p>
+</li>
+<li>
+<p>Power = Capacitive load * Voltage<sup>2</sup> * Frequency</p>
+</li>
+</ul>
+<br />
+<h3 id="background-knowledge-study">Background knowledge study</h3>
+<ul>
+<li><strong>Byte addressing</strong>:
+<ul>
+<li>Each byte of storage has a unique address</li>
+</ul>
+</li>
+<li>Preferred method for a program to <strong>transfer data between a disk controller and memory</strong>:
+<ul>
+<li>The program could provide to the disk controller the memory address where the data should be copied. When data is ready to be transferred, the disk controller could use direct memory access to copy the data <strong>to memory</strong>.</li>
+</ul>
+</li>
+<li><strong>Speed</strong> for data to be transferred over a cable for a <strong>computer display</strong>:
+<ul>
+<li>3Gbit/sec</li>
+</ul>
+</li>
+<li>Steps performed by a <strong>CPU to execute instructions</strong>:
+<ul>
+<li>Fetch the next instruction from memory: The CPU fetches the next instruction from memory. The instruction is usually stored in a program counter, which contains the memory address of the next instruction to be executed.</li>
+<li>Decode the instruction: The CPU decodes the instruction to determine what operation it needs to perform. This involves identifying the opcode (operation code) of the instruction and any operands (data or memory addresses) that are needed.</li>
+<li>Execute the operations required for the instruction: The CPU performs the operation specified by the instruction. This may involve reading or writing data to memory, performing arithmetic or logical operations on data, or transferring data between different parts of the CPU.</li>
+<li>Repeat for the next instruction: The CPU returns to the fetch step and fetches the next instruction, continuing the cycle.</li>
+</ul>
+</li>
+<li><strong>Period versus frequency</strong>:
+<img src="/ComputerArchitecture/period.png" width="400"/></li>
+<li><strong>How are instructios represented in memory</strong>:
+<ul>
+<li>Each instruction is encoded in binary, with specific bit fields encoding the opcode and operands</li>
+</ul>
+</li>
+<li><strong>Reading a memory involves</strong>:
+<ul>
+<li>The CPU determining the memory address</li>
+<li>The CPU transmitting the address to the memory</li>
+<li>The memory retrieving the data at the addressed location</li>
+<li>The memory transmitting the data to the CPU</li>
+</ul>
+</li>
+<li><strong>SI</strong> (International System of Units) multiplier prefixes:
+<img src="/ComputerArchitecture/SI.jpeg" width="600"/></li>
+</ul></div>
+    <div class="post__footer">
+      
+
+      
+        <span><a class="tag" href="/tags/computer-architecture/">Computer Architecture</a><a class="tag" href="/tags/notes/">Notes</a></span>
+
+
+
+
+      
+    </div>
+
+    
+  </div>
+
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Jiajun&#39;s Blog
+        2023
+
+
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
+</html>

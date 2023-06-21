@@ -6,11 +6,33 @@
     <description>Recent content in Notes on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 14 Jun 2023 12:00:00 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 15:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Parallel and Distributed Computing</title>
+      <link>https://jiajun2001.github.io/post/parallel-and-distributed-computing/</link>
+      <pubDate>Wed, 21 Jun 2023 15:27:22 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/parallel-and-distributed-computing/</guid>
+      
+        <description>This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis.</description>
+      
+    </item>
+    
+    <item>
+      <title>Computer Architecture (RISC-V)</title>
+      <link>https://jiajun2001.github.io/post/computer-architecture/</link>
+      <pubDate>Wed, 21 Jun 2023 11:26:17 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/computer-architecture/</guid>
+      
+        <description>&lt;p&gt;This is my revision notes for Computer Architecture (based on RISC-V). In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), RISC-V instructions, arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Computer Network and Application</title>
       <link>https://jiajun2001.github.io/post/computer-network-and-application/</link>
-      <pubDate>Wed, 14 Jun 2023 12:00:00 +1030</pubDate>
+      <pubDate>Sun, 18 Jun 2023 12:00:00 +1030</pubDate>
       
       <guid>https://jiajun2001.github.io/post/computer-network-and-application/</guid>
       
@@ -19,33 +41,11 @@
     </item>
     
     <item>
-      <title>COMP SCI 3305 - Parallel And Distributed Computing</title>
-      <link>https://jiajun2001.github.io/post/comp-sci-3305-parallelanddistributedcomputing/</link>
-      <pubDate>Wed, 01 Mar 2023 15:27:22 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/comp-sci-3305-parallelanddistributedcomputing/</guid>
-      
-        <description>This is my notes for the course COMP SCI 3305 - Parallel And Distributed Computing.</description>
-      
-    </item>
-    
-    <item>
-      <title>ELEC ENG 3088 - Computer Architecture</title>
-      <link>https://jiajun2001.github.io/post/elec-eng-3088-computerarchitecture/</link>
-      <pubDate>Mon, 27 Feb 2023 11:26:17 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/elec-eng-3088-computerarchitecture/</guid>
-      
-        <description>This is my notes for the course ELEC ENG 3088 - Computer Architecture.</description>
-      
-    </item>
-    
-    <item>
-      <title>COMP SCI 3317 - Using Machine Learning Tools</title>
-      <link>https://jiajun2001.github.io/post/comp-sci-3317-usingmltools/</link>
+      <title>Using Machine Learning Tools</title>
+      <link>https://jiajun2001.github.io/post/using-machine-learning-tools/</link>
       <pubDate>Fri, 24 Feb 2023 07:55:16 +1030</pubDate>
       
-      <guid>https://jiajun2001.github.io/post/comp-sci-3317-usingmltools/</guid>
+      <guid>https://jiajun2001.github.io/post/using-machine-learning-tools/</guid>
       
         <description>This is my notes for the course COMP SCI 3317 - Using Machine Learning Tools.</description>
       
