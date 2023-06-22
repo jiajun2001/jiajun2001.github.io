@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "745",
+        "wordCount" : "1189",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">4-minute read</span>
+            <span class="post__meta-text">6-minute read</span>
           </li>
         </ul>
 
@@ -557,19 +557,34 @@ Pandas | Matplotlib
 </ul>
 <h3 id="parallel-hardware-and-software">Parallel Hardware and Software</h3>
 <ul>
-<li></li>
-</ul>
-<h3 id="week-3">Week 3</h3>
+<li>von Neumann Architecture
 <ul>
-<li>
-<p>Distributed-memory systems using message-passing</p>
+<li>The classical von Neumann architecture consists of main memory, a central processing unit (CPU), and an interconnection between the memory and the CPU.
 <ul>
-<li>Process: a program running on one core-memory pair</li>
-<li>Message-Passing Interface (MPI): one process calls a send function and the other calls a receive function</li>
+<li>Main memory consists of a collection of locations, each of which is capable of storing both instructions and data.</li>
+<li>The central processing unit is divided into a control unit and an arithmetic and logic unit (ALU).
+<ul>
+<li>The control unit is responsible for deciding which instructions in a program should be executed. The control unit has a special register called the program counter which stores the address of the next instruction to be executed.</li>
+<li>The ALU is responsible for executing the actual instructions. Data in the CPU and information about the state of an executing program are stored in very fast storage called registers.</li>
 </ul>
 </li>
-<li>
-<p>MPI functions</p>
+<li>Instructions and data are transferred between the CPU and memory via the interconnect. This has traditionally been a bus, which consists of a collection of parallel wires and some hardware controlling access to the wires.</li>
+</ul>
+</li>
+<li>von Neumann bottleneck: The separation of memory and CPU is often called the von Neumann bottleneck, since the interconnect determines the rate at which instructions and data can be accessed.</li>
+</ul>
+</li>
+<li>Multitasking: The OS provides support for the apparent simultaneous execution of multiple programs. This is possible even on a system with a single core, since each process runs for a small interval of time (time slice). After one running program has executed for a time slice, the OS can run a different program.</li>
+<li>Process: When a user runs a program, the OS creates a process which is an instance of a computer program that is being executed.</li>
+<li>Threading: provides a mechanism for programmers to divide their programs into more or less independent tasks with the property that when one thread is blocked another thread can be run. In addition, it is possible to switch between threads much faster than switching between processes.</li>
+<li>Thread: Threads are contained within process, so they can use the same executable, and they usually share the same memory and the same I/O devices. The two most important exceptions are that they will need a record of their own PC and call stacks so that they can execute independently of each other. When a thread is started, it folks off the process, when a thread terminates, it joins the process.</li>
+<li>Distributed-memory systems using message-passing
+<ul>
+<li>Process: a program running on one core-memory pair</li>
+<li>Message-Passing Interface (MPI): one process calls a send function and the other calls a receive function. Processes typically identify each other by ranks in the range 0, 1, &hellip;, p - 1, where p is the number of processes.</li>
+</ul>
+</li>
+<li>MPI functions
 <ul>
 <li>MPI_Init(): tells MPI system to do all of the necessary setup. It might allocate storage for message buffers, and it might decide which process gets which rank. No other MPI functions should be called before the program calls MPI_Init().</li>
 <li>MPI_Finalize(): tells MPI system that we are done using MPI, and that any resources allocated for MPI can be freed. No MPI functions should be called after the call to MPI_Finalize().</li>
@@ -598,16 +613,22 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>
-<p>Semantics of MPI_Send and MPI_Recv</p>
+<li>Semantics of MPI_Send and MPI_Recv
 <ul>
 <li>The sending process will assemble the message</li>
 <li>If the sending process buffers the message, the MPI system will place the message into its own internal storage</li>
 <li>If the system blocks, it will wait until it can begin transmitting the message, and the call to MPI_Send may not return immediately</li>
 <li>MPI_Recv always blocks until a matching message has been received</li>
-<li>MPI requires that messages be non-overtaking. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message.</li>
+<li>MPI requires that messages be non-overtaking. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message. However, there is no restriction on the arrival of messages sent from different processors.</li>
 </ul>
 </li>
+<li>Blocking and Non-blocking sends and receives
+*</li>
+<li>Commands for compile and run
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">mpicc</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">o</span> <span class="n">mpi_hello</span> <span class="n">mpi_hello</span><span class="p">.</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl"><span class="n">mpiexec</span> <span class="o">-</span><span class="n">n</span> <span class="mi">4</span> <span class="p">.</span><span class="o">/</span><span class="n">mpi_hello</span>
+</span></span></code></pre></div></li>
+<li></li>
 </ul>
 </div>
     <div class="post__footer">
