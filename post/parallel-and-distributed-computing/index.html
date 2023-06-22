@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "704",
+        "wordCount" : "745",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -502,7 +502,64 @@ Pandas | Matplotlib
       <p>This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis.</p>
 <!-- more -->
 <br />
-<h2 id="week-3">Week 3</h2>
+<h3 id="parallel-programming">Parallel Programming</h3>
+<ul>
+<li>Why we need ever-increasing performance
+<ul>
+<li>As our computational power increases, the number of problems that we can seriously consider solving also increases. E.g. climate modelling / protein folding / drug discovery / energy research / data analysis</li>
+</ul>
+</li>
+<li>Why building parallel systems
+<ul>
+<li>As the speed of transistors increases, their power consumption increases. Most of this power is dissipated as heat, and when an integrated circuit gets too hot, it becomes unreliable.</li>
+<li>Transistor density can increase for a while, but slower than before.</li>
+</ul>
+</li>
+<li>Write parallel program
+<ul>
+<li>Basic idea: partition the work to be done among cores</li>
+<li>Two widely used approaches
+<ul>
+<li>Task-parallelism: partition the various tasks carried out in solving the problem among the cores
+<ul>
+<li>Each tutor grades one question</li>
+</ul>
+</li>
+<li>Data-parallelism: partition data used in solving the problem among the cores, and each core carries out more or less similar operations on its part of the data
+<ul>
+<li>Each tutor grades one pile of exam paper</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Coordination of cores
+<ul>
+<li>Communication: one or more cores send their message to another core</li>
+<li>Load balancing: make sure the cores all to be assigned roughly the same number of works</li>
+<li>Synchronization: the cores need to wait before other cores</li>
+</ul>
+</li>
+<li>Two types of parallel systems
+<ul>
+<li>Shared-memory system: we can coordinate the cores by having them examine and update shared-memory locations</li>
+<li>Distributed-memory system: each core has its own, private memory, and the core must communicate explicitly by doing something like sending messages across a network</li>
+</ul>
+</li>
+<li>Concurrent, parallel and distributed
+<ul>
+<li>In concurrent computing: a program is one in which multiple tasks can be in progress at any instant</li>
+<li>In parallel computing: a program is one in which multiple tasks cooperate closely to solve a problem</li>
+<li>In distributed computing: a program may need to cooperate with other programs to solve a problem</li>
+</ul>
+</li>
+</ul>
+<h3 id="parallel-hardware-and-software">Parallel Hardware and Software</h3>
+<ul>
+<li></li>
+</ul>
+<h3 id="week-3">Week 3</h3>
 <ul>
 <li>
 <p>Distributed-memory systems using message-passing</p>
@@ -549,55 +606,6 @@ Pandas | Matplotlib
 <li>If the system blocks, it will wait until it can begin transmitting the message, and the call to MPI_Send may not return immediately</li>
 <li>MPI_Recv always blocks until a matching message has been received</li>
 <li>MPI requires that messages be non-overtaking. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message.</li>
-</ul>
-</li>
-</ul>
-<br />
-<h2 id="week-1">Week 1</h2>
-<ul>
-<li>Why building parallel systems
-<ul>
-<li>As the speed of transistors increases, their power consumption increases. Most of this power is dissipated as heat, and when an integrated circuit gets too hot, it becomes unreliable.</li>
-<li>Transistor density can increase for a while, but slower than before.</li>
-</ul>
-</li>
-<li>Write parallel program
-<ul>
-<li>Basic idea: partition the work to be done among cores</li>
-<li>Two widely used approaches
-<ul>
-<li>Task-parallelism: partition the various tasks carried out in solving the problem among the cores
-<ul>
-<li>Each tutor grades one question</li>
-</ul>
-</li>
-<li>Data-parallelism: partition data used in solving the problem among the cores, and each core carries out more or less similar operations on its part of the data
-<ul>
-<li>Each tutor grades one pile of exam paper</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Coordination of cores
-<ul>
-<li>Communication: one or more cores send their message to another core</li>
-<li>Load balancing: make sure the cores all to be assigned roughly the same number of works</li>
-<li>Synchronization: the cores need to wait before other cores</li>
-</ul>
-</li>
-<li>Two types of parallel systems
-<ul>
-<li>Shared-memory system: we can coordinate the cores by having them examine and update shared-memory locations</li>
-<li>Distributed-memory system: each core has its own, private memory, and the core must communicate explicitly by doing something like sending messages across a network</li>
-</ul>
-</li>
-<li>Concurrent, parallel and distributed
-<ul>
-<li>In concurrent computing: a program is one in which multiple tasks can be in progress at any instant</li>
-<li>In parallel computing: a program is one in which multiple tasks cooperate closely to solve a problem</li>
-<li>In distributed computing: a program may need to cooperate with other programs to solve a problem</li>
 </ul>
 </li>
 </ul>
