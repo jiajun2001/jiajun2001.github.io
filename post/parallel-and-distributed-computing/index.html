@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "1189",
+        "wordCount" : "1634",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">6-minute read</span>
+            <span class="post__meta-text">8-minute read</span>
           </li>
         </ul>
 
@@ -578,6 +578,35 @@ Pandas | Matplotlib
 <li>Process: When a user runs a program, the OS creates a process which is an instance of a computer program that is being executed.</li>
 <li>Threading: provides a mechanism for programmers to divide their programs into more or less independent tasks with the property that when one thread is blocked another thread can be run. In addition, it is possible to switch between threads much faster than switching between processes.</li>
 <li>Thread: Threads are contained within process, so they can use the same executable, and they usually share the same memory and the same I/O devices. The two most important exceptions are that they will need a record of their own PC and call stacks so that they can execute independently of each other. When a thread is started, it folks off the process, when a thread terminates, it joins the process.</li>
+<li>Flynn&rsquo;s taxonomy: classify computer architectures
+<ul>
+<li>SISD (single instruction, single data): executes a single instruction at a time and it can fetch or store one item of data at a time. (classical von Neumann system)</li>
+<li>SIMD (single instruction, multiple data): operates on multiple data streams by applying the same instruction to multiple data items.
+<ul>
+<li>Vector processors: operates on arrays or vectors of data. Vector systems have very high memory bandwidth, and every data item that is loaded is actually used. However, they do not handle irregular data structure as well as other parallel architectures, and there seems to be a very finite limit to their scalability.</li>
+<li>Graphic processing units: converts the internal representation into an array of pixels that can be sent to a computer screen. Several of the stages of this pipeline are programmable. The behavior of the programmable stages is specified by functions called shader functions. All GPUs use SIMD parallelism, GPUs are not pure SIMD systems since current generation GPUs can have dozens of cores, which are capable of executing independent instructions streams.</li>
+</ul>
+</li>
+<li>MIMD (multiple instruction, multiple data): supports multiple simultaneous instruction streams operating on multiple data streams. Thus, MIMD systems typically consist of a collection of fully independent processing units or cores, each of which has its own control unit and its own ALU (asynchronous).
+<ul>
+<li>Shared-memory systems (multiple multicore processors)
+<ul>
+<li>Uniform memory access (UMA): The time to access all memory locations will be the same for all cores / Easier to program</li>
+<li>Nonuniform memory access (NUMA): Faster access to the directly connected memory / Have the potential to use larger amount of memeory</li>
+</ul>
+</li>
+<li>Distributed-memory systems (clusters)
+<ul>
+<li>Clusters are composed of a collection of commodity systems (PC), or connected by a commodity interconnection network (Ethernet).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="programming-with-message-passing-using-mpi">Programming with Message Passing using MPI</h3>
+<ul>
 <li>Distributed-memory systems using message-passing
 <ul>
 <li>Process: a program running on one core-memory pair</li>
@@ -623,12 +652,39 @@ Pandas | Matplotlib
 </ul>
 </li>
 <li>Blocking and Non-blocking sends and receives
-*</li>
+<ul>
+<li>Blocking
+<ul>
+<li>Send is complete when the message buffer has been fully transferred to the MPI system.</li>
+<li>Receive is complete when the message data has arrived at the destination and is available for use.</li>
+</ul>
+</li>
+<li>Non-blocking
+<ul>
+<li>They just continue with no regards for completion status</li>
+<li>Can be useful to help avoid deadlock</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Commands for compile and run
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">mpicc</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">o</span> <span class="n">mpi_hello</span> <span class="n">mpi_hello</span><span class="p">.</span><span class="n">c</span>
 </span></span><span class="line"><span class="cl"><span class="n">mpiexec</span> <span class="o">-</span><span class="n">n</span> <span class="mi">4</span> <span class="p">.</span><span class="o">/</span><span class="n">mpi_hello</span>
 </span></span></code></pre></div></li>
-<li></li>
+<li>Collective operations
+<ul>
+<li>MPI_Bcast(): Copies data from root node to the same memory location in every other node</li>
+<li>MPI_Gather(): Each node sends the contents of the send buffer to the root node, and root node stores them in rank order.</li>
+<li>MPI_Scatter(): Root process splits buffer into equal chunks and sends one chunk to each processor</li>
+<li>MPI_AlltoAll(): Each node performs a Scatter operation on its own data. Thus every node receives some data from every other node.</li>
+<li>MPI_Reduce(): Combine values from group into one.</li>
+</ul>
+</li>
+<li>Collective communication
+<ul>
+<li>Collective communications are matched solely on the basis of the communicators and the order in which they are caleld.</li>
+</ul>
+</li>
 </ul>
 </div>
     <div class="post__footer">
