@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "2000",
+        "wordCount" : "2341",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">10-minute read</span>
+            <span class="post__meta-text">11-minute read</span>
           </li>
         </ul>
 
@@ -680,9 +680,15 @@ Pandas | Matplotlib
 <li>MPI_Reduce(): Combine values from group into one.</li>
 </ul>
 </li>
-<li>Collective communication
+<li>Output
 <ul>
-<li>Collective communications are matched solely on the basis of the communicators and the order in which they are called.</li>
+<li>Most MPI implementation allow all processes to execute <code>printf</code> and <code>fprintf(stderr, ...)</code>.</li>
+<li>However, most MPI implementations don&rsquo;t provide any automatic scheduling of access to these devices, since MPI processes are competing for access to the shared output devices, stdout, and it is impossible to predict the order in which the processes&rsquo;s output will be queued up. Hence, we can have each process other than 0 send its output to process 0, and process 0 can print the output in process rank order.</li>
+</ul>
+</li>
+<li>Input
+<ul>
+<li>Most MPI implementations only allow process 0 in MPI_COMM_WORLD access to stdin. In order to write MPI programs that can use <code>scanf</code>, we need to branch on process rank, with process 0 reading in the data and then sending it to the other processes.</li>
 </ul>
 </li>
 </ul>
@@ -702,14 +708,16 @@ Pandas | Matplotlib
 <ul>
 <li>Ring: If there are p processors, the number of links is 2p.</li>
 <li>Toroidal mesh: If there are p processors, the number of links is 3p.</li>
-<li>Fully connected network: each switch must be capable of connecting to p links, and it is used as a basis for evaluating other interconnects.</li>
+<li>Fully connected network: It is used as a basis for evaluating other interconnects. However, it is impractical since it requires a total of p<sup>2</sup> / 2 + p / 2 links, and each switch must be capable of connecting to p links.</li>
 <li>Hypercube: A hypercube of dimension d has a p = 2<sup>d</sup> nodes, and a switch in a d-dimensional hypercube is directly connected to a processor and d switches.</li>
 </ul>
 </li>
 <li>Indirect interconnects: the switches may not be directly connected to a processor. They are often shown with unidirectional links and a collection of processors, each of which has an outgoing and an incoming link, and a switching network.
 <ul>
-<li>Crossbar:</li>
-<li>omega network:</li>
+<li>Crossbar: As long as two processors do not attempt to communicate with the same processor, all processors can simultaneously communicate with another processor.</li>
+<li>omega network: There are communications that cannot occur simultaneously.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -725,6 +733,38 @@ Pandas | Matplotlib
 <ul>
 <li>often used as a measure of network quality</li>
 <li>it sums the bandwidth of links</li>
+</ul>
+</li>
+<li>Latency: the time that elapses between the source&rsquo;s beginning to transmit the data and the destination&rsquo;s starting to receive the first byte.</li>
+<li>Bandwidth: the rate at which the destination receives data after it has started to receive the first byte</li>
+<li>Time to transmit a message of n bytes
+<ul>
+<li>message transmission time = latency + n / bandwidth</li>
+</ul>
+</li>
+</ul>
+<h3 id="parallel-program-design">Parallel Program Design</h3>
+<ul>
+<li>Foster&rsquo;s methodology
+<ul>
+<li>Partitioning
+<ul>
+<li>Divide the computation to be performed and the data operated on by the computation into small tasks. The focus here should be on identifying tasks that can be executed in parallel.</li>
+</ul>
+</li>
+<li>Communication
+<ul>
+<li>Determine what communication needs to be carried out among the tasks identified in the previous step.</li>
+</ul>
+</li>
+<li>Agglomeration or aggregation
+<ul>
+<li>Combine tasks and communications identified in the first step into larger tasks. For example, if task A must be executed before task B can be executed, it may make sense to aggregate them into a single composite task.</li>
+</ul>
+</li>
+<li>Mapping
+<ul>
+<li>Assign the composite tasks identified in the previous step to processors / threads. This should be done so that communication is minimized, and each process / thread gets roughly the same amount of work.</li>
 </ul>
 </li>
 </ul>
