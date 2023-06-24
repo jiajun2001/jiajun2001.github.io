@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "2341",
+        "wordCount" : "3113",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">11-minute read</span>
+            <span class="post__meta-text">15-minute read</span>
           </li>
         </ul>
 
@@ -602,6 +602,12 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li>Communication and synchronization
+<ul>
+<li>In distributed-memory programs, we often implicitly synchronize the process by communicating among them.</li>
+<li>In shared-memory programs, we often communicate among the threads by synchronizing them.</li>
 </ul>
 </li>
 </ul>
@@ -767,6 +773,108 @@ Pandas | Matplotlib
 <li>Assign the composite tasks identified in the previous step to processors / threads. This should be done so that communication is minimized, and each process / thread gets roughly the same amount of work.</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-analysis">Performance Analysis</h3>
+<ul>
+<li>Linear speedup: If we call the serial run-time T<sub>serial</sub> and our parallel run-time T<sub>parallel</sub>, then the best we can hope for is T<sub>parallel</sub> = T<sub>serial</sub> / p. However, in practice, we are unlikely to get linear speedup becuase the use of multiple processes / threads almost invariably introduces some overhead.</li>
+<li>Speedup of a parallel program
+<ul>
+<li>S = T<sub>serial</sub> / T<sub>parallel</sub></li>
+</ul>
+</li>
+<li>Efficiency of a parallel program
+<ul>
+<li>E = S / p = (T<sub>serial</sub> / T<sub>parallel</sub>) / p</li>
+</ul>
+</li>
+<li>Effect of problem size
+<ul>
+<li>When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size.</li>
+<li>Since T<sub>parallel</sub> = (T<sub>serial</sub> / p) + T<sub>overhead</sub>, if there&rsquo;s more work for the processes / threads to do, the relative amount of time spent coordinating the work of the processes / threads should be less.</li>
+</ul>
+</li>
+<li>Amdahl&rsquo;s law
+<ul>
+<li>Roughly, that unless virtually all of a serial program is parallelized, the possible speedup is going to be very limited - regardless of the number of cores available.</li>
+<li>More generally, if a fraction r of our serial program remains unparallelized, then Amdahl&rsquo;s law says we cannot get a speedup better than 1/r.</li>
+</ul>
+</li>
+<li>Gustafson&rsquo;s law
+<ul>
+<li>For many problems, as we increase the problem size, the &lsquo;inherently&rsquo; serial fraction of the problem decreases in size. (No need to worry about Amdahl&rsquo;s law)</li>
+</ul>
+</li>
+<li>Scalability
+<ul>
+<li>Suppose we now increase the number of processes / threads that are used by the program. If we can find a corresponding rate of increase in the problem size so that the program always has efficiency E, then the program is scalable.</li>
+<li>Types of scalable cases
+<ul>
+<li>Strongly scalable: if when we increase the number of processes / threads, we can keep the efficiency fixed without increasing the problem size.</li>
+<li>Weakly scalable: if we can keep the efficiency fixed by increasing the problem size at the same rate as we increase the number of processes / threads.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Taking timings
+<ul>
+<li>Resolution: the unit of measurement on the timer. It is the duration of the shortest event that can have a nonzero time.</li>
+<li>We first execute a barrier function that approximately synchronizes all of the processes / threads. We then execute the code and each process / thread finds the time it took. Then all the processes / threads call a global maximum function, which returns the largest of the elapsed times, and process / thread 0 prints it out.</li>
+<li>If we run the same experiment several times, we usually report the minimum time.</li>
+<li>We rarely run more than one thread per core.</li>
+<li>We usually not include I/O in our reported run-times.</li>
+</ul>
+</li>
+</ul>
+<h3 id="multithreading-programming">Multithreading Programming</h3>
+<ul>
+<li>Dynamic and static threads
+<ul>
+<li>Dynamic thread
+<ul>
+<li>There is often a master thread and at any given instant a (possibly empty) collection of worker threads. The master thread typically waits for work requests, and when a new request arrives, it folks a worker thread, the thread carries out the request, and when the thread completes the work, it terminates and joins the master thread.</li>
+</ul>
+</li>
+<li>Static thread
+<ul>
+<li>In this paradigm, all of the threads are forked after any needed setup by the master thread and the threads run until all the work is completed.</li>
+<li>The static thread paradigm has the potential for better performance than the dynamic paradigm.</li>
+<li>Static thread paradigm is often used.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nondeterminism
+<ul>
+<li>A computation is nondeterministic if a given input can result in different outputs.</li>
+</ul>
+</li>
+<li>Race condition
+<ul>
+<li>When threads or processes attempt to simultaneously access a resource, and the accesses can result in an error.</li>
+</ul>
+</li>
+<li>Critical section
+<ul>
+<li>A block of code that can only be executed by one thread at a time.</li>
+</ul>
+</li>
+<li>Mutual exclusion lock / Mutex / Lock
+<ul>
+<li>The most commonly used mechanism for insuring mutual exclusion</li>
+<li>Before a thread can execute the code in the critical section, it must &lsquo;obtain&rsquo; the mutex by calling a mutex function, and when it is done executing the code in the critical section, it should relinquish the mutex by calling an unlock function.</li>
+<li>While one thread owns the lock, any other thread attempting to execute the code in the critical section will wait in its call to the lock function.</li>
+</ul>
+</li>
+<li>Busy-waiting
+<ul>
+<li>A thread enters a loop whose sole purpose is to test a condition. However, it can be very wasteful of system resources.</li>
+</ul>
+</li>
+<li>Thread safety
+<ul>
+<li>A static variable that is declared in a function persists from one call to the next. Hence, static variables are effectively shared among any threads that call the function, and this can have unexpected and unwanted consequences.</li>
 </ul>
 </li>
 </ul>
