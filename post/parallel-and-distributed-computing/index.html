@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "1634",
+        "wordCount" : "2000",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">8-minute read</span>
+            <span class="post__meta-text">10-minute read</span>
           </li>
         </ul>
 
@@ -682,7 +682,51 @@ Pandas | Matplotlib
 </li>
 <li>Collective communication
 <ul>
-<li>Collective communications are matched solely on the basis of the communicators and the order in which they are caleld.</li>
+<li>Collective communications are matched solely on the basis of the communicators and the order in which they are called.</li>
+</ul>
+</li>
+</ul>
+<h3 id="interconnection-networks">Interconnection Networks</h3>
+<ul>
+<li>Shared-memory interconnects
+<ul>
+<li>Bus: a collection of parallel communication wires together with some hardware that controls access to the bus. The key characteristic of a bus is that the communication wires are shared by the devices that are connected to it. However, as the number of devices connected to the bus increases, the likelihood that there will be contention for use of the bus increases, and the expected performance of the bus decreases.</li>
+<li>Crossbars: switched interconnects use switches to control the routing of data among connected devices. Crossbar allows simultaneous communication among different devices, so they are much faster than buses. However, the cost of the switches and links is relatively high.</li>
+</ul>
+</li>
+<li>Distributed-memory interconnects
+<ul>
+<li>Interconnects
+<ul>
+<li>Direct interconnects: each switch is directly connected to a processor-memory pair, and the switches are connected to each other.
+<ul>
+<li>Ring: If there are p processors, the number of links is 2p.</li>
+<li>Toroidal mesh: If there are p processors, the number of links is 3p.</li>
+<li>Fully connected network: each switch must be capable of connecting to p links, and it is used as a basis for evaluating other interconnects.</li>
+<li>Hypercube: A hypercube of dimension d has a p = 2<sup>d</sup> nodes, and a switch in a d-dimensional hypercube is directly connected to a processor and d switches.</li>
+</ul>
+</li>
+<li>Indirect interconnects: the switches may not be directly connected to a processor. They are often shown with unidirectional links and a collection of processors, each of which has an outgoing and an incoming link, and a switching network.
+<ul>
+<li>Crossbar:</li>
+<li>omega network:</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bisection width
+<ul>
+<li>It refers to a measure of the communication capacity or bandwidth between two halves of a system when it is divided into two equal parts.</li>
+<li>The bisection width is a metric that quantifies the communication capacity between these two groups. It represents the maximum amount of data that can be exchanged between the two halves of the system simultaneously.</li>
+<li>An alternative way of computing the bisection width is to remove the minimum number of links needed to split the set of nodes into two equal halves. The number of links removed is the bisection width.</li>
+</ul>
+</li>
+<li>Bisection bandwidth
+<ul>
+<li>often used as a measure of network quality</li>
+<li>it sums the bandwidth of links</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
