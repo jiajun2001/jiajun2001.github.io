@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "3113",
+        "wordCount" : "3367",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">15-minute read</span>
+            <span class="post__meta-text">16-minute read</span>
           </li>
         </ul>
 
@@ -875,6 +875,35 @@ Pandas | Matplotlib
 <li>Thread safety
 <ul>
 <li>A static variable that is declared in a function persists from one call to the next. Hence, static variables are effectively shared among any threads that call the function, and this can have unexpected and unwanted consequences.</li>
+</ul>
+</li>
+</ul>
+<h3 id="programming-with-openmp">Programming with OpenMP</h3>
+<ul>
+<li>OpenMP provides what&rsquo;s known as a &ldquo;directive-based&rdquo; shared-memory API. In C and C++, this means that there are special preprocessor instructions known as pragmas. Pragmas are typically added to a system to allow behaviors that are not part of the basic C specification. Compilers that do not support the pragmas are free to ignore them. So, in principle, if you have a carefully written OpenMP program, it can be compiled and run on any system with a C compiler, regardless of whether the compiler supports OpenMP.</li>
+<li>Commands for compile and run
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">gcc</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">fopenmp</span> <span class="o">-</span><span class="n">o</span> <span class="n">omp_hello</span> <span class="n">omp_hello</span><span class="p">.</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="o">/</span><span class="n">omp_hello</span> <span class="mi">4</span>
+</span></span></code></pre></div></li>
+<li>Parallel for
+<ul>
+<li>The parallel for directive forks a team of threads to execute the following structured block. However, the structured block following the parallel for directive must be a for loop. The system parallelizes the for loop by dividing the iterations of the loop among threads.</li>
+</ul>
+</li>
+<li>Loop-carried dependence
+<ul>
+<li>A loop in which the results of one or more iterations depend on other iterations cannot, in general, be correctly parallelized by OpenMP.</li>
+</ul>
+</li>
+<li>Reduction clause
+<ul>
+<li>OpenMP creates a private variable for each thread, and the run-time system stores each thread’s result in this private variable. OpenMP also creates a critical section and the values stored in the private variables are added in this critical section.</li>
+<li>Syntax: reduction(&lt;operator&gt;: &lt;variable list&gt;)</li>
+</ul>
+</li>
+<li>Scope of variables
+<ul>
+<li>A variable that can be accessed by all the threads in the team has shared scope, while a variable that can only be accessed by a single thread has private scope.</li>
 </ul>
 </li>
 </ul>
