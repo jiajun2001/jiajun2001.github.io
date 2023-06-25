@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "3367",
+        "wordCount" : "3474",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">16-minute read</span>
+            <span class="post__meta-text">17-minute read</span>
           </li>
         </ul>
 
@@ -791,7 +791,7 @@ Pandas | Matplotlib
 </li>
 <li>Effect of problem size
 <ul>
-<li>When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size.</li>
+<li>When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size. (when p is not small)</li>
 <li>Since T<sub>parallel</sub> = (T<sub>serial</sub> / p) + T<sub>overhead</sub>, if there&rsquo;s more work for the processes / threads to do, the relative amount of time spent coordinating the work of the processes / threads should be less.</li>
 </ul>
 </li>
@@ -904,6 +904,49 @@ Pandas | Matplotlib
 <li>Scope of variables
 <ul>
 <li>A variable that can be accessed by all the threads in the team has shared scope, while a variable that can only be accessed by a single thread has private scope.</li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-issues">Performance Issues</h3>
+<ul>
+<li>High performance
+<ul>
+<li>Balance workload onto available execution resources</li>
+<li>Reduce communications</li>
+<li>Reduce extra work (overhead) performed to increase parallelism, manage assignment</li>
+</ul>
+</li>
+<li>Communication to Computation Ratio
+<ul>
+<li>amount of communication / amount of computation</li>
+<li>Amount of low ratio to effectively utilize modern parallel processors</li>
+</ul>
+</li>
+<li>Communication
+<ul>
+<li>Inherent communication
+<ul>
+<li>Information that fundamentally must be moved between processors to carry out the algorithm given the specified assignment</li>
+</ul>
+</li>
+<li>Artificial communication
+<ul>
+<li>All other communication</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Contention
+<ul>
+<li>Contention occurs when many requests to a resource are made within a small window of time</li>
+</ul>
+</li>
+<li>Improving program performance
+<ul>
+<li>Identify and exploit locality</li>
+<li>Reduce overhead</li>
+<li>Reduce contention</li>
+<li>Maximize overlap of communication and processing</li>
 </ul>
 </li>
 </ul>
