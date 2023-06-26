@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "3519",
+        "wordCount" : "4046",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">17-minute read</span>
+            <span class="post__meta-text">19-minute read</span>
           </li>
         </ul>
 
@@ -606,7 +606,7 @@ Pandas | Matplotlib
 </li>
 <li>Difference between MIMD and SIMD
 <ul>
-<li>The main difference between MIMD and SIMD lies in the control flow. MIMD allows for independent execution of different instructions on multiple processors, while SIMD executed the same program in a coordinated manner, with each processor operating on different data portions.</li>
+<li>The main difference between MIMD and SIMD lies in the control flow. MIMD allows for independent execution of different instructions on multiple processors, while SIMD executes the same program in a coordinated manner, with each processor operating on different data portions.</li>
 </ul>
 </li>
 <li>Communication and synchronization
@@ -688,7 +688,7 @@ Pandas | Matplotlib
 <li>MPI_Gather(): Each node sends the contents of the send buffer to the root node, and root node stores them in rank order.</li>
 <li>MPI_Scatter(): Root process splits buffer into equal chunks and sends one chunk to each processor</li>
 <li>MPI_AlltoAll(): Each node performs a Scatter operation on its own data. Thus every node receives some data from every other node.</li>
-<li>MPI_Reduce(): Combine values from group into one.</li>
+<li>MPI_Reduce(): MPI_Reduce operation combines the values from all processes and produces a single result, which is typically stored on a designated root process.</li>
 </ul>
 </li>
 <li>Output
@@ -725,7 +725,7 @@ Pandas | Matplotlib
 </li>
 <li>Indirect interconnects: the switches may not be directly connected to a processor. They are often shown with unidirectional links and a collection of processors, each of which has an outgoing and an incoming link, and a switching network.
 <ul>
-<li>Crossbar: As long as two processors do not attempt to communicate with the same processor, all processors can simultaneously communicate with another processor.</li>
+<li>Crossbar: As long as two processors do not attempt to communicate with the same processor, all processors can simultaneously communicate with another processor. (Crossbar &gt; MIN &gt; Bus)</li>
 <li>omega network: There are communications that cannot occur simultaneously.</li>
 </ul>
 </li>
@@ -786,6 +786,7 @@ Pandas | Matplotlib
 <li>Linear speedup: If we call the serial run-time T<sub>serial</sub> and our parallel run-time T<sub>parallel</sub>, then the best we can hope for is T<sub>parallel</sub> = T<sub>serial</sub> / p. However, in practice, we are unlikely to get linear speedup becuase the use of multiple processes / threads almost invariably introduces some overhead.</li>
 <li>Speedup of a parallel program
 <ul>
+<li>Speedup refers to the performance improvement achieved by executing a program on multiple processors compared to running it on a single processor.</li>
 <li>S = T<sub>serial</sub> / T<sub>parallel</sub></li>
 </ul>
 </li>
@@ -796,7 +797,7 @@ Pandas | Matplotlib
 </li>
 <li>Effect of problem size
 <ul>
-<li>When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size. (when p is not small)</li>
+<li>When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size (when p is not small). The relationship between problem size and speedup depends on various factors, including the nature of the problem, the parallelization technique used, the hardware architecture, and the efficiency of the parallel algorithm.</li>
 <li>Since T<sub>parallel</sub> = (T<sub>serial</sub> / p) + T<sub>overhead</sub>, if there&rsquo;s more work for the processes / threads to do, the relative amount of time spent coordinating the work of the processes / threads should be less.</li>
 </ul>
 </li>
@@ -829,6 +830,11 @@ Pandas | Matplotlib
 <li>If we run the same experiment several times, we usually report the minimum time.</li>
 <li>We rarely run more than one thread per core.</li>
 <li>We usually not include I/O in our reported run-times.</li>
+</ul>
+</li>
+<li>Barrier
+<ul>
+<li>A barrier is a mechanism that imposes global synchronization, ensuring that all participating threads or processes reach a specific point before continuing, thereby enabling coordination and synchronization.</li>
 </ul>
 </li>
 </ul>
@@ -882,6 +888,11 @@ Pandas | Matplotlib
 <li>A static variable that is declared in a function persists from one call to the next. Hence, static variables are effectively shared among any threads that call the function, and this can have unexpected and unwanted consequences.</li>
 </ul>
 </li>
+<li>Deadlock
+<ul>
+<li>Deadlock refers to a situation in a concurrent system where two or more processes or threads are unable to proceed because each is waiting for a resource that is held by another process or thread in the system.</li>
+</ul>
+</li>
 </ul>
 <h3 id="programming-with-openmp">Programming with OpenMP</h3>
 <ul>
@@ -909,6 +920,62 @@ Pandas | Matplotlib
 <li>Scope of variables
 <ul>
 <li>A variable that can be accessed by all the threads in the team has shared scope, while a variable that can only be accessed by a single thread has private scope.</li>
+</ul>
+</li>
+</ul>
+<h3 id="opencl">OpenCL</h3>
+<ul>
+<li>Definition
+<ul>
+<li>OpenCL (Open Computing Language) is an open standard and framework for programming heterogeneous computing platforms, including CPUs, GPUs, and other accelerators. It provides a unified programming model and API (Application Programming Interface) that allows developers to write code that can run efficiently across different hardware architectures.</li>
+</ul>
+</li>
+<li>OpenCL memory model
+<ul>
+<li>The OpenCL memory model provides a framework for managing different types of memory in OpenCL computations, including private, local, global, and constant memory. It establishes rules for data organization, movement, and synchronization, allowing efficient utilization of memory resources and proper synchronization in parallel computations.</li>
+</ul>
+</li>
+<li>OpenCL execution model
+<ul>
+<li>Application runs on a host which submits work to devices
+<ul>
+<li>Work item: the basic unit of work on an OpenCL device</li>
+<li>Kernel: the code for a work item (basically a C function)</li>
+<li>Program: collection of kernels and other functions</li>
+</ul>
+</li>
+<li>Context
+<ul>
+<li>The environment within which work-items execute. It includes devices and their memories and command queues.</li>
+</ul>
+</li>
+<li>Command queue: a queue used by the host application to submit work to a device
+<ul>
+<li>Work is queued in-order, one queue per device</li>
+<li>Work can be executed in-order or out-of-order</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Steps that a host program must include, when using OpenCL for parallel work.
+<ul>
+<li>Platform discovery / Device selection / context creation / Command queue creation / Program compilation / Kernel creation / Memory object creation and data-transfer / Kernel execution / Synchronization and result retrieval / Cleanup</li>
+</ul>
+</li>
+<li>Restrictions
+<ul>
+<li>Limited Functionality of Standard C Library
+<ul>
+<li>OpenCL restricts the functionality of the standard C library that is available for use within kernel code.</li>
+<li>The reason is to maintain portability across diverse hardware platforms. Different OpenCL devices may have varying capabilities and may lack support for certain standard C library functions.</li>
+</ul>
+</li>
+<li>Limited Data Type
+<ul>
+<li>OpenCL restricts the available data types in kernel code compared to standard C. More complex data types, such as structures and unions, are not directly supported in kernel code.</li>
+<li>This restriction aims to facilitate efficient memory access and vectorization in parallel computations.</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -952,6 +1019,12 @@ Pandas | Matplotlib
 <li>Reduce overhead</li>
 <li>Reduce contention</li>
 <li>Maximize overlap of communication and processing</li>
+</ul>
+</li>
+<li>Batch scheduling
+<ul>
+<li>Batch scheduling is a method of managing and executing computational tasks on high-performance computers in a non-interactive manner. In batch scheduling, users submit their jobs or tasks to a job scheduler, which allocates computing resources to the execution of these jobs based on various policies and priorities.</li>
+<li>Advantages: efficient resource utilization, fairness, workload management capabilities, and system stability</li>
 </ul>
 </li>
 </ul>
