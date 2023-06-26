@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "3474",
+        "wordCount" : "3519",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -604,6 +604,11 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
+<li>Difference between MIMD and SIMD
+<ul>
+<li>The main difference between MIMD and SIMD lies in the control flow. MIMD allows for independent execution of different instructions on multiple processors, while SIMD executed the same program in a coordinated manner, with each processor operating on different data portions.</li>
+</ul>
+</li>
 <li>Communication and synchronization
 <ul>
 <li>In distributed-memory programs, we often implicitly synchronize the process by communicating among them.</li>
@@ -863,7 +868,7 @@ Pandas | Matplotlib
 <li>Mutual exclusion lock / Mutex / Lock
 <ul>
 <li>The most commonly used mechanism for insuring mutual exclusion</li>
-<li>Before a thread can execute the code in the critical section, it must &lsquo;obtain&rsquo; the mutex by calling a mutex function, and when it is done executing the code in the critical section, it should relinquish the mutex by calling an unlock function.</li>
+<li>Before a thread can execute the code in the critical section, it must &lsquo;obtain&rsquo; the mutex by calling a mutex function, and when it finishes executing the code in the critical section, it should relinquish the mutex by calling an unlock function.</li>
 <li>While one thread owns the lock, any other thread attempting to execute the code in the critical section will wait in its call to the lock function.</li>
 </ul>
 </li>
