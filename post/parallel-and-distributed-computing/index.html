@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/parallel-and-distributed-computing\/",
-        "wordCount" : "4046",
+        "wordCount" : "4117",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -495,7 +495,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">19-minute read</span>
+            <span class="post__meta-text">20-minute read</span>
           </li>
         </ul>
 
@@ -604,9 +604,10 @@ Pandas | Matplotlib
 </li>
 </ul>
 </li>
-<li>Difference between MIMD and SIMD
+<li>Difference between SPMD and SIMD
 <ul>
-<li>The main difference between MIMD and SIMD lies in the control flow. MIMD allows for independent execution of different instructions on multiple processors, while SIMD executes the same program in a coordinated manner, with each processor operating on different data portions.</li>
+<li>SPMD refers to a programming model where a single program is executed by multiple parallel processing units, such as multiple threads or processes. Each processing unit operates on its own portion of the data, but they all execute the same program. SPMD allows for flexible control flow and can be used to express both data parallel and task parallel computations.</li>
+<li>SIMD refers to a type of parallelism where a single instruction is executed simultaneously by multiple processing elements on different data elements. SIMD architectures typically have a single control unit that broadcasts instructions to multiple processing units, allowing for efficient parallel execution of the same operation on multiple data elements in parallel.</li>
 </ul>
 </li>
 <li>Communication and synchronization
