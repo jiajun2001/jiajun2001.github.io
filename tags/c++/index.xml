@@ -6,7 +6,18 @@
     <description>Recent content in C&#43;&#43; on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Jul 2023 10:07:43 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Jul 2023 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; Study Note</title>
+      <link>https://jiajun2001.github.io/post/c&#43;&#43;_study/</link>
+      <pubDate>Thu, 06 Jul 2023 15:25:06 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/c&#43;&#43;_study/</guid>
+      
+        <description>In this post, I will quickly go through some concepts and basic STL operations of C++.</description>
+      
+    </item>
+    
     <item>
       <title>Linux Project</title>
       <link>https://jiajun2001.github.io/post/linuxproject/</link>
@@ -15,17 +26,6 @@
       <guid>https://jiajun2001.github.io/post/linuxproject/</guid>
       
         <description>&lt;p&gt;In this post, I will put some C++, linux, computer networking and computer architecture concepts and theories. In addition, I will also do a Linux high-concurrency web server project in the end to consolidate these knowledge.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; Revision</title>
-      <link>https://jiajun2001.github.io/post/c&#43;&#43;_revision/</link>
-      <pubDate>Tue, 24 Jan 2023 15:25:06 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/c&#43;&#43;_revision/</guid>
-      
-        <description>In this post, I will quickly go through some concepts and basic STL operations of C++.</description>
       
     </item>
     
