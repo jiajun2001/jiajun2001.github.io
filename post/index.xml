@@ -6,7 +6,18 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Jul 2023 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 14:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Note</title>
+      <link>https://jiajun2001.github.io/post/git/</link>
+      <pubDate>Mon, 10 Jul 2023 14:25:06 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/git/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>C&#43;&#43; Study Note</title>
       <link>https://jiajun2001.github.io/post/c&#43;&#43;_study/</link>

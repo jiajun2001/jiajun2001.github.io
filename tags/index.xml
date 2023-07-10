@@ -6,7 +6,18 @@
     <description>Recent content in Tags on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Jul 2023 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 14:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes</title>
+      <link>https://jiajun2001.github.io/tags/notes/</link>
+      <pubDate>Mon, 10 Jul 2023 14:25:06 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/tags/notes/</guid>
+      
+        <description></description>
+      
+    </item>
+    
     <item>
       <title>C&#43;&#43;</title>
       <link>https://jiajun2001.github.io/tags/c&#43;&#43;/</link>
@@ -46,17 +57,6 @@
       <pubDate>Wed, 05 Jul 2023 10:07:43 +1030</pubDate>
       
       <guid>https://jiajun2001.github.io/tags/linux/</guid>
-      
-        <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Notes</title>
-      <link>https://jiajun2001.github.io/tags/notes/</link>
-      <pubDate>Wed, 21 Jun 2023 15:27:22 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/tags/notes/</guid>
       
         <description></description>
       
