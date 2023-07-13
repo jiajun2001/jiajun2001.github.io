@@ -209,7 +209,7 @@ Pandas | Matplotlib
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_study\/",
-        "wordCount" : "637",
+        "wordCount" : "705",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -281,7 +281,7 @@ Pandas | Matplotlib
       
         <li class="sidebar__list-item">
           <a
-            href="https://www.linkedin.com/in/jiajun-yu-4aa181234/"
+            href="https://www.linkedin.com/in/jiajun-yu-4aa181234"
             target="_blank"
             rel="noopener"
             aria-label="Linkedin"
@@ -502,7 +502,7 @@ Pandas | Matplotlib
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">3-minute read</span>
+            <span class="post__meta-text">4-minute read</span>
           </li>
         </ul>
 
@@ -608,6 +608,45 @@ Pandas | Matplotlib
 </span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">stream</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span> 
 </span></span></code></pre></div></li>
+</ul>
+<h3 id="smart-pointers">Smart Pointers</h3>
+<ul>
+<li>unique pointer (has to be unique)
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">      unique_ptr&lt;Entity&gt; entity = make_unique&lt;Entity&gt;();
+</span></span><span class="line"><span class="cl">      entity-&gt;Print();
+</span></span><span class="line"><span class="cl">  }
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>shared pointer (has reference count)
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">      shared_ptr&lt;Entity&gt; e0;
+</span></span><span class="line"><span class="cl">      {
+</span></span><span class="line"><span class="cl">          shared_ptr&lt;Entity&gt; sharedEntity = make_shared&lt;Entity&gt;();
+</span></span><span class="line"><span class="cl">          e0 = sharedEntity;
+</span></span><span class="line"><span class="cl">      }
+</span></span><span class="line"><span class="cl">  } // Entity object gets de-allocated after here
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>weak pointer (does not increase the reference count)
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">      weak_ptr&lt;Entity&gt; e0;
+</span></span><span class="line"><span class="cl">      {
+</span></span><span class="line"><span class="cl">          shared_ptr&lt;Entity&gt; sharedEntity = make_shared&lt;Entity&gt;();
+</span></span><span class="line"><span class="cl">          e0 = sharedEntity;
+</span></span><span class="line"><span class="cl">      } // Entity object gets de-allocated after here
+</span></span><span class="line"><span class="cl">  } 
+</span></span></code></pre></div></li>
+</ul>
+</li>
 </ul>
 <h3 id="array">Array</h3>
 <ul>
