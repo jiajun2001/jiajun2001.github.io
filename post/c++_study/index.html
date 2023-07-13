@@ -131,13 +131,13 @@ Git | Vim | Linux (Ubuntu)
 <meta name="twitter:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/>
 
 <meta name="twitter:title" content="C&#43;&#43; Study Note"/>
-<meta name="twitter:description" content="During the summer of my freshman year, I spent quite a lot of time self-studying C&#43;&#43; basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C&#43;&#43;. In this post, I will go through some deeper concepts in C&#43;&#43; such as compiling, linking, some other keywords, C&#43;&#43; libraries, multi threading, design patters, lambda expressions&hellip;"/>
+<meta name="twitter:description" content="During the summer of my freshman year, I spent quite a lot of time self-studying C&#43;&#43; basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C&#43;&#43;. In this post, I will go through some deeper concepts in C&#43;&#43; such as compiling, linking, some other keywords, smart pointers, C&#43;&#43; libraries, multi threading, design patters, lambda expressions&hellip;"/>
 
 
 
   
   <meta property="og:title" content="C&#43;&#43; Study Note" />
-<meta property="og:description" content="During the summer of my freshman year, I spent quite a lot of time self-studying C&#43;&#43; basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C&#43;&#43;. In this post, I will go through some deeper concepts in C&#43;&#43; such as compiling, linking, some other keywords, C&#43;&#43; libraries, multi threading, design patters, lambda expressions&hellip;" />
+<meta property="og:description" content="During the summer of my freshman year, I spent quite a lot of time self-studying C&#43;&#43; basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C&#43;&#43;. In this post, I will go through some deeper concepts in C&#43;&#43; such as compiling, linking, some other keywords, smart pointers, C&#43;&#43; libraries, multi threading, design patters, lambda expressions&hellip;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jiajun2001.github.io/post/c&#43;&#43;_study/" /><meta property="og:image" content="https://jiajun2001.github.io/images/site-feature-image.png"/><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-07-13T15:25:06+10:30" />
@@ -160,7 +160,7 @@ Git | Vim | Linux (Ubuntu)
         "alternativeHeadline": "",
         "description": "
       
-        \u003cp\u003eDuring the summer of my freshman year, I spent quite a lot of time self-studying C\u002b\u002b basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That\u0026rsquo;s why I make this post to keep track of my further study about C\u002b\u002b. In this post, I will go through some deeper concepts in C\u002b\u002b such as compiling, linking, some other keywords, C\u002b\u002b libraries, multi threading, design patters, lambda expressions\u0026hellip;\u003c\/p\u003e
+        \u003cp\u003eDuring the summer of my freshman year, I spent quite a lot of time self-studying C\u002b\u002b basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That\u0026rsquo;s why I make this post to keep track of my further study about C\u002b\u002b. In this post, I will go through some deeper concepts in C\u002b\u002b such as compiling, linking, some other keywords, smart pointers, C\u002b\u002b libraries, multi threading, design patters, lambda expressions\u0026hellip;\u003c\/p\u003e
 
 
       
@@ -215,7 +215,7 @@ Git | Vim | Linux (Ubuntu)
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_study\/",
-        "wordCount" : "784",
+        "wordCount" : "957",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -508,11 +508,11 @@ Git | Vim | Linux (Ubuntu)
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">4-minute read</span>
+            <span class="post__meta-text">5-minute read</span>
           </li>
         </ul>
 
-      <p>During the summer of my freshman year, I spent quite a lot of time self-studying C++ basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C++. In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, C++ libraries, multi threading, design patters, lambda expressions&hellip;</p>
+      <p>During the summer of my freshman year, I spent quite a lot of time self-studying C++ basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C++. In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, smart pointers, C++ libraries, multi threading, design patters, lambda expressions&hellip;</p>
 <br />
 <h3 id="introduction-to-c">Introduction to C++</h3>
 <ul>
@@ -649,6 +649,68 @@ Git | Vim | Linux (Ubuntu)
 </span></span><span class="line"><span class="cl">          e0 = sharedEntity;
 </span></span><span class="line"><span class="cl">      } // Entity object gets de-allocated after here
 </span></span><span class="line"><span class="cl">  } 
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="shallow-copy-and-deep-copy">Shallow Copy and Deep Copy</h3>
+<ul>
+<li>Shallow copy
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">  <span class="k">class</span> <span class="nc">String</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">private</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl">      <span class="kt">char</span><span class="o">*</span> <span class="n">m_Buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">m_Size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">m_Size</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="n">m_Buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">m_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">          <span class="n">memcpy</span><span class="p">(</span><span class="n">m_Buffer</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">m_Size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="n">m_Buffer</span><span class="p">[</span><span class="n">m_Size</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="o">~</span><span class="n">String</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Attempting to destruct &#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_Buffer</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">delete</span><span class="p">[]</span> <span class="n">m_Buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span> <span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">stringObject</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span> <span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">stringObject</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">stream</span> <span class="o">&lt;&lt;</span> <span class="n">stringObject</span><span class="p">.</span><span class="n">m_Buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">stream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">String</span> <span class="n">stringObject</span><span class="p">(</span><span class="s">&#34;Jason&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">stringObject</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="n">String</span> <span class="n">second</span> <span class="o">=</span> <span class="n">stringObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">      Jason
+</span></span></span><span class="line"><span class="cl"><span class="cm">      Jason
+</span></span></span><span class="line"><span class="cl"><span class="cm">      Attempting to destruct 0x7fc833f05a60
+</span></span></span><span class="line"><span class="cl"><span class="cm">      Attempting to destruct 0x7fc833f05a60
+</span></span></span><span class="line"><span class="cl"><span class="cm">      demo(64695,0x7ff8547fd4c0) malloc: Double free of object 0x7fc833f05a60
+</span></span></span><span class="line"><span class="cl"><span class="cm">      demo(64695,0x7ff8547fd4c0) malloc: *** set a breakpoint in malloc_error_break to debug
+</span></span></span><span class="line"><span class="cl"><span class="cm">      zsh: abort      ./demo
+</span></span></span><span class="line"><span class="cl"><span class="cm">      */</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> 
+</span></span></code></pre></div></li>
+<li>This issue is caused by both &lsquo;String&rsquo; objects having the same &lsquo;char* m_Buffer&rsquo; variable and value so that this variable will be freed twice.</li>
+</ul>
+</li>
+<li>Deep copy
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">  <span class="n">String</span><span class="p">(</span><span class="k">const</span> <span class="n">String</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_Size</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">m_Size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">m_Buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">m_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">      <span class="n">memcpy</span><span class="p">(</span><span class="n">m_Buffer</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">m_Buffer</span><span class="p">,</span> <span class="n">m_Size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
