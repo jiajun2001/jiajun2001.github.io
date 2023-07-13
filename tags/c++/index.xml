@@ -6,15 +6,15 @@
     <description>Recent content in C&#43;&#43; on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Jul 2023 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jul 2023 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43; Study Note</title>
       <link>https://jiajun2001.github.io/post/c&#43;&#43;_study/</link>
-      <pubDate>Thu, 06 Jul 2023 15:25:06 +1030</pubDate>
+      <pubDate>Thu, 13 Jul 2023 15:25:06 +1030</pubDate>
       
       <guid>https://jiajun2001.github.io/post/c&#43;&#43;_study/</guid>
       
-        <description>In this post, I will quickly go through some concepts and basic STL operations of C++.</description>
+        <description>&lt;p&gt;During the summer of my freshman year, I spent quite a lot of time self-studying C++ basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&amp;rsquo;s why I make this post to keep track of my further study about C++. In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, C++ libraries, multi threading, design patters, lambda expressions&amp;hellip;&lt;/p&gt;</description>
       
     </item>
     
