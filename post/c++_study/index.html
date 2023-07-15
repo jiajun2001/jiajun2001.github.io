@@ -215,7 +215,7 @@ Git | Vim | Linux (Ubuntu)
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_study\/",
-        "wordCount" : "1004",
+        "wordCount" : "1051",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -529,6 +529,15 @@ Git | Vim | Linux (Ubuntu)
 <ul>
 <li>On 32-bit machine sizeof pointer is 32 bits (4 bytes), while on 64 bit machine it&rsquo;s 8 bytes. Regardless of what data type they are pointing to, they have fixed size.</li>
 </ul>
+<h3 id="using-libraries">Using Libraries</h3>
+<ul>
+<li>Static linking: the library will be put in the executable file at compile time
+<ul>
+<li>Technically faster, since the compiler and linker can perform linking optimization</li>
+</ul>
+</li>
+<li>Dynamic linking: the library gets linked at run-time</li>
+</ul>
 <h3 id="constant-keyword">Constant Keyword</h3>
 <ul>
 <li>Constant pointer and pointer constant
@@ -732,7 +741,7 @@ Git | Vim | Linux (Ubuntu)
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="string">String</h3>
+<h2 id="string">String</h2>
 <ul>
 <li>String Concatenation:
 <ul>
@@ -746,7 +755,7 @@ Git | Vim | Linux (Ubuntu)
 </ul>
 </li>
 </ul>
-<h4 id="c-math">C++ Math</h4>
+<h3 id="c-math">C++ Math</h3>
 <ul>
 <li>Max: <strong>cout &laquo; max(5, 10);</strong></li>
 <li>Min: <strong>cout &laquo; min(5, 10);</strong></li>
@@ -774,6 +783,7 @@ Git | Vim | Linux (Ubuntu)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">string</span> <span class="n">myString</span><span class="p">;</span>   <span class="c1">// Member (string variable)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span> <span class="n">myStructure</span><span class="p">;</span>       <span class="c1">// Structure variable
 </span></span></span></code></pre></div></li>
+<li>Can be used to deal with multiple return values of a function</li>
 </ul>
 <h3 id="stl-vector">STL Vector</h3>
 <ul>
