@@ -215,7 +215,7 @@ Git | Vim | Linux (Ubuntu)
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_study\/",
-        "wordCount" : "1390",
+        "wordCount" : "1462",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -997,6 +997,33 @@ Git | Vim | Linux (Ubuntu)
 </span></span></code></pre></div></li>
 </ul>
 </li>
+</ul>
+<h3 id="namespace">Namespace</h3>
+<ul>
+<li>The primary purpose of namespace is to avoid naming conflicts.</li>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">  <span class="k">namespace</span> <span class="n">apple</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">text</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">namespace</span> <span class="n">orange</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">reverse</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">temp</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">temp</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">using</span> <span class="k">namespace</span> <span class="n">apple</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">using</span> <span class="k">namespace</span> <span class="n">orange</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// If I want to invoke apple::Print()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Print</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="c1">// silent runtime error: olleH
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></div></li>
 </ul></div>
     <div class="post__footer">
       
