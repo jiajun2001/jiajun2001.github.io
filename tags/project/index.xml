@@ -6,7 +6,20 @@
     <description>Recent content in Project on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 16 Feb 2023 10:08:09 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jul 2023 17:11:55 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adelaide Summer Research Project</title>
+      <link>https://jiajun2001.github.io/post/summer_research/</link>
+      <pubDate>Sat, 08 Jul 2023 17:11:55 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/summer_research/</guid>
+      
+        <description>&lt;p&gt;Upon completing my penultimate year of studying for a Bachelor of Computer Science at the University of Adelaide, I was fortunate to be awarded the Adelaide Summer Research Scholarship for the period of 2022-2023. Delving into a 6-week research project, I collaborated with my research partner, Jian Zhe Chan, while being guided by the experienced supervision of Dr. Cruz Izu and Dr. Amali Weerasinghe.&lt;/p&gt;
+&lt;p&gt;Our research endeavor aimed to facilitate the utilization of code quality feedback tools for novice programmers. The culmination of our efforts resulted in the development of &amp;ldquo;CPPAnalyzer,&amp;rdquo; a C++ code quality checker tailored explicitly for novice programmers. This tool serves as a valuable resource to enhance coding style and foster good programming habits among beginners.&lt;/p&gt;
+&lt;p&gt;In this post, I am delighted to present a comprehensive summary of our research and serve as a documentation guide for using the &amp;ldquo;CPPAnalyzer&amp;rdquo; code quality checker. Our hope is that this tool will be a stepping stone for aspiring programmers to sharpen their skills and embark on a journey of coding excellence.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Adelaide CS Community Project</title>
       <link>https://jiajun2001.github.io/post/java_community_project/</link>
@@ -15,17 +28,6 @@
       <guid>https://jiajun2001.github.io/post/java_community_project/</guid>
       
         <description>&lt;p&gt;When I first knew Garbage Collection Mechanism in Java, I felt it was quite appealing to me, especially for a C++ programmer, because I do not need to worry about the memory leak anymore; therefore I started learning Java in April 2022. On December 22, 2022, I started my Java full-stack project. This post will keep track of my progress of developing this project.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Adelaide Summer Research Project</title>
-      <link>https://jiajun2001.github.io/post/summer_research/</link>
-      <pubDate>Sun, 08 Jan 2023 23:11:55 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/summer_research/</guid>
-      
-        <description></description>
       
     </item>
     
