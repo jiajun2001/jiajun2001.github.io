@@ -215,7 +215,7 @@ Git | Vim | Linux (Ubuntu)
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/c\u002b\u002b_study\/",
-        "wordCount" : "2014",
+        "wordCount" : "2289",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -508,7 +508,7 @@ Git | Vim | Linux (Ubuntu)
           </li>
           <li class="post__meta-item">
             <em class="fas fa-stopwatch post__meta-icon"></em>
-            <span class="post__meta-text">10-minute read</span>
+            <span class="post__meta-text">11-minute read</span>
           </li>
         </ul>
 
@@ -1153,6 +1153,7 @@ Git | Vim | Linux (Ubuntu)
 </ul>
 <h3 id="type-punning">Type Punning</h3>
 <ul>
+<li>Type punning is a programming technique that subverts or circumvents the type system of a programming language in order to achieve an effect that would be difficult or impossible to achieve within the bounds of the formal language.</li>
 <li>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">  <span class="k">struct</span> <span class="nc">Entity</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
@@ -1230,7 +1231,75 @@ Git | Vim | Linux (Ubuntu)
 </ul>
 </li>
 </ul>
-<h3 id="virtual-destructor">Virtual Destructor</h3></div>
+<h3 id="virtual-destructor">Virtual Destructor</h3>
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">  <span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Base</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base Constructor</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// Must put virtual keyword to safely extent the class
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Base Destructor</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Derived</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Derived Constructor</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">~</span><span class="n">Derived</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Derived Destructor</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Base</span><span class="o">*</span> <span class="n">poly</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="k">delete</span> <span class="n">poly</span><span class="p">;</span> <span class="c1">// Needs to call the destructor of the derived class if that is present.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">          Base Constructor
+</span></span></span><span class="line"><span class="cl"><span class="cm">          Derived Constructor
+</span></span></span><span class="line"><span class="cl"><span class="cm">          Derived Destructor
+</span></span></span><span class="line"><span class="cl"><span class="cm">          Base Destructor
+</span></span></span><span class="line"><span class="cl"><span class="cm">      */</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="casting">Casting</h3>
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl">  <span class="c1">// ========== static_cast: C++ style
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="mf">5.25</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">double</span> <span class="n">s</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="mf">5.3</span><span class="p">;</span> <span class="c1">// 5 + 5.3 = 10.3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// ========== dynamic_cast: runtime type checking
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Derived</span><span class="o">*</span> <span class="n">derived</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Base</span><span class="o">*</span> <span class="n">base</span> <span class="o">=</span> <span class="n">derived</span><span class="p">;</span> <span class="c1">// Assume we do not know the type of base
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">AnotherClass</span><span class="o">*</span> <span class="n">ac</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AnotherClass</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">base</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="n">ac</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;base is an instance of AnotherClass</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;base is not an instance of AnotherClass</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// cout: base is not an instance of AnotherClass
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// ========== reinterpret_cast: type punning
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">double</span><span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">base</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// ========== const_cast: add or remove const modifier
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">const</span> <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Before: *ptr1 is &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr1</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// cout: Before: *ptr1 is 50
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span><span class="o">*</span> <span class="n">ptr2</span> <span class="o">=</span> <span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ptr1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Now: *ptr1 is &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr1</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// cout: Now: *ptr1 is 60
+</span></span></span></code></pre></div></li>
+</ul></div>
     <div class="post__footer">
       
 
