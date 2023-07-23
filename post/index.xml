@@ -6,7 +6,23 @@
     <description>Recent content in Posts on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 19 Jul 2023 11:26:17 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Jul 2023 10:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distributed Systems</title>
+      <link>https://jiajun2001.github.io/post/distributed-systems/</link>
+      <pubDate>Sun, 23 Jul 2023 10:27:22 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/distributed-systems/</guid>
+      
+        <description>&lt;p&gt;This is my course notes for Distributed Systems. In this post, I will cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming.&lt;/li&gt;
+&lt;li&gt;Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &amp;rsquo;thin&amp;rsquo; clients, data replication, cryptographic security, mobile code.&lt;/li&gt;
+&lt;li&gt;Introduction to Java RMI.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Operating Systems</title>
       <link>https://jiajun2001.github.io/post/operating-systems/</link>
