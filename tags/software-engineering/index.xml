@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Software Engineering on My blog</title>
+    <link>https://jiajun2001.github.io/tags/software-engineering/</link>
+    <description>Recent content in Software Engineering on My blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 24 Jul 2023 15:26:17 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Engineering</title>
+      <link>https://jiajun2001.github.io/post/software-engineering/</link>
+      <pubDate>Mon, 24 Jul 2023 15:26:17 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/software-engineering/</guid>
+      
+        <description>&lt;p&gt;This is my notes for software engineering. In this post, I will cover the following contents:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

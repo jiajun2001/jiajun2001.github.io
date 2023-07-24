@@ -6,7 +6,37 @@
     <description>Recent content on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 Jul 2023 10:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Jul 2023 15:26:17 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Engineering</title>
+      <link>https://jiajun2001.github.io/post/software-engineering/</link>
+      <pubDate>Mon, 24 Jul 2023 15:26:17 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/software-engineering/</guid>
+      
+        <description>&lt;p&gt;This is my notes for software engineering. In this post, I will cover the following contents:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Operating Systems</title>
+      <link>https://jiajun2001.github.io/post/operating-systems/</link>
+      <pubDate>Sun, 23 Jul 2023 17:26:17 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/operating-systems/</guid>
+      
+        <description>&lt;p&gt;This is my notes for operating systems. In this post, I will cover the following contents:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OS purposes: resource management and the extended virtual computer; historical development.&lt;/li&gt;
+&lt;li&gt;Processes: critical sections and mutual exclusion, semaphores, monitors, classical problems, deadlock; process scheduling.&lt;/li&gt;
+&lt;li&gt;Input and Output: hardware and software control.&lt;/li&gt;
+&lt;li&gt;Memory management: multi-programming; swapping; virtual memory, paging and symbolic segmentation.&lt;/li&gt;
+&lt;li&gt;File System: operations, implementation, performance.&lt;/li&gt;
+&lt;li&gt;Operating System Security and Protection mechanisms: protection domains, access lists, capability systems, principle of minimum privilege, security threats and attacks, encryption, and authentication.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Distributed Systems</title>
       <link>https://jiajun2001.github.io/post/distributed-systems/</link>
@@ -19,25 +49,6 @@
 &lt;li&gt;The challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming.&lt;/li&gt;
 &lt;li&gt;Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &amp;rsquo;thin&amp;rsquo; clients, data replication, cryptographic security, mobile code.&lt;/li&gt;
 &lt;li&gt;Introduction to Java RMI.&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Operating Systems</title>
-      <link>https://jiajun2001.github.io/post/operating-systems/</link>
-      <pubDate>Wed, 19 Jul 2023 11:26:17 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/operating-systems/</guid>
-      
-        <description>&lt;p&gt;This is my notes for operating systems. In this post, I will cover the following contents:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;OS purposes: resource management and the extended virtual computer; historical development.&lt;/li&gt;
-&lt;li&gt;Processes: critical sections and mutual exclusion, semaphores, monitors, classical problems, deadlock; process scheduling.&lt;/li&gt;
-&lt;li&gt;Input and Output: hardware and software control.&lt;/li&gt;
-&lt;li&gt;Memory management: multi-programming; swapping; virtual memory, paging and symbolic segmentation.&lt;/li&gt;
-&lt;li&gt;File System: operations, implementation, performance.&lt;/li&gt;
-&lt;li&gt;Operating System Security and Protection mechanisms: protection domains, access lists, capability systems, principle of minimum privilege, security threats and attacks, encryption, and authentication.&lt;/li&gt;
 &lt;/ul&gt;</description>
       
     </item>
