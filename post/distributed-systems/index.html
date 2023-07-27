@@ -225,7 +225,7 @@ Introduction to Java RMI.
 
     ,
         "url" : "https:\/\/jiajun2001.github.io\/post\/distributed-systems\/",
-        "wordCount" : "521",
+        "wordCount" : "554",
         "genre" : [ ],
         "keywords" : [ 
       
@@ -543,7 +543,7 @@ Introduction to Java RMI.
 <ul>
 <li>Concealment from the user and application programmer of the separation of components in a distributed system.</li>
 <li>Access transparency: local and remote resources can be accessed using identical operations.</li>
-<li>Location transparency: resources can be accessed without the knowledge of where the resource is physically located.</li>
+<li>Location transparency: resources can be accessed without knowledge of their physical or network location.</li>
 </ul>
 </li>
 <li>Openness
@@ -563,9 +563,19 @@ Introduction to Java RMI.
 <h3 id="java-rmi">Java RMI</h3>
 <ul>
 <li>A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).</li>
-<li>Java Remote Method Invocation provides support for clients invoking methods on remote servers.</li>
+<li>Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
+<ul>
+<li>Write code in C -&gt; RPC (Remote Procedure Call)</li>
+</ul>
+</li>
 <li>Connection
 <ul>
+<li>Server publishes its name and location to the RMI Registry
+<ul>
+<li>through the RMI URLs</li>
+</ul>
+</li>
+<li>Client asks the RMI Registry about the server.</li>
 <li>Both the RMIRegistry and Server listen on sockets for remote requests.</li>
 <li>Clients need to identify both the host where the server resides and the socket number (port) that it is listening on.</li>
 </ul>
