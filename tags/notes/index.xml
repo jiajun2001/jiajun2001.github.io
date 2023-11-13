@@ -6,7 +6,29 @@
     <description>Recent content in Notes on My blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 24 Jul 2023 15:26:17 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Nov 2023 11:26:17 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Computer Architecture Study</title>
+      <link>https://jiajun2001.github.io/post/computer-architecture/</link>
+      <pubDate>Mon, 13 Nov 2023 11:26:17 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/computer-architecture/</guid>
+      
+        <description>&lt;p&gt;This is my revision notes for Computer Architecture. In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ARM Architecture Study</title>
+      <link>https://jiajun2001.github.io/post/arm-architecture/</link>
+      <pubDate>Mon, 13 Nov 2023 11:26:11 +1030</pubDate>
+      
+      <guid>https://jiajun2001.github.io/post/arm-architecture/</guid>
+      
+        <description>&lt;p&gt;Welcome to this post, where the exploration of ARM architecture is at the forefront of our discussions. As a professional currently engaged in simulating ARM processors, I&amp;rsquo;m here to unravel the complexities and innovations of this pivotal technology. ARM&amp;rsquo;s efficient, low-power consumption design is not just revolutionizing mobile computing; it&amp;rsquo;s reshaping the way we think about processing power in an array of devices. Join me on this intellectual odyssey as we delve into the nuances of a system that is the bedrock of modern computing efficiency.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Software Engineering</title>
       <link>https://jiajun2001.github.io/post/software-engineering/</link>
@@ -83,17 +105,6 @@
       <guid>https://jiajun2001.github.io/post/parallel-and-distributed-computing/</guid>
       
         <description>This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis.</description>
-      
-    </item>
-    
-    <item>
-      <title>Computer Architecture (RISC-V)</title>
-      <link>https://jiajun2001.github.io/post/computer-architecture/</link>
-      <pubDate>Wed, 21 Jun 2023 11:26:17 +1030</pubDate>
-      
-      <guid>https://jiajun2001.github.io/post/computer-architecture/</guid>
-      
-        <description>&lt;p&gt;This is my revision notes for Computer Architecture (based on RISC-V). In this post, I will go through some basic knowledge of computer architecture (definitions, theories, calculations), RISC-V instructions, arithmetic operations for computers, pipelined processor design and memory hierarchy. This post will provide a low-level view of computer architecture and design, and help understand how a computer actually runs.&lt;/p&gt;</description>
       
     </item>
     
