@@ -6,36 +6,28 @@
         <description>Recent content in Categories on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 06 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jiajun2001.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 08 Jul 2023 17:11:55 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Research</title>
+        <link>https://jiajun2001.github.io/categories/research/</link>
+        <pubDate>Sat, 08 Jul 2023 17:11:55 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/categories/research/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Basic Concept</title>
+        <link>https://jiajun2001.github.io/categories/basic-concept/</link>
+        <pubDate>Mon, 12 Dec 2022 09:44:14 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/categories/basic-concept/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Example Category</title>
         <link>https://jiajun2001.github.io/categories/example-category/</link>
-        <pubDate>Thu, 06 Mar 2025 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://jiajun2001.github.io/categories/example-category/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>JJ Category</title>
-        <link>https://jiajun2001.github.io/categories/jj-category/</link>
-        <pubDate>Thu, 06 Mar 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://jiajun2001.github.io/categories/jj-category/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Syntax</title>
-        <link>https://jiajun2001.github.io/categories/syntax/</link>
-        <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://jiajun2001.github.io/categories/syntax/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Themes</title>
-        <link>https://jiajun2001.github.io/categories/themes/</link>
-        <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://jiajun2001.github.io/categories/themes/</guid>
         <description></description>
         </item>
         

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Our research endeavor aimed to facilitate the utilization of code quality feedback tools for novice programmers . The culmination of our efforts resulted in the development of \"CPPAnalyzer\", a C++ code quality checker tailored explicitly for novice programmers.">
+<title>Adelaide Summer Research Project</title>
+
+<link rel='canonical' href='https://jiajun2001.github.io/p/adelaide-summer-research-project/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Adelaide Summer Research Project">
+<meta property='og:description' content="Our research endeavor aimed to facilitate the utilization of code quality feedback tools for novice programmers . The culmination of our efforts resulted in the development of \"CPPAnalyzer\", a C++ code quality checker tailored explicitly for novice programmers.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/adelaide-summer-research-project/'>
+<meta property='og:site_name' content='Jason&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Code Analysis' /><meta property='article:published_time' content='2023-07-08T17:11:55&#43;10:30'/><meta property='article:modified_time' content='2023-07-08T17:11:55&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/adelaide-summer-research-project/structure.png' />
+<meta name="twitter:title" content="Adelaide Summer Research Project">
+<meta name="twitter:description" content="Our research endeavor aimed to facilitate the utilization of code quality feedback tools for novice programmers . The culmination of our efforts resulted in the development of \"CPPAnalyzer\", a C++ code quality checker tailored explicitly for novice programmers."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/adelaide-summer-research-project/structure.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/profile_hu_a3608c83691b46ad.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😎</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Jason&#39;s blog</a></h1>
+            <h2 class="site-description">ARM Architecture Simulation C/C&#43;&#43; Low-Level Programming Python Java Assembly Linux University of Adelaide (BSc CS) jiajunyu@yahoo.com</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/jiajun2001'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#research-topic">Research Topic</a></li>
+    <li><a href="#supervisors">Supervisors</a></li>
+    <li><a href="#student-researchers">Student Researchers</a></li>
+    <li><a href="#summer-research-outcome">Summer Research Outcome</a></li>
+    <li><a href="#about-cppanalyzer">About CPPAnalyzer</a></li>
+    <li><a href="#lets-run-cppanalyzer">Let&rsquo;s run CPPAnalyzer</a></li>
+    <li><a href="#how-does-this-work">How does this work?</a></li>
+    <li><a href="#genuine-advice">Genuine Advice</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/adelaide-summer-research-project/">
+                <img src="/p/adelaide-summer-research-project/structure_hu_8f13bf127b5ad29f.png"
+                        srcset="/p/adelaide-summer-research-project/structure_hu_8f13bf127b5ad29f.png 800w, /p/adelaide-summer-research-project/structure_hu_c8be0555b222002.png 1600w"
+                        width="800" 
+                        height="655" 
+                        loading="lazy"
+                        alt="Featured image of post Adelaide Summer Research Project" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/research/" >
+                Research
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/adelaide-summer-research-project/">Adelaide Summer Research Project</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Our research endeavor aimed to facilitate the utilization of code quality feedback tools for novice programmers . The culmination of our efforts resulted in the development of &#34;CPPAnalyzer&#34;, a C&#43;&#43; code quality checker tailored explicitly for novice programmers.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 08, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>Upon completing my penultimate year of studying for a Bachelor of Computer Science at the University of Adelaide, I was fortunate to be awarded the Adelaide Summer Research Scholarship for the period of 2022-2023. Delving into a 6-week research project, I collaborated with my research partner, Jian Zhe Chan, while being guided by the experienced supervision of Dr. Cruz Izu and Dr. Amali Weerasinghe.</p>
+<p>Our research endeavor aimed to facilitate the utilization of code quality feedback tools for novice programmers. The culmination of our efforts resulted in the development of &ldquo;CPPAnalyzer&rdquo;, a C++ code quality checker tailored explicitly for novice programmers. This tool serves as a valuable resource to enhance coding style and foster good programming habits among beginners.</p>
+<p>In this post, I am delighted to present a comprehensive summary of our research and serve as a documentation guide for using the &ldquo;CPPAnalyzer&rdquo; code quality checker. Our hope is that this tool will be a stepping stone for aspiring programmers to sharpen their skills and embark on a journey of coding excellence.</p>
+<h2 id="research-topic">Research Topic
+</h2><ul>
+<li>Facilitate the use of code quality feedback tools for novice programmers</li>
+</ul>
+<h2 id="supervisors">Supervisors
+</h2><ul>
+<li>Dr Cruz Izu
+<ul>
+<li>Lecturer</li>
+<li>School of Computer and Mathematical Sciences, Faculty of Sciences, Engineering and Technology</li>
+<li>Research Interests: Computer System Architecture, Higher Education, Networking and Communications, Teacher Education and Professional Development of Educators</li>
+</ul>
+</li>
+<li>Dr Amali Weerasinghe
+<ul>
+<li>School of Computer and Mathematical Sciences, Faculty of Sciences, Engineering and Technology</li>
+<li>Research Interests: Artificial Intelligence</li>
+</ul>
+</li>
+</ul>
+<h2 id="student-researchers">Student Researchers
+</h2><ul>
+<li>Jiajun Yu (Jason)
+<img src="jiajun.jpeg" width=105px align="right">
+<ul>
+<li>Bachelor of Computer Science</li>
+<li>Interests: Computer Systems, Computer Architecture, Algorithms, Data Structures</li>
+<li>Email: <a class="link" href="mailto:jiajun.yu@student.adelaide.edu.au" >jiajun.yu@student.adelaide.edu.au</a></li>
+<li>Blog: <a class="link" href="https://jiajun2001.github.io/"  target="_blank" rel="noopener"
+    >https://jiajun2001.github.io/</a></li>
+</ul>
+</li>
+<li>Jian Zhe Chan (JZ)
+<img src="jz.jpeg" width=105px align="right">
+<ul>
+<li>Bachelor of Computer Science</li>
+<li>Interests: System Programming, Competitive Programming, Computer Networks and Applications, Parallel and Distributed Systems</li>
+<li>Email: <a class="link" href="mailto:jianzhe.chan@student.adelaide.edu.au" >jianzhe.chan@student.adelaide.edu.au</a></li>
+<li>Blog: <a class="link" href="https://chan-jz.github.io/"  target="_blank" rel="noopener"
+    >https://chan-jz.github.io/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="summer-research-outcome">Summer Research Outcome
+</h2><ul>
+<li>Familiarized with the use and features of two code quality checking tools.</li>
+<li>Used BASH scripts and Python programs to analyze two code quality checking tools (Pylint and Hyperstyle) outputs generated from codes submitted by students (Jupyter Notebook, Python, Java files), and used excel to visualize the data.</li>
+<li>Developed a tool to filter Pylint error codes in groups for teaching and researching purposes.</li>
+<li>Developed a tool (<strong>CPPAnalyzer</strong>) to pick up code smells that are missed by existing code quality checking tools</li>
+</ul>
+<h2 id="about-cppanalyzer">About CPPAnalyzer
+</h2><ul>
+<li>CPPAnalyzer is a code quality checking tool that is developed by Jiajun Yu and Jian Zhe Chan under the supervison of Dr Cruz Izu and Dr Amali Weerasinghe during the summer of 2022-2023. It is aimed to analyze the code quality of C++ programs submitted by novice programmers and detect or pick up details missed by existing tools to help students have good coding styles and habits.</li>
+</ul>
+<ul>
+<li>Originally, CPPAnalyzer was planned and desigend to detect 10 rules (<em>FYI: Summer-Research/CPPAnalyzer/Refactor_patterns.pdf</em>). However, due to the time constraint and other unexpected situations, JZ and me only finished implementing 6 rules, they were:
+<ul>
+<li>Refactor Rule 1: Simplify Boolean Expression</li>
+<li>Refactor Rule 2: Simplify Boolean Return</li>
+<li>Refactor Rule 3: Collapsible Nested if Statement</li>
+<li>Refactor Rule 8: Empty if Statement</li>
+<li>Refactor Rule 9: Dead Code</li>
+</ul>
+</li>
+<li>And the rest unimplemented refactor rules are:
+<ul>
+<li>Refactor Rule 4: Consolidate Conditional Expressions</li>
+<li>Refactor Rule 5: Redundant Conditional Check</li>
+<li>Refactor Rule 6: No Use of Else</li>
+<li>Refactor Rule 7: Duplicate if-else Body</li>
+</ul>
+</li>
+<li>In general, CPPAnalyzer is written in Python and it detects broken rules by checking all related nodes (if nodes, while nodes, for nodes, etc). We collect those nodes in JSON format which come from the abstract syntax trees of authentic student submissions generated by clang compiler.</li>
+</ul>
+<h2 id="lets-run-cppanalyzer">Let&rsquo;s run CPPAnalyzer
+</h2><ul>
+<li>
+<ol>
+<li>Clone this github repository using the following command</li>
+</ol>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  git clone --recursive https://github.com/jiajun2001/Summer-Research.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Go to <code>CPPAnalyzer</code> using the following command</li>
+</ol>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  cd CPPAnalyzer
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>3: We have provided you with some test cases in the <code>CPPAnalyzer</code> folder
+<ul>
+<li>Examples: test_Rule3.cpp, test_Rule8.cpp, test_Rule9.cpp, test_Rule123.cpp</li>
+</ul>
+</li>
+<li>4: If you want to play around with them, firstly open <code>ASTProcessor.py</code> file. This is the entry point of our CPPAnalyzer.</li>
+<li>5: Modify line 9 to specify your input file (by default, the input C++ file for testing is <code>test_Rule123.cpp</code>)
+<ul>
+<li><code>fileName = &quot;test_Rule123.cpp&quot;</code></li>
+</ul>
+</li>
+<li>6: Now we can run the program by simply entering the following command:
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  python ASTProcessor.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>7: If this command does not work, try this command:
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  python3 ASTProcessor.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>If this still does not work, you can check your environment to see if you have properly installed Python or not.</li>
+</ul>
+</li>
+<li>8: Have great fun! If you follow the steps above correctly, you should technically see something like this in your terminal:
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">  <span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="n">apple</span><span class="err">@</span><span class="n">student</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">201</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">110</span> <span class="n">CPPAnalyzer</span> <span class="o">%</span> <span class="n">python3</span> <span class="n">ASTProcessor</span><span class="o">.</span><span class="n">py</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span> <span class="n">RRE001</span><span class="p">:</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="ow">or</span> <span class="n">expression</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="bp">true</span> <span class="ow">or</span> <span class="bp">false</span> <span class="p">(</span><span class="n">Simplify</span> <span class="n">Boolean</span> <span class="n">Expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span> <span class="n">RRE001</span><span class="p">:</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="ow">or</span> <span class="n">expression</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="bp">true</span> <span class="ow">or</span> <span class="bp">false</span> <span class="p">(</span><span class="n">Simplify</span> <span class="n">Boolean</span> <span class="n">Expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span> <span class="n">RRE001</span><span class="p">:</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="ow">or</span> <span class="n">expression</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="bp">true</span> <span class="ow">or</span> <span class="bp">false</span> <span class="p">(</span><span class="n">Simplify</span> <span class="n">Boolean</span> <span class="n">Expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span> <span class="n">RRE001</span><span class="p">:</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="ow">or</span> <span class="n">expression</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="bp">true</span> <span class="ow">or</span> <span class="bp">false</span> <span class="p">(</span><span class="n">Simplify</span> <span class="n">Boolean</span> <span class="n">Expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span> <span class="n">RRE001</span><span class="p">:</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="ow">or</span> <span class="n">expression</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="bp">true</span> <span class="ow">or</span> <span class="bp">false</span> <span class="p">(</span><span class="n">Simplify</span> <span class="n">Boolean</span> <span class="n">Expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span> <span class="n">RRE001</span><span class="p">:</span> <span class="n">No</span> <span class="n">need</span> <span class="n">to</span> <span class="n">check</span> <span class="k">if</span> <span class="n">Boolean</span> <span class="n">variable</span> <span class="ow">or</span> <span class="n">expression</span> <span class="n">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="bp">true</span> <span class="ow">or</span> <span class="bp">false</span> <span class="p">(</span><span class="n">Simplify</span> <span class="n">Boolean</span> <span class="n">Expression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span> <span class="n">RRE003</span><span class="p">:</span> <span class="n">Avoiding</span> <span class="n">deep</span> <span class="n">nested</span> <span class="n">ifs</span> <span class="n">by</span> <span class="n">using</span> <span class="ow">and</span> <span class="p">(</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="n">operator</span>
+</span></span><span class="line"><span class="cl">  <span class="n">test_Rule123</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span> <span class="n">RRE009A</span><span class="p">:</span> <span class="n">Detected</span> <span class="n">code</span> <span class="n">that</span> <span class="n">is</span> <span class="n">never</span> <span class="n">executed</span> <span class="n">below</span> <span class="n">the</span> <span class="n">current</span> <span class="k">return</span><span class="o">/</span><span class="k">continue</span><span class="o">/</span><span class="k">return</span> <span class="n">statement</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="n">apple</span><span class="err">@</span><span class="n">student</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">201</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">110</span> <span class="n">CPPAnalyzer</span> <span class="o">%</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h2 id="how-does-this-work">How does this work?
+</h2><ul>
+<li>
+<p>This is the structure of CPPAnalyzer:
+<img src="structure.png" width=1000px></p>
+</li>
+<li>
+<p>Workflow of CPPAnalyzer</p>
+<ul>
+<li>
+<ol>
+<li><code>ASTProcessor.py</code> is the entry point of CPPAnalyzer. This file allows you to specify your input file (C++ program that you are going to analyze), and contains other collectors and rule detectors. If you are going to extend CPPAnalyzer, you should include and invoke your rule detectors in this file.</li>
+</ol>
+<ul>
+<li>In this file, we will also invoke a module called <code>HeaderPreprocessor</code> before calling collectors and rule detectors. When we are generating the AST (abstract syntax tree), we do not want the tree to include any libraries. Otherwise, the tree structure will be giant and messy and this does not help us analyze the code structure. Therefore, we used this module to disable any library that the author of the program included before. The idea here is by putting a line of mark code <code>int XX_MARKER_XX;</code> to indicate where should we start collecting useful subroutine(function) nodes.</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Under <code>Tools</code> folder, we have a folder for collectors and another folder for detectors.</li>
+</ol>
+<ul>
+<li>Technically, at first, we would invoke detectors in consecutive order (Rule1Detector -&gt; Rule2Detector -&gt; Rule3Detector&hellip;)</li>
+<li>For each rule detector, it will invoke collectors to collect JSON nodes needed from the AST (abstract syntax tree) and store those JSON nodes in <code>temp</code> folder.
+<ul>
+<li>For your reference, if you want to have a look at the AST generated, you could use the following command to dump one in <code>temp</code> folder.</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  clang -Xclang -ast-dump=json -fsyntax-only -fno-color-diagnostics test_Rule123.cpp &gt; temp/output.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>After obtaining all nodes we need for detecting one rule, we could start coding the main logic for checking if the node breaks the rule or not.
+<ul>
+<li>The general ideas here is to run a for loop to check each relative node that we collected before.</li>
+<li>Since code structure can sometimes be nested, so we used a few recursive functions (DFS and BFS) to analyze a single node.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="genuine-advice">Genuine Advice
+</h2><ul>
+<li>Try to let the program run first and play around with it by changing the input code to see what will the terminal generate.</li>
+<li>When you are extending this project, try to use some very simple test cases and see the structures of the AST (abstract syntax tree) generated and nodes colleted by collectors.</li>
+<li>It is important to be familiar with the JSON files generated. You could use some online JSON parsers to visualize the structure.</li>
+<li>Consolidate your knowledge about tree data structure and tree traversal algorithms. Knowing these knowledge is of vital importance for further developing the project.</li>
+<li>We might be wrong in some stages of programming this CPPAnalyzer, so feel free to apply your own ideas and change some existing code.</li>
+<li>Good luck!</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/code-analysis/">Code Analysis</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2025 Jason&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
