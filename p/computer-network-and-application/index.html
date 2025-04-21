@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security.">
+<title>Computer Network and Application</title>
+
+<link rel='canonical' href='https://jiajun2001.github.io/p/computer-network-and-application/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Computer Network and Application">
+<meta property='og:description' content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/computer-network-and-application/'>
+<meta property='og:site_name' content='Jason&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Computer Network' /><meta property='article:published_time' content='2023-06-18T12:00:00&#43;10:30'/><meta property='article:modified_time' content='2023-06-18T12:00:00&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/computer-network-and-application/cna.png' />
+<meta name="twitter:title" content="Computer Network and Application">
+<meta name="twitter:description" content="This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/computer-network-and-application/cna.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/profile_hu_a3608c83691b46ad.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😎</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Jason&#39;s blog</a></h1>
+            <h2 class="site-description">ARM Architecture Simulation C/C&#43;&#43; Low-Level Programming Python Java Assembly Linux University of Adelaide (BSc CS) jiajunyu@yahoo.com</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/jiajun2001'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#measuring-performance">Measuring Performance</a></li>
+        <li><a href="#application-architecture">Application Architecture</a></li>
+        <li><a href="#socket-programming">Socket Programming</a></li>
+        <li><a href="#domain-name-system-dns">Domain Name System (DNS)</a></li>
+        <li><a href="#http">HTTP</a></li>
+        <li><a href="#transport-layer">Transport Layer</a></li>
+        <li><a href="#network-layer">Network Layer</a></li>
+        <li><a href="#link-layer">Link Layer</a></li>
+        <li><a href="#security">Security</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/computer-network-and-application/">
+                <img src="/p/computer-network-and-application/cna_hu_fc09ae3bf4150d15.png"
+                        srcset="/p/computer-network-and-application/cna_hu_fc09ae3bf4150d15.png 800w, /p/computer-network-and-application/cna_hu_31814962f817bb26.png 1600w"
+                        width="800" 
+                        height="427" 
+                        loading="lazy"
+                        alt="Featured image of post Computer Network and Application" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/basic-concept/" >
+                Basic Concept
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/computer-network-and-application/">Computer Network and Application</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            This is my revision notes for Computer Network and Application. I will go through a five-level protocol model: Application Layer, Transport Layer, Network Layer, Link Layer, and Physical Layer. This post includes the summary of computer network knowledge as well as network security.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 18, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    21 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <br />
+<h3 id="measuring-performance">Measuring Performance
+</h3><ul>
+<li>Propagation Delay
+<ul>
+<li>The time it takes for a signal to travel from the sender to the receiver in a communication system.</li>
+<li>Formula: Distance / Transmission speed</li>
+</ul>
+</li>
+<li>Transmission Delay
+<ul>
+<li>The time it takes to put bits (1/0) into a medium controlled by bandwidth of a link (data carrying capacity of a link)</li>
+<li>Formula: Data size / Link bandwidth</li>
+</ul>
+</li>
+<li>Queuing Delay
+<ul>
+<li>Queuing delay refers to the time a packet spends waiting in a queue before it can be transmitted or processed further.</li>
+</ul>
+</li>
+<li>Processing Delay
+<ul>
+<li>Processing delay refers to the time taken to process a packet at a network node before it can be forwarded or transmitted.</li>
+</ul>
+</li>
+</ul>
+<h3 id="application-architecture">Application Architecture
+</h3><ul>
+<li>Definition: Designed by the application developer and dictates how the application is structured over various end systems</li>
+<li>Client-server architecture (C/S)
+<ul>
+<li>There is an always-on host, called the server, which serves requests from many other hosts, called clients. With the client-server architecture, clients do not directly communicate with each other.</li>
+</ul>
+</li>
+<li>Peer-to-peer architecture (P2P)
+<ul>
+<li>There is minimal (or no) reliance on dedicated servers in data centers. Instead the application exploits direct communication between pairs of intermittently connected hosts, called peers.</li>
+<li>Advantages:
+<ul>
+<li>Scalability: P2P systems can be more scalable as the workload is distributed across multiple peers, and adding more peers can increase the system&rsquo;s capability.</li>
+<li>Fault Tolerance: There is no central point of failure.</li>
+<li>Cost: P2P architectures are also cost effective since they normally don&rsquo;t require significant server infrastructure and server bandwidth.</li>
+</ul>
+</li>
+<li>Disadvantages:
+<ul>
+<li>Faces challenges of security, performance, and reliability due to their high decentralized structure.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Performance (time)
+<ul>
+<li>Assume file size: F, server upload rate: u<sub>s</sub>, N peers, lowest download rate of the peer: d<sub>min</sub></li>
+<li>C/S: max{ NF/u<sub>s</sub>, F/d<sub>min</sub> }</li>
+<li>P2P: max{ F/u<sub>s</sub>, F/d<sub>min</sub>, NF/(u<sub>s</sub> + u<sub>1</sub> + &hellip; + u<sub>N</sub>) }</li>
+<li>C/S faster than P2P conditions
+<ul>
+<li>Participating peers: In a P2P network, the availability of the file depends on the peers hosting it, and if these peers go offline or become unreliable, it can impact the file distribution speed</li>
+<li>Network infrastructure: If the network infrastructure is well-designed and optimized, a C/S architecture can take advantage of high speed connections and low latency</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="socket-programming">Socket Programming
+</h3><ul>
+<li>Socket: A software interface that allows a process to send messages into, and receive messages from the network. A socket is the interface between the application layer and the transport layer within a host.</li>
+<li>Socket programming for C/S and P2P
+<ul>
+<li>C/S:
+<ul>
+<li>CS systems follow a centralized approach where a server listens on a specific socket for clients connections</li>
+<li>In CS architecture, the server creates and binds a socket to a specific IP address and port number. It listens for incoming client connections on this socket using functions like &lsquo;socket()&rsquo;, &lsquo;bind()&rsquo;, and &rsquo;listen()&rsquo;.</li>
+<li>Clients create a socket and connect it to the server&rsquo;s IP address and port number using functions like &lsquo;socket()&rsquo; and &lsquo;connect()&rsquo;.</li>
+<li>Communication in CS architecture usually involves a request-response model, where clients send requests to the server, and the server responds to those requests.</li>
+</ul>
+</li>
+<li>P2P:
+<ul>
+<li>P2P systems are decentralized, and peers communicate directly with each other without relying on a central server.</li>
+<li>Each peer in a P2P network creates a socket to listen for incoming connections from other peers, as well as initiate connections to other peers.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Socket programming for TCP and UDP
+<ul>
+<li>TCP
+<ul>
+<li>Server: socket(), bind(), listen()</li>
+<li>Client: socket(), connect(), send()</li>
+</ul>
+</li>
+<li>UDP: (no connection between client and server)
+<ul>
+<li>Server: socket(), bind()</li>
+<li>Client: socket(), sendto()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="domain-name-system-dns">Domain Name System (DNS)
+</h3><ul>
+<li>A DNS server provides name resolution (conversion from a domain name to an IP address). A name server is a process listening on UDP/TCP port 53 for requests. When a domain name is detected, it will be resolved and a reply will be sent.</li>
+<li>DNS hierarchical database
+<ul>
+<li>Root name server: able to resolve all queries or another intermediate name server</li>
+<li>Top-level domain servers (TLD): responsible for com, org, net, edu, etc, and all top-level country domains uk, fr, ca, jp.</li>
+<li>Authoritative DNS servers: organization&rsquo;s DNS servers, providing authoritative hostname to IP mappings for organization&rsquo;s servers</li>
+<li>Local name server: handles local DNS requests. Caches resolved addresses.</li>
+</ul>
+</li>
+<li>Queries
+<ul>
+<li>Iterative: contacted server replies with name of server to contact</li>
+<li>Recursive: puts burden of name resolution on contacted name server</li>
+</ul>
+</li>
+<li>DNS records (stored in distributed database)
+<ul>
+<li>Resource records (RR) format: (name, value, type, ttl)</li>
+<li>Type = A: name = hostname, value = IP address</li>
+<li>Type = NS: name = domain, value = hostname of authoritative name server</li>
+<li>Type = CNAME: name = alias name, value: canonical name</li>
+<li>Type = MX: value = name of mail server associated with the name</li>
+</ul>
+</li>
+</ul>
+<h3 id="http">HTTP
+</h3><ul>
+<li>Behaviors of HTTP
+<ul>
+<li>Requests methods: GET, POST, HEAD, PUT(update), DELETE(remove)</li>
+<li>Responses: 2xx(success), 3xx(redirection), 4xx(client error), 5xx(server error)</li>
+</ul>
+</li>
+<li>Difference between HTTP 1.0 and HTTP 1.1
+<ul>
+<li>Persistent connections: HTTP 1.0 requires 2 RTTs per object. HTTP 1.1 allows multiple requests to be sent and received over the same connection, reducing the overhead of establishing new connections for each request.</li>
+<li>Pipelining: HTTP 1.1 enables sending multiple requests without waiting for each response. In HTTP 1.0, the client had to wait for a response before sending the next request.</li>
+<li>Host header: HTTP 1.1 introduced the host header which allows hosting multiple websites on a single IP address, and enables server to identify the appropriate website to handle the request.</li>
+</ul>
+</li>
+<li>Caching/proxies:
+<ul>
+<li>Goal: satisfy client request without involving origin server</li>
+<li>Advantages
+<ul>
+<li>Reduce response time for client request</li>
+<li>Reduce traffic on an institution&rsquo;s access link</li>
+<li>Enables &lsquo;poor&rsquo; content providers to effectively deliver content</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="transport-layer">Transport Layer
+</h3><ul>
+<li>The transport layer is responsible for providing logical communication between processes. It uses the services of the network layer to transfer data between processes.</li>
+<li>Offered services:
+<ul>
+<li>TCP: in-order delivery / connection oriented / reliable delivery</li>
+<li>UDP: out of order delivery / no connection establishment / best effort</li>
+<li>TCP and UDP both provide multiplexing and de-multiplexing of data from several processes
+<ul>
+<li>Multiplexing at sender: handle data from multiple sockets, add transport header</li>
+<li>De-multiplexing at receiver: use header info to deliver received segments to correct socket</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Port numbers and IP address in TCP and UDP
+<ul>
+<li>TCP: Datagram must specify: source IP address / source port number / destination IP address / destination port number</li>
+<li>UDP: Datagram must specify: destination IP address / destination port number
+<ul>
+<li>UDP de-multiplexing: IP datagrams with same destination port, but different source IP address and/or source port numbers will be directed to same socket at destination</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reliable data transfer
+<ul>
+<li>rdt1.0: underlying channel perfectly reliable</li>
+<li>rdt2.0: underlying channel may flip bits in packet
+<ul>
+<li>checksum to detect bit errors</li>
+<li>sender retransmits packet on receipt of NAK</li>
+</ul>
+</li>
+<li>rdt2.1: handles garbled ACK/NAKs
+<ul>
+<li>sender: sequence number added to packet / must check if received ACK/NAK corrupted</li>
+<li>receiver: must check if received packet is duplicated or not</li>
+</ul>
+</li>
+<li>rdt2.2: a NAK-free protocal
+<ul>
+<li>receiver sends ACK for last packet received OK (receiver must include sequence number of packet being ACKed)</li>
+</ul>
+</li>
+<li>rdt3.0 (Alternating Bit Protocol): channels with errors and loss
+<ul>
+<li>sender waits &lsquo;reasonable&rsquo; amount of time for ACK</li>
+<li>retransmits if no ACK received in this time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Go-Back-N (GBN)
+<ul>
+<li>One timer, on timeout, retransmit all packets in window from last ACK + 1</li>
+<li>Receiver discards out of order packets and sends back cumulative ACK</li>
+</ul>
+</li>
+<li>Selective Repeat (SR)
+<ul>
+<li>Sender keeps track of the ACK received from the receiver and retransmits only the lost or damaged packets, instead of retransmitting the entire window of packets.</li>
+<li>Receiver acknowledges the receipt of each packet, and uses a buffer to store out-of-order packets.</li>
+<li>If the window size is N, we need 2N sequence numbers</li>
+</ul>
+</li>
+<li>TCP
+<ul>
+<li>TCP is designed to provide the appearance of a reliable channel over the unreliable network layer (IP). TCP is a modified hybrid of go-Back-N and selective repeat.</li>
+<li>TCP segment
+<ul>
+<li>Source and destination ports: The combination of the source port and destination port fields allows TCP to establish and maintain multiple simultaneous connections between different applications or services running on the same or different hosts.</li>
+<li>SYN: indicating that this segment is a synchronous request to initialize a TCP connection. It is used during the TCP handshake process to establish a connection</li>
+<li>ACK (cumulative ACKS): indicating that this segment is an acknowledgment of a previously received segment. It confirms that the recipient has received the segment identified by the ACKNUM field</li>
+<li>SEQNUM: specifies the sequence number assigned by the sender to this segment. It is used to number the data bytes in a TCP stream. By using sequence numbers, TCP ensures that data is received in the correct order and any missing or duplicate segments can be detected.</li>
+<li>Window size: The window size field is a 16-bit value that indicates the amount of data, in bytes, that a receiver is willing to accept before requiring the sender to pause and wait for acknowledgement.</li>
+<li>ACKNUM: indicates the sequence number that the sender of this segment expects to receive next</li>
+<li>Checksum: used for error detection. The TCP checksum is a 16-bit field that helps ensure the integrity of the TCP segment during transmission. It is calculated by the sender and verified by the recipient to detect errors that may have occurred during transmission.</li>
+</ul>
+</li>
+<li>Timeout formula: Timeout = EstimatedRTT + 4 * Deviation
+<ul>
+<li>EstimatedRTT = (1 - x) * EstimatedRTT + x * SampleRTT</li>
+<li>Deviation = (1 - x) * Deviation + x * |SampleRTT - EstimatedRTT|</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP connection establishment and termination
+<ul>
+<li>Connection
+<ul>
+<li>TCP connections are established by a 3-way handshake: request connection, grant connection, acknowledge</li>
+<li>Why not 2 way handshake:
+<ul>
+<li>1: Server does not know the client is able to receive its message</li>
+<li>2: If the first ACK is lost, client will send another request which will result in the server allocating more resources to make  unnecessary establishment</li>
+</ul>
+</li>
+<li>Why picking random values for starting sequence numbers
+<ul>
+<li>It is possible that a server establishes two connections, retransmitted data will be delivered to the second connection</li>
+<li>Security issue, if an attacker knows all sequence numbers starting with the same value, he is able to inject some data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Termination
+<ul>
+<li>Client -&gt; Server: FIN</li>
+<li>Server -&gt; Client: ACK / FIN</li>
+<li>Client -&gt; Server: ACK
+<ul>
+<li>Time wait increases the chance of server receiving the final ACK</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP flow control
+<ul>
+<li>Receiver informs sender of the receive window size in the header of TCP segments</li>
+<li>At the sender, LastByteSent - LastByteAcked &lt;= Receive Window</li>
+<li>If the receive buffer is full, the sender will just send one byte</li>
+</ul>
+</li>
+<li>TCP congestion control
+<ul>
+<li>Slow start: the value of the congestion window begins at 1 MSS and increase by 1 MSS every time a transmitted segment is first acknowledged (grows exponentially). If there is a loss event indicated by a timeout, TCP sender sets the value of congestion window to be 1 and &lsquo;ssthresh&rsquo; to be &lsquo;cwnd / 2&rsquo;. Slow start will end when the value of &lsquo;cwnd&rsquo; equals &lsquo;ssthresh&rsquo;, or three duplicated ACKs detected.</li>
+<li>Congestion avoidance mode: TCP increases the value of &lsquo;cwnd&rsquo; by just a single MSS every RTT (grows linearly). If there is a loss event indicated by a timeout, TCP sender sets the value of congestion window to be 1 and &lsquo;ssthresh&rsquo; to be &lsquo;cwnd / 2&rsquo;. Congestion avoidance will end when a loss event occurs, or there are three duplicated ACKs detected.</li>
+<li>Fast recovery (TCP Reno incorporated): TCP sender sets &lsquo;ssthresh&rsquo; to be &lsquo;cwnd / 2&rsquo;, and &lsquo;cwnd&rsquo; to be ssthresh + 3 * MSS.</li>
+<li>Fast retransmit: For TCP Reno - 1990, if there are three duplicated ACKs detected, retransmit immediately.</li>
+<li>If there is timeout, TCP Reno will behave the same as TCP Tahoe. They behave differently when there are three duplicated ACKs detected. TCP Reno will go to fast recovery mode, while TCP Tahoe will go to slow start mode.</li>
+</ul>
+</li>
+</ul>
+<h3 id="network-layer">Network Layer
+</h3><ul>
+<li>Datagram protocol
+<ul>
+<li>A connectionless protocol where each packet, also known as a datagram, is treated independently and can take different routes to reach its destination. In the case of IP, each IP packet (datagram) contains the source and destination IP addresses, as well as the data payload.</li>
+<li>Limitation: Reliable delivery / ordering / congestion control / Fragmentation and reassembly</li>
+</ul>
+</li>
+<li>Functions
+<ul>
+<li>Path determination: route taken by packets from source to dest</li>
+<li>Forwarding: move packets from routers input to appropriate router output</li>
+<li>Call setup: some network architectures require router call setup along path before data flows</li>
+</ul>
+</li>
+<li>Network layer
+<ul>
+<li>Control plane
+<ul>
+<li>network-wide logic</li>
+<li>determines how datagram is routed among routers along end-end path from source host to destination host</li>
+<li>Two control-plane approaches
+<ul>
+<li>Traditional routing algorithms: implemented in routers
+<ul>
+<li>Classification
+<ul>
+<li>Global or decentralized
+<ul>
+<li>Global: all routers have complete topology, link cost info (link state algorithms)</li>
+<li>Decentralized: router knows physically-connected neighbors, link cost to neighbors / Iterative process of computation, exchange of info with neighbors</li>
+</ul>
+</li>
+<li>Static or dynamic
+<ul>
+<li>Static: routers change slowly over time</li>
+<li>Dynamic: routers change more quickly (periodic update / in response to link cost changes)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Dijkstra&rsquo;s algorithm
+<ul>
+<li>Complexity: O(n<sup>2</sup>), more efficient: O(nlogn). Requires O(nE) messages</li>
+<li>Might have oscillations</li>
+</ul>
+</li>
+<li>Distance Vector algorithm
+<ul>
+<li>Attributes
+<ul>
+<li>iterative: continues until no nodes exchange info (self-terminating)</li>
+<li>asynchronous: nodes need not exchange info / iterate in lock step</li>
+<li>distributed: each node communicates only with directly-attached neighbors</li>
+</ul>
+</li>
+<li>Formula
+<ul>
+<li>D<sup>X</sup>(Y, Z) = distance from X to Y, via Z as next hop</li>
+<li>D<sup>X</sup>(Y, Z) = c(X, Z) + min<sub>w</sub>{D<sup>Z</sup>(Y, w)}</li>
+</ul>
+</li>
+<li>Process
+<ul>
+<li>Each node waits for message from neighbors</li>
+<li>Recomputes distance table</li>
+<li>If least cost path to any dest has changed, notify neighbors</li>
+</ul>
+</li>
+<li>Convergence time varies</li>
+<li>May be routing loops / count-to-infinity problem</li>
+</ul>
+</li>
+<li>Comparison
+<ul>
+<li>Link state algorithm
+<ul>
+<li>Faster convergence / Efficient routing</li>
+</ul>
+</li>
+<li>Distance vector
+<ul>
+<li>Simple to implement / Lower overhead</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Software-defined networking (SDN): implemented in remote servers
+<ul>
+<li>Each router contains a flow table that is computed and distributed by a logically centralized routing controller</li>
+<li>programmable control applications</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Data plane
+<ul>
+<li>local, per-router function</li>
+<li>determines how datagram arriving on router input port is forwarded to router output port</li>
+<li>forwarding table</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IP Addressing
+<ul>
+<li>Classfull addressing
+<ul>
+<li>Disadvantages: inefficient use of address space, address space exhaustion</li>
+<li>Class A: | 0 |  network  |  host  |  host  |  host  |</li>
+<li>Class B: | 10 | network | network |  host  |  host  |</li>
+<li>Class C: | 110 | network | network | network | host |</li>
+<li>Class D: | 1110 |         multicast address         |</li>
+</ul>
+</li>
+<li>Classless InterDomain Routing (CIDR)
+<ul>
+<li>network portion of address of arbitrary length</li>
+<li>address format: a.b.c.d/x, where x is the number of bits in network portion of address</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Subnetting
+<ul>
+<li>The network administrator takes a network with a given IP address range and subnet mask and further divides it into smaller subnets by borrowing bits from the host portion of the IP address.</li>
+</ul>
+</li>
+<li>Reserved address
+<ul>
+<li>Network identifiers have a host part of all 0s</li>
+<li>Broadcast addresses have a host part of all 1s</li>
+</ul>
+</li>
+<li>Dynamic Host Configuration Protocol (DHCP)
+<ul>
+<li>Dynamically get an IP address (plug and play)</li>
+<li>Process
+<ul>
+<li>Host broadcasts &ldquo;DHCP discover&rdquo; message</li>
+<li>DHCP server responds with &ldquo;DHCP offer&rdquo; message</li>
+<li>Host requests IP address: &ldquo;DHCP request&rdquo; message</li>
+<li>DHCP server sends address: &ldquo;DHCP ACK&rdquo; message</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Intra-AS Routing (Interior Gateway Protocol - IGP):
+<ul>
+<li>Intra-AS routing refers to the routing protocols and mechanisms used within an individual Autonomous System (AS). All routers in AS must run same intra-domain protocol. An AS is a collection of networks under a single administrative control, such as an Internet Service Provider (ISP) or a large enterprise network. Intra-AS routing protocols, also known as Interior Gateway Protocols (IGPs), are used to exchange routing information and determine the best paths for routing packets within the boundaries of the AS.</li>
+</ul>
+</li>
+<li>Inter-AS Routing (Exterior Gateway Protocol - EGP):
+<ul>
+<li>Inter-AS routing refers to the routing protocols and mechanisms used for exchanging routing information between different Autonomous Systems (ASes) in the Internet. Inter-AS routing protocols, also known as Exterior Gateway Protocols (EGPs), are responsible for facilitating the exchange of routing information and enabling communication between ASes.</li>
+</ul>
+</li>
+<li>Fragmentation
+<ul>
+<li>Large IP datagram divided (fragmented) within net
+<ul>
+<li>One datagram becomes several datagrams</li>
+<li>Reassembled only at final destination</li>
+<li>IP header bits used to identify order related fragments</li>
+</ul>
+</li>
+<li>16-bit identifier: Examine the identification numbers of the datagrams to determine which of the datagrams are actually fragments of the same larger datagram</li>
+<li>Flags: In order for the destination host be absolutely sure it has received the last fragment of the original datagram, the last fragment has a flag bit set to 0, whereas all the other fragments have this flag bit set to 1</li>
+<li>Fragment offset: Specify where the fragment fits within the original IP datagram</li>
+</ul>
+</li>
+<li>IPv6
+<ul>
+<li>Why do we transition to IPv6
+<ul>
+<li>Address space exhaustion / Enhance security / Improved network performance</li>
+</ul>
+</li>
+<li>Features
+<ul>
+<li>128 bit address are written in hex: x : x : x : x : x : x : x : x, each x is 4 hex digits, sequence of zero fields given by &ldquo;::&rdquo;</li>
+<li>IPv6 8 fields in base header vs 13 fields in IPv4 can provide faster processing, simpler management, and more flexibility</li>
+<li>Fragmentation is no longer performed at intermediate routers. The source host should choose datagram size so fragmentation is not necessary. (e.g. send datagram with different sizes to target until they don&rsquo;t arrive)</li>
+<li>No checksum design reduces the processing overhead on intermediate routers and simplifies packet forwarding. The link-layer protocols in modern networks, such as Ethernet, already have their own error detection mechanisms, such as CRC (Cyclic Redundancy Check), which ensure data integrity during transmission.</li>
+</ul>
+</li>
+<li>Additional support
+<ul>
+<li>Multicast and anycast routing</li>
+<li>Security</li>
+<li>Mobile hosts and auto-configuration</li>
+<li>Real time applications</li>
+</ul>
+</li>
+<li>Transition from IPv4 to IPv6
+<ul>
+<li>Dual stack: some routers with dual stack can translate between formats (tend to lose some functionalities)</li>
+<li>Tunneling: IPv6 carried as payload in IPv4 datagram among IPv4 routers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Internet Control Message Protocol (ICMP)
+<ul>
+<li>ICMP is primarily used for diagnostic and error reporting purposes in IP networks. It provides a means for network devices, such as routers and hosts, to communicate with each other regarding network-related issues.</li>
+<li>Main functions
+<ul>
+<li>Error Reporting: ICMP is used to report errors and anomalies in IP packet delivery. For example, if a router encounters a problem while forwarding an IP packet, it can generate an ICMP error message and send it back to the source IP address to inform the sender about the issue.</li>
+<li>Network Reachability: ICMP is used to check the reachability of hosts or networks. The most common example is the ICMP Echo Request and Echo Reply messages, also known as &ldquo;ping.&rdquo; By sending an Echo Request message, a device can determine if another device on the network is reachable and functioning properly.</li>
+<li>Path MTU Discovery: ICMP is involved in the process of Path Maximum Transmission Unit (PMTU) Discovery. It helps determine the maximum size of IP packets that can be transmitted without fragmentation along a path between two hosts. ICMP messages, such as &ldquo;Packet Too Big,&rdquo; are used to inform the sender that the packet is too large and needs to be fragmented or reduced in size.</li>
+<li>Trace the path taken by a packet over the network: By sending packets with increasing TTL values, traceroute effectively maps the network path from the source to the destination. The ICMP &ldquo;Time Exceeded&rdquo; messages indicate the presence of routers along the path, while the &ldquo;Echo Reply&rdquo; message confirms the packet&rsquo;s successful arrival at the destination.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="link-layer">Link Layer
+</h3><ul>
+<li>Data-link layer has responsibility of transferring datagram from one node to physically adjacent node over a link</li>
+<li>Offered services:
+<ul>
+<li>Framing</li>
+<li>Link access</li>
+<li>Reliable delivery between two physically connected devices</li>
+<li>Flow control</li>
+<li>Error detection / correction</li>
+</ul>
+</li>
+<li>Error detection and correction
+<ul>
+<li>Parity
+<ul>
+<li>Single bit parity (detect single bit errors)
+<ul>
+<li>odd parity: number of 1, if odd, parity bit = 0</li>
+<li>even parity: number of 1, if odd, parity bit = 1</li>
+</ul>
+</li>
+<li>Two dimensional bit parity (detect and correct single bit errors)</li>
+</ul>
+</li>
+<li>Checksums
+<ul>
+<li>Errors do not occur as a one-off single bit error, we normally have an error burst</li>
+<li>Internet checksum is 1&rsquo;s compliment sum of the segment contents</li>
+<li>When information is received, sum the contents and add with the checksums. If it is &ldquo;FFFFFFFF&rdquo;, then the information received is correct</li>
+</ul>
+</li>
+<li>Cyclic Redundancy Check polynomials (CRCs)
+<ul>
+<li>Choose r + 1 bit pattern (Generator) G</li>
+<li>Goal: choose r CRC bits, R such that
+<ul>
+<li>&lt;D, R&gt; exactly divisible by G</li>
+<li>receiver knows G and divides &lt;D, R&gt; by G</li>
+<li>can detect all burst errors less that r + 1 bits</li>
+</ul>
+</li>
+<li>If G(x) with degree of r (length r + 1), then it is guaranteed to detect burst length errors of r or less</li>
+<li>Advantages: CRCs are popular because they are simple to implement in binary hardware, easy to analyze mathematically, and particularly good at detecting common errors caused by noise in transmission channels.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multiple access protocols
+<ul>
+<li>Channel partitioning
+<ul>
+<li>Frequency Division Multiple Access (FDMA)
+<ul>
+<li>Channel spectrum divided into frequency bands</li>
+<li>Each station assigned fixed frequency band</li>
+<li>Unused transmission time in frequency bands go idle</li>
+</ul>
+</li>
+<li>Time Division Multiple Access (TDMA)
+<ul>
+<li>Access to channel in &lsquo;rounds&rsquo;</li>
+<li>Each station gets fixed length slot (length = packet transmission time) in each round</li>
+<li>Unused slots go idle</li>
+</ul>
+</li>
+<li>Code Division Multiple Access (CDMA)
+<ul>
+<li>Unique code assigned to each user to encode data</li>
+<li>Allows multiple users to &lsquo;coexist&rsquo; and transmit simultaneously with minimal interference (if codes are orthogonal)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Random access
+<ul>
+<li>Slotted ALOHA
+<ul>
+<li>Time is divided into equal size slots</li>
+<li>Node with new arriving packets: transmit at beginning of next slot</li>
+<li>If there is a collision: re-transmit the packet in future slots with probability p, until successful</li>
+<li>At best: channel used for useful transmissions 37% of time (Np = 1)</li>
+</ul>
+</li>
+<li>Pure (unslotted) ALOHA
+<ul>
+<li>Transmit immediately without awaiting for beginning of slot</li>
+<li>Collision probability increases: frame sent at t<sub>0</sub> collides with other packets sent in [t<sub>0</sub> - 1, t<sub>0</sub> + 1]</li>
+<li>At best: 18% of time (Np = 0.5)</li>
+</ul>
+</li>
+<li>Carrier Sense Multiple Access (CSMA)
+<ul>
+<li>Listen before transmit</li>
+<li>Types of CSMA
+<ul>
+<li>Persistent CSMA: retry immediately with probability p when channel becomes idle</li>
+<li>Non-persistent CSMA: retry after random interval</li>
+</ul>
+</li>
+<li>CSMA collisions
+<ul>
+<li>Collisions can occur due to propagation delay</li>
+<li>Collisions means entire packet transmission time is wasted - up to 2 packet times</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Carrier Sense Multiple Access with Collision Detection (CSMA/CD)
+<ul>
+<li>Colliding transmissions aborted, reducing channel wastage</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Taking turns
+<ul>
+<li>Polling
+<ul>
+<li>Master node invites slave nodes to transmit in turn</li>
+</ul>
+</li>
+<li>Token passing
+<ul>
+<li>Control token passed from one node to next sequentially</li>
+</ul>
+</li>
+<li>Distributed polling
+<ul>
+<li>Begins with N short reservation slots
+<ul>
+<li>Stations with message to send posts reservation</li>
+<li>Reservation seen by all stations</li>
+</ul>
+</li>
+<li>After reservation slots, message transmissions ordered by known priority</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LAN / MAC / physical address
+<ul>
+<li>Used locally to get frame from one interface to another physically-connected interface</li>
+<li>Format: 48 bit MAC address burned in the adapter ROM (hexadecimal notation)</li>
+</ul>
+</li>
+<li>Address Resolution Protocol (ARP)
+<ul>
+<li>Given a destination IP address, work out the MAC address of the destination</li>
+<li>ARP Table: IP/MAC address mappings for some LAN nodes
+<ul>
+<li>Table entry format: &lt;IP Address; MAC Address; TTL&gt;</li>
+</ul>
+</li>
+<li>Process
+<ul>
+<li>1: A broadcasts ARP query packet, containing B&rsquo;s IP address</li>
+<li>2: B receives ARP packet, replies to A with its MAC address</li>
+<li>3: A caches IP-to-MAC address pair in its ARP table until timeout</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ethernet
+<ul>
+<li>Dominant wired LAN technology</li>
+<li>Sending adapter encapsulates IP datagram in Ethernet frame</li>
+<li>Physical topology
+<ul>
+<li>Bus: all nodes in same collision domain (can collide with each other | CSMA/CD)</li>
+<li>Star: active switch in center / each &ldquo;spoke&rdquo; runs a separate Ethernet protocol (nodes do not collide with each other)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Switches
+<ul>
+<li>Functions
+<ul>
+<li>Filtering, storing, forwarding Ethernet frames</li>
+<li>Examine incoming frame&rsquo;s MAC address, selectively forward frame to one-or-more outgoing links when frame is to be forwarded on segment.</li>
+</ul>
+</li>
+<li>Plug and play, self-learning
+<ul>
+<li>Switch table entry: [node LAN address, switch interface, time stamp, TTL]</li>
+<li>If a frame&rsquo;s destination is unknown, flood (flood learning)</li>
+</ul>
+</li>
+<li>Cycles result
+<ul>
+<li>organize switches in a spanning tree by disabling subset of interfaces</li>
+<li>The Spanning Tree Protocol (STP) is a network protocol used in Layer 2 Ethernet networks to prevent loops and ensure the creation of a loop-free topology. Its main role is to establish a tree-like structure within a network by selectively blocking redundant paths.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MPLS
+<ul>
+<li>Initial goal: high-speed IP forwarding using fixed length labels
+<ul>
+<li>Fast lookup using fixed length identifier (rather than longest prefix matching)</li>
+</ul>
+</li>
+<li>MPLS routing: path to destination can be based on source and destination addresses
+<ul>
+<li>Fast reroute: pre-compute backup routes in case of link failure</li>
+</ul>
+</li>
+<li>MPLS operations: push / swap / pop</li>
+<li>MPLS equipment: Label Edge Routers / Label Switch Routers</li>
+<li>MPLS features
+<ul>
+<li>Traffic Engineering: MPLS allows network administrators to control the path and flow of traffic through the network.</li>
+<li>Flexibility: MPLS forwarding decisions can differ from those of IP
+<ul>
+<li>Use destination and source addresses to route flows to same destination differently.</li>
+<li>Re-route flows quickly if link fails: pre-computed backup paths</li>
+</ul>
+</li>
+<li>MPLS can support multiple levels of connection tunnelling through label stacking (VPN support)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Traceroute
+<ul>
+<li>A network diagnostic tool used to trace the path that an IP packet takes from a source device to a destination device over an IP network. It provides valuable information about the routers or network devices traversed by the packet, helping identify network connectivity issues, bottlenecks, and routing problems</li>
+</ul>
+</li>
+</ul>
+<h3 id="security">Security
+</h3><ul>
+<li>Confidentiality: only sender, intended receiver should understand message contents
+<ul>
+<li>Sender encrypts message / Receiver decrypts message</li>
+</ul>
+</li>
+<li>Authentication: sender, receiver want to confirm identity of each other</li>
+<li>Message integrity: sender, receiver want to ensure message not altered without detection</li>
+<li>Access and availability: services must be accessible and available to users</li>
+<li>Attacks
+<ul>
+<li>Eavesdrop: intercept messages</li>
+<li>Actively insert messages into connections</li>
+<li>Impersonation: Fake (spoof) source address in packet (or any field in packet)</li>
+<li>Hijacking: take over ongoing connection by removing sender or receiver, inserting himself in place</li>
+<li>Deny of service: prevent service from being used by others</li>
+</ul>
+</li>
+<li>Nonce: number used only once-in-a-lifetime</li>
+<li>Challenge-response protocols are authentication protocols that involve a challenge presented by the verifier to the prover, who must provide a response that proves their identity or possession of a secret key.</li>
+<li>Hash function
+<ul>
+<li>produces fixed-size message digest (fingerprint)</li>
+<li>given message digest x, computationally infeasible to find m such that x = H(m)</li>
+<li>process data quickly and hashed value is efficient for verification</li>
+</ul>
+</li>
+<li>Public key encryption algorithm
+<ul>
+<li>Requirements
+<ul>
+<li>1: need K<sup>+</sup>(B) and K<sup>-</sup>(B) such that K<sup>-</sup>(K<sup>+</sup>(m)) = m</li>
+<li>2: given public key K<sup>+</sup>(B), it should be impossible to compute private key K<sup>-</sup>(B).</li>
+</ul>
+</li>
+<li>Important property
+<ul>
+<li>K<sup>-</sup>(K<sup>+</sup>(m)) = m = K<sup>+</sup>(K<sup>-</sup>(m))</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Certification authority (CA): binds public key to particular entry, E.
+<ul>
+<li>E registers its public key with CA by providing &ldquo;proof of identity&rdquo; to CA</li>
+<li>CA creates certificate binding E to its public key</li>
+</ul>
+</li>
+<li>Key distribution problem: refers to the challenge of securely distributing encryption keys between parties involved in secure communication or cryptographic systems. The key distribution problem arises from the need to establish and exchange encryption keys in a secure and reliable manner.</li>
+<li>Secure e-mail
+<ul>
+<li>Alice wants to provide confidentiality, sender authentication, message integrity.
+<ul>
+<li>Confidentiality: encryption</li>
+<li>Sender authentication: digital signature</li>
+<li>Message integrity: Hashing</li>
+</ul>
+</li>
+<li>Approach
+<ul>
+<li>K<sub>s</sub>{K<sup>-</sup><sub>A</sub>(H(m)), m}, K<sup>+</sup><sub>B</sub>(K<sub>s</sub>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-network/">Computer Network</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43; Study Note"
+                        
+                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/parallel-and-distributed-computing/">
+        
+        
+            <div class="article-image">
+                <img src="/p/parallel-and-distributed-computing/background.964aa5ef0b64d0682c9d7236c2df61c9_hu_f188a4450b9a9c65.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Parallel and Distributed Computing"
+                        
+                        data-hash="md5-lkql7wtk0GgsnXI2wt9hyQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Parallel and Distributed Computing</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/algorithm-and-data-structure-theory-study/">
+        
+        
+            <div class="article-image">
+                <img src="/p/algorithm-and-data-structure-theory-study/structure.c652dd796dfd0bb0da4f4a192ef49fce_hu_51789ffbb98a80cc.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Algorithm and Data Structure Theory Study"
+                        
+                        data-hash="md5-xlLdeW39C7DaT0oZLvSfzg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Algorithm and Data Structure Theory Study</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2025 Jason&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

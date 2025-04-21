@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Computer Network on Jason&#39;s blog</title>
+        <link>https://jiajun2001.github.io/tags/computer-network/</link>
+        <description>Recent content in Computer Network on Jason&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sun, 18 Jun 2023 12:00:00 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/computer-network/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Computer Network and Application</title>
+        <link>https://jiajun2001.github.io/p/computer-network-and-application/</link>
+        <pubDate>Sun, 18 Jun 2023 12:00:00 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/p/computer-network-and-application/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/computer-network-and-application/cna.png" alt="Featured image of post Computer Network and Application" /&gt;&lt;br /&gt;
+&lt;h3 id=&#34;measuring-performance&#34;&gt;Measuring Performance
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Propagation Delay
+&lt;ul&gt;
+&lt;li&gt;The time it takes for a signal to travel from the sender to the receiver in a communication system.&lt;/li&gt;
+&lt;li&gt;Formula: Distance / Transmission speed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transmission Delay
+&lt;ul&gt;
+&lt;li&gt;The time it takes to put bits (1/0) into a medium controlled by bandwidth of a link (data carrying capacity of a link)&lt;/li&gt;
+&lt;li&gt;Formula: Data size / Link bandwidth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Queuing Delay
+&lt;ul&gt;
+&lt;li&gt;Queuing delay refers to the time a packet spends waiting in a queue before it can be transmitted or processed further.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Processing Delay
+&lt;ul&gt;
+&lt;li&gt;Processing delay refers to the time taken to process a packet at a network node before it can be forwarded or transmitted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;application-architecture&#34;&gt;Application Architecture
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Definition: Designed by the application developer and dictates how the application is structured over various end systems&lt;/li&gt;
+&lt;li&gt;Client-server architecture (C/S)
+&lt;ul&gt;
+&lt;li&gt;There is an always-on host, called the server, which serves requests from many other hosts, called clients. With the client-server architecture, clients do not directly communicate with each other.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Peer-to-peer architecture (P2P)
+&lt;ul&gt;
+&lt;li&gt;There is minimal (or no) reliance on dedicated servers in data centers. Instead the application exploits direct communication between pairs of intermittently connected hosts, called peers.&lt;/li&gt;
+&lt;li&gt;Advantages:
+&lt;ul&gt;
+&lt;li&gt;Scalability: P2P systems can be more scalable as the workload is distributed across multiple peers, and adding more peers can increase the system&amp;rsquo;s capability.&lt;/li&gt;
+&lt;li&gt;Fault Tolerance: There is no central point of failure.&lt;/li&gt;
+&lt;li&gt;Cost: P2P architectures are also cost effective since they normally don&amp;rsquo;t require significant server infrastructure and server bandwidth.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Disadvantages:
+&lt;ul&gt;
+&lt;li&gt;Faces challenges of security, performance, and reliability due to their high decentralized structure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Performance (time)
+&lt;ul&gt;
+&lt;li&gt;Assume file size: F, server upload rate: u&lt;sub&gt;s&lt;/sub&gt;, N peers, lowest download rate of the peer: d&lt;sub&gt;min&lt;/sub&gt;&lt;/li&gt;
+&lt;li&gt;C/S: max{ NF/u&lt;sub&gt;s&lt;/sub&gt;, F/d&lt;sub&gt;min&lt;/sub&gt; }&lt;/li&gt;
+&lt;li&gt;P2P: max{ F/u&lt;sub&gt;s&lt;/sub&gt;, F/d&lt;sub&gt;min&lt;/sub&gt;, NF/(u&lt;sub&gt;s&lt;/sub&gt; + u&lt;sub&gt;1&lt;/sub&gt; + &amp;hellip; + u&lt;sub&gt;N&lt;/sub&gt;) }&lt;/li&gt;
+&lt;li&gt;C/S faster than P2P conditions
+&lt;ul&gt;
+&lt;li&gt;Participating peers: In a P2P network, the availability of the file depends on the peers hosting it, and if these peers go offline or become unreliable, it can impact the file distribution speed&lt;/li&gt;
+&lt;li&gt;Network infrastructure: If the network infrastructure is well-designed and optimized, a C/S architecture can take advantage of high speed connections and low latency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;socket-programming&#34;&gt;Socket Programming
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Socket: A software interface that allows a process to send messages into, and receive messages from the network. A socket is the interface between the application layer and the transport layer within a host.&lt;/li&gt;
+&lt;li&gt;Socket programming for C/S and P2P
+&lt;ul&gt;
+&lt;li&gt;C/S:
+&lt;ul&gt;
+&lt;li&gt;CS systems follow a centralized approach where a server listens on a specific socket for clients connections&lt;/li&gt;
+&lt;li&gt;In CS architecture, the server creates and binds a socket to a specific IP address and port number. It listens for incoming client connections on this socket using functions like &amp;lsquo;socket()&amp;rsquo;, &amp;lsquo;bind()&amp;rsquo;, and &amp;rsquo;listen()&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;Clients create a socket and connect it to the server&amp;rsquo;s IP address and port number using functions like &amp;lsquo;socket()&amp;rsquo; and &amp;lsquo;connect()&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;Communication in CS architecture usually involves a request-response model, where clients send requests to the server, and the server responds to those requests.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;P2P:
+&lt;ul&gt;
+&lt;li&gt;P2P systems are decentralized, and peers communicate directly with each other without relying on a central server.&lt;/li&gt;
+&lt;li&gt;Each peer in a P2P network creates a socket to listen for incoming connections from other peers, as well as initiate connections to other peers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Socket programming for TCP and UDP
+&lt;ul&gt;
+&lt;li&gt;TCP
+&lt;ul&gt;
+&lt;li&gt;Server: socket(), bind(), listen()&lt;/li&gt;
+&lt;li&gt;Client: socket(), connect(), send()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;UDP: (no connection between client and server)
+&lt;ul&gt;
+&lt;li&gt;Server: socket(), bind()&lt;/li&gt;
+&lt;li&gt;Client: socket(), sendto()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;domain-name-system-dns&#34;&gt;Domain Name System (DNS)
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;A DNS server provides name resolution (conversion from a domain name to an IP address). A name server is a process listening on UDP/TCP port 53 for requests. When a domain name is detected, it will be resolved and a reply will be sent.&lt;/li&gt;
+&lt;li&gt;DNS hierarchical database
+&lt;ul&gt;
+&lt;li&gt;Root name server: able to resolve all queries or another intermediate name server&lt;/li&gt;
+&lt;li&gt;Top-level domain servers (TLD): responsible for com, org, net, edu, etc, and all top-level country domains uk, fr, ca, jp.&lt;/li&gt;
+&lt;li&gt;Authoritative DNS servers: organization&amp;rsquo;s DNS servers, providing authoritative hostname to IP mappings for organization&amp;rsquo;s servers&lt;/li&gt;
+&lt;li&gt;Local name server: handles local DNS requests. Caches resolved addresses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Queries
+&lt;ul&gt;
+&lt;li&gt;Iterative: contacted server replies with name of server to contact&lt;/li&gt;
+&lt;li&gt;Recursive: puts burden of name resolution on contacted name server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;DNS records (stored in distributed database)
+&lt;ul&gt;
+&lt;li&gt;Resource records (RR) format: (name, value, type, ttl)&lt;/li&gt;
+&lt;li&gt;Type = A: name = hostname, value = IP address&lt;/li&gt;
+&lt;li&gt;Type = NS: name = domain, value = hostname of authoritative name server&lt;/li&gt;
+&lt;li&gt;Type = CNAME: name = alias name, value: canonical name&lt;/li&gt;
+&lt;li&gt;Type = MX: value = name of mail server associated with the name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;http&#34;&gt;HTTP
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Behaviors of HTTP
+&lt;ul&gt;
+&lt;li&gt;Requests methods: GET, POST, HEAD, PUT(update), DELETE(remove)&lt;/li&gt;
+&lt;li&gt;Responses: 2xx(success), 3xx(redirection), 4xx(client error), 5xx(server error)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Difference between HTTP 1.0 and HTTP 1.1
+&lt;ul&gt;
+&lt;li&gt;Persistent connections: HTTP 1.0 requires 2 RTTs per object. HTTP 1.1 allows multiple requests to be sent and received over the same connection, reducing the overhead of establishing new connections for each request.&lt;/li&gt;
+&lt;li&gt;Pipelining: HTTP 1.1 enables sending multiple requests without waiting for each response. In HTTP 1.0, the client had to wait for a response before sending the next request.&lt;/li&gt;
+&lt;li&gt;Host header: HTTP 1.1 introduced the host header which allows hosting multiple websites on a single IP address, and enables server to identify the appropriate website to handle the request.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Caching/proxies:
+&lt;ul&gt;
+&lt;li&gt;Goal: satisfy client request without involving origin server&lt;/li&gt;
+&lt;li&gt;Advantages
+&lt;ul&gt;
+&lt;li&gt;Reduce response time for client request&lt;/li&gt;
+&lt;li&gt;Reduce traffic on an institution&amp;rsquo;s access link&lt;/li&gt;
+&lt;li&gt;Enables &amp;lsquo;poor&amp;rsquo; content providers to effectively deliver content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;transport-layer&#34;&gt;Transport Layer
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;The transport layer is responsible for providing logical communication between processes. It uses the services of the network layer to transfer data between processes.&lt;/li&gt;
+&lt;li&gt;Offered services:
+&lt;ul&gt;
+&lt;li&gt;TCP: in-order delivery / connection oriented / reliable delivery&lt;/li&gt;
+&lt;li&gt;UDP: out of order delivery / no connection establishment / best effort&lt;/li&gt;
+&lt;li&gt;TCP and UDP both provide multiplexing and de-multiplexing of data from several processes
+&lt;ul&gt;
+&lt;li&gt;Multiplexing at sender: handle data from multiple sockets, add transport header&lt;/li&gt;
+&lt;li&gt;De-multiplexing at receiver: use header info to deliver received segments to correct socket&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Port numbers and IP address in TCP and UDP
+&lt;ul&gt;
+&lt;li&gt;TCP: Datagram must specify: source IP address / source port number / destination IP address / destination port number&lt;/li&gt;
+&lt;li&gt;UDP: Datagram must specify: destination IP address / destination port number
+&lt;ul&gt;
+&lt;li&gt;UDP de-multiplexing: IP datagrams with same destination port, but different source IP address and/or source port numbers will be directed to same socket at destination&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reliable data transfer
+&lt;ul&gt;
+&lt;li&gt;rdt1.0: underlying channel perfectly reliable&lt;/li&gt;
+&lt;li&gt;rdt2.0: underlying channel may flip bits in packet
+&lt;ul&gt;
+&lt;li&gt;checksum to detect bit errors&lt;/li&gt;
+&lt;li&gt;sender retransmits packet on receipt of NAK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rdt2.1: handles garbled ACK/NAKs
+&lt;ul&gt;
+&lt;li&gt;sender: sequence number added to packet / must check if received ACK/NAK corrupted&lt;/li&gt;
+&lt;li&gt;receiver: must check if received packet is duplicated or not&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rdt2.2: a NAK-free protocal
+&lt;ul&gt;
+&lt;li&gt;receiver sends ACK for last packet received OK (receiver must include sequence number of packet being ACKed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rdt3.0 (Alternating Bit Protocol): channels with errors and loss
+&lt;ul&gt;
+&lt;li&gt;sender waits &amp;lsquo;reasonable&amp;rsquo; amount of time for ACK&lt;/li&gt;
+&lt;li&gt;retransmits if no ACK received in this time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Go-Back-N (GBN)
+&lt;ul&gt;
+&lt;li&gt;One timer, on timeout, retransmit all packets in window from last ACK + 1&lt;/li&gt;
+&lt;li&gt;Receiver discards out of order packets and sends back cumulative ACK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Selective Repeat (SR)
+&lt;ul&gt;
+&lt;li&gt;Sender keeps track of the ACK received from the receiver and retransmits only the lost or damaged packets, instead of retransmitting the entire window of packets.&lt;/li&gt;
+&lt;li&gt;Receiver acknowledges the receipt of each packet, and uses a buffer to store out-of-order packets.&lt;/li&gt;
+&lt;li&gt;If the window size is N, we need 2N sequence numbers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TCP
+&lt;ul&gt;
+&lt;li&gt;TCP is designed to provide the appearance of a reliable channel over the unreliable network layer (IP). TCP is a modified hybrid of go-Back-N and selective repeat.&lt;/li&gt;
+&lt;li&gt;TCP segment
+&lt;ul&gt;
+&lt;li&gt;Source and destination ports: The combination of the source port and destination port fields allows TCP to establish and maintain multiple simultaneous connections between different applications or services running on the same or different hosts.&lt;/li&gt;
+&lt;li&gt;SYN: indicating that this segment is a synchronous request to initialize a TCP connection. It is used during the TCP handshake process to establish a connection&lt;/li&gt;
+&lt;li&gt;ACK (cumulative ACKS): indicating that this segment is an acknowledgment of a previously received segment. It confirms that the recipient has received the segment identified by the ACKNUM field&lt;/li&gt;
+&lt;li&gt;SEQNUM: specifies the sequence number assigned by the sender to this segment. It is used to number the data bytes in a TCP stream. By using sequence numbers, TCP ensures that data is received in the correct order and any missing or duplicate segments can be detected.&lt;/li&gt;
+&lt;li&gt;Window size: The window size field is a 16-bit value that indicates the amount of data, in bytes, that a receiver is willing to accept before requiring the sender to pause and wait for acknowledgement.&lt;/li&gt;
+&lt;li&gt;ACKNUM: indicates the sequence number that the sender of this segment expects to receive next&lt;/li&gt;
+&lt;li&gt;Checksum: used for error detection. The TCP checksum is a 16-bit field that helps ensure the integrity of the TCP segment during transmission. It is calculated by the sender and verified by the recipient to detect errors that may have occurred during transmission.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Timeout formula: Timeout = EstimatedRTT + 4 * Deviation
+&lt;ul&gt;
+&lt;li&gt;EstimatedRTT = (1 - x) * EstimatedRTT + x * SampleRTT&lt;/li&gt;
+&lt;li&gt;Deviation = (1 - x) * Deviation + x * |SampleRTT - EstimatedRTT|&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TCP connection establishment and termination
+&lt;ul&gt;
+&lt;li&gt;Connection
+&lt;ul&gt;
+&lt;li&gt;TCP connections are established by a 3-way handshake: request connection, grant connection, acknowledge&lt;/li&gt;
+&lt;li&gt;Why not 2 way handshake:
+&lt;ul&gt;
+&lt;li&gt;1: Server does not know the client is able to receive its message&lt;/li&gt;
+&lt;li&gt;2: If the first ACK is lost, client will send another request which will result in the server allocating more resources to make  unnecessary establishment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Why picking random values for starting sequence numbers
+&lt;ul&gt;
+&lt;li&gt;It is possible that a server establishes two connections, retransmitted data will be delivered to the second connection&lt;/li&gt;
+&lt;li&gt;Security issue, if an attacker knows all sequence numbers starting with the same value, he is able to inject some data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Termination
+&lt;ul&gt;
+&lt;li&gt;Client -&amp;gt; Server: FIN&lt;/li&gt;
+&lt;li&gt;Server -&amp;gt; Client: ACK / FIN&lt;/li&gt;
+&lt;li&gt;Client -&amp;gt; Server: ACK
+&lt;ul&gt;
+&lt;li&gt;Time wait increases the chance of server receiving the final ACK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TCP flow control
+&lt;ul&gt;
+&lt;li&gt;Receiver informs sender of the receive window size in the header of TCP segments&lt;/li&gt;
+&lt;li&gt;At the sender, LastByteSent - LastByteAcked &amp;lt;= Receive Window&lt;/li&gt;
+&lt;li&gt;If the receive buffer is full, the sender will just send one byte&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;TCP congestion control
+&lt;ul&gt;
+&lt;li&gt;Slow start: the value of the congestion window begins at 1 MSS and increase by 1 MSS every time a transmitted segment is first acknowledged (grows exponentially). If there is a loss event indicated by a timeout, TCP sender sets the value of congestion window to be 1 and &amp;lsquo;ssthresh&amp;rsquo; to be &amp;lsquo;cwnd / 2&amp;rsquo;. Slow start will end when the value of &amp;lsquo;cwnd&amp;rsquo; equals &amp;lsquo;ssthresh&amp;rsquo;, or three duplicated ACKs detected.&lt;/li&gt;
+&lt;li&gt;Congestion avoidance mode: TCP increases the value of &amp;lsquo;cwnd&amp;rsquo; by just a single MSS every RTT (grows linearly). If there is a loss event indicated by a timeout, TCP sender sets the value of congestion window to be 1 and &amp;lsquo;ssthresh&amp;rsquo; to be &amp;lsquo;cwnd / 2&amp;rsquo;. Congestion avoidance will end when a loss event occurs, or there are three duplicated ACKs detected.&lt;/li&gt;
+&lt;li&gt;Fast recovery (TCP Reno incorporated): TCP sender sets &amp;lsquo;ssthresh&amp;rsquo; to be &amp;lsquo;cwnd / 2&amp;rsquo;, and &amp;lsquo;cwnd&amp;rsquo; to be ssthresh + 3 * MSS.&lt;/li&gt;
+&lt;li&gt;Fast retransmit: For TCP Reno - 1990, if there are three duplicated ACKs detected, retransmit immediately.&lt;/li&gt;
+&lt;li&gt;If there is timeout, TCP Reno will behave the same as TCP Tahoe. They behave differently when there are three duplicated ACKs detected. TCP Reno will go to fast recovery mode, while TCP Tahoe will go to slow start mode.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;network-layer&#34;&gt;Network Layer
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Datagram protocol
+&lt;ul&gt;
+&lt;li&gt;A connectionless protocol where each packet, also known as a datagram, is treated independently and can take different routes to reach its destination. In the case of IP, each IP packet (datagram) contains the source and destination IP addresses, as well as the data payload.&lt;/li&gt;
+&lt;li&gt;Limitation: Reliable delivery / ordering / congestion control / Fragmentation and reassembly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Functions
+&lt;ul&gt;
+&lt;li&gt;Path determination: route taken by packets from source to dest&lt;/li&gt;
+&lt;li&gt;Forwarding: move packets from routers input to appropriate router output&lt;/li&gt;
+&lt;li&gt;Call setup: some network architectures require router call setup along path before data flows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Network layer
+&lt;ul&gt;
+&lt;li&gt;Control plane
+&lt;ul&gt;
+&lt;li&gt;network-wide logic&lt;/li&gt;
+&lt;li&gt;determines how datagram is routed among routers along end-end path from source host to destination host&lt;/li&gt;
+&lt;li&gt;Two control-plane approaches
+&lt;ul&gt;
+&lt;li&gt;Traditional routing algorithms: implemented in routers
+&lt;ul&gt;
+&lt;li&gt;Classification
+&lt;ul&gt;
+&lt;li&gt;Global or decentralized
+&lt;ul&gt;
+&lt;li&gt;Global: all routers have complete topology, link cost info (link state algorithms)&lt;/li&gt;
+&lt;li&gt;Decentralized: router knows physically-connected neighbors, link cost to neighbors / Iterative process of computation, exchange of info with neighbors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Static or dynamic
+&lt;ul&gt;
+&lt;li&gt;Static: routers change slowly over time&lt;/li&gt;
+&lt;li&gt;Dynamic: routers change more quickly (periodic update / in response to link cost changes)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dijkstra&amp;rsquo;s algorithm
+&lt;ul&gt;
+&lt;li&gt;Complexity: O(n&lt;sup&gt;2&lt;/sup&gt;), more efficient: O(nlogn). Requires O(nE) messages&lt;/li&gt;
+&lt;li&gt;Might have oscillations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Distance Vector algorithm
+&lt;ul&gt;
+&lt;li&gt;Attributes
+&lt;ul&gt;
+&lt;li&gt;iterative: continues until no nodes exchange info (self-terminating)&lt;/li&gt;
+&lt;li&gt;asynchronous: nodes need not exchange info / iterate in lock step&lt;/li&gt;
+&lt;li&gt;distributed: each node communicates only with directly-attached neighbors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Formula
+&lt;ul&gt;
+&lt;li&gt;D&lt;sup&gt;X&lt;/sup&gt;(Y, Z) = distance from X to Y, via Z as next hop&lt;/li&gt;
+&lt;li&gt;D&lt;sup&gt;X&lt;/sup&gt;(Y, Z) = c(X, Z) + min&lt;sub&gt;w&lt;/sub&gt;{D&lt;sup&gt;Z&lt;/sup&gt;(Y, w)}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Process
+&lt;ul&gt;
+&lt;li&gt;Each node waits for message from neighbors&lt;/li&gt;
+&lt;li&gt;Recomputes distance table&lt;/li&gt;
+&lt;li&gt;If least cost path to any dest has changed, notify neighbors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Convergence time varies&lt;/li&gt;
+&lt;li&gt;May be routing loops / count-to-infinity problem&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Comparison
+&lt;ul&gt;
+&lt;li&gt;Link state algorithm
+&lt;ul&gt;
+&lt;li&gt;Faster convergence / Efficient routing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Distance vector
+&lt;ul&gt;
+&lt;li&gt;Simple to implement / Lower overhead&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Software-defined networking (SDN): implemented in remote servers
+&lt;ul&gt;
+&lt;li&gt;Each router contains a flow table that is computed and distributed by a logically centralized routing controller&lt;/li&gt;
+&lt;li&gt;programmable control applications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Data plane
+&lt;ul&gt;
+&lt;li&gt;local, per-router function&lt;/li&gt;
+&lt;li&gt;determines how datagram arriving on router input port is forwarded to router output port&lt;/li&gt;
+&lt;li&gt;forwarding table&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;IP Addressing
+&lt;ul&gt;
+&lt;li&gt;Classfull addressing
+&lt;ul&gt;
+&lt;li&gt;Disadvantages: inefficient use of address space, address space exhaustion&lt;/li&gt;
+&lt;li&gt;Class A: | 0 |  network  |  host  |  host  |  host  |&lt;/li&gt;
+&lt;li&gt;Class B: | 10 | network | network |  host  |  host  |&lt;/li&gt;
+&lt;li&gt;Class C: | 110 | network | network | network | host |&lt;/li&gt;
+&lt;li&gt;Class D: | 1110 |         multicast address         |&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Classless InterDomain Routing (CIDR)
+&lt;ul&gt;
+&lt;li&gt;network portion of address of arbitrary length&lt;/li&gt;
+&lt;li&gt;address format: a.b.c.d/x, where x is the number of bits in network portion of address&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Subnetting
+&lt;ul&gt;
+&lt;li&gt;The network administrator takes a network with a given IP address range and subnet mask and further divides it into smaller subnets by borrowing bits from the host portion of the IP address.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reserved address
+&lt;ul&gt;
+&lt;li&gt;Network identifiers have a host part of all 0s&lt;/li&gt;
+&lt;li&gt;Broadcast addresses have a host part of all 1s&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dynamic Host Configuration Protocol (DHCP)
+&lt;ul&gt;
+&lt;li&gt;Dynamically get an IP address (plug and play)&lt;/li&gt;
+&lt;li&gt;Process
+&lt;ul&gt;
+&lt;li&gt;Host broadcasts &amp;ldquo;DHCP discover&amp;rdquo; message&lt;/li&gt;
+&lt;li&gt;DHCP server responds with &amp;ldquo;DHCP offer&amp;rdquo; message&lt;/li&gt;
+&lt;li&gt;Host requests IP address: &amp;ldquo;DHCP request&amp;rdquo; message&lt;/li&gt;
+&lt;li&gt;DHCP server sends address: &amp;ldquo;DHCP ACK&amp;rdquo; message&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Intra-AS Routing (Interior Gateway Protocol - IGP):
+&lt;ul&gt;
+&lt;li&gt;Intra-AS routing refers to the routing protocols and mechanisms used within an individual Autonomous System (AS). All routers in AS must run same intra-domain protocol. An AS is a collection of networks under a single administrative control, such as an Internet Service Provider (ISP) or a large enterprise network. Intra-AS routing protocols, also known as Interior Gateway Protocols (IGPs), are used to exchange routing information and determine the best paths for routing packets within the boundaries of the AS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Inter-AS Routing (Exterior Gateway Protocol - EGP):
+&lt;ul&gt;
+&lt;li&gt;Inter-AS routing refers to the routing protocols and mechanisms used for exchanging routing information between different Autonomous Systems (ASes) in the Internet. Inter-AS routing protocols, also known as Exterior Gateway Protocols (EGPs), are responsible for facilitating the exchange of routing information and enabling communication between ASes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Fragmentation
+&lt;ul&gt;
+&lt;li&gt;Large IP datagram divided (fragmented) within net
+&lt;ul&gt;
+&lt;li&gt;One datagram becomes several datagrams&lt;/li&gt;
+&lt;li&gt;Reassembled only at final destination&lt;/li&gt;
+&lt;li&gt;IP header bits used to identify order related fragments&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;16-bit identifier: Examine the identification numbers of the datagrams to determine which of the datagrams are actually fragments of the same larger datagram&lt;/li&gt;
+&lt;li&gt;Flags: In order for the destination host be absolutely sure it has received the last fragment of the original datagram, the last fragment has a flag bit set to 0, whereas all the other fragments have this flag bit set to 1&lt;/li&gt;
+&lt;li&gt;Fragment offset: Specify where the fragment fits within the original IP datagram&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;IPv6
+&lt;ul&gt;
+&lt;li&gt;Why do we transition to IPv6
+&lt;ul&gt;
+&lt;li&gt;Address space exhaustion / Enhance security / Improved network performance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Features
+&lt;ul&gt;
+&lt;li&gt;128 bit address are written in hex: x : x : x : x : x : x : x : x, each x is 4 hex digits, sequence of zero fields given by &amp;ldquo;::&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;IPv6 8 fields in base header vs 13 fields in IPv4 can provide faster processing, simpler management, and more flexibility&lt;/li&gt;
+&lt;li&gt;Fragmentation is no longer performed at intermediate routers. The source host should choose datagram size so fragmentation is not necessary. (e.g. send datagram with different sizes to target until they don&amp;rsquo;t arrive)&lt;/li&gt;
+&lt;li&gt;No checksum design reduces the processing overhead on intermediate routers and simplifies packet forwarding. The link-layer protocols in modern networks, such as Ethernet, already have their own error detection mechanisms, such as CRC (Cyclic Redundancy Check), which ensure data integrity during transmission.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Additional support
+&lt;ul&gt;
+&lt;li&gt;Multicast and anycast routing&lt;/li&gt;
+&lt;li&gt;Security&lt;/li&gt;
+&lt;li&gt;Mobile hosts and auto-configuration&lt;/li&gt;
+&lt;li&gt;Real time applications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transition from IPv4 to IPv6
+&lt;ul&gt;
+&lt;li&gt;Dual stack: some routers with dual stack can translate between formats (tend to lose some functionalities)&lt;/li&gt;
+&lt;li&gt;Tunneling: IPv6 carried as payload in IPv4 datagram among IPv4 routers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Internet Control Message Protocol (ICMP)
+&lt;ul&gt;
+&lt;li&gt;ICMP is primarily used for diagnostic and error reporting purposes in IP networks. It provides a means for network devices, such as routers and hosts, to communicate with each other regarding network-related issues.&lt;/li&gt;
+&lt;li&gt;Main functions
+&lt;ul&gt;
+&lt;li&gt;Error Reporting: ICMP is used to report errors and anomalies in IP packet delivery. For example, if a router encounters a problem while forwarding an IP packet, it can generate an ICMP error message and send it back to the source IP address to inform the sender about the issue.&lt;/li&gt;
+&lt;li&gt;Network Reachability: ICMP is used to check the reachability of hosts or networks. The most common example is the ICMP Echo Request and Echo Reply messages, also known as &amp;ldquo;ping.&amp;rdquo; By sending an Echo Request message, a device can determine if another device on the network is reachable and functioning properly.&lt;/li&gt;
+&lt;li&gt;Path MTU Discovery: ICMP is involved in the process of Path Maximum Transmission Unit (PMTU) Discovery. It helps determine the maximum size of IP packets that can be transmitted without fragmentation along a path between two hosts. ICMP messages, such as &amp;ldquo;Packet Too Big,&amp;rdquo; are used to inform the sender that the packet is too large and needs to be fragmented or reduced in size.&lt;/li&gt;
+&lt;li&gt;Trace the path taken by a packet over the network: By sending packets with increasing TTL values, traceroute effectively maps the network path from the source to the destination. The ICMP &amp;ldquo;Time Exceeded&amp;rdquo; messages indicate the presence of routers along the path, while the &amp;ldquo;Echo Reply&amp;rdquo; message confirms the packet&amp;rsquo;s successful arrival at the destination.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;link-layer&#34;&gt;Link Layer
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Data-link layer has responsibility of transferring datagram from one node to physically adjacent node over a link&lt;/li&gt;
+&lt;li&gt;Offered services:
+&lt;ul&gt;
+&lt;li&gt;Framing&lt;/li&gt;
+&lt;li&gt;Link access&lt;/li&gt;
+&lt;li&gt;Reliable delivery between two physically connected devices&lt;/li&gt;
+&lt;li&gt;Flow control&lt;/li&gt;
+&lt;li&gt;Error detection / correction&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Error detection and correction
+&lt;ul&gt;
+&lt;li&gt;Parity
+&lt;ul&gt;
+&lt;li&gt;Single bit parity (detect single bit errors)
+&lt;ul&gt;
+&lt;li&gt;odd parity: number of 1, if odd, parity bit = 0&lt;/li&gt;
+&lt;li&gt;even parity: number of 1, if odd, parity bit = 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Two dimensional bit parity (detect and correct single bit errors)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Checksums
+&lt;ul&gt;
+&lt;li&gt;Errors do not occur as a one-off single bit error, we normally have an error burst&lt;/li&gt;
+&lt;li&gt;Internet checksum is 1&amp;rsquo;s compliment sum of the segment contents&lt;/li&gt;
+&lt;li&gt;When information is received, sum the contents and add with the checksums. If it is &amp;ldquo;FFFFFFFF&amp;rdquo;, then the information received is correct&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cyclic Redundancy Check polynomials (CRCs)
+&lt;ul&gt;
+&lt;li&gt;Choose r + 1 bit pattern (Generator) G&lt;/li&gt;
+&lt;li&gt;Goal: choose r CRC bits, R such that
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;D, R&amp;gt; exactly divisible by G&lt;/li&gt;
+&lt;li&gt;receiver knows G and divides &amp;lt;D, R&amp;gt; by G&lt;/li&gt;
+&lt;li&gt;can detect all burst errors less that r + 1 bits&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If G(x) with degree of r (length r + 1), then it is guaranteed to detect burst length errors of r or less&lt;/li&gt;
+&lt;li&gt;Advantages: CRCs are popular because they are simple to implement in binary hardware, easy to analyze mathematically, and particularly good at detecting common errors caused by noise in transmission channels.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Multiple access protocols
+&lt;ul&gt;
+&lt;li&gt;Channel partitioning
+&lt;ul&gt;
+&lt;li&gt;Frequency Division Multiple Access (FDMA)
+&lt;ul&gt;
+&lt;li&gt;Channel spectrum divided into frequency bands&lt;/li&gt;
+&lt;li&gt;Each station assigned fixed frequency band&lt;/li&gt;
+&lt;li&gt;Unused transmission time in frequency bands go idle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Time Division Multiple Access (TDMA)
+&lt;ul&gt;
+&lt;li&gt;Access to channel in &amp;lsquo;rounds&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;Each station gets fixed length slot (length = packet transmission time) in each round&lt;/li&gt;
+&lt;li&gt;Unused slots go idle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Code Division Multiple Access (CDMA)
+&lt;ul&gt;
+&lt;li&gt;Unique code assigned to each user to encode data&lt;/li&gt;
+&lt;li&gt;Allows multiple users to &amp;lsquo;coexist&amp;rsquo; and transmit simultaneously with minimal interference (if codes are orthogonal)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Random access
+&lt;ul&gt;
+&lt;li&gt;Slotted ALOHA
+&lt;ul&gt;
+&lt;li&gt;Time is divided into equal size slots&lt;/li&gt;
+&lt;li&gt;Node with new arriving packets: transmit at beginning of next slot&lt;/li&gt;
+&lt;li&gt;If there is a collision: re-transmit the packet in future slots with probability p, until successful&lt;/li&gt;
+&lt;li&gt;At best: channel used for useful transmissions 37% of time (Np = 1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Pure (unslotted) ALOHA
+&lt;ul&gt;
+&lt;li&gt;Transmit immediately without awaiting for beginning of slot&lt;/li&gt;
+&lt;li&gt;Collision probability increases: frame sent at t&lt;sub&gt;0&lt;/sub&gt; collides with other packets sent in [t&lt;sub&gt;0&lt;/sub&gt; - 1, t&lt;sub&gt;0&lt;/sub&gt; + 1]&lt;/li&gt;
+&lt;li&gt;At best: 18% of time (Np = 0.5)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carrier Sense Multiple Access (CSMA)
+&lt;ul&gt;
+&lt;li&gt;Listen before transmit&lt;/li&gt;
+&lt;li&gt;Types of CSMA
+&lt;ul&gt;
+&lt;li&gt;Persistent CSMA: retry immediately with probability p when channel becomes idle&lt;/li&gt;
+&lt;li&gt;Non-persistent CSMA: retry after random interval&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CSMA collisions
+&lt;ul&gt;
+&lt;li&gt;Collisions can occur due to propagation delay&lt;/li&gt;
+&lt;li&gt;Collisions means entire packet transmission time is wasted - up to 2 packet times&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carrier Sense Multiple Access with Collision Detection (CSMA/CD)
+&lt;ul&gt;
+&lt;li&gt;Colliding transmissions aborted, reducing channel wastage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Taking turns
+&lt;ul&gt;
+&lt;li&gt;Polling
+&lt;ul&gt;
+&lt;li&gt;Master node invites slave nodes to transmit in turn&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Token passing
+&lt;ul&gt;
+&lt;li&gt;Control token passed from one node to next sequentially&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Distributed polling
+&lt;ul&gt;
+&lt;li&gt;Begins with N short reservation slots
+&lt;ul&gt;
+&lt;li&gt;Stations with message to send posts reservation&lt;/li&gt;
+&lt;li&gt;Reservation seen by all stations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;After reservation slots, message transmissions ordered by known priority&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;LAN / MAC / physical address
+&lt;ul&gt;
+&lt;li&gt;Used locally to get frame from one interface to another physically-connected interface&lt;/li&gt;
+&lt;li&gt;Format: 48 bit MAC address burned in the adapter ROM (hexadecimal notation)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Address Resolution Protocol (ARP)
+&lt;ul&gt;
+&lt;li&gt;Given a destination IP address, work out the MAC address of the destination&lt;/li&gt;
+&lt;li&gt;ARP Table: IP/MAC address mappings for some LAN nodes
+&lt;ul&gt;
+&lt;li&gt;Table entry format: &amp;lt;IP Address; MAC Address; TTL&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Process
+&lt;ul&gt;
+&lt;li&gt;1: A broadcasts ARP query packet, containing B&amp;rsquo;s IP address&lt;/li&gt;
+&lt;li&gt;2: B receives ARP packet, replies to A with its MAC address&lt;/li&gt;
+&lt;li&gt;3: A caches IP-to-MAC address pair in its ARP table until timeout&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Ethernet
+&lt;ul&gt;
+&lt;li&gt;Dominant wired LAN technology&lt;/li&gt;
+&lt;li&gt;Sending adapter encapsulates IP datagram in Ethernet frame&lt;/li&gt;
+&lt;li&gt;Physical topology
+&lt;ul&gt;
+&lt;li&gt;Bus: all nodes in same collision domain (can collide with each other | CSMA/CD)&lt;/li&gt;
+&lt;li&gt;Star: active switch in center / each &amp;ldquo;spoke&amp;rdquo; runs a separate Ethernet protocol (nodes do not collide with each other)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Switches
+&lt;ul&gt;
+&lt;li&gt;Functions
+&lt;ul&gt;
+&lt;li&gt;Filtering, storing, forwarding Ethernet frames&lt;/li&gt;
+&lt;li&gt;Examine incoming frame&amp;rsquo;s MAC address, selectively forward frame to one-or-more outgoing links when frame is to be forwarded on segment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Plug and play, self-learning
+&lt;ul&gt;
+&lt;li&gt;Switch table entry: [node LAN address, switch interface, time stamp, TTL]&lt;/li&gt;
+&lt;li&gt;If a frame&amp;rsquo;s destination is unknown, flood (flood learning)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cycles result
+&lt;ul&gt;
+&lt;li&gt;organize switches in a spanning tree by disabling subset of interfaces&lt;/li&gt;
+&lt;li&gt;The Spanning Tree Protocol (STP) is a network protocol used in Layer 2 Ethernet networks to prevent loops and ensure the creation of a loop-free topology. Its main role is to establish a tree-like structure within a network by selectively blocking redundant paths.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MPLS
+&lt;ul&gt;
+&lt;li&gt;Initial goal: high-speed IP forwarding using fixed length labels
+&lt;ul&gt;
+&lt;li&gt;Fast lookup using fixed length identifier (rather than longest prefix matching)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MPLS routing: path to destination can be based on source and destination addresses
+&lt;ul&gt;
+&lt;li&gt;Fast reroute: pre-compute backup routes in case of link failure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MPLS operations: push / swap / pop&lt;/li&gt;
+&lt;li&gt;MPLS equipment: Label Edge Routers / Label Switch Routers&lt;/li&gt;
+&lt;li&gt;MPLS features
+&lt;ul&gt;
+&lt;li&gt;Traffic Engineering: MPLS allows network administrators to control the path and flow of traffic through the network.&lt;/li&gt;
+&lt;li&gt;Flexibility: MPLS forwarding decisions can differ from those of IP
+&lt;ul&gt;
+&lt;li&gt;Use destination and source addresses to route flows to same destination differently.&lt;/li&gt;
+&lt;li&gt;Re-route flows quickly if link fails: pre-computed backup paths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MPLS can support multiple levels of connection tunnelling through label stacking (VPN support)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Traceroute
+&lt;ul&gt;
+&lt;li&gt;A network diagnostic tool used to trace the path that an IP packet takes from a source device to a destination device over an IP network. It provides valuable information about the routers or network devices traversed by the packet, helping identify network connectivity issues, bottlenecks, and routing problems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;security&#34;&gt;Security
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Confidentiality: only sender, intended receiver should understand message contents
+&lt;ul&gt;
+&lt;li&gt;Sender encrypts message / Receiver decrypts message&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Authentication: sender, receiver want to confirm identity of each other&lt;/li&gt;
+&lt;li&gt;Message integrity: sender, receiver want to ensure message not altered without detection&lt;/li&gt;
+&lt;li&gt;Access and availability: services must be accessible and available to users&lt;/li&gt;
+&lt;li&gt;Attacks
+&lt;ul&gt;
+&lt;li&gt;Eavesdrop: intercept messages&lt;/li&gt;
+&lt;li&gt;Actively insert messages into connections&lt;/li&gt;
+&lt;li&gt;Impersonation: Fake (spoof) source address in packet (or any field in packet)&lt;/li&gt;
+&lt;li&gt;Hijacking: take over ongoing connection by removing sender or receiver, inserting himself in place&lt;/li&gt;
+&lt;li&gt;Deny of service: prevent service from being used by others&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Nonce: number used only once-in-a-lifetime&lt;/li&gt;
+&lt;li&gt;Challenge-response protocols are authentication protocols that involve a challenge presented by the verifier to the prover, who must provide a response that proves their identity or possession of a secret key.&lt;/li&gt;
+&lt;li&gt;Hash function
+&lt;ul&gt;
+&lt;li&gt;produces fixed-size message digest (fingerprint)&lt;/li&gt;
+&lt;li&gt;given message digest x, computationally infeasible to find m such that x = H(m)&lt;/li&gt;
+&lt;li&gt;process data quickly and hashed value is efficient for verification&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Public key encryption algorithm
+&lt;ul&gt;
+&lt;li&gt;Requirements
+&lt;ul&gt;
+&lt;li&gt;1: need K&lt;sup&gt;+&lt;/sup&gt;(B) and K&lt;sup&gt;-&lt;/sup&gt;(B) such that K&lt;sup&gt;-&lt;/sup&gt;(K&lt;sup&gt;+&lt;/sup&gt;(m)) = m&lt;/li&gt;
+&lt;li&gt;2: given public key K&lt;sup&gt;+&lt;/sup&gt;(B), it should be impossible to compute private key K&lt;sup&gt;-&lt;/sup&gt;(B).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Important property
+&lt;ul&gt;
+&lt;li&gt;K&lt;sup&gt;-&lt;/sup&gt;(K&lt;sup&gt;+&lt;/sup&gt;(m)) = m = K&lt;sup&gt;+&lt;/sup&gt;(K&lt;sup&gt;-&lt;/sup&gt;(m))&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Certification authority (CA): binds public key to particular entry, E.
+&lt;ul&gt;
+&lt;li&gt;E registers its public key with CA by providing &amp;ldquo;proof of identity&amp;rdquo; to CA&lt;/li&gt;
+&lt;li&gt;CA creates certificate binding E to its public key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Key distribution problem: refers to the challenge of securely distributing encryption keys between parties involved in secure communication or cryptographic systems. The key distribution problem arises from the need to establish and exchange encryption keys in a secure and reliable manner.&lt;/li&gt;
+&lt;li&gt;Secure e-mail
+&lt;ul&gt;
+&lt;li&gt;Alice wants to provide confidentiality, sender authentication, message integrity.
+&lt;ul&gt;
+&lt;li&gt;Confidentiality: encryption&lt;/li&gt;
+&lt;li&gt;Sender authentication: digital signature&lt;/li&gt;
+&lt;li&gt;Message integrity: Hashing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Approach
+&lt;ul&gt;
+&lt;li&gt;K&lt;sub&gt;s&lt;/sub&gt;{K&lt;sup&gt;-&lt;/sup&gt;&lt;sub&gt;A&lt;/sub&gt;(H(m)), m}, K&lt;sup&gt;+&lt;/sup&gt;&lt;sub&gt;B&lt;/sub&gt;(K&lt;sub&gt;s&lt;/sub&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

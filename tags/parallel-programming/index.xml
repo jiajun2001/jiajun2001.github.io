@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Parallel Programming on Jason&#39;s blog</title>
+        <link>https://jiajun2001.github.io/tags/parallel-programming/</link>
+        <description>Recent content in Parallel Programming on Jason&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 21 Jun 2023 15:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/parallel-programming/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Parallel and Distributed Computing</title>
+        <link>https://jiajun2001.github.io/p/parallel-and-distributed-computing/</link>
+        <pubDate>Wed, 21 Jun 2023 15:27:22 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/p/parallel-and-distributed-computing/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/parallel-and-distributed-computing/background.jpeg" alt="Featured image of post Parallel and Distributed Computing" /&gt;&lt;!-- more --&gt;
+&lt;br /&gt;
+&lt;h3 id=&#34;parallel-programming&#34;&gt;Parallel Programming
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Why we need ever-increasing performance
+&lt;ul&gt;
+&lt;li&gt;As our computational power increases, the number of problems that we can seriously consider solving also increases. E.g. climate modelling / protein folding / drug discovery / energy research / data analysis&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Why building parallel systems
+&lt;ul&gt;
+&lt;li&gt;As the speed of transistors increases, their power consumption increases. Most of this power is dissipated as heat, and when an integrated circuit gets too hot, it becomes unreliable.&lt;/li&gt;
+&lt;li&gt;Transistor density can increase for a while, but slower than before.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Write parallel program
+&lt;ul&gt;
+&lt;li&gt;Basic idea: partition the work to be done among cores&lt;/li&gt;
+&lt;li&gt;Two widely used approaches
+&lt;ul&gt;
+&lt;li&gt;Task-parallelism: partition the various tasks carried out in solving the problem among the cores
+&lt;ul&gt;
+&lt;li&gt;Each tutor grades one question&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Data-parallelism: partition data used in solving the problem among the cores, and each core carries out more or less similar operations on its part of the data
+&lt;ul&gt;
+&lt;li&gt;Each tutor grades one pile of exam paper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Coordination of cores
+&lt;ul&gt;
+&lt;li&gt;Communication: one or more cores send their message to another core&lt;/li&gt;
+&lt;li&gt;Load balancing: make sure the cores all to be assigned roughly the same number of works&lt;/li&gt;
+&lt;li&gt;Synchronization: the cores need to wait before other cores&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Two types of parallel systems
+&lt;ul&gt;
+&lt;li&gt;Shared-memory system: we can coordinate the cores by having them examine and update shared-memory locations&lt;/li&gt;
+&lt;li&gt;Distributed-memory system: each core has its own, private memory, and the core must communicate explicitly by doing something like sending messages across a network&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Concurrent, parallel and distributed
+&lt;ul&gt;
+&lt;li&gt;In concurrent computing: a program is one in which multiple tasks can be in progress at any instant&lt;/li&gt;
+&lt;li&gt;In parallel computing: a program is one in which multiple tasks cooperate closely to solve a problem&lt;/li&gt;
+&lt;li&gt;In distributed computing: a program may need to cooperate with other programs to solve a problem&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;parallel-hardware-and-software&#34;&gt;Parallel Hardware and Software
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;von Neumann Architecture
+&lt;ul&gt;
+&lt;li&gt;The classical von Neumann architecture consists of main memory, a central processing unit (CPU), and an interconnection between the memory and the CPU.
+&lt;ul&gt;
+&lt;li&gt;Main memory consists of a collection of locations, each of which is capable of storing both instructions and data.&lt;/li&gt;
+&lt;li&gt;The central processing unit is divided into a control unit and an arithmetic and logic unit (ALU).
+&lt;ul&gt;
+&lt;li&gt;The control unit is responsible for deciding which instructions in a program should be executed. The control unit has a special register called the program counter which stores the address of the next instruction to be executed.&lt;/li&gt;
+&lt;li&gt;The ALU is responsible for executing the actual instructions. Data in the CPU and information about the state of an executing program are stored in very fast storage called registers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Instructions and data are transferred between the CPU and memory via the interconnect. This has traditionally been a bus, which consists of a collection of parallel wires and some hardware controlling access to the wires.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;von Neumann bottleneck: The separation of memory and CPU is often called the von Neumann bottleneck, since the interconnect determines the rate at which instructions and data can be accessed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Multitasking: The OS provides support for the apparent simultaneous execution of multiple programs. This is possible even on a system with a single core, since each process runs for a small interval of time (time slice). After one running program has executed for a time slice, the OS can run a different program.&lt;/li&gt;
+&lt;li&gt;Process: When a user runs a program, the OS creates a process which is an instance of a computer program that is being executed.&lt;/li&gt;
+&lt;li&gt;Threading: provides a mechanism for programmers to divide their programs into more or less independent tasks with the property that when one thread is blocked another thread can be run. In addition, it is possible to switch between threads much faster than switching between processes.&lt;/li&gt;
+&lt;li&gt;Thread: Threads are contained within process, so they can use the same executable, and they usually share the same memory and the same I/O devices. The two most important exceptions are that they will need a record of their own PC and call stacks so that they can execute independently of each other. When a thread is started, it folks off the process, when a thread terminates, it joins the process.&lt;/li&gt;
+&lt;li&gt;Flynn&amp;rsquo;s taxonomy: classify computer architectures
+&lt;ul&gt;
+&lt;li&gt;SISD (single instruction, single data): executes a single instruction at a time and it can fetch or store one item of data at a time. (classical von Neumann system)&lt;/li&gt;
+&lt;li&gt;SIMD (single instruction, multiple data): operates on multiple data streams by applying the same instruction to multiple data items.
+&lt;ul&gt;
+&lt;li&gt;Vector processors: operates on arrays or vectors of data. Vector systems have very high memory bandwidth, and every data item that is loaded is actually used. However, they do not handle irregular data structure as well as other parallel architectures, and there seems to be a very finite limit to their scalability.&lt;/li&gt;
+&lt;li&gt;Graphic processing units: converts the internal representation into an array of pixels that can be sent to a computer screen. Several of the stages of this pipeline are programmable. The behavior of the programmable stages is specified by functions called shader functions. All GPUs use SIMD parallelism, GPUs are not pure SIMD systems since current generation GPUs can have dozens of cores, which are capable of executing independent instructions streams.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MIMD (multiple instruction, multiple data): supports multiple simultaneous instruction streams operating on multiple data streams. Thus, MIMD systems typically consist of a collection of fully independent processing units or cores, each of which has its own control unit and its own ALU (asynchronous).
+&lt;ul&gt;
+&lt;li&gt;Shared-memory systems (multiple multicore processors)
+&lt;ul&gt;
+&lt;li&gt;Uniform memory access (UMA): The time to access all memory locations will be the same for all cores / Easier to program&lt;/li&gt;
+&lt;li&gt;Nonuniform memory access (NUMA): Faster access to the directly connected memory / Have the potential to use larger amount of memeory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Distributed-memory systems (clusters)
+&lt;ul&gt;
+&lt;li&gt;Clusters are composed of a collection of commodity systems (PC), or connected by a commodity interconnection network (Ethernet).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Difference between SPMD and SIMD
+&lt;ul&gt;
+&lt;li&gt;SPMD refers to a programming model where a single program is executed by multiple parallel processing units, such as multiple threads or processes. Each processing unit operates on its own portion of the data, but they all execute the same program. SPMD allows for flexible control flow and can be used to express both data parallel and task parallel computations.&lt;/li&gt;
+&lt;li&gt;SIMD refers to a type of parallelism where a single instruction is executed simultaneously by multiple processing elements on different data elements. SIMD architectures typically have a single control unit that broadcasts instructions to multiple processing units, allowing for efficient parallel execution of the same operation on multiple data elements in parallel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Communication and synchronization
+&lt;ul&gt;
+&lt;li&gt;In distributed-memory programs, we often implicitly synchronize the process by communicating among them.&lt;/li&gt;
+&lt;li&gt;In shared-memory programs, we often communicate among the threads by synchronizing them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Embarrassingly parallel
+&lt;ul&gt;
+&lt;li&gt;Programs that can be parallelized by simply dividing the work among the processes / threads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;programming-with-message-passing-using-mpi&#34;&gt;Programming with Message Passing using MPI
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Distributed-memory systems using message-passing
+&lt;ul&gt;
+&lt;li&gt;Process: a program running on one core-memory pair&lt;/li&gt;
+&lt;li&gt;Message-Passing Interface (MPI): one process calls a send function and the other calls a receive function. Processes typically identify each other by ranks in the range 0, 1, &amp;hellip;, p - 1, where p is the number of processes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MPI functions
+&lt;ul&gt;
+&lt;li&gt;MPI_Init(): tells MPI system to do all of the necessary setup. It might allocate storage for message buffers, and it might decide which process gets which rank. No other MPI functions should be called before the program calls MPI_Init().&lt;/li&gt;
+&lt;li&gt;MPI_Finalize(): tells MPI system that we are done using MPI, and that any resources allocated for MPI can be freed. No MPI functions should be called after the call to MPI_Finalize().&lt;/li&gt;
+&lt;li&gt;MPI_Comm_size(MPI_COMM_WORLD, &amp;amp;comm_size): returns in its second argument the number of processes in the communicator&lt;/li&gt;
+&lt;li&gt;MPI_Comm_rand(MPI_COMM_WORLD, &amp;amp;comm_rank): returns in its second argument the calling process&amp;rsquo;s rank in the communicator&lt;/li&gt;
+&lt;li&gt;MPI_Send(msg_buf_p, msg_size, msg_type, dest, tag, communicator)
+&lt;ul&gt;
+&lt;li&gt;msg_buf_p: a pointer points to the block memory containing the contents of the message&lt;/li&gt;
+&lt;li&gt;msg_size: amount of data to be sent&lt;/li&gt;
+&lt;li&gt;msg_type: type of data to be sent&lt;/li&gt;
+&lt;li&gt;dest: specifies the rank of the process that should receive the message&lt;/li&gt;
+&lt;li&gt;tag: it can be used to distinguish messages that are otherwise identical&lt;/li&gt;
+&lt;li&gt;communicator: a message sent by a process using one communicator cannot be received by a process that&amp;rsquo;s using a different communicator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MPI_Recv(msg_buf_p, buf_size, buf_type, source, tag, communicator, status_p)
+&lt;ul&gt;
+&lt;li&gt;msg_buf_p: points to the block of memory&lt;/li&gt;
+&lt;li&gt;buf_size: determines the number of objects that can be stored in the block&lt;/li&gt;
+&lt;li&gt;buf_type: indicates the type of the objects&lt;/li&gt;
+&lt;li&gt;source: specifies the process from which the message should be received (can use MPI_ANY_SOURCE)&lt;/li&gt;
+&lt;li&gt;tag: should match the communicator used by the sending process (can use MPI_ANY_TAG)&lt;/li&gt;
+&lt;li&gt;communicator: match the communicator used by the sending process&lt;/li&gt;
+&lt;li&gt;status_p: it is a structure with at least three members MPI_SOURCE, MPI_TAG, MPI_ERROR, after a call to MPI_Recv in which &amp;amp;status is passed as the last argument, we can determine the sender and tag.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Semantics of MPI_Send and MPI_Recv
+&lt;ul&gt;
+&lt;li&gt;The sending process will assemble the message&lt;/li&gt;
+&lt;li&gt;If the sending process buffers the message, the MPI system will place the message into its own internal storage&lt;/li&gt;
+&lt;li&gt;If the system blocks, it will wait until it can begin transmitting the message, and the call to MPI_Send may not return immediately&lt;/li&gt;
+&lt;li&gt;MPI_Recv always blocks until a matching message has been received&lt;/li&gt;
+&lt;li&gt;MPI requires that messages be non-overtaking. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message. However, there is no restriction on the arrival of messages sent from different processors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Blocking and Non-blocking sends and receives
+&lt;ul&gt;
+&lt;li&gt;Blocking
+&lt;ul&gt;
+&lt;li&gt;Send is complete when the message buffer has been fully transferred to the MPI system.&lt;/li&gt;
+&lt;li&gt;Receive is complete when the message data has arrived at the destination and is available for use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Non-blocking
+&lt;ul&gt;
+&lt;li&gt;They just continue with no regards for completion status&lt;/li&gt;
+&lt;li&gt;Can be useful to help avoid deadlock&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Commands for compile and run
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mpicc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Wall&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mpi_hello&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mpi_hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mpiexec&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mpi_hello&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Collective operations
+&lt;ul&gt;
+&lt;li&gt;MPI_Bcast(): Copies data from root node to the same memory location in every other node&lt;/li&gt;
+&lt;li&gt;MPI_Gather(): Each node sends the contents of the send buffer to the root node, and root node stores them in rank order.&lt;/li&gt;
+&lt;li&gt;MPI_Scatter(): Root process splits buffer into equal chunks and sends one chunk to each processor&lt;/li&gt;
+&lt;li&gt;MPI_AlltoAll(): Each node performs a Scatter operation on its own data. Thus every node receives some data from every other node.&lt;/li&gt;
+&lt;li&gt;MPI_Reduce(): MPI_Reduce operation combines the values from all processes and produces a single result, which is typically stored on a designated root process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Output
+&lt;ul&gt;
+&lt;li&gt;Most MPI implementation allow all processes to execute &lt;code&gt;printf&lt;/code&gt; and &lt;code&gt;fprintf(stderr, ...)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;However, most MPI implementations don&amp;rsquo;t provide any automatic scheduling of access to these devices, since MPI processes are competing for access to the shared output devices, stdout, and it is impossible to predict the order in which the processes&amp;rsquo;s output will be queued up. Hence, we can have each process other than 0 send its output to process 0, and process 0 can print the output in process rank order.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Input
+&lt;ul&gt;
+&lt;li&gt;Most MPI implementations only allow process 0 in MPI_COMM_WORLD access to stdin. In order to write MPI programs that can use &lt;code&gt;scanf&lt;/code&gt;, we need to branch on process rank, with process 0 reading in the data and then sending it to the other processes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;interconnection-networks&#34;&gt;Interconnection Networks
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Shared-memory interconnects
+&lt;ul&gt;
+&lt;li&gt;Bus: a collection of parallel communication wires together with some hardware that controls access to the bus. The key characteristic of a bus is that the communication wires are shared by the devices that are connected to it. However, as the number of devices connected to the bus increases, the likelihood that there will be contention for use of the bus increases, and the expected performance of the bus decreases.&lt;/li&gt;
+&lt;li&gt;Crossbars: switched interconnects use switches to control the routing of data among connected devices. Crossbar allows simultaneous communication among different devices, so they are much faster than buses. However, the cost of the switches and links is relatively high.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Distributed-memory interconnects
+&lt;ul&gt;
+&lt;li&gt;Interconnects
+&lt;ul&gt;
+&lt;li&gt;Direct interconnects: each switch is directly connected to a processor-memory pair, and the switches are connected to each other.
+&lt;ul&gt;
+&lt;li&gt;Ring: If there are p processors, the number of links is 2p.&lt;/li&gt;
+&lt;li&gt;Toroidal mesh: If there are p processors, the number of links is 3p.&lt;/li&gt;
+&lt;li&gt;Fully connected network: It is used as a basis for evaluating other interconnects. However, it is impractical since it requires a total of p&lt;sup&gt;2&lt;/sup&gt; / 2 + p / 2 links, and each switch must be capable of connecting to p links.&lt;/li&gt;
+&lt;li&gt;Hypercube: A hypercube of dimension d has a p = 2&lt;sup&gt;d&lt;/sup&gt; nodes, and a switch in a d-dimensional hypercube is directly connected to a processor and d switches.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Indirect interconnects: the switches may not be directly connected to a processor. They are often shown with unidirectional links and a collection of processors, each of which has an outgoing and an incoming link, and a switching network.
+&lt;ul&gt;
+&lt;li&gt;Crossbar: As long as two processors do not attempt to communicate with the same processor, all processors can simultaneously communicate with another processor. (Crossbar &amp;gt; MIN &amp;gt; Bus)&lt;/li&gt;
+&lt;li&gt;omega network: There are communications that cannot occur simultaneously.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Bisection width
+&lt;ul&gt;
+&lt;li&gt;It refers to a measure of the communication capacity or bandwidth between two halves of a system when it is divided into two equal parts.&lt;/li&gt;
+&lt;li&gt;The bisection width is a metric that quantifies the communication capacity between these two groups. It represents the maximum amount of data that can be exchanged between the two halves of the system simultaneously.&lt;/li&gt;
+&lt;li&gt;An alternative way of computing the bisection width is to remove the minimum number of links needed to split the set of nodes into two equal halves. The number of links removed is the bisection width.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Bisection bandwidth
+&lt;ul&gt;
+&lt;li&gt;often used as a measure of network quality&lt;/li&gt;
+&lt;li&gt;it sums the bandwidth of links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Latency: the time that elapses between the source&amp;rsquo;s beginning to transmit the data and the destination&amp;rsquo;s starting to receive the first byte.&lt;/li&gt;
+&lt;li&gt;Bandwidth: the rate at which the destination receives data after it has started to receive the first byte&lt;/li&gt;
+&lt;li&gt;Time to transmit a message of n bytes
+&lt;ul&gt;
+&lt;li&gt;message transmission time = latency + n / bandwidth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;parallel-program-design&#34;&gt;Parallel Program Design
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Foster&amp;rsquo;s methodology
+&lt;ul&gt;
+&lt;li&gt;Partitioning
+&lt;ul&gt;
+&lt;li&gt;Divide the computation to be performed and the data operated on by the computation into small tasks. The focus here should be on identifying tasks that can be executed in parallel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Communication
+&lt;ul&gt;
+&lt;li&gt;Determine what communication needs to be carried out among the tasks identified in the previous step.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Agglomeration or aggregation
+&lt;ul&gt;
+&lt;li&gt;Combine tasks and communications identified in the first step into larger tasks. For example, if task A must be executed before task B can be executed, it may make sense to aggregate them into a single composite task.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Mapping
+&lt;ul&gt;
+&lt;li&gt;Assign the composite tasks identified in the previous step to processors / threads. This should be done so that communication is minimized, and each process / thread gets roughly the same amount of work.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;performance-analysis&#34;&gt;Performance Analysis
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Linear speedup: If we call the serial run-time T&lt;sub&gt;serial&lt;/sub&gt; and our parallel run-time T&lt;sub&gt;parallel&lt;/sub&gt;, then the best we can hope for is T&lt;sub&gt;parallel&lt;/sub&gt; = T&lt;sub&gt;serial&lt;/sub&gt; / p. However, in practice, we are unlikely to get linear speedup becuase the use of multiple processes / threads almost invariably introduces some overhead.&lt;/li&gt;
+&lt;li&gt;Speedup of a parallel program
+&lt;ul&gt;
+&lt;li&gt;Speedup refers to the performance improvement achieved by executing a program on multiple processors compared to running it on a single processor.&lt;/li&gt;
+&lt;li&gt;S = T&lt;sub&gt;serial&lt;/sub&gt; / T&lt;sub&gt;parallel&lt;/sub&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Efficiency of a parallel program
+&lt;ul&gt;
+&lt;li&gt;E = S / p = (T&lt;sub&gt;serial&lt;/sub&gt; / T&lt;sub&gt;parallel&lt;/sub&gt;) / p&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Effect of problem size
+&lt;ul&gt;
+&lt;li&gt;When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size (when p is not small). The relationship between problem size and speedup depends on various factors, including the nature of the problem, the parallelization technique used, the hardware architecture, and the efficiency of the parallel algorithm.&lt;/li&gt;
+&lt;li&gt;Since T&lt;sub&gt;parallel&lt;/sub&gt; = (T&lt;sub&gt;serial&lt;/sub&gt; / p) + T&lt;sub&gt;overhead&lt;/sub&gt;, if there&amp;rsquo;s more work for the processes / threads to do, the relative amount of time spent coordinating the work of the processes / threads should be less.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Amdahl&amp;rsquo;s law
+&lt;ul&gt;
+&lt;li&gt;Roughly, that unless virtually all of a serial program is parallelized, the possible speedup is going to be very limited - regardless of the number of cores available.&lt;/li&gt;
+&lt;li&gt;More generally, if a fraction r of our serial program remains unparallelized, then Amdahl&amp;rsquo;s law says we cannot get a speedup better than 1/r.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Gustafson&amp;rsquo;s law
+&lt;ul&gt;
+&lt;li&gt;For many problems, as we increase the problem size, the &amp;lsquo;inherently&amp;rsquo; serial fraction of the problem decreases in size. (No need to worry about Amdahl&amp;rsquo;s law)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Scalability
+&lt;ul&gt;
+&lt;li&gt;Suppose we now increase the number of processes / threads that are used by the program. If we can find a corresponding rate of increase in the problem size so that the program always has efficiency E, then the program is scalable.&lt;/li&gt;
+&lt;li&gt;Types of scalable cases
+&lt;ul&gt;
+&lt;li&gt;Strongly scalable: if when we increase the number of processes / threads, we can keep the efficiency fixed without increasing the problem size.&lt;/li&gt;
+&lt;li&gt;Weakly scalable: if we can keep the efficiency fixed by increasing the problem size at the same rate as we increase the number of processes / threads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Taking timings
+&lt;ul&gt;
+&lt;li&gt;Resolution: the unit of measurement on the timer. It is the duration of the shortest event that can have a nonzero time.&lt;/li&gt;
+&lt;li&gt;We first execute a barrier function that approximately synchronizes all of the processes / threads. We then execute the code and each process / thread finds the time it took. Then all the processes / threads call a global maximum function, which returns the largest of the elapsed times, and process / thread 0 prints it out.&lt;/li&gt;
+&lt;li&gt;If we run the same experiment several times, we usually report the minimum time.&lt;/li&gt;
+&lt;li&gt;We rarely run more than one thread per core.&lt;/li&gt;
+&lt;li&gt;We usually not include I/O in our reported run-times.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Barrier
+&lt;ul&gt;
+&lt;li&gt;A barrier is a mechanism that imposes global synchronization, ensuring that all participating threads or processes reach a specific point before continuing, thereby enabling coordination and synchronization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;multithreading-programming&#34;&gt;Multithreading Programming
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Dynamic and static threads
+&lt;ul&gt;
+&lt;li&gt;Dynamic thread
+&lt;ul&gt;
+&lt;li&gt;There is often a master thread and at any given instant a (possibly empty) collection of worker threads. The master thread typically waits for work requests, and when a new request arrives, it folks a worker thread, the thread carries out the request, and when the thread completes the work, it terminates and joins the master thread.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Static thread
+&lt;ul&gt;
+&lt;li&gt;In this paradigm, all of the threads are forked after any needed setup by the master thread and the threads run until all the work is completed.&lt;/li&gt;
+&lt;li&gt;The static thread paradigm has the potential for better performance than the dynamic paradigm.&lt;/li&gt;
+&lt;li&gt;Static thread paradigm is often used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Nondeterminism
+&lt;ul&gt;
+&lt;li&gt;A computation is nondeterministic if a given input can result in different outputs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Race condition
+&lt;ul&gt;
+&lt;li&gt;When threads or processes attempt to simultaneously access a resource, and the accesses can result in an error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Critical section
+&lt;ul&gt;
+&lt;li&gt;A block of code that can only be executed by one thread at a time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Mutual exclusion lock / Mutex / Lock
+&lt;ul&gt;
+&lt;li&gt;The most commonly used mechanism for insuring mutual exclusion&lt;/li&gt;
+&lt;li&gt;Before a thread can execute the code in the critical section, it must &amp;lsquo;obtain&amp;rsquo; the mutex by calling a mutex function, and when it finishes executing the code in the critical section, it should relinquish the mutex by calling an unlock function.&lt;/li&gt;
+&lt;li&gt;While one thread owns the lock, any other thread attempting to execute the code in the critical section will wait in its call to the lock function.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Busy-waiting
+&lt;ul&gt;
+&lt;li&gt;A thread enters a loop whose sole purpose is to test a condition. However, it can be very wasteful of system resources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Thread safety
+&lt;ul&gt;
+&lt;li&gt;A static variable that is declared in a function persists from one call to the next. Hence, static variables are effectively shared among any threads that call the function, and this can have unexpected and unwanted consequences.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Deadlock
+&lt;ul&gt;
+&lt;li&gt;Deadlock refers to a situation in a concurrent system where two or more processes or threads are unable to proceed because each is waiting for a resource that is held by another process or thread in the system.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;programming-with-openmp&#34;&gt;Programming with OpenMP
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;OpenMP provides what&amp;rsquo;s known as a &amp;ldquo;directive-based&amp;rdquo; shared-memory API. In C and C++, this means that there are special preprocessor instructions known as pragmas. Pragmas are typically added to a system to allow behaviors that are not part of the basic C specification. Compilers that do not support the pragmas are free to ignore them. So, in principle, if you have a carefully written OpenMP program, it can be compiled and run on any system with a C compiler, regardless of whether the compiler supports OpenMP.&lt;/li&gt;
+&lt;li&gt;Commands for compile and run
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;gcc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Wall&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fopenmp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;omp_hello&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;omp_hello&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;omp_hello&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Parallel for
+&lt;ul&gt;
+&lt;li&gt;The parallel for directive forks a team of threads to execute the following structured block. However, the structured block following the parallel for directive must be a for loop. The system parallelizes the for loop by dividing the iterations of the loop among threads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Loop-carried dependence
+&lt;ul&gt;
+&lt;li&gt;A loop in which the results of one or more iterations depend on other iterations cannot, in general, be correctly parallelized by OpenMP.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduction clause
+&lt;ul&gt;
+&lt;li&gt;OpenMP creates a private variable for each thread, and the run-time system stores each thread’s result in this private variable. OpenMP also creates a critical section and the values stored in the private variables are added in this critical section.&lt;/li&gt;
+&lt;li&gt;Syntax: reduction(&amp;lt;operator&amp;gt;: &amp;lt;variable list&amp;gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Scope of variables
+&lt;ul&gt;
+&lt;li&gt;A variable that can be accessed by all the threads in the team has shared scope, while a variable that can only be accessed by a single thread has private scope.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;opencl&#34;&gt;OpenCL
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Definition
+&lt;ul&gt;
+&lt;li&gt;OpenCL (Open Computing Language) is an open standard and framework for programming heterogeneous computing platforms, including CPUs, GPUs, and other accelerators. It provides a unified programming model and API (Application Programming Interface) that allows developers to write code that can run efficiently across different hardware architectures.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;OpenCL memory model
+&lt;ul&gt;
+&lt;li&gt;The OpenCL memory model provides a framework for managing different types of memory in OpenCL computations, including private, local, global, and constant memory. It establishes rules for data organization, movement, and synchronization, allowing efficient utilization of memory resources and proper synchronization in parallel computations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;OpenCL execution model
+&lt;ul&gt;
+&lt;li&gt;Application runs on a host which submits work to devices
+&lt;ul&gt;
+&lt;li&gt;Work item: the basic unit of work on an OpenCL device&lt;/li&gt;
+&lt;li&gt;Kernel: the code for a work item (basically a C function)&lt;/li&gt;
+&lt;li&gt;Program: collection of kernels and other functions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Context
+&lt;ul&gt;
+&lt;li&gt;The environment within which work-items execute. It includes devices and their memories and command queues.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Command queue: a queue used by the host application to submit work to a device
+&lt;ul&gt;
+&lt;li&gt;Work is queued in-order, one queue per device&lt;/li&gt;
+&lt;li&gt;Work can be executed in-order or out-of-order&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Steps that a host program must include, when using OpenCL for parallel work.
+&lt;ul&gt;
+&lt;li&gt;Platform discovery / Device selection / context creation / Command queue creation / Program compilation / Kernel creation / Memory object creation and data-transfer / Kernel execution / Synchronization and result retrieval / Cleanup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Restrictions
+&lt;ul&gt;
+&lt;li&gt;Limited Functionality of Standard C Library
+&lt;ul&gt;
+&lt;li&gt;OpenCL restricts the functionality of the standard C library that is available for use within kernel code.&lt;/li&gt;
+&lt;li&gt;The reason is to maintain portability across diverse hardware platforms. Different OpenCL devices may have varying capabilities and may lack support for certain standard C library functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Limited Data Type
+&lt;ul&gt;
+&lt;li&gt;OpenCL restricts the available data types in kernel code compared to standard C. More complex data types, such as structures and unions, are not directly supported in kernel code.&lt;/li&gt;
+&lt;li&gt;This restriction aims to facilitate efficient memory access and vectorization in parallel computations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;performance-issues&#34;&gt;Performance Issues
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;High performance
+&lt;ul&gt;
+&lt;li&gt;Balance workload onto available execution resources&lt;/li&gt;
+&lt;li&gt;Reduce communications&lt;/li&gt;
+&lt;li&gt;Reduce extra work (overhead) performed to increase parallelism, manage assignment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Communication to Computation Ratio
+&lt;ul&gt;
+&lt;li&gt;amount of communication / amount of computation&lt;/li&gt;
+&lt;li&gt;Amount of low ratio to effectively utilize modern parallel processors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Communication
+&lt;ul&gt;
+&lt;li&gt;Inherent communication
+&lt;ul&gt;
+&lt;li&gt;Information that fundamentally must be moved between processors to carry out the algorithm given the specified assignment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Artificial communication
+&lt;ul&gt;
+&lt;li&gt;All other communication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Contention
+&lt;ul&gt;
+&lt;li&gt;Contention occurs when many requests to a resource are made within a small window of time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Improving program performance
+&lt;ul&gt;
+&lt;li&gt;Identify and exploit locality&lt;/li&gt;
+&lt;li&gt;Reduce overhead&lt;/li&gt;
+&lt;li&gt;Reduce contention&lt;/li&gt;
+&lt;li&gt;Maximize overlap of communication and processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Batch scheduling
+&lt;ul&gt;
+&lt;li&gt;Batch scheduling is a method of managing and executing computational tasks on high-performance computers in a non-interactive manner. In batch scheduling, users submit their jobs or tasks to a job scheduler, which allocates computing resources to the execution of these jobs based on various policies and priorities.&lt;/li&gt;
+&lt;li&gt;Advantages: efficient resource utilization, fairness, workload management capabilities, and system stability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

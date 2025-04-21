@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis.">
+<title>Parallel and Distributed Computing</title>
+
+<link rel='canonical' href='https://jiajun2001.github.io/p/parallel-and-distributed-computing/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Parallel and Distributed Computing">
+<meta property='og:description' content="This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/parallel-and-distributed-computing/'>
+<meta property='og:site_name' content='Jason&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Parallel Programming' /><meta property='article:published_time' content='2023-06-21T15:27:22&#43;10:30'/><meta property='article:modified_time' content='2023-06-21T15:27:22&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/parallel-and-distributed-computing/background.jpeg' />
+<meta name="twitter:title" content="Parallel and Distributed Computing">
+<meta name="twitter:description" content="This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/parallel-and-distributed-computing/background.jpeg' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/profile_hu_a3608c83691b46ad.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😎</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Jason&#39;s blog</a></h1>
+            <h2 class="site-description">ARM Architecture Simulation C/C&#43;&#43; Low-Level Programming Python Java Assembly Linux University of Adelaide (BSc CS) jiajunyu@yahoo.com</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/jiajun2001'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#parallel-programming">Parallel Programming</a></li>
+        <li><a href="#parallel-hardware-and-software">Parallel Hardware and Software</a></li>
+        <li><a href="#programming-with-message-passing-using-mpi">Programming with Message Passing using MPI</a></li>
+        <li><a href="#interconnection-networks">Interconnection Networks</a></li>
+        <li><a href="#parallel-program-design">Parallel Program Design</a></li>
+        <li><a href="#performance-analysis">Performance Analysis</a></li>
+        <li><a href="#multithreading-programming">Multithreading Programming</a></li>
+        <li><a href="#programming-with-openmp">Programming with OpenMP</a></li>
+        <li><a href="#opencl">OpenCL</a></li>
+        <li><a href="#performance-issues">Performance Issues</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/parallel-and-distributed-computing/">
+                <img src="/p/parallel-and-distributed-computing/background_hu_bdb77e824ac875e7.jpeg"
+                        srcset="/p/parallel-and-distributed-computing/background_hu_bdb77e824ac875e7.jpeg 800w, /p/parallel-and-distributed-computing/background_hu_73da4674762339d6.jpeg 1600w"
+                        width="800" 
+                        height="372" 
+                        loading="lazy"
+                        alt="Featured image of post Parallel and Distributed Computing" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/basic-concept/" >
+                Basic Concept
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/parallel-and-distributed-computing/">Parallel and Distributed Computing</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            This is my revision notes for Parallel And Distributed Computing. In this post, it will cover fundamental concepts and trade-offs behind parallel and distributed applications, designs and implementations for parallel and distributed applications, as well as performance analysis.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 21, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    20 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <!-- more -->
+<br />
+<h3 id="parallel-programming">Parallel Programming
+</h3><ul>
+<li>Why we need ever-increasing performance
+<ul>
+<li>As our computational power increases, the number of problems that we can seriously consider solving also increases. E.g. climate modelling / protein folding / drug discovery / energy research / data analysis</li>
+</ul>
+</li>
+<li>Why building parallel systems
+<ul>
+<li>As the speed of transistors increases, their power consumption increases. Most of this power is dissipated as heat, and when an integrated circuit gets too hot, it becomes unreliable.</li>
+<li>Transistor density can increase for a while, but slower than before.</li>
+</ul>
+</li>
+<li>Write parallel program
+<ul>
+<li>Basic idea: partition the work to be done among cores</li>
+<li>Two widely used approaches
+<ul>
+<li>Task-parallelism: partition the various tasks carried out in solving the problem among the cores
+<ul>
+<li>Each tutor grades one question</li>
+</ul>
+</li>
+<li>Data-parallelism: partition data used in solving the problem among the cores, and each core carries out more or less similar operations on its part of the data
+<ul>
+<li>Each tutor grades one pile of exam paper</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Coordination of cores
+<ul>
+<li>Communication: one or more cores send their message to another core</li>
+<li>Load balancing: make sure the cores all to be assigned roughly the same number of works</li>
+<li>Synchronization: the cores need to wait before other cores</li>
+</ul>
+</li>
+<li>Two types of parallel systems
+<ul>
+<li>Shared-memory system: we can coordinate the cores by having them examine and update shared-memory locations</li>
+<li>Distributed-memory system: each core has its own, private memory, and the core must communicate explicitly by doing something like sending messages across a network</li>
+</ul>
+</li>
+<li>Concurrent, parallel and distributed
+<ul>
+<li>In concurrent computing: a program is one in which multiple tasks can be in progress at any instant</li>
+<li>In parallel computing: a program is one in which multiple tasks cooperate closely to solve a problem</li>
+<li>In distributed computing: a program may need to cooperate with other programs to solve a problem</li>
+</ul>
+</li>
+</ul>
+<h3 id="parallel-hardware-and-software">Parallel Hardware and Software
+</h3><ul>
+<li>von Neumann Architecture
+<ul>
+<li>The classical von Neumann architecture consists of main memory, a central processing unit (CPU), and an interconnection between the memory and the CPU.
+<ul>
+<li>Main memory consists of a collection of locations, each of which is capable of storing both instructions and data.</li>
+<li>The central processing unit is divided into a control unit and an arithmetic and logic unit (ALU).
+<ul>
+<li>The control unit is responsible for deciding which instructions in a program should be executed. The control unit has a special register called the program counter which stores the address of the next instruction to be executed.</li>
+<li>The ALU is responsible for executing the actual instructions. Data in the CPU and information about the state of an executing program are stored in very fast storage called registers.</li>
+</ul>
+</li>
+<li>Instructions and data are transferred between the CPU and memory via the interconnect. This has traditionally been a bus, which consists of a collection of parallel wires and some hardware controlling access to the wires.</li>
+</ul>
+</li>
+<li>von Neumann bottleneck: The separation of memory and CPU is often called the von Neumann bottleneck, since the interconnect determines the rate at which instructions and data can be accessed.</li>
+</ul>
+</li>
+<li>Multitasking: The OS provides support for the apparent simultaneous execution of multiple programs. This is possible even on a system with a single core, since each process runs for a small interval of time (time slice). After one running program has executed for a time slice, the OS can run a different program.</li>
+<li>Process: When a user runs a program, the OS creates a process which is an instance of a computer program that is being executed.</li>
+<li>Threading: provides a mechanism for programmers to divide their programs into more or less independent tasks with the property that when one thread is blocked another thread can be run. In addition, it is possible to switch between threads much faster than switching between processes.</li>
+<li>Thread: Threads are contained within process, so they can use the same executable, and they usually share the same memory and the same I/O devices. The two most important exceptions are that they will need a record of their own PC and call stacks so that they can execute independently of each other. When a thread is started, it folks off the process, when a thread terminates, it joins the process.</li>
+<li>Flynn&rsquo;s taxonomy: classify computer architectures
+<ul>
+<li>SISD (single instruction, single data): executes a single instruction at a time and it can fetch or store one item of data at a time. (classical von Neumann system)</li>
+<li>SIMD (single instruction, multiple data): operates on multiple data streams by applying the same instruction to multiple data items.
+<ul>
+<li>Vector processors: operates on arrays or vectors of data. Vector systems have very high memory bandwidth, and every data item that is loaded is actually used. However, they do not handle irregular data structure as well as other parallel architectures, and there seems to be a very finite limit to their scalability.</li>
+<li>Graphic processing units: converts the internal representation into an array of pixels that can be sent to a computer screen. Several of the stages of this pipeline are programmable. The behavior of the programmable stages is specified by functions called shader functions. All GPUs use SIMD parallelism, GPUs are not pure SIMD systems since current generation GPUs can have dozens of cores, which are capable of executing independent instructions streams.</li>
+</ul>
+</li>
+<li>MIMD (multiple instruction, multiple data): supports multiple simultaneous instruction streams operating on multiple data streams. Thus, MIMD systems typically consist of a collection of fully independent processing units or cores, each of which has its own control unit and its own ALU (asynchronous).
+<ul>
+<li>Shared-memory systems (multiple multicore processors)
+<ul>
+<li>Uniform memory access (UMA): The time to access all memory locations will be the same for all cores / Easier to program</li>
+<li>Nonuniform memory access (NUMA): Faster access to the directly connected memory / Have the potential to use larger amount of memeory</li>
+</ul>
+</li>
+<li>Distributed-memory systems (clusters)
+<ul>
+<li>Clusters are composed of a collection of commodity systems (PC), or connected by a commodity interconnection network (Ethernet).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Difference between SPMD and SIMD
+<ul>
+<li>SPMD refers to a programming model where a single program is executed by multiple parallel processing units, such as multiple threads or processes. Each processing unit operates on its own portion of the data, but they all execute the same program. SPMD allows for flexible control flow and can be used to express both data parallel and task parallel computations.</li>
+<li>SIMD refers to a type of parallelism where a single instruction is executed simultaneously by multiple processing elements on different data elements. SIMD architectures typically have a single control unit that broadcasts instructions to multiple processing units, allowing for efficient parallel execution of the same operation on multiple data elements in parallel.</li>
+</ul>
+</li>
+<li>Communication and synchronization
+<ul>
+<li>In distributed-memory programs, we often implicitly synchronize the process by communicating among them.</li>
+<li>In shared-memory programs, we often communicate among the threads by synchronizing them.</li>
+</ul>
+</li>
+<li>Embarrassingly parallel
+<ul>
+<li>Programs that can be parallelized by simply dividing the work among the processes / threads.</li>
+</ul>
+</li>
+</ul>
+<h3 id="programming-with-message-passing-using-mpi">Programming with Message Passing using MPI
+</h3><ul>
+<li>Distributed-memory systems using message-passing
+<ul>
+<li>Process: a program running on one core-memory pair</li>
+<li>Message-Passing Interface (MPI): one process calls a send function and the other calls a receive function. Processes typically identify each other by ranks in the range 0, 1, &hellip;, p - 1, where p is the number of processes.</li>
+</ul>
+</li>
+<li>MPI functions
+<ul>
+<li>MPI_Init(): tells MPI system to do all of the necessary setup. It might allocate storage for message buffers, and it might decide which process gets which rank. No other MPI functions should be called before the program calls MPI_Init().</li>
+<li>MPI_Finalize(): tells MPI system that we are done using MPI, and that any resources allocated for MPI can be freed. No MPI functions should be called after the call to MPI_Finalize().</li>
+<li>MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_size): returns in its second argument the number of processes in the communicator</li>
+<li>MPI_Comm_rand(MPI_COMM_WORLD, &amp;comm_rank): returns in its second argument the calling process&rsquo;s rank in the communicator</li>
+<li>MPI_Send(msg_buf_p, msg_size, msg_type, dest, tag, communicator)
+<ul>
+<li>msg_buf_p: a pointer points to the block memory containing the contents of the message</li>
+<li>msg_size: amount of data to be sent</li>
+<li>msg_type: type of data to be sent</li>
+<li>dest: specifies the rank of the process that should receive the message</li>
+<li>tag: it can be used to distinguish messages that are otherwise identical</li>
+<li>communicator: a message sent by a process using one communicator cannot be received by a process that&rsquo;s using a different communicator</li>
+</ul>
+</li>
+<li>MPI_Recv(msg_buf_p, buf_size, buf_type, source, tag, communicator, status_p)
+<ul>
+<li>msg_buf_p: points to the block of memory</li>
+<li>buf_size: determines the number of objects that can be stored in the block</li>
+<li>buf_type: indicates the type of the objects</li>
+<li>source: specifies the process from which the message should be received (can use MPI_ANY_SOURCE)</li>
+<li>tag: should match the communicator used by the sending process (can use MPI_ANY_TAG)</li>
+<li>communicator: match the communicator used by the sending process</li>
+<li>status_p: it is a structure with at least three members MPI_SOURCE, MPI_TAG, MPI_ERROR, after a call to MPI_Recv in which &amp;status is passed as the last argument, we can determine the sender and tag.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Semantics of MPI_Send and MPI_Recv
+<ul>
+<li>The sending process will assemble the message</li>
+<li>If the sending process buffers the message, the MPI system will place the message into its own internal storage</li>
+<li>If the system blocks, it will wait until it can begin transmitting the message, and the call to MPI_Send may not return immediately</li>
+<li>MPI_Recv always blocks until a matching message has been received</li>
+<li>MPI requires that messages be non-overtaking. This means that if process q sends two messages to process r, then the first message sent by q must be available to r before the second message. However, there is no restriction on the arrival of messages sent from different processors.</li>
+</ul>
+</li>
+<li>Blocking and Non-blocking sends and receives
+<ul>
+<li>Blocking
+<ul>
+<li>Send is complete when the message buffer has been fully transferred to the MPI system.</li>
+<li>Receive is complete when the message data has arrived at the destination and is available for use.</li>
+</ul>
+</li>
+<li>Non-blocking
+<ul>
+<li>They just continue with no regards for completion status</li>
+<li>Can be useful to help avoid deadlock</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Commands for compile and run
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">mpicc</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">o</span> <span class="n">mpi_hello</span> <span class="n">mpi_hello</span><span class="p">.</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl"><span class="n">mpiexec</span> <span class="o">-</span><span class="n">n</span> <span class="mi">4</span> <span class="p">.</span><span class="o">/</span><span class="n">mpi_hello</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Collective operations
+<ul>
+<li>MPI_Bcast(): Copies data from root node to the same memory location in every other node</li>
+<li>MPI_Gather(): Each node sends the contents of the send buffer to the root node, and root node stores them in rank order.</li>
+<li>MPI_Scatter(): Root process splits buffer into equal chunks and sends one chunk to each processor</li>
+<li>MPI_AlltoAll(): Each node performs a Scatter operation on its own data. Thus every node receives some data from every other node.</li>
+<li>MPI_Reduce(): MPI_Reduce operation combines the values from all processes and produces a single result, which is typically stored on a designated root process.</li>
+</ul>
+</li>
+<li>Output
+<ul>
+<li>Most MPI implementation allow all processes to execute <code>printf</code> and <code>fprintf(stderr, ...)</code>.</li>
+<li>However, most MPI implementations don&rsquo;t provide any automatic scheduling of access to these devices, since MPI processes are competing for access to the shared output devices, stdout, and it is impossible to predict the order in which the processes&rsquo;s output will be queued up. Hence, we can have each process other than 0 send its output to process 0, and process 0 can print the output in process rank order.</li>
+</ul>
+</li>
+<li>Input
+<ul>
+<li>Most MPI implementations only allow process 0 in MPI_COMM_WORLD access to stdin. In order to write MPI programs that can use <code>scanf</code>, we need to branch on process rank, with process 0 reading in the data and then sending it to the other processes.</li>
+</ul>
+</li>
+</ul>
+<h3 id="interconnection-networks">Interconnection Networks
+</h3><ul>
+<li>Shared-memory interconnects
+<ul>
+<li>Bus: a collection of parallel communication wires together with some hardware that controls access to the bus. The key characteristic of a bus is that the communication wires are shared by the devices that are connected to it. However, as the number of devices connected to the bus increases, the likelihood that there will be contention for use of the bus increases, and the expected performance of the bus decreases.</li>
+<li>Crossbars: switched interconnects use switches to control the routing of data among connected devices. Crossbar allows simultaneous communication among different devices, so they are much faster than buses. However, the cost of the switches and links is relatively high.</li>
+</ul>
+</li>
+<li>Distributed-memory interconnects
+<ul>
+<li>Interconnects
+<ul>
+<li>Direct interconnects: each switch is directly connected to a processor-memory pair, and the switches are connected to each other.
+<ul>
+<li>Ring: If there are p processors, the number of links is 2p.</li>
+<li>Toroidal mesh: If there are p processors, the number of links is 3p.</li>
+<li>Fully connected network: It is used as a basis for evaluating other interconnects. However, it is impractical since it requires a total of p<sup>2</sup> / 2 + p / 2 links, and each switch must be capable of connecting to p links.</li>
+<li>Hypercube: A hypercube of dimension d has a p = 2<sup>d</sup> nodes, and a switch in a d-dimensional hypercube is directly connected to a processor and d switches.</li>
+</ul>
+</li>
+<li>Indirect interconnects: the switches may not be directly connected to a processor. They are often shown with unidirectional links and a collection of processors, each of which has an outgoing and an incoming link, and a switching network.
+<ul>
+<li>Crossbar: As long as two processors do not attempt to communicate with the same processor, all processors can simultaneously communicate with another processor. (Crossbar &gt; MIN &gt; Bus)</li>
+<li>omega network: There are communications that cannot occur simultaneously.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Bisection width
+<ul>
+<li>It refers to a measure of the communication capacity or bandwidth between two halves of a system when it is divided into two equal parts.</li>
+<li>The bisection width is a metric that quantifies the communication capacity between these two groups. It represents the maximum amount of data that can be exchanged between the two halves of the system simultaneously.</li>
+<li>An alternative way of computing the bisection width is to remove the minimum number of links needed to split the set of nodes into two equal halves. The number of links removed is the bisection width.</li>
+</ul>
+</li>
+<li>Bisection bandwidth
+<ul>
+<li>often used as a measure of network quality</li>
+<li>it sums the bandwidth of links</li>
+</ul>
+</li>
+<li>Latency: the time that elapses between the source&rsquo;s beginning to transmit the data and the destination&rsquo;s starting to receive the first byte.</li>
+<li>Bandwidth: the rate at which the destination receives data after it has started to receive the first byte</li>
+<li>Time to transmit a message of n bytes
+<ul>
+<li>message transmission time = latency + n / bandwidth</li>
+</ul>
+</li>
+</ul>
+<h3 id="parallel-program-design">Parallel Program Design
+</h3><ul>
+<li>Foster&rsquo;s methodology
+<ul>
+<li>Partitioning
+<ul>
+<li>Divide the computation to be performed and the data operated on by the computation into small tasks. The focus here should be on identifying tasks that can be executed in parallel.</li>
+</ul>
+</li>
+<li>Communication
+<ul>
+<li>Determine what communication needs to be carried out among the tasks identified in the previous step.</li>
+</ul>
+</li>
+<li>Agglomeration or aggregation
+<ul>
+<li>Combine tasks and communications identified in the first step into larger tasks. For example, if task A must be executed before task B can be executed, it may make sense to aggregate them into a single composite task.</li>
+</ul>
+</li>
+<li>Mapping
+<ul>
+<li>Assign the composite tasks identified in the previous step to processors / threads. This should be done so that communication is minimized, and each process / thread gets roughly the same amount of work.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-analysis">Performance Analysis
+</h3><ul>
+<li>Linear speedup: If we call the serial run-time T<sub>serial</sub> and our parallel run-time T<sub>parallel</sub>, then the best we can hope for is T<sub>parallel</sub> = T<sub>serial</sub> / p. However, in practice, we are unlikely to get linear speedup becuase the use of multiple processes / threads almost invariably introduces some overhead.</li>
+<li>Speedup of a parallel program
+<ul>
+<li>Speedup refers to the performance improvement achieved by executing a program on multiple processors compared to running it on a single processor.</li>
+<li>S = T<sub>serial</sub> / T<sub>parallel</sub></li>
+</ul>
+</li>
+<li>Efficiency of a parallel program
+<ul>
+<li>E = S / p = (T<sub>serial</sub> / T<sub>parallel</sub>) / p</li>
+</ul>
+</li>
+<li>Effect of problem size
+<ul>
+<li>When we increase the problem size, the speedups and the efficiencies increase, while they decrease when we decrease the problem size (when p is not small). The relationship between problem size and speedup depends on various factors, including the nature of the problem, the parallelization technique used, the hardware architecture, and the efficiency of the parallel algorithm.</li>
+<li>Since T<sub>parallel</sub> = (T<sub>serial</sub> / p) + T<sub>overhead</sub>, if there&rsquo;s more work for the processes / threads to do, the relative amount of time spent coordinating the work of the processes / threads should be less.</li>
+</ul>
+</li>
+<li>Amdahl&rsquo;s law
+<ul>
+<li>Roughly, that unless virtually all of a serial program is parallelized, the possible speedup is going to be very limited - regardless of the number of cores available.</li>
+<li>More generally, if a fraction r of our serial program remains unparallelized, then Amdahl&rsquo;s law says we cannot get a speedup better than 1/r.</li>
+</ul>
+</li>
+<li>Gustafson&rsquo;s law
+<ul>
+<li>For many problems, as we increase the problem size, the &lsquo;inherently&rsquo; serial fraction of the problem decreases in size. (No need to worry about Amdahl&rsquo;s law)</li>
+</ul>
+</li>
+<li>Scalability
+<ul>
+<li>Suppose we now increase the number of processes / threads that are used by the program. If we can find a corresponding rate of increase in the problem size so that the program always has efficiency E, then the program is scalable.</li>
+<li>Types of scalable cases
+<ul>
+<li>Strongly scalable: if when we increase the number of processes / threads, we can keep the efficiency fixed without increasing the problem size.</li>
+<li>Weakly scalable: if we can keep the efficiency fixed by increasing the problem size at the same rate as we increase the number of processes / threads.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Taking timings
+<ul>
+<li>Resolution: the unit of measurement on the timer. It is the duration of the shortest event that can have a nonzero time.</li>
+<li>We first execute a barrier function that approximately synchronizes all of the processes / threads. We then execute the code and each process / thread finds the time it took. Then all the processes / threads call a global maximum function, which returns the largest of the elapsed times, and process / thread 0 prints it out.</li>
+<li>If we run the same experiment several times, we usually report the minimum time.</li>
+<li>We rarely run more than one thread per core.</li>
+<li>We usually not include I/O in our reported run-times.</li>
+</ul>
+</li>
+<li>Barrier
+<ul>
+<li>A barrier is a mechanism that imposes global synchronization, ensuring that all participating threads or processes reach a specific point before continuing, thereby enabling coordination and synchronization.</li>
+</ul>
+</li>
+</ul>
+<h3 id="multithreading-programming">Multithreading Programming
+</h3><ul>
+<li>Dynamic and static threads
+<ul>
+<li>Dynamic thread
+<ul>
+<li>There is often a master thread and at any given instant a (possibly empty) collection of worker threads. The master thread typically waits for work requests, and when a new request arrives, it folks a worker thread, the thread carries out the request, and when the thread completes the work, it terminates and joins the master thread.</li>
+</ul>
+</li>
+<li>Static thread
+<ul>
+<li>In this paradigm, all of the threads are forked after any needed setup by the master thread and the threads run until all the work is completed.</li>
+<li>The static thread paradigm has the potential for better performance than the dynamic paradigm.</li>
+<li>Static thread paradigm is often used.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nondeterminism
+<ul>
+<li>A computation is nondeterministic if a given input can result in different outputs.</li>
+</ul>
+</li>
+<li>Race condition
+<ul>
+<li>When threads or processes attempt to simultaneously access a resource, and the accesses can result in an error.</li>
+</ul>
+</li>
+<li>Critical section
+<ul>
+<li>A block of code that can only be executed by one thread at a time.</li>
+</ul>
+</li>
+<li>Mutual exclusion lock / Mutex / Lock
+<ul>
+<li>The most commonly used mechanism for insuring mutual exclusion</li>
+<li>Before a thread can execute the code in the critical section, it must &lsquo;obtain&rsquo; the mutex by calling a mutex function, and when it finishes executing the code in the critical section, it should relinquish the mutex by calling an unlock function.</li>
+<li>While one thread owns the lock, any other thread attempting to execute the code in the critical section will wait in its call to the lock function.</li>
+</ul>
+</li>
+<li>Busy-waiting
+<ul>
+<li>A thread enters a loop whose sole purpose is to test a condition. However, it can be very wasteful of system resources.</li>
+</ul>
+</li>
+<li>Thread safety
+<ul>
+<li>A static variable that is declared in a function persists from one call to the next. Hence, static variables are effectively shared among any threads that call the function, and this can have unexpected and unwanted consequences.</li>
+</ul>
+</li>
+<li>Deadlock
+<ul>
+<li>Deadlock refers to a situation in a concurrent system where two or more processes or threads are unable to proceed because each is waiting for a resource that is held by another process or thread in the system.</li>
+</ul>
+</li>
+</ul>
+<h3 id="programming-with-openmp">Programming with OpenMP
+</h3><ul>
+<li>OpenMP provides what&rsquo;s known as a &ldquo;directive-based&rdquo; shared-memory API. In C and C++, this means that there are special preprocessor instructions known as pragmas. Pragmas are typically added to a system to allow behaviors that are not part of the basic C specification. Compilers that do not support the pragmas are free to ignore them. So, in principle, if you have a carefully written OpenMP program, it can be compiled and run on any system with a C compiler, regardless of whether the compiler supports OpenMP.</li>
+<li>Commands for compile and run
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">gcc</span> <span class="o">-</span><span class="n">g</span> <span class="o">-</span><span class="n">Wall</span> <span class="o">-</span><span class="n">fopenmp</span> <span class="o">-</span><span class="n">o</span> <span class="n">omp_hello</span> <span class="n">omp_hello</span><span class="p">.</span><span class="n">c</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="o">/</span><span class="n">omp_hello</span> <span class="mi">4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Parallel for
+<ul>
+<li>The parallel for directive forks a team of threads to execute the following structured block. However, the structured block following the parallel for directive must be a for loop. The system parallelizes the for loop by dividing the iterations of the loop among threads.</li>
+</ul>
+</li>
+<li>Loop-carried dependence
+<ul>
+<li>A loop in which the results of one or more iterations depend on other iterations cannot, in general, be correctly parallelized by OpenMP.</li>
+</ul>
+</li>
+<li>Reduction clause
+<ul>
+<li>OpenMP creates a private variable for each thread, and the run-time system stores each thread’s result in this private variable. OpenMP also creates a critical section and the values stored in the private variables are added in this critical section.</li>
+<li>Syntax: reduction(&lt;operator&gt;: &lt;variable list&gt;)</li>
+</ul>
+</li>
+<li>Scope of variables
+<ul>
+<li>A variable that can be accessed by all the threads in the team has shared scope, while a variable that can only be accessed by a single thread has private scope.</li>
+</ul>
+</li>
+</ul>
+<h3 id="opencl">OpenCL
+</h3><ul>
+<li>Definition
+<ul>
+<li>OpenCL (Open Computing Language) is an open standard and framework for programming heterogeneous computing platforms, including CPUs, GPUs, and other accelerators. It provides a unified programming model and API (Application Programming Interface) that allows developers to write code that can run efficiently across different hardware architectures.</li>
+</ul>
+</li>
+<li>OpenCL memory model
+<ul>
+<li>The OpenCL memory model provides a framework for managing different types of memory in OpenCL computations, including private, local, global, and constant memory. It establishes rules for data organization, movement, and synchronization, allowing efficient utilization of memory resources and proper synchronization in parallel computations.</li>
+</ul>
+</li>
+<li>OpenCL execution model
+<ul>
+<li>Application runs on a host which submits work to devices
+<ul>
+<li>Work item: the basic unit of work on an OpenCL device</li>
+<li>Kernel: the code for a work item (basically a C function)</li>
+<li>Program: collection of kernels and other functions</li>
+</ul>
+</li>
+<li>Context
+<ul>
+<li>The environment within which work-items execute. It includes devices and their memories and command queues.</li>
+</ul>
+</li>
+<li>Command queue: a queue used by the host application to submit work to a device
+<ul>
+<li>Work is queued in-order, one queue per device</li>
+<li>Work can be executed in-order or out-of-order</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Steps that a host program must include, when using OpenCL for parallel work.
+<ul>
+<li>Platform discovery / Device selection / context creation / Command queue creation / Program compilation / Kernel creation / Memory object creation and data-transfer / Kernel execution / Synchronization and result retrieval / Cleanup</li>
+</ul>
+</li>
+<li>Restrictions
+<ul>
+<li>Limited Functionality of Standard C Library
+<ul>
+<li>OpenCL restricts the functionality of the standard C library that is available for use within kernel code.</li>
+<li>The reason is to maintain portability across diverse hardware platforms. Different OpenCL devices may have varying capabilities and may lack support for certain standard C library functions.</li>
+</ul>
+</li>
+<li>Limited Data Type
+<ul>
+<li>OpenCL restricts the available data types in kernel code compared to standard C. More complex data types, such as structures and unions, are not directly supported in kernel code.</li>
+<li>This restriction aims to facilitate efficient memory access and vectorization in parallel computations.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-issues">Performance Issues
+</h3><ul>
+<li>High performance
+<ul>
+<li>Balance workload onto available execution resources</li>
+<li>Reduce communications</li>
+<li>Reduce extra work (overhead) performed to increase parallelism, manage assignment</li>
+</ul>
+</li>
+<li>Communication to Computation Ratio
+<ul>
+<li>amount of communication / amount of computation</li>
+<li>Amount of low ratio to effectively utilize modern parallel processors</li>
+</ul>
+</li>
+<li>Communication
+<ul>
+<li>Inherent communication
+<ul>
+<li>Information that fundamentally must be moved between processors to carry out the algorithm given the specified assignment</li>
+</ul>
+</li>
+<li>Artificial communication
+<ul>
+<li>All other communication</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Contention
+<ul>
+<li>Contention occurs when many requests to a resource are made within a small window of time</li>
+</ul>
+</li>
+<li>Improving program performance
+<ul>
+<li>Identify and exploit locality</li>
+<li>Reduce overhead</li>
+<li>Reduce contention</li>
+<li>Maximize overlap of communication and processing</li>
+</ul>
+</li>
+<li>Batch scheduling
+<ul>
+<li>Batch scheduling is a method of managing and executing computational tasks on high-performance computers in a non-interactive manner. In batch scheduling, users submit their jobs or tasks to a job scheduler, which allocates computing resources to the execution of these jobs based on various policies and priorities.</li>
+<li>Advantages: efficient resource utilization, fairness, workload management capabilities, and system stability</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/parallel-programming/">Parallel Programming</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43; Study Note"
+                        
+                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/computer-network-and-application/">
+        
+        
+            <div class="article-image">
+                <img src="/p/computer-network-and-application/cna.bee430f3e04b63b81ce3a54bb47bb420_hu_1b8e19dc81b21a36.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Computer Network and Application"
+                        
+                        data-hash="md5-vuQw8&#43;BLY7gc46VLtHu0IA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Network and Application</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/algorithm-and-data-structure-theory-study/">
+        
+        
+            <div class="article-image">
+                <img src="/p/algorithm-and-data-structure-theory-study/structure.c652dd796dfd0bb0da4f4a192ef49fce_hu_51789ffbb98a80cc.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Algorithm and Data Structure Theory Study"
+                        
+                        data-hash="md5-xlLdeW39C7DaT0oZLvSfzg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Algorithm and Data Structure Theory Study</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2025 Jason&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
