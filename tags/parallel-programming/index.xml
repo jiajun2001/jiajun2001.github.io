@@ -6,16 +6,16 @@
         <description>Recent content in Parallel Programming on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 21 Jun 2023 15:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/parallel-programming/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 18 May 2025 15:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/parallel-programming/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Parallel and Distributed Computing</title>
         <link>https://jiajun2001.github.io/p/parallel-and-distributed-computing/</link>
-        <pubDate>Wed, 21 Jun 2023 15:27:22 +1030</pubDate>
+        <pubDate>Sun, 18 May 2025 15:27:22 +1030</pubDate>
         
         <guid>https://jiajun2001.github.io/p/parallel-and-distributed-computing/</guid>
         <description>&lt;img src="https://jiajun2001.github.io/p/parallel-and-distributed-computing/background.jpeg" alt="Featured image of post Parallel and Distributed Computing" /&gt;&lt;!-- more --&gt;
 &lt;br /&gt;
-&lt;h3 id=&#34;parallel-programming&#34;&gt;Parallel Programming
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;parallel-programming&#34;&gt;Parallel Programming
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Why we need ever-increasing performance
 &lt;ul&gt;
 &lt;li&gt;As our computational power increases, the number of problems that we can seriously consider solving also increases. E.g. climate modelling / protein folding / drug discovery / energy research / data analysis&lt;/li&gt;
@@ -67,8 +67,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;parallel-hardware-and-software&#34;&gt;Parallel Hardware and Software
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;parallel-hardware-and-software&#34;&gt;Parallel Hardware and Software
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;von Neumann Architecture
 &lt;ul&gt;
 &lt;li&gt;The classical von Neumann architecture consists of main memory, a central processing unit (CPU), and an interconnection between the memory and the CPU.
@@ -134,8 +134,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;programming-with-message-passing-using-mpi&#34;&gt;Programming with Message Passing using MPI
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;programming-with-message-passing-using-mpi&#34;&gt;Programming with Message Passing using MPI
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Distributed-memory systems using message-passing
 &lt;ul&gt;
 &lt;li&gt;Process: a program running on one core-memory pair&lt;/li&gt;
@@ -229,8 +229,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;interconnection-networks&#34;&gt;Interconnection Networks
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;interconnection-networks&#34;&gt;Interconnection Networks
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Shared-memory interconnects
 &lt;ul&gt;
 &lt;li&gt;Bus: a collection of parallel communication wires together with some hardware that controls access to the bus. The key characteristic of a bus is that the communication wires are shared by the devices that are connected to it. However, as the number of devices connected to the bus increases, the likelihood that there will be contention for use of the bus increases, and the expected performance of the bus decreases.&lt;/li&gt;
@@ -280,8 +280,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;parallel-program-design&#34;&gt;Parallel Program Design
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;parallel-program-design&#34;&gt;Parallel Program Design
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Foster&amp;rsquo;s methodology
 &lt;ul&gt;
 &lt;li&gt;Partitioning
@@ -307,8 +307,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;performance-analysis&#34;&gt;Performance Analysis
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;performance-analysis&#34;&gt;Performance Analysis
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Linear speedup: If we call the serial run-time T&lt;sub&gt;serial&lt;/sub&gt; and our parallel run-time T&lt;sub&gt;parallel&lt;/sub&gt;, then the best we can hope for is T&lt;sub&gt;parallel&lt;/sub&gt; = T&lt;sub&gt;serial&lt;/sub&gt; / p. However, in practice, we are unlikely to get linear speedup becuase the use of multiple processes / threads almost invariably introduces some overhead.&lt;/li&gt;
 &lt;li&gt;Speedup of a parallel program
 &lt;ul&gt;
@@ -364,8 +364,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;multithreading-programming&#34;&gt;Multithreading Programming
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;multithreading-programming&#34;&gt;Multithreading Programming
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Dynamic and static threads
 &lt;ul&gt;
 &lt;li&gt;Dynamic thread
@@ -420,8 +420,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;programming-with-openmp&#34;&gt;Programming with OpenMP
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;programming-with-openmp&#34;&gt;Programming with OpenMP
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;OpenMP provides what&amp;rsquo;s known as a &amp;ldquo;directive-based&amp;rdquo; shared-memory API. In C and C++, this means that there are special preprocessor instructions known as pragmas. Pragmas are typically added to a system to allow behaviors that are not part of the basic C specification. Compilers that do not support the pragmas are free to ignore them. So, in principle, if you have a carefully written OpenMP program, it can be compiled and run on any system with a C compiler, regardless of whether the compiler supports OpenMP.&lt;/li&gt;
 &lt;li&gt;Commands for compile and run
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -457,8 +457,119 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;opencl&#34;&gt;OpenCL
+&lt;h2 id=&#34;performance-issues-and-optimisation&#34;&gt;Performance Issues and Optimisation
+&lt;/h2&gt;&lt;h3 id=&#34;four-key-challenges&#34;&gt;Four Key Challenges
 &lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Synchronization: Threads often compete for shared data — protecting it (with
+locks/barriers) adds overhead.&lt;/li&gt;
+&lt;li&gt;Load Balancing: Work isn’t always evenly divisible — some threads finish early
+while others lag behind.&lt;/li&gt;
+&lt;li&gt;Locality &amp;amp; Cache Reuse: If your memory access pattern is poor, you lose time waiting on RAM instead of computing.&lt;/li&gt;
+&lt;li&gt;Granularity: In parallel computing, we often refer it to be the amount of work divided as sub-tasks. If it is too fine-grained, meaning there are quite a lot of sub-tasks while each of them is small. Managing them can lead to big overhead. If it is too coarse-grained, meaning there are a small number of tasks while each of them is huge. Some cores will finish tasks earlier than others, so they will be under-utilized.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;openmp-scheduling&#34;&gt;OpenMP Scheduling
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Block Partitioning (static scheduling)
+&lt;ul&gt;
+&lt;li&gt;Divide data or tasks into big chunks consecutively, each PE is responsible for a block of data or tasks&lt;/li&gt;
+&lt;li&gt;Pros and cons:
+&lt;ul&gt;
+&lt;li&gt;Cache-friendly, good for computationally intensive tasks&lt;/li&gt;
+&lt;li&gt;Might lead to load imbalance if some blocks are computationally-heavy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cyclic Partitioning (static scheduling)
+&lt;ul&gt;
+&lt;li&gt;Assign tasks in round-robin fashion, like dealing cards&lt;/li&gt;
+&lt;li&gt;Pros and cons:
+&lt;ul&gt;
+&lt;li&gt;Better for load balance especially task workload and data are not evenly distributed&lt;/li&gt;
+&lt;li&gt;Cache hit rate might be low&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dynamic Scheduling
+&lt;ul&gt;
+&lt;li&gt;Threads request chunks at runtime, use when iteration is unpredictable&lt;/li&gt;
+&lt;li&gt;Pros and cons:
+&lt;ul&gt;
+&lt;li&gt;Best load balance&lt;/li&gt;
+&lt;li&gt;High overhead in scheduling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Guided Scheduling
+&lt;ul&gt;
+&lt;li&gt;Similar to dynamic scheduling, but will shrink chunks later, use when we need to balance scheduling cost and load balance&lt;/li&gt;
+&lt;li&gt;Pros and cons:
+&lt;ul&gt;
+&lt;li&gt;Lower scheduling cost comparing with dynamic scheduling&lt;/li&gt;
+&lt;li&gt;Better load balance comparing with static scheduling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;high-performance&#34;&gt;High performance
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Balance workload onto available execution resources
+&lt;ul&gt;
+&lt;li&gt;Identify and manage concurrency&lt;/li&gt;
+&lt;li&gt;Distributed Schedulers in clusters
+&lt;ul&gt;
+&lt;li&gt;User submit their jobs to a cluster&amp;rsquo;s scheduler&lt;/li&gt;
+&lt;li&gt;Jobs in queue considered for allocation whenever state of a machine changes (event-driven)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduce communications
+&lt;ul&gt;
+&lt;li&gt;Decomposing a problem into multiple tasks usually means there will communication among tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reduce extra work (overhead) performed to increase parallelism, manage assignment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;communication-to-computation-ratio&#34;&gt;Communication to Computation Ratio
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;amount of communication / amount of computation&lt;/li&gt;
+&lt;li&gt;Amount of low ratio to effectively utilize modern parallel processors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;communication&#34;&gt;Communication
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Inherent communication
+&lt;ul&gt;
+&lt;li&gt;Information that fundamentally must be moved between processors to carry out the algorithm given the specified assignment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Artifactual communication
+&lt;ul&gt;
+&lt;li&gt;All other communication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;contention&#34;&gt;Contention
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Contention occurs when many requests to a resource are made within a small window of time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;improving-program-performance&#34;&gt;Improving program performance
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Identify and exploit locality&lt;/li&gt;
+&lt;li&gt;Reduce overhead&lt;/li&gt;
+&lt;li&gt;Reduce contention&lt;/li&gt;
+&lt;li&gt;Maximize overlap of communication and processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;batch-scheduling&#34;&gt;Batch scheduling
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Batch scheduling is a method of managing and executing computational tasks onhigh-performance computers in a non-interactive manner. In batch scheduling,users submit their jobs or tasks to a job scheduler, which allocates computingresources to the execution of these jobs based on various policies and priorities.&lt;/li&gt;
+&lt;li&gt;Advantages: efficient resource utilization, fairness, workload managementcapabilities, and system stability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;opencl&#34;&gt;OpenCL
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Definition
 &lt;ul&gt;
 &lt;li&gt;OpenCL (Open Computing Language) is an open standard and framework for programming heterogeneous computing platforms, including CPUs, GPUs, and other accelerators. It provides a unified programming model and API (Application Programming Interface) that allows developers to write code that can run efficiently across different hardware architectures.&lt;/li&gt;
@@ -510,55 +621,6 @@
 &lt;li&gt;This restriction aims to facilitate efficient memory access and vectorization in parallel computations.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;performance-issues&#34;&gt;Performance Issues
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;High performance
-&lt;ul&gt;
-&lt;li&gt;Balance workload onto available execution resources&lt;/li&gt;
-&lt;li&gt;Reduce communications&lt;/li&gt;
-&lt;li&gt;Reduce extra work (overhead) performed to increase parallelism, manage assignment&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Communication to Computation Ratio
-&lt;ul&gt;
-&lt;li&gt;amount of communication / amount of computation&lt;/li&gt;
-&lt;li&gt;Amount of low ratio to effectively utilize modern parallel processors&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Communication
-&lt;ul&gt;
-&lt;li&gt;Inherent communication
-&lt;ul&gt;
-&lt;li&gt;Information that fundamentally must be moved between processors to carry out the algorithm given the specified assignment&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Artificial communication
-&lt;ul&gt;
-&lt;li&gt;All other communication&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Contention
-&lt;ul&gt;
-&lt;li&gt;Contention occurs when many requests to a resource are made within a small window of time&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Improving program performance
-&lt;ul&gt;
-&lt;li&gt;Identify and exploit locality&lt;/li&gt;
-&lt;li&gt;Reduce overhead&lt;/li&gt;
-&lt;li&gt;Reduce contention&lt;/li&gt;
-&lt;li&gt;Maximize overlap of communication and processing&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Batch scheduling
-&lt;ul&gt;
-&lt;li&gt;Batch scheduling is a method of managing and executing computational tasks on high-performance computers in a non-interactive manner. In batch scheduling, users submit their jobs or tasks to a job scheduler, which allocates computing resources to the execution of these jobs based on various policies and priorities.&lt;/li&gt;
-&lt;li&gt;Advantages: efficient resource utilization, fairness, workload management capabilities, and system stability&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
