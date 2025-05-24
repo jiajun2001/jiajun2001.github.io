@@ -568,6 +568,15 @@ while others lag behind.&lt;/li&gt;
 &lt;li&gt;Batch scheduling is a method of managing and executing computational tasks onhigh-performance computers in a non-interactive manner. In batch scheduling,users submit their jobs or tasks to a job scheduler, which allocates computingresources to the execution of these jobs based on various policies and priorities.&lt;/li&gt;
 &lt;li&gt;Advantages: efficient resource utilization, fairness, workload managementcapabilities, and system stability&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;parallel-hardware-gpus-and-npus&#34;&gt;Parallel Hardware: GPUs and NPUs
+&lt;/h2&gt;&lt;h3 id=&#34;definition-of-gpgpus&#34;&gt;Definition of GPGPUs
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;GPGPU is the use of a GPU (Graphics Processing Unit) — which is traditionally used for rendering graphics — to perform non-graphics, general-purpose computations that are typically handled by the CPU (Central Processing Unit)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;gpus-are-not-always-well-suited-to-caching&#34;&gt;GPUs are not always well suited to caching
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;The data access patterns of graphics applications make it difficult for them to fully utilize traditional caching mechanisms, because their computation results do not need to be frequently written back to memory, nor are intermediate results suitable for long-term retention. This leads to low cache hit rates, which can actually reduce processing efficiency.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;opencl&#34;&gt;OpenCL
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Definition

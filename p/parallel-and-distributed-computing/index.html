@@ -249,6 +249,12 @@
         <li><a href="#batch-scheduling">Batch scheduling</a></li>
       </ol>
     </li>
+    <li><a href="#parallel-hardware-gpus-and-npus">Parallel Hardware: GPUs and NPUs</a>
+      <ol>
+        <li><a href="#definition-of-gpgpus">Definition of GPGPUs</a></li>
+        <li><a href="#gpus-are-not-always-well-suited-to-caching">GPUs are not always well suited to caching</a></li>
+      </ol>
+    </li>
     <li><a href="#opencl">OpenCL</a></li>
   </ol>
 </nav>
@@ -330,7 +336,7 @@
 
 
                 <time class="article-time--reading">
-                    21 minute read
+                    22 minute read
                 </time>
             </div>
         
@@ -900,6 +906,15 @@ while others lag behind.</li>
 </h3><ul>
 <li>Batch scheduling is a method of managing and executing computational tasks onhigh-performance computers in a non-interactive manner. In batch scheduling,users submit their jobs or tasks to a job scheduler, which allocates computingresources to the execution of these jobs based on various policies and priorities.</li>
 <li>Advantages: efficient resource utilization, fairness, workload managementcapabilities, and system stability</li>
+</ul>
+<h2 id="parallel-hardware-gpus-and-npus">Parallel Hardware: GPUs and NPUs
+</h2><h3 id="definition-of-gpgpus">Definition of GPGPUs
+</h3><ul>
+<li>GPGPU is the use of a GPU (Graphics Processing Unit) — which is traditionally used for rendering graphics — to perform non-graphics, general-purpose computations that are typically handled by the CPU (Central Processing Unit)</li>
+</ul>
+<h3 id="gpus-are-not-always-well-suited-to-caching">GPUs are not always well suited to caching
+</h3><ul>
+<li>The data access patterns of graphics applications make it difficult for them to fully utilize traditional caching mechanisms, because their computation results do not need to be frequently written back to memory, nor are intermediate results suitable for long-term retention. This leads to low cache hit rates, which can actually reduce processing efficiency.</li>
 </ul>
 <h2 id="opencl">OpenCL
 </h2><ul>
