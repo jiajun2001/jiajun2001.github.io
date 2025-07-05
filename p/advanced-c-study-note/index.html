@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux.">
-<title>Linux Study Note</title>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, smart pointers, C++ libraries, multi threading, design patters, lambda expressions...">
+<title>Advanced C&#43;&#43; Study Note</title>
 
-<link rel='canonical' href='https://jiajun2001.github.io/p/linux-study-note/'>
+<link rel='canonical' href='http://localhost:1313/p/advanced-c-study-note/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Linux Study Note">
-<meta property='og:description' content="In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux.">
-<meta property='og:url' content='https://jiajun2001.github.io/p/linux-study-note/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Advanced C++ Study Note">
+<meta property='og:description' content="In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, smart pointers, C++ libraries, multi threading, design patters, lambda expressions...">
+<meta property='og:url' content='http://localhost:1313/p/advanced-c-study-note/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:published_time' content='2025-04-21T22:49:06&#43;10:30'/><meta property='article:modified_time' content='2025-04-21T22:49:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/linux-study-note/Linux.png' />
-<meta name="twitter:title" content="Linux Study Note">
-<meta name="twitter:description" content="In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jiajun2001.github.io/p/linux-study-note/Linux.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2023-07-13T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2023-07-13T15:25:06&#43;10:30'/><meta property='og:image' content='http://localhost:1313/p/c-study-note/cpp.png' />
+<meta name="twitter:title" content="Advanced C++ Study Note">
+<meta name="twitter:description" content="In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, smart pointers, C++ libraries, multi threading, design patters, lambda expressions..."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/c-study-note/cpp.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -229,8 +229,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#lets-begin">Let&rsquo;s begin</a></li>
-    <li><a href="#references">References:</a></li>
+    <li><a href="#introduction-to-c">Introduction to C++</a></li>
   </ol>
 </nav>
         </div>
@@ -245,13 +244,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/linux-study-note/">
-                <img src="/p/linux-study-note/Linux_hu_dc403b7b6815285.png"
-                        srcset="/p/linux-study-note/Linux_hu_dc403b7b6815285.png 800w, /p/linux-study-note/Linux_hu_99a205f27cc4ff2.png 1600w"
+            <a href="/p/advanced-c-study-note/">
+                <img src="/p/c-study-note/cpp_hu_457e1b196f84c6aa.png"
+                        srcset="/p/c-study-note/cpp_hu_457e1b196f84c6aa.png 800w, /p/c-study-note/cpp_hu_3532341acaa2d1d5.png 1600w"
                         width="800" 
-                        height="254" 
+                        height="398" 
                         loading="lazy"
-                        alt="Featured image of post Linux Study Note" />
+                        alt="Featured image of post Advanced C&#43;&#43; Study Note" />
                 
             </a>
         </div>
@@ -265,21 +264,17 @@
                 Basic Concept
             </a>
         
-            <a href="/categories/research/" >
-                Research
-            </a>
-        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/linux-study-note/">Linux Study Note</a>
+            <a href="/p/advanced-c-study-note/">Advanced C&#43;&#43; Study Note</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux.
+            In this post, I will go through some deeper concepts in C&#43;&#43; such as compiling, linking, some other keywords, smart pointers, C&#43;&#43; libraries, multi threading, design patters, lambda expressions...
         </h3>
         
     </div>
@@ -300,7 +295,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Apr 21, 2025</time>
+                <time class="article-time--published">Jul 13, 2023</time>
             </div>
         
 
@@ -330,33 +325,18 @@
     <section class="article-content">
     
     
-    <h2 id="lets-begin">Let&rsquo;s begin
-</h2><p>Initially, BIOS (Basic Input/Output System) will load 512 bytes data (aka MBR: Master Boot Record) from the disk into memory at address 0x7c00. BIOS then hands off execution to the bootloader.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">BOOTSEG</span>  <span class="err">=</span> <span class="mi">0x07c0</span>			<span class="p">!</span> <span class="no">original</span> <span class="no">address</span> <span class="no">of</span> <span class="no">boot-sector</span>
-</span></span><span class="line"><span class="cl"><span class="na">...</span>
-</span></span><span class="line"><span class="cl"><span class="nl">start:</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">mov</span>	<span class="no">ax</span><span class="p">,</span><span class="c1">#BOOTSEG
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">mov</span>	<span class="no">ds</span><span class="p">,</span><span class="no">ax</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>This section of code simply moves 0x07c0 into ds register. So next time when we access ds register with an offset, the result will be (0x07c0 &laquo; 4) + offset =&gt; 0x7c00 + offset. Hence, Linux will be able to execute start-up area code with ds register plus an offset.</p>
-<h2 id="references">References:
-</h2><ol>
-<li>dibingfa (no date) flash-linux0.11-talk. GitHub. Available at: <a class="link" href="https://github.com/dibingfa/flash-linux0.11-talk"  target="_blank" rel="noopener"
-    >https://github.com/dibingfa/flash-linux0.11-talk</a> (Accessed: 21 April 2025).</li>
-<li>lewischeng-ms (no date) linux. GitHub. Available at: <a class="link" href="https://github.com/lewischeng-ms/linux"  target="_blank" rel="noopener"
-    >https://github.com/lewischeng-ms/linux</a> (Accessed: 21 April 2025).</li>
-</ol>
-
+    <p>During the summer of my freshman year, I spent quite a lot of time self-studying C++ basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&rsquo;s why I make this post to keep track of my further study about C++. In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, smart pointers, C++ libraries, multi threading, design patters, lambda expressions&hellip;</p>
+<br />
+<h2 id="introduction-to-c">Introduction to C++
+</h2><ul>
+<li>C++ is a cross-platform language that can be used to create high-performance applications.
+<ul>
+<li>Operating System, Game Engines, Browsers&hellip;</li>
+</ul>
+</li>
+<li>C++ was developed as an extension to the C language and C++ supports classes and objects.</li>
+<li>C++ gives programmers a high level of control over system resources and memory.</li>
+</ul>
 </section>
 
 
@@ -364,7 +344,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/operating-system/">Operating System</a>
+            <a href="/tags/programming-language/">Programming Language</a>
         
     </section>
 
@@ -386,23 +366,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/advanced-c-topics/">
+    <a href="/p/c-study-note/">
         
         
             <div class="article-image">
-                <img src="/p/advanced-c-topics/picture.e8af4ed0da3e3cc600d0638167aef5a4_hu_ea7c42981ad866df.png" 
+                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Advanced C&#43;&#43; Topics"
+                        alt="Featured image of post C&#43;&#43; Study Note"
                         
-                        data-hash="md5-6K9O0No&#43;PMYA0GOBZ671pA==">
+                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Advanced C&#43;&#43; Topics</h2>
+            <h2 class="article-title">C&#43;&#43; Study Note</h2>
         </div>
     </a>
 </article>
@@ -434,47 +414,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/c-study-note/">
+    <a href="/p/linux-study-note/">
         
         
             <div class="article-image">
-                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
+                <img src="/p/linux-study-note/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post C&#43;&#43; Study Note"
+                        alt="Featured image of post Linux Study Note"
                         
-                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
+                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">C&#43;&#43; Study Note</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/adelaide-summer-research-project/">
-        
-        
-            <div class="article-image">
-                <img src="/p/adelaide-summer-research-project/background.58fba13d820e9902a5084a6fecdfe765_hu_3e67bc4c4cf30444.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Adelaide Summer Research Project"
-                        
-                        data-hash="md5-WPuhPYIOmQKlCEpv7N/nZQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Adelaide Summer Research Project</h2>
+            <h2 class="article-title">Linux Study Note</h2>
         </div>
     </a>
 </article>
@@ -499,6 +455,30 @@
 
         <div class="article-details">
             <h2 class="article-title">Computer Network and Application</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/algorithm-and-data-structure-theory-study/">
+        
+        
+            <div class="article-image">
+                <img src="/p/algorithm-and-data-structure-theory-study/structure.c652dd796dfd0bb0da4f4a192ef49fce_hu_51789ffbb98a80cc.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Algorithm and Data Structure Theory Study"
+                        
+                        data-hash="md5-xlLdeW39C7DaT0oZLvSfzg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Algorithm and Data Structure Theory Study</h2>
         </div>
     </a>
 </article>
@@ -613,7 +593,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6f0049651ed38d0ea34e2a09520d95b2c19cb813071139a8d9369f4485e92785.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

@@ -6,7 +6,298 @@
         <description>Recent content in Posts on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 18 May 2025 15:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 05 Jul 2025 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Advanced C&#43;&#43; Topics</title>
+        <link>https://jiajun2001.github.io/p/advanced-c-topics/</link>
+        <pubDate>Sat, 05 Jul 2025 15:25:06 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/p/advanced-c-topics/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/advanced-c-topics/picture.png" alt="Featured image of post Advanced C&#43;&#43; Topics" /&gt;&lt;p&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/p&gt;
+&lt;br /&gt;
+&lt;h2 id=&#34;volatile-keyword&#34;&gt;volatile keyword
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;volatile&lt;/code&gt; tells the compiler:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“Don’t assume this variable stays the same — its value might change at any time, even if your code doesn’t touch it.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Therefore:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Every time the variable is used, the compiler must reload it from memory&lt;/li&gt;
+&lt;li&gt;It cannot cache the value in a register or optimize out reads/writes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;lvalue-and-rvalue&#34;&gt;lvalue and rvalue
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;An lvalue refers to an object that has a name and a memory address&lt;/li&gt;
+&lt;li&gt;An rvalue is a temporary value that does not have a name and cannot be assigned to.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;check&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Lvalue&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;check&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Rvalue&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;check&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;               &lt;span class=&#34;c1&#34;&gt;// Lvalue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;check&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;              &lt;span class=&#34;c1&#34;&gt;// Rvalue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;check&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;move&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// Rvalue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;universal-reference&#34;&gt;Universal Reference
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;A universal reference is a reference that can bind to both lvalues and rvalues.&lt;/li&gt;
+&lt;li&gt;It’s written as &lt;code&gt;T&amp;amp;&amp;amp;&lt;/code&gt; in a function template, where &lt;code&gt;T&lt;/code&gt; is a deduced template parameter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;printType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;constexpr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;is_lvalue_reference&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;decltype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// if constexpr: Like a regular if, but evaluated at compile time
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// decltype(param): This gives the exact type of the variable param, incl reference qualifiers
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Lvalue&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Rvalue&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;printType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;               &lt;span class=&#34;c1&#34;&gt;// Lvalue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;printType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;42&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;              &lt;span class=&#34;c1&#34;&gt;// Rvalue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;n&#34;&gt;printType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;move&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// Rvalue
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Case 1: lvalue
+&lt;ul&gt;
+&lt;li&gt;T = int&amp;amp; (because x is an lvalue)&lt;/li&gt;
+&lt;li&gt;param is of type int&amp;amp; &amp;amp;&amp;amp; → collapses to int&amp;amp;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Case 2: rvalue
+&lt;ul&gt;
+&lt;li&gt;T = int&lt;/li&gt;
+&lt;li&gt;param is int&amp;amp;&amp;amp;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;deducing-types&#34;&gt;Deducing Types
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ParamType&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;expr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// call f with some expression
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;The type deduced for T is dependent not just on the type of expr, but also on the form of ParamType. There are three cases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;three-cases&#34;&gt;Three cases
+&lt;/h3&gt;&lt;h4 id=&#34;paramtype-is-a-reference-or-pointer-but-not-a-universal-reference&#34;&gt;ParamType is a Reference or Pointer, but not a Universal Reference
+&lt;/h4&gt;&lt;p&gt;Rules:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If expr’s type is a reference, ignore the reference part.&lt;/li&gt;
+&lt;li&gt;Then pattern-match expr’s type against ParamType to determine T.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// param is a reference
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;27&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// x is an int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// cx is a const int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// rx is a reference to x as a const int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// T is int, param&amp;#39;s type is int&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// T is const int, param&amp;#39;s type is const int&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// T is const int, param&amp;#39;s type is const int&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Features:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;the constness of the object becomes part of the type deduced for T&lt;/li&gt;
+&lt;li&gt;the reference-ness is ignored during type deduction&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;paramtype-is-a-universal-reference&#34;&gt;ParamType is a Universal Reference
+&lt;/h4&gt;&lt;p&gt;Rules:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If expr is an lvalue, both T and ParamType are deduced to be lvalue references&lt;/li&gt;
+&lt;li&gt;If expr is an rvalue, the “normal” (i.e., Case 1) rules apply.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// param is now a universal reference
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;27&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// as before
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// as before
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// as before
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// x is lvalue, so T is int&amp;amp;, param&amp;#39;s type is also int&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// cx is lvalue, so T is const int&amp;amp;, param&amp;#39;s type is also const int&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// rx is lvalue, so T is const int&amp;amp;, param&amp;#39;s type is also const int&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;27&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 27 is rvalue, so T is int, param&amp;#39;s type is therefore int&amp;amp;&amp;amp;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Features:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;when universal references are in use, type deduction distinguishes between lvalue arguments and rvalue arguments&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;paramtype-is-neither-a-pointer-nor-a-reference&#34;&gt;ParamType is Neither a Pointer nor a Reference
+&lt;/h4&gt;&lt;p&gt;Rules:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;As before, if expr’s type is a reference, ignore the reference part.&lt;/li&gt;
+&lt;li&gt;Ignoring expr’s reference-ness, and const-ness, volatile-ness.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// param is now passed by value
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;27&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// as before
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// as before
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// as before
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// T&amp;#39;s and param&amp;#39;s types are both int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// T&amp;#39;s and param&amp;#39;s types are again both int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// T&amp;#39;s and param&amp;#39;s types are still both int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Features:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;const (and volatile) is ignored only for by-value parameters&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;An interesting case:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// param is still passed by value
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ptr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Fun with pointers&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// ptr is const pointer to const object
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ptr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// pass arg of type const char * const
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;const-ness of ptr will be ignored, and the type deduced for param will be const char*&lt;/li&gt;
+&lt;li&gt;The const-ness of what ptr points to is preserved during type deduction, but the const-ness of ptr itself is ignored when copying it to create the new pointer, param.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
         <title>Parallel and Distributed Computing</title>
         <link>https://jiajun2001.github.io/p/parallel-and-distributed-computing/</link>
         <pubDate>Sun, 18 May 2025 15:27:22 +1030</pubDate>
@@ -677,8 +968,8 @@ while others lag behind.&lt;/li&gt;
         <guid>https://jiajun2001.github.io/p/c-study-note/</guid>
         <description>&lt;img src="https://jiajun2001.github.io/p/c-study-note/cpp.png" alt="Featured image of post C&#43;&#43; Study Note" /&gt;&lt;p&gt;During the summer of my freshman year, I spent quite a lot of time self-studying C++ basic knowledge such as operator overloading, template, file operations. Honestly, it is sufficient for me to pass my courses in later 2 years. However, when I am coding for real industrial project, I realized the knowledge gap. That&amp;rsquo;s why I make this post to keep track of my further study about C++. In this post, I will go through some deeper concepts in C++ such as compiling, linking, some other keywords, smart pointers, C++ libraries, multi threading, design patters, lambda expressions&amp;hellip;&lt;/p&gt;
 &lt;br /&gt;
-&lt;h3 id=&#34;introduction-to-c&#34;&gt;Introduction to C++
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;introduction-to-c&#34;&gt;Introduction to C++
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;C++ is a cross-platform language that can be used to create high-performance applications.
 &lt;ul&gt;
 &lt;li&gt;Operating System, Game Engines, Browsers&amp;hellip;&lt;/li&gt;
@@ -687,13 +978,13 @@ while others lag behind.&lt;/li&gt;
 &lt;li&gt;C++ was developed as an extension to the C language and C++ supports classes and objects.&lt;/li&gt;
 &lt;li&gt;C++ gives programmers a high level of control over system resources and memory.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;c-variable-size&#34;&gt;C++ Variable Size
-&lt;/h3&gt;&lt;img src=&#34;cppVariable.png&#34; width=&#34;500&#34;/&gt;
+&lt;h2 id=&#34;c-variable-size&#34;&gt;C++ Variable Size
+&lt;/h2&gt;&lt;img src=&#34;cppVariable.png&#34; width=&#34;500&#34;/&gt;
 &lt;ul&gt;
 &lt;li&gt;On 32-bit machine the size of a pointer is 32 bits (4 bytes), while on 64 bit machine it&amp;rsquo;s 8 bytes. Regardless of what data type they are pointing to, they have fixed size.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;using-libraries&#34;&gt;Using Libraries
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;using-libraries&#34;&gt;Using Libraries
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Static linking: the library will be put in the executable file at compile time
 &lt;ul&gt;
 &lt;li&gt;Technically faster, since the compiler and linker can perform linking optimization&lt;/li&gt;
@@ -701,8 +992,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/li&gt;
 &lt;li&gt;Dynamic linking: the library gets linked at run-time&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stack-and-heap&#34;&gt;Stack and Heap
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stack-and-heap&#34;&gt;Stack and Heap
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Stack is a typically an area of memory that has predefined size, usually around 2 MB
 &lt;ul&gt;
 &lt;li&gt;
@@ -760,8 +1051,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;constant-keyword&#34;&gt;Constant Keyword
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;constant-keyword&#34;&gt;Constant Keyword
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Constant pointer and pointer constant
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -819,8 +1110,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;explicit-keyword&#34;&gt;Explicit Keyword
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;explicit-keyword&#34;&gt;Explicit Keyword
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -876,8 +1167,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;operator-overloading&#34;&gt;Operator Overloading
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;operator-overloading&#34;&gt;Operator Overloading
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -937,8 +1228,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;smart-pointers&#34;&gt;Smart Pointers
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;smart-pointers&#34;&gt;Smart Pointers
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;unique pointer (has to be unique)
 &lt;ul&gt;
 &lt;li&gt;
@@ -1012,8 +1303,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;shallow-copy-and-deep-copy&#34;&gt;Shallow Copy and Deep Copy
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;shallow-copy-and-deep-copy&#34;&gt;Shallow Copy and Deep Copy
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Shallow copy
 &lt;ul&gt;
 &lt;li&gt;
@@ -1132,8 +1423,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;array&#34;&gt;Array
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;array&#34;&gt;Array
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;An array is a collection of elements of the same type placed in contiguous memory locations that can be individually referenced by using an index to a unique identifier.&lt;/li&gt;
 &lt;li&gt;Loop through an array
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1166,8 +1457,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-array&#34;&gt;STL Array
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-array&#34;&gt;STL Array
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Has boundary checking / can return size / stored on the stack&lt;/li&gt;
 &lt;li&gt;Loop through an array
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1206,8 +1497,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;string&#34;&gt;String
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;string&#34;&gt;String
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;String Concatenation:
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;string fullName = firstName + lastName;&lt;/strong&gt;&lt;/li&gt;
@@ -1220,13 +1511,13 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;c-math&#34;&gt;C++ Math
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;c-math&#34;&gt;C++ Math
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Max: &lt;strong&gt;cout &amp;laquo; max(5, 10);&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Min: &lt;strong&gt;cout &amp;laquo; min(5, 10);&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;c-switch-statement&#34;&gt;C++ Switch Statement
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;c-switch-statement&#34;&gt;C++ Switch Statement
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Example code:
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1256,8 +1547,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;structure&#34;&gt;Structure
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;structure&#34;&gt;Structure
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1276,8 +1567,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;Can be used to deal with multiple return values of a function&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-vector&#34;&gt;STL Vector
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-vector&#34;&gt;STL Vector
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Method: vec.size(), vec.empty(), vec.push_back(ele), vec.pop_back(), vec.front(), vec.back()&lt;/li&gt;
 &lt;li&gt;Reduce copy times to improve performance
 &lt;ul&gt;
@@ -1324,16 +1615,16 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-set&#34;&gt;STL Set
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-set&#34;&gt;STL Set
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Method: set.insert(ele), s.erase(ele / iterator), s.count(ele), s.find(ele)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-map&#34;&gt;STL Map
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-map&#34;&gt;STL Map
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Method: map.insert(pair&amp;lt;int,int&amp;gt; (1,10)), map.insert(make_pair(2,200)), map.count(3), map.find(3)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-pair&#34;&gt;STL Pair
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-pair&#34;&gt;STL Pair
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Initialize
 &lt;ul&gt;
 &lt;li&gt;pair&amp;lt;string,int&amp;gt; p(&amp;ldquo;Jason&amp;rdquo;,20);&lt;/li&gt;
@@ -1341,27 +1632,27 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-list&#34;&gt;STL List
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-list&#34;&gt;STL List
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Implemented by a doubly linked list&lt;/li&gt;
 &lt;li&gt;Insertion and deletion operations are fast&lt;/li&gt;
 &lt;li&gt;Access elements is slower that array and takes more space&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-deque&#34;&gt;STL Deque
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-deque&#34;&gt;STL Deque
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Double Ended Queue: Inserting at head is faster than vector&lt;/li&gt;
 &lt;li&gt;Provide random access&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-stack&#34;&gt;STL Stack
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-stack&#34;&gt;STL Stack
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Methods: s.push(ele), s.pop(), s.size(), s.empty(), s.top()&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-queue&#34;&gt;STL Queue
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-queue&#34;&gt;STL Queue
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Methods: q.push(ele), q.pop(), q.size(), q.empty(), q.front(), q.back()&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;template&#34;&gt;Template
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;template&#34;&gt;Template
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Using template for a function
 &lt;ul&gt;
 &lt;li&gt;
@@ -1413,8 +1704,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;macro&#34;&gt;Macro
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;macro&#34;&gt;Macro
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1462,8 +1753,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;function-pointers&#34;&gt;Function Pointers
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;function-pointers&#34;&gt;Function Pointers
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1511,8 +1802,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;lambda-expression&#34;&gt;Lambda Expression
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;lambda-expression&#34;&gt;Lambda Expression
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Lambda is a way for us to define anonymous functions or disposable functions&lt;/li&gt;
 &lt;li&gt;Reference: &lt;a class=&#34;link&#34; href=&#34;https://en.cppreference.com/w/cpp/language/lambda&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://en.cppreference.com/w/cpp/language/lambda&lt;/a&gt;
@@ -1564,8 +1855,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;namespace&#34;&gt;Namespace
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;namespace&#34;&gt;Namespace
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;The primary purpose of namespace is to avoid naming conflicts.&lt;/li&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1618,8 +1909,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;threads&#34;&gt;Threads
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;threads&#34;&gt;Threads
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1715,8 +2006,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;timing&#34;&gt;Timing
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;timing&#34;&gt;Timing
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1788,8 +2079,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;multi-dimensional-arrays&#34;&gt;Multi-dimensional Arrays
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;multi-dimensional-arrays&#34;&gt;Multi-dimensional Arrays
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1857,8 +2148,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;stl-sorting&#34;&gt;STL Sorting
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;stl-sorting&#34;&gt;STL Sorting
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1874,8 +2165,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;type-punning&#34;&gt;Type Punning
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;type-punning&#34;&gt;Type Punning
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Type punning is a programming technique that subverts or circumvents the type system of a programming language in order to achieve an effect that would be difficult or impossible to achieve within the bounds of the formal language.&lt;/li&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1920,8 +2211,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;union&#34;&gt;Union
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;union&#34;&gt;Union
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;A union is a user-defined type in which all members share the same memory location.&lt;/li&gt;
 &lt;li&gt;Type Punning
 &lt;ul&gt;
@@ -2030,8 +2321,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;virtual-destructor&#34;&gt;Virtual Destructor
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;virtual-destructor&#34;&gt;Virtual Destructor
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2103,8 +2394,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;casting&#34;&gt;Casting
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;casting&#34;&gt;Casting
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2172,8 +2463,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;pre-compiled-headers&#34;&gt;Pre-compiled Headers
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;pre-compiled-headers&#34;&gt;Pre-compiled Headers
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;You can precompile both C and C++ programs. In C++ programming, it&amp;rsquo;s common practice to separate class interface information into header files. These header files can later be included in programs that use the class. By precompiling these headers, you can reduce the time a program takes to compile.&lt;/li&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2186,8 +2477,8 @@ while others lag behind.&lt;/li&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;benchmark-test&#34;&gt;Benchmark Test
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;benchmark-test&#34;&gt;Benchmark Test
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
