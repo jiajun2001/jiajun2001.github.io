@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Understanding how a C++ program goes from source code to an executable is fundamental for writing efficient, portable, and well-debugged code. Yet, the compilation process often feels like a black box to many developers.">
+<title>Compile C&#43;&#43; Program</title>
+
+<link rel='canonical' href='https://jiajun2001.github.io/p/compile-c-program/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Compile C++ Program">
+<meta property='og:description' content="Understanding how a C++ program goes from source code to an executable is fundamental for writing efficient, portable, and well-debugged code. Yet, the compilation process often feels like a black box to many developers.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/compile-c-program/'>
+<meta property='og:site_name' content='Jason&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2025-07-06T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2025-07-06T15:25:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/compile-c-program/picture.png' />
+<meta name="twitter:title" content="Compile C++ Program">
+<meta name="twitter:description" content="Understanding how a C++ program goes from source code to an executable is fundamental for writing efficient, portable, and well-debugged code. Yet, the compilation process often feels like a black box to many developers."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/compile-c-program/picture.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/profile_hu_a3608c83691b46ad.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😎</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Jason&#39;s blog</a></h1>
+            <h2 class="site-description">ARM Architecture Simulation C/C&#43;&#43; Low-Level Programming Python Java Assembly Linux University of Adelaide (BSc CS) jiajunyu@yahoo.com</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/jiajun2001'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#initial-program">Initial Program</a></li>
+    <li><a href="#step-1-preprocessing">Step 1: Preprocessing</a></li>
+    <li><a href="#step-2-compile-to-assembly">Step 2: Compile to Assembly</a></li>
+    <li><a href="#step-3-assemble-to-object-code">Step 3: Assemble to Object Code</a></li>
+    <li><a href="#step-4-link-to-executable">Step 4: Link to Executable</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/compile-c-program/">
+                <img src="/p/compile-c-program/picture_hu_55a429b5286f585f.png"
+                        srcset="/p/compile-c-program/picture_hu_55a429b5286f585f.png 800w, /p/compile-c-program/picture_hu_3ce76683fe3b8506.png 1600w"
+                        width="800" 
+                        height="418" 
+                        loading="lazy"
+                        alt="Featured image of post Compile C&#43;&#43; Program" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/basic-concept/" >
+                Basic Concept
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/compile-c-program/">Compile C&#43;&#43; Program</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Understanding how a C&#43;&#43; program goes from source code to an executable is fundamental for writing efficient, portable, and well-debugged code. Yet, the compilation process often feels like a black box to many developers.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 06, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>In this post, I’ll break down the C++ build pipeline step-by-step — from preprocessing and compilation to linking and execution. Whether you&rsquo;re revisiting the basics or deepening your systems-level knowledge, this guide will help demystify what actually happens when you hit &ldquo;build&rdquo;.</p>
+<br />
+<h2 id="initial-program">Initial Program
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// square.cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define INPUT 5
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Comment: This code is used for experiment
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">square</span><span class="p">(</span><span class="n">INPUT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="step-1-preprocessing">Step 1: Preprocessing
+</h2><ul>
+<li>
+<p>Purpose</p>
+<ul>
+<li>Preprocessor expands macros (#define INPUT 5)</li>
+<li>It would also process: #include headers, #ifdef, #pragma, etc.</li>
+<li>Comments are removed</li>
+</ul>
+</li>
+<li>
+<p>Run <code>clang++ -E square.cpp -o square.i</code></p>
+</li>
+</ul>
+<p>Result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// square.i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># 1 &#34;square.cpp&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># 1 &#34;&lt;built-in&gt;&#34; 1
+</span></span></span><span class="line"><span class="cl"><span class="cp"># 1 &#34;&lt;built-in&gt;&#34; 3
+</span></span></span><span class="line"><span class="cl"><span class="cp"># 384 &#34;&lt;built-in&gt;&#34; 3
+</span></span></span><span class="line"><span class="cl"><span class="cp"># 1 &#34;&lt;command line&gt;&#34; 1
+</span></span></span><span class="line"><span class="cl"><span class="cp"># 1 &#34;&lt;built-in&gt;&#34; 2
+</span></span></span><span class="line"><span class="cl"><span class="cp"># 1 &#34;square.cpp&#34; 2
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="step-2-compile-to-assembly">Step 2: Compile to Assembly
+</h2><ul>
+<li>
+<p>Purpose:</p>
+<ul>
+<li>Compiler translates C++ code into assembly code (human-readable, low-level instructions).</li>
+<li>This is architecture-specific (e.g., x86_64 or ARM).</li>
+</ul>
+</li>
+<li>
+<p>Run <code>clang++ -S square.i -o square.s</code></p>
+</li>
+</ul>
+<p>Result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">	<span class="p">.</span><span class="n">section</span>	<span class="n">__TEXT</span><span class="p">,</span><span class="n">__text</span><span class="p">,</span><span class="n">regular</span><span class="p">,</span><span class="n">pure_instructions</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">build_version</span> <span class="n">macos</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0</span>	<span class="n">sdk_version</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">globl</span>	<span class="n">__Z6squarei</span>                     <span class="err">##</span> <span class="o">--</span> <span class="n">Begin</span> <span class="n">function</span> <span class="n">_Z6squarei</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">p2align</span>	<span class="mi">4</span><span class="p">,</span> <span class="mh">0x90</span>
+</span></span><span class="line"><span class="cl"><span class="nl">__Z6squarei</span><span class="p">:</span>                            <span class="err">##</span> <span class="err">@</span><span class="n">_Z6squarei</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_startproc</span>
+</span></span><span class="line"><span class="cl"><span class="cp">## %bb.0:
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="n">pushq</span>	<span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_def_cfa_offset</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_offset</span> <span class="o">%</span><span class="n">rbp</span><span class="p">,</span> <span class="o">-</span><span class="mi">16</span>
+</span></span><span class="line"><span class="cl">	<span class="n">movq</span>	<span class="o">%</span><span class="n">rsp</span><span class="p">,</span> <span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_def_cfa_register</span> <span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="n">movl</span>	<span class="o">%</span><span class="n">edi</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">movl</span>	<span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="n">imull</span>	<span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+</span></span><span class="line"><span class="cl">	<span class="n">popq</span>	<span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="n">retq</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_endproc</span>
+</span></span><span class="line"><span class="cl">                                        <span class="cp">## -- End function
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="p">.</span><span class="n">globl</span>	<span class="n">_main</span>                           <span class="err">##</span> <span class="o">--</span> <span class="n">Begin</span> <span class="n">function</span> <span class="n">main</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">p2align</span>	<span class="mi">4</span><span class="p">,</span> <span class="mh">0x90</span>
+</span></span><span class="line"><span class="cl"><span class="nl">_main</span><span class="p">:</span>                                  <span class="err">##</span> <span class="err">@</span><span class="n">main</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_startproc</span>
+</span></span><span class="line"><span class="cl"><span class="cp">## %bb.0:
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>	<span class="n">pushq</span>	<span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_def_cfa_offset</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_offset</span> <span class="o">%</span><span class="n">rbp</span><span class="p">,</span> <span class="o">-</span><span class="mi">16</span>
+</span></span><span class="line"><span class="cl">	<span class="n">movq</span>	<span class="o">%</span><span class="n">rsp</span><span class="p">,</span> <span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_def_cfa_register</span> <span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="n">subq</span>	<span class="err">$</span><span class="mi">16</span><span class="p">,</span> <span class="o">%</span><span class="n">rsp</span>
+</span></span><span class="line"><span class="cl">	<span class="n">movl</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">movl</span>	<span class="err">$</span><span class="mi">5</span><span class="p">,</span> <span class="o">%</span><span class="n">edi</span>
+</span></span><span class="line"><span class="cl">	<span class="n">callq</span>	<span class="n">__Z6squarei</span>
+</span></span><span class="line"><span class="cl">	<span class="n">addq</span>	<span class="err">$</span><span class="mi">16</span><span class="p">,</span> <span class="o">%</span><span class="n">rsp</span>
+</span></span><span class="line"><span class="cl">	<span class="n">popq</span>	<span class="o">%</span><span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">	<span class="n">retq</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="n">cfi_endproc</span>
+</span></span><span class="line"><span class="cl">                                        <span class="cp">## -- End function
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="p">.</span><span class="n">subsections_via_symbols</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>You’ll now have a file square.s, which contains assembly instructions.</li>
+</ul>
+<h2 id="step-3-assemble-to-object-code">Step 3: Assemble to Object Code
+</h2><ul>
+<li>
+<p>Purpose:</p>
+<ul>
+<li>The assembler turns the assembly code into binary machine code</li>
+<li>This is stored in an object file (.o), which can&rsquo;t run on its own</li>
+</ul>
+</li>
+<li>
+<p>Run <code>clang++ -c square.s -o square.o</code></p>
+</li>
+<li>
+<p>Disassemble with <code>objdump -SC square.o &gt; square.lst</code> to see what&rsquo;s going on with <code>square.o</code> since we cannot open a binary file</p>
+</li>
+</ul>
+<p>Result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nl">square.o:</span>	<span class="nf">file</span> <span class="no">format</span> <span class="no">mach-o</span> <span class="mi">64</span><span class="p">-</span><span class="no">bit</span> <span class="no">x86-64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">Disassembly</span> <span class="no">of</span> <span class="no">section</span> <span class="no">__TEXT</span><span class="p">,</span><span class="no">__text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">0000000000000000</span> <span class="err">&lt;</span><span class="nf">square</span><span class="p">(</span><span class="no">int</span><span class="p">)</span><span class="err">&gt;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">       <span class="err">0:</span> <span class="err">55</span>                           	<span class="nf">pushq</span>	<span class="nv">%rbp</span>
+</span></span><span class="line"><span class="cl">       <span class="err">1:</span> <span class="err">48</span> <span class="err">89</span> <span class="nf">e5</span>                     	<span class="no">movq</span>	<span class="nv">%rsp</span><span class="p">,</span> <span class="nv">%rbp</span>
+</span></span><span class="line"><span class="cl">       <span class="err">4:</span> <span class="err">89</span> <span class="err">7</span><span class="nf">d</span> <span class="no">fc</span>                     	<span class="no">movl</span>	<span class="nv">%edi</span><span class="p">,</span> <span class="p">-</span><span class="mi">4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="err">7:</span> <span class="err">8</span><span class="nf">b</span> <span class="mi">45</span> <span class="no">fc</span>                     	<span class="no">movl</span>	<span class="p">-</span><span class="mi">4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">),</span> <span class="nv">%eax</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">a:</span> <span class="err">0</span><span class="nf">f</span> <span class="no">af</span> <span class="mi">45</span> <span class="no">fc</span>                  	<span class="no">imull</span>	<span class="p">-</span><span class="mi">4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">),</span> <span class="nv">%eax</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">e:</span> <span class="err">5</span><span class="nf">d</span>                           	<span class="no">popq</span>	<span class="nv">%rbp</span>
+</span></span><span class="line"><span class="cl">       <span class="nl">f:</span> <span class="nf">c3</span>                           	<span class="no">retq</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">0000000000000010</span> <span class="err">&lt;</span><span class="nf">_main</span><span class="err">&gt;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="err">10:</span> <span class="err">55</span>                           	<span class="nf">pushq</span>	<span class="nv">%rbp</span>
+</span></span><span class="line"><span class="cl">      <span class="err">11:</span> <span class="err">48</span> <span class="err">89</span> <span class="nf">e5</span>                     	<span class="no">movq</span>	<span class="nv">%rsp</span><span class="p">,</span> <span class="nv">%rbp</span>
+</span></span><span class="line"><span class="cl">      <span class="err">14:</span> <span class="err">48</span> <span class="err">83</span> <span class="nf">ec</span> <span class="mi">10</span>                  	<span class="no">subq</span>	<span class="no">$16</span><span class="p">,</span> <span class="nv">%rsp</span>
+</span></span><span class="line"><span class="cl">      <span class="err">18:</span> <span class="nf">c7</span> <span class="mi">45</span> <span class="no">fc</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>         	<span class="no">movl</span>	<span class="no">$0</span><span class="p">,</span> <span class="p">-</span><span class="mi">4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="err">1</span><span class="nl">f:</span> <span class="nf">bf</span> <span class="mi">05</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>               	<span class="no">movl</span>	<span class="no">$5</span><span class="p">,</span> <span class="nv">%edi</span>
+</span></span><span class="line"><span class="cl">      <span class="err">24:</span> <span class="nf">e8</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">00</span>               	<span class="no">callq</span>	<span class="mh">0x29</span> <span class="p">&lt;</span><span class="no">_main</span><span class="p">+</span><span class="mi">0x19</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="err">29:</span> <span class="err">48</span> <span class="err">83</span> <span class="nf">c4</span> <span class="mi">10</span>                  	<span class="no">addq</span>	<span class="no">$16</span><span class="p">,</span> <span class="nv">%rsp</span>
+</span></span><span class="line"><span class="cl">      <span class="err">2</span><span class="nl">d:</span> <span class="err">5</span><span class="nf">d</span>                           	<span class="no">popq</span>	<span class="nv">%rbp</span>
+</span></span><span class="line"><span class="cl">      <span class="err">2</span><span class="nl">e:</span> <span class="nf">c3</span>                           	<span class="no">retq</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="step-4-link-to-executable">Step 4: Link to Executable
+</h2><ul>
+<li>
+<p>Purpose:</p>
+<ul>
+<li>The linker takes your object file, startup/runtime code (such as _start), and any required standard library functions (e.g., std::cout if used), and links them together into a single executable.</li>
+</ul>
+</li>
+<li>
+<p>Run <code>clang++ square.o -o square</code></p>
+</li>
+</ul>
+<p>Result</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-BASH" data-lang="BASH"><span class="line"><span class="cl"><span class="o">(</span>base<span class="o">)</span> apple@Macbook Compilation % ./square
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="m">25</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/programming-language/">Programming Language</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/advanced-c-topics/">
+        
+        
+            <div class="article-image">
+                <img src="/p/advanced-c-topics/picture.e8af4ed0da3e3cc600d0638167aef5a4_hu_ea7c42981ad866df.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Advanced C&#43;&#43; Topics"
+                        
+                        data-hash="md5-6K9O0No&#43;PMYA0GOBZ671pA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Advanced C&#43;&#43; Topics</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43; Study Note"
+                        
+                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/parallel-and-distributed-computing/">
+        
+        
+            <div class="article-image">
+                <img src="/p/parallel-and-distributed-computing/background.964aa5ef0b64d0682c9d7236c2df61c9_hu_f188a4450b9a9c65.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Parallel and Distributed Computing"
+                        
+                        data-hash="md5-lkql7wtk0GgsnXI2wt9hyQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Parallel and Distributed Computing</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/linux-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/linux-study-note/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Linux Study Note"
+                        
+                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linux Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/computer-network-and-application/">
+        
+        
+            <div class="article-image">
+                <img src="/p/computer-network-and-application/cna.bee430f3e04b63b81ce3a54bb47bb420_hu_1b8e19dc81b21a36.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Computer Network and Application"
+                        
+                        data-hash="md5-vuQw8&#43;BLY7gc46VLtHu0IA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Computer Network and Application</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2025 Jason&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
