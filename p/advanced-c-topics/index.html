@@ -238,6 +238,7 @@
         <li><a href="#compiler-auto-generates-">Compiler Auto-generates &hellip;</a></li>
       </ol>
     </li>
+    <li><a href="#const-function">const function</a></li>
     <li><a href="#volatile-keyword">volatile keyword</a></li>
     <li><a href="#noexcept-keyword">noexcept keyword</a></li>
     <li><a href="#lvalue-and-rvalue">lvalue and rvalue</a></li>
@@ -253,6 +254,29 @@
         </li>
         <li><a href="#array-arguments">Array Arguments</a></li>
         <li><a href="#function-arguments">Function Arguments</a></li>
+      </ol>
+    </li>
+    <li><a href="#distinguish-between--and--when-creating-objects">Distinguish between () and {} when creating objects</a>
+      <ol>
+        <li><a href="#usage-of-uniform-initialization">Usage of Uniform Initialization</a>
+          <ol>
+            <li><a href="#specify-the-initial-contents-of-a-container">Specify the initial contents of a container</a></li>
+            <li><a href="#prohibit-implicit-narrowing-conversions-among-built-in-types">Prohibit implicit narrowing conversions among built-in types</a></li>
+            <li><a href="#default-construct-an-object-not-to-declare-a-function">Default-construct an object, not to declare a function</a></li>
+          </ol>
+        </li>
+        <li><a href="#drawback-of-uniform-initialization">Drawback of Uniform Initialization</a>
+          <ol>
+            <li><a href="#strong-preference-the-call-to-the-constructor-of-stdinitializer_list-constructor-overloading">Strong preference the call to the constructor of std::initializer_list (Constructor Overloading)</a></li>
+            <li></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#use-constexpr-whenever-possible">Use constexpr whenever possible</a>
+      <ol>
+        <li><a href="#constexpr-object">constexpr object</a></li>
+        <li><a href="#constexpr-function">constexpr function</a></li>
       </ol>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -336,7 +360,7 @@
 
 
                 <time class="article-time--reading">
-                    9 minute read
+                    12 minute read
                 </time>
             </div>
         
@@ -644,7 +668,68 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">~</span><span class="n">Point</span><span class="p">();</span>                              <span class="c1">// destructor
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="volatile-keyword">volatile keyword
+</div><h2 id="const-function">const function
+</h2><ul>
+<li>Definition: In C++, a const function is a member function that promises not to modify the object on which it is called. It is declared by placing the const keyword after the function’s parameter list. This is only relevant for member functions of classes or structs.</li>
+</ul>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MyClass</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">value</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">getValue</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// value = 5; //  Error: cannot modify member variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">printValue</span><span class="p">(</span><span class="k">const</span> <span class="n">MyClass</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">getValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MyClass</span> <span class="n">myClass</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printValue</span><span class="p">(</span><span class="n">myClass</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Features:</p>
+<ol>
+<li>Cannot modify any non-mutable member variables of the object.</li>
+<li>Can be called on const instances of the class.</li>
+<li>Can only call other const member functions.</li>
+</ol>
+<h2 id="volatile-keyword">volatile keyword
 </h2><ul>
 <li>
 <p><code>volatile</code> tells the compiler:</p>
@@ -1019,6 +1104,179 @@
 <ol>
 <li>Function-to-pointer decay rule.</li>
 </ol>
+<h2 id="distinguish-between--and--when-creating-objects">Distinguish between () and {} when creating objects
+</h2><p>Uniform Initialization: Introduced in c++11, a single initialization syntax that can, at least in concept, be used anywhere and express everything. It’s based on braces.</p>
+<h3 id="usage-of-uniform-initialization">Usage of Uniform Initialization
+</h3><h4 id="specify-the-initial-contents-of-a-container">Specify the initial contents of a container
+</h4><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span> <span class="c1">// v&#39;s initial content is 1, 3, 5
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="prohibit-implicit-narrowing-conversions-among-built-in-types">Prohibit implicit narrowing conversions among built-in types
+</h4><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sum1</span><span class="p">{</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span> <span class="p">};</span> <span class="c1">// error! sum of doubles may not be expressible as int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sum2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span><span class="p">);</span> <span class="c1">// okay (value of expression truncated to an int)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="default-construct-an-object-not-to-declare-a-function">Default-construct an object, not to declare a function
+</h4><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Widget</span> <span class="nf">w2</span><span class="p">();</span> <span class="c1">// most vexing parse! declares a function named w2 that returns a Widget!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Widget</span> <span class="n">w3</span><span class="p">{};</span> <span class="c1">// calls Widget ctor with no args
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="drawback-of-uniform-initialization">Drawback of Uniform Initialization
+</h3><h4 id="strong-preference-the-call-to-the-constructor-of-stdinitializer_list-constructor-overloading">Strong preference the call to the constructor of std::initializer_list (Constructor Overloading)
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Widget</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">b</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> <span class="n">Widget</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">double</span> <span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Widget</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Widget</span> <span class="nf">w1</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span> <span class="c1">// uses parens and, as before, calls first ctor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Widget</span> <span class="n">w2</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="nb">true</span><span class="p">};</span> <span class="c1">// uses braces, but now calls std::initializer_list ctor (10 and true convert to long double)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="">
+</h4><h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
+</h2><ul>
+<li>Definition: <code>constexpr</code> is a C++ keyword used to indicate that a value or function can be evaluated at compile time. It helps write faster and safer code by enabling computations to be done during compilation rather than at runtime</li>
+</ul>
+<h3 id="constexpr-object">constexpr object
+</h3><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">sz</span><span class="p">;</span> <span class="c1">// non-constexpr variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">constexpr</span> <span class="k">auto</span> <span class="n">arraySize1</span> <span class="o">=</span> <span class="n">sz</span><span class="p">;</span> <span class="c1">// error! sz&#39;s value not known at compilation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">sz</span><span class="o">&gt;</span> <span class="n">data1</span><span class="p">;</span> <span class="c1">// error! same problem
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">constexpr</span> <span class="k">auto</span> <span class="n">arraySize2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// fine, 10 is a compile-time constant
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">arraySize2</span><span class="o">&gt;</span> <span class="n">data2</span><span class="p">;</span> <span class="c1">// fine, arraySize2 is constexpr
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Fearures:</p>
+<ol>
+<li>all <code>constexpr</code> objects are const, but not all const objects are <code>constexpr</code>, because <code>const</code> objects need not be initialized with values known during compilation.</li>
+</ol>
+<h3 id="constexpr-function">constexpr function
+</h3><p>Example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="n">Point</span><span class="p">(</span><span class="kt">double</span> <span class="n">xVal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">yVal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">noexcept</span>
+</span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">xVal</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">yVal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="kt">double</span> <span class="nf">xValue</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="kt">double</span> <span class="nf">yValue</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="kt">void</span> <span class="nf">setX</span><span class="p">(</span><span class="kt">double</span> <span class="n">newX</span><span class="p">)</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="n">x</span> <span class="o">=</span> <span class="n">newX</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="kt">void</span> <span class="nf">setY</span><span class="p">(</span><span class="kt">double</span> <span class="n">newY</span><span class="p">)</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="n">y</span> <span class="o">=</span> <span class="n">newY</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">constexpr</span> <span class="n">Point</span> <span class="nf">midpoint</span><span class="p">(</span><span class="k">const</span> <span class="n">Point</span> <span class="o">&amp;</span><span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Point</span> <span class="o">&amp;</span><span class="n">p2</span><span class="p">)</span> <span class="k">noexcept</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{(</span><span class="n">p1</span><span class="p">.</span><span class="n">xValue</span><span class="p">()</span> <span class="o">+</span> <span class="n">p2</span><span class="p">.</span><span class="n">xValue</span><span class="p">())</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1">// call constexpr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">yValue</span><span class="p">()</span> <span class="o">+</span> <span class="n">p2</span><span class="p">.</span><span class="n">yValue</span><span class="p">())</span> <span class="o">/</span> <span class="mi">2</span><span class="p">};</span> <span class="c1">// member funcs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">constexpr</span> <span class="n">Point</span> <span class="n">p1</span><span class="p">(</span><span class="mf">9.4</span><span class="p">,</span> <span class="mf">27.7</span><span class="p">);</span>         <span class="c1">// fine, &#34;runs&#34; constexpr ctor during compilation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">constexpr</span> <span class="n">Point</span> <span class="n">p2</span><span class="p">(</span><span class="mf">28.8</span><span class="p">,</span> <span class="mf">5.3</span><span class="p">);</span>         <span class="c1">// also fine
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">constexpr</span> <span class="k">auto</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">midpoint</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">);</span> <span class="c1">// init constexpr object w/result of constexpr function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// g++ constexpr.cpp -o constexpr -std=c++14
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Features:</p>
+<ol>
+<li><code>constexpr</code> functions can be used in contexts that demand compile-time constants.</li>
+<li>When a constexpr function is called with one or more values that are not known during compilation, it acts like a normal function.</li>
+</ol>
+<p>Using <code>constexpr</code> v.s. not using <code>constexpr</code>:</p>
+<img src="constexpr.png" width=800px>
 <h2 id="reference">Reference
 </h2><ul>
 <li>Many of the insights in this blog are inspired by Scott Meyers&rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.</li>
