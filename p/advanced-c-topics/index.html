@@ -10,7 +10,7 @@
 <meta property='og:description' content="After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you'll find something useful here.">
 <meta property='og:url' content='https://jiajun2001.github.io/p/advanced-c-topics/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2025-07-05T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2025-07-05T15:25:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/advanced-c-topics/picture.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2025-07-13T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2025-07-13T15:25:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/advanced-c-topics/picture.png' />
 <meta name="twitter:title" content="Advanced C++ Topics">
 <meta name="twitter:description" content="After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you'll find something useful here."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jiajun2001.github.io/p/advanced-c-topics/picture.png' />
@@ -238,6 +238,7 @@
         <li><a href="#compiler-auto-generates-">Compiler Auto-generates &hellip;</a></li>
       </ol>
     </li>
+    <li><a href="#pointer-to-const-const-pointer-and-reference">Pointer to Const, Const Pointer and Reference</a></li>
     <li><a href="#const-function">const function</a></li>
     <li><a href="#volatile-keyword">volatile keyword</a></li>
     <li><a href="#noexcept-keyword">noexcept keyword</a></li>
@@ -277,6 +278,13 @@
       <ol>
         <li><a href="#constexpr-object">constexpr object</a></li>
         <li><a href="#constexpr-function">constexpr function</a></li>
+      </ol>
+    </li>
+    <li><a href="#lambda-capture-modes">Lambda Capture Modes</a>
+      <ol>
+        <li><a href="#default-by-reference-capture-can-lead-to-dangling-reference">Default by-reference capture can lead to dangling reference</a></li>
+        <li><a href="#default-by-value-capture-is-susceptible-to-dangling-pointers">Default by-value capture is susceptible to dangling pointers</a></li>
+        <li><a href="#static-and-global-variables-cannot-be-captured">Static and global variables cannot be captured</a></li>
       </ol>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -345,7 +353,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jul 05, 2025</time>
+                <time class="article-time--published">Jul 13, 2025</time>
             </div>
         
 
@@ -360,7 +368,7 @@
 
 
                 <time class="article-time--reading">
-                    12 minute read
+                    14 minute read
                 </time>
             </div>
         
@@ -667,6 +675,54 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Point</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Point</span><span class="o">&amp;&amp;</span><span class="p">);</span>             <span class="c1">// move assignment
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">~</span><span class="n">Point</span><span class="p">();</span>                              <span class="c1">// destructor
 </span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="pointer-to-const-const-pointer-and-reference">Pointer to Const, Const Pointer and Reference
+</h2><p>Example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Pointer to Constant ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">ptrToConst</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ptrToConst</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span> <span class="c1">// OKEY: You can change where the pointer points.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// *ptrToConst = 20; // Error: You cannot change the value it points to.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Constant Pointer ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">*</span> <span class="k">const</span> <span class="n">constPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">constPtr</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// OKEY: You can change the value it points to.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// constPtr = &amp;b; // ERROR: You cannot change where the pointer points.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Reference ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Essentially, it is a constant pointer: int* const r = &amp;a;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="const-function">const function
 </h2><ul>
@@ -1277,7 +1333,175 @@
 </ol>
 <p>Using <code>constexpr</code> v.s. not using <code>constexpr</code>:</p>
 <img src="constexpr.png" width=800px>
-<h2 id="reference">Reference
+<h2 id="lambda-capture-modes">Lambda Capture Modes
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Capture by value ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">lambda_value</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// prints 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lambda_value</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Capture by reference ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">lambda_reference</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">x</span><span class="p">]()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lambda_reference</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// prints 20
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="default-by-reference-capture-can-lead-to-dangling-reference">Default by-reference capture can lead to dangling reference
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">make_lambda</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Capture everything by reference
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// Dangling reference!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">lambda_dangling_reference</span> <span class="o">=</span> <span class="n">make_lambda</span><span class="p">();</span>  <span class="c1">// x is destroyed when make_lambda() returns
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">lambda_dangling_reference</span><span class="p">();</span>  
+</span></span><span class="line"><span class="cl">                <span class="c1">// prints 0, once make_lambda() returns, x is gone 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// its memory on the stack is invalid. 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// So calling the lambda later accesses garbage.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Compile: g++ -O2 dangling_reference.cpp -o main -std=c++11
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="default-by-value-capture-is-susceptible-to-dangling-pointers">Default by-value capture is susceptible to dangling pointers
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span> <span class="n">make_lambda</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>  <span class="c1">// dynamically allocated
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="p">[</span><span class="n">ptr</span><span class="p">]()</span> <span class="p">{</span>  <span class="c1">// ptr is copied (by value), but it&#39;s still a raw pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">ptr</span><span class="p">;</span>  <span class="c1">// pointer now dangles!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">lambda</span><span class="p">;</span>  <span class="c1">// lambda holds a dangling pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="n">make_lambda</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lambda</span><span class="p">();</span>   <span class="c1">// dereferencing dangling pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="c1">// prints 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="static-and-global-variables-cannot-be-captured">Static and global variables cannot be captured
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">global_x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">lambda</span> <span class="o">=</span> <span class="p">[]()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">global_x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// accesses directly
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lambda</span><span class="p">();</span>  <span class="c1">// prints 42
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference
 </h2><ul>
 <li>Many of the insights in this blog are inspired by Scott Meyers&rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.</li>
 </ul>
