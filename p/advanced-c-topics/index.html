@@ -280,6 +280,13 @@
         <li><a href="#constexpr-function">constexpr function</a></li>
       </ol>
     </li>
+    <li><a href="#prefer-scoped-enums-to-unscoped-enums">Prefer scoped enums to unscoped enums</a>
+      <ol>
+        <li><a href="#unscoped-enum-can-pollute-namespace">Unscoped Enum can pollute namespace</a></li>
+        <li><a href="#scoped-enums-are-much-more-strongly-typed">Scoped Enums are much more strongly typed</a></li>
+        <li><a href="#forward-declaration-for-unscoped-enum">Forward Declaration for Unscoped Enum</a></li>
+      </ol>
+    </li>
     <li><a href="#lambda-capture-modes">Lambda Capture Modes</a>
       <ol>
         <li><a href="#default-by-reference-capture-can-lead-to-dangling-reference">Default by-reference capture can lead to dangling reference</a></li>
@@ -368,7 +375,7 @@
 
 
                 <time class="article-time--reading">
-                    14 minute read
+                    15 minute read
                 </time>
             </div>
         
@@ -1333,7 +1340,129 @@
 </ol>
 <p>Using <code>constexpr</code> v.s. not using <code>constexpr</code>:</p>
 <img src="constexpr.png" width=800px>
-<h2 id="lambda-capture-modes">Lambda Capture Modes
+<h2 id="prefer-scoped-enums-to-unscoped-enums">Prefer scoped enums to unscoped enums
+</h2><h3 id="unscoped-enum-can-pollute-namespace">Unscoped Enum can pollute namespace
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Unscoped Enum can pollute namespace ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">enum</span> <span class="nc">Color</span> <span class="p">{</span> <span class="n">white</span><span class="p">,</span> <span class="n">black</span><span class="p">,</span> <span class="n">red</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// auto white = 3; // error: redefinition of &#39;white&#39; as different kind of symbol
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ---------- Scoped Enum can avoid namespace pollution ----------
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">enum</span> <span class="k">class</span> <span class="nc">Animal</span> <span class="p">{</span> <span class="n">cat</span><span class="p">,</span> <span class="n">dog</span><span class="p">,</span> <span class="n">bird</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">cat</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// OKEY
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="scoped-enums-are-much-more-strongly-typed">Scoped Enums are much more strongly typed
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">enum</span> <span class="nc">UnscopedEnum</span> <span class="p">{</span><span class="n">A</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">enum</span> <span class="k">class</span> <span class="nc">ScopedEnum</span> <span class="p">{</span><span class="n">B</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Unscoped enum values implicitly convert to their underlying integral type — usually int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">A</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ScopedEnum::B is not implicitly convertible to int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ScopedEnum</span><span class="o">::</span><span class="n">B</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="forward-declaration-for-unscoped-enum">Forward Declaration for Unscoped Enum
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Forward declaration of the enum
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Specify the underlying type for an unscoped enum
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">enum</span> <span class="nc">Color</span> <span class="o">:</span> <span class="kt">int</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">paint</span><span class="p">(</span><span class="n">Color</span> <span class="n">c</span><span class="p">);</span>  <span class="c1">// Use Color before its full definition
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Full definition of the enum
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Underlying type specifications should also go on an enum’s definition
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">enum</span> <span class="nc">Color</span> <span class="o">:</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Red</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Green</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Blue</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">paint</span><span class="p">(</span><span class="n">Color</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="nl">Red</span><span class="p">:</span>   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Red</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="nl">Green</span><span class="p">:</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Green</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="nl">Blue</span><span class="p">:</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Blue</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paint</span><span class="p">(</span><span class="n">Green</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lambda-capture-modes">Lambda Capture Modes
 </h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
