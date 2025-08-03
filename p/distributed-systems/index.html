@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" title: &ldquo;Distributed Systems&rdquo; date: 2023-08-03T10:27:22+10:30 Description: &ldquo;After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you&rsquo;ll find something useful here.&rdquo; image: picture.jpg categories: - Basic Concept tags: - Programming Language This is my course notes for Distributed Systems. In this post, I will cover:\nThe challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming. Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &rsquo;thin&rsquo; clients, data replication, cryptographic security, mobile code. Introduction to Java RMI. ">
-<title></title>
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.">
+<title>Distributed Systems</title>
 
-<link rel='canonical' href='http://localhost:1313/p/'>
+<link rel='canonical' href='https://jiajun2001.github.io/p/distributed-systems/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="">
-<meta property='og:description' content=" title: &ldquo;Distributed Systems&rdquo; date: 2023-08-03T10:27:22+10:30 Description: &ldquo;After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you&rsquo;ll find something useful here.&rdquo; image: picture.jpg categories: - Basic Concept tags: - Programming Language This is my course notes for Distributed Systems. In this post, I will cover:\nThe challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming. Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &rsquo;thin&rsquo; clients, data replication, cryptographic security, mobile code. Introduction to Java RMI. ">
-<meta property='og:url' content='http://localhost:1313/p/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Distributed Systems">
+<meta property='og:description' content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/distributed-systems/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Notes' /><meta property='article:published_time' content='2023-07-23T10:27:22&#43;10:30'/><meta property='article:modified_time' content='2023-07-23T10:27:22&#43;10:30'/>
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content=" title: &ldquo;Distributed Systems&rdquo; date: 2023-08-03T10:27:22+10:30 Description: &ldquo;After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you&rsquo;ll find something useful here.&rdquo; image: picture.jpg categories: - Basic Concept tags: - Programming Language This is my course notes for Distributed Systems. In this post, I will cover:\nThe challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming. Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &rsquo;thin&rsquo; clients, data replication, cryptographic security, mobile code. Introduction to Java RMI. ">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Distributed Systems' /><meta property='article:published_time' content='2025-08-03T10:27:22&#43;10:30'/><meta property='article:modified_time' content='2025-08-03T10:27:22&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/distributed-systems/picture.png' />
+<meta name="twitter:title" content="Distributed Systems">
+<meta name="twitter:description" content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/distributed-systems/picture.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -228,14 +229,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#--programming-language">title: &ldquo;Distributed Systems&rdquo;
-date: 2023-08-03T10:27:22+10:30
-Description: &ldquo;After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you&rsquo;ll find something useful here.&rdquo;
-image: picture.jpg
-categories:
-- Basic Concept
-tags:
-- Programming Language</a>
+    <li>
       <ol>
         <li><a href="#what-is-a-distributed-system">What is a distributed system</a></li>
         <li><a href="#key-challenges">Key Challenges</a></li>
@@ -253,17 +247,41 @@ tags:
 
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/distributed-systems/">
+                <img src="/p/distributed-systems/picture_hu_4f3b4babf6cc32bb.png"
+                        srcset="/p/distributed-systems/picture_hu_4f3b4babf6cc32bb.png 800w, /p/distributed-systems/picture_hu_a00a36654affa708.png 1600w"
+                        width="800" 
+                        height="485" 
+                        loading="lazy"
+                        alt="Featured image of post Distributed Systems" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/basic-concept/" >
+                Basic Concept
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/"></a>
+            <a href="/p/distributed-systems/">Distributed Systems</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.
+        </h3>
         
     </div>
 
@@ -283,7 +301,7 @@ tags:
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jul 23, 2023</time>
+                <time class="article-time--published">Aug 03, 2025</time>
             </div>
         
 
@@ -313,22 +331,7 @@ tags:
     <section class="article-content">
     
     
-    <hr>
-<h2 id="--programming-language">title: &ldquo;Distributed Systems&rdquo;
-date: 2023-08-03T10:27:22+10:30
-Description: &ldquo;After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you&rsquo;ll find something useful here.&rdquo;
-image: picture.jpg
-categories:
-- Basic Concept
-tags:
-- Programming Language
-</h2><p>This is my course notes for Distributed Systems. In this post, I will cover:</p>
-<ul>
-<li>The challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming.</li>
-<li>Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &rsquo;thin&rsquo; clients, data replication, cryptographic security, mobile code.</li>
-<li>Introduction to Java RMI.</li>
-</ul>
-<br />
+    <br />
 <h3 id="what-is-a-distributed-system">What is a distributed system
 </h3><ul>
 <li>A system where the software components that make up the system execute on two (or typically more) computers.</li>
@@ -430,7 +433,7 @@ tags:
     
     <section class="article-tags">
         
-            <a href="/tags/notes/">Notes</a>
+            <a href="/tags/distributed-systems/">Distributed Systems</a>
         
     </section>
 
@@ -444,6 +447,135 @@ tags:
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/advanced-c-topics/">
+        
+        
+            <div class="article-image">
+                <img src="/p/advanced-c-topics/picture.f6e04962e9e01951e53a220eef95190a_hu_d0d3d7a825f23fa4.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Advanced C&#43;&#43; Topics"
+                        
+                        data-hash="md5-9uBJYungGVHlOiIO75UZCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Advanced C&#43;&#43; Topics</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/compile-c-program/">
+        
+        
+            <div class="article-image">
+                <img src="/p/compile-c-program/picture.e659a3ff547f54ab3ac979290b391bb6_hu_aae11ca83aa16817.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Compile C&#43;&#43; Program"
+                        
+                        data-hash="md5-5lmj/1R/VKs6yXkpCzkbtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Compile C&#43;&#43; Program</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/parallel-and-distributed-computing/">
+        
+        
+            <div class="article-image">
+                <img src="/p/parallel-and-distributed-computing/background.964aa5ef0b64d0682c9d7236c2df61c9_hu_f188a4450b9a9c65.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Parallel and Distributed Computing"
+                        
+                        data-hash="md5-lkql7wtk0GgsnXI2wt9hyQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Parallel and Distributed Computing</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/linux-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/linux-study-note/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Linux Study Note"
+                        
+                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linux Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43; Study Note"
+                        
+                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -550,7 +682,7 @@ tags:
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.6f0049651ed38d0ea34e2a09520d95b2c19cb813071139a8d9369f4485e92785.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

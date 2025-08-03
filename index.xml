@@ -6,13 +6,115 @@
         <description>Recent content on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 13 Jul 2025 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 03 Aug 2025 10:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Distributed Systems</title>
+        <link>https://jiajun2001.github.io/p/distributed-systems/</link>
+        <pubDate>Sun, 03 Aug 2025 10:27:22 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/p/distributed-systems/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/distributed-systems/picture.png" alt="Featured image of post Distributed Systems" /&gt;&lt;br /&gt;
+&lt;h3 id=&#34;what-is-a-distributed-system&#34;&gt;What is a distributed system
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;A system where the software components that make up the system execute on two (or typically more) computers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;key-challenges&#34;&gt;Key Challenges
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Heterogeneity
+&lt;ul&gt;
+&lt;li&gt;Varieties and differences in networks, computer hardware, OS, programming languages, implementations.&lt;/li&gt;
+&lt;li&gt;Address heterogeneity through the use of middleware.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Scalability
+&lt;ul&gt;
+&lt;li&gt;A scalable system operates effectively when there is a significant increase in the number of resources and the number of users. Scalability is a mean for controlling performance loss and avoiding performance bottlenecks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transparency
+&lt;ul&gt;
+&lt;li&gt;Concealment from the user and application programmer of the separation of components in a distributed system.&lt;/li&gt;
+&lt;li&gt;Access transparency: local and remote resources can be accessed using identical operations.&lt;/li&gt;
+&lt;li&gt;Location transparency: resources can be accessed without knowledge of their physical or network location.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Openness
+&lt;ul&gt;
+&lt;li&gt;Can the system be extended and re-implemented&lt;/li&gt;
+&lt;li&gt;Degree to which new resources-sharing services can be added and be made available for use by a variety of client programs.&lt;/li&gt;
+&lt;li&gt;Specification and documentation of key interfaces must be published.&lt;/li&gt;
+&lt;li&gt;Open Systems: An open system is one where the components are built to common public standards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Security
+&lt;ul&gt;
+&lt;li&gt;A variety of points that need to be protected: data flow, network, coordination and allocation service, data management / consistency service.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;java-rmi&#34;&gt;Java RMI
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).&lt;/li&gt;
+&lt;li&gt;Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
+&lt;ul&gt;
+&lt;li&gt;Write code in C -&amp;gt; RPC (Remote Procedure Call)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Connection
+&lt;ul&gt;
+&lt;li&gt;Server publishes its name and location to the RMI Registry
+&lt;ul&gt;
+&lt;li&gt;through the RMI URLs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Client asks the RMI Registry about the server.&lt;/li&gt;
+&lt;li&gt;Both the RMIRegistry and Server listen on sockets for remote requests.&lt;/li&gt;
+&lt;li&gt;Clients need to identify both the host where the server resides and the socket number (port) that it is listening on.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Invocation
+&lt;ul&gt;
+&lt;li&gt;Server gives its Stub (local proxy) to the RMIRegistry, which gives it to the client.
+&lt;ul&gt;
+&lt;li&gt;Stub implements the same method signatures as the Server.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The Client invokes methods on the Stab as if it were invoking the methods directly on the Server.&lt;/li&gt;
+&lt;li&gt;The Stub is then response for sending the request to the Server VM.
+&lt;ul&gt;
+&lt;li&gt;The Stab serialises the method invocation across a socket connection connecting the Client and Server.
+&lt;ul&gt;
+&lt;li&gt;It sends the method name, and the parameters of the method invocation.&lt;/li&gt;
+&lt;li&gt;It waits for a return object or exception objects to be sent back.&lt;/li&gt;
+&lt;li&gt;Synchronous method invocation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Server side
+&lt;ul&gt;
+&lt;li&gt;The server has a local proxy (Skeleton) for the Client.&lt;/li&gt;
+&lt;li&gt;Skeleton creates a socket on which to listen for Client requests.&lt;/li&gt;
+&lt;li&gt;Skeleton receives requests, de-serialises them, and invokes the method on the Server on behalf of the Client.&lt;/li&gt;
+&lt;li&gt;Skeleton sends return result or exception objects back to Stub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;An Open Java RMI System
+&lt;ul&gt;
+&lt;li&gt;The communications protocol used when sending data between the Stub and Skeleton&lt;/li&gt;
+&lt;li&gt;The application specific definition of the methods available for remote method invocation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
         <title>Advanced C&#43;&#43; Topics</title>
         <link>https://jiajun2001.github.io/p/advanced-c-topics/</link>
         <pubDate>Sun, 13 Jul 2025 15:25:06 +1030</pubDate>
         
         <guid>https://jiajun2001.github.io/p/advanced-c-topics/</guid>
-        <description>&lt;img src="https://jiajun2001.github.io/p/advanced-c-topics/picture.png" alt="Featured image of post Advanced C&#43;&#43; Topics" /&gt;&lt;p&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/p&gt;
+        <description>&lt;img src="https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg" alt="Featured image of post Advanced C&#43;&#43; Topics" /&gt;&lt;p&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/p&gt;
 &lt;br /&gt;
 &lt;h2 id=&#34;constructors&#34;&gt;Constructors
 &lt;/h2&gt;&lt;h3 id=&#34;parameterized-constructor&#34;&gt;Parameterized Constructor

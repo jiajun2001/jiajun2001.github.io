@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Notes on Jason&#39;s blog</title>
-        <link>http://localhost:1313/tags/notes/</link>
-        <description>Recent content in Notes on Jason&#39;s blog</description>
+        <title>Distributed Systems on Jason&#39;s blog</title>
+        <link>https://jiajun2001.github.io/tags/distributed-systems/</link>
+        <description>Recent content in Distributed Systems on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 23 Jul 2023 10:27:22 +1030</lastBuildDate><atom:link href="http://localhost:1313/tags/notes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 03 Aug 2025 10:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/tags/distributed-systems/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Distributed Systems</title>
-        <link>http://localhost:1313/p/distributed-systems/</link>
-        <pubDate>Sun, 23 Jul 2023 10:27:22 +1030</pubDate>
+        <link>https://jiajun2001.github.io/p/distributed-systems/</link>
+        <pubDate>Sun, 03 Aug 2025 10:27:22 +1030</pubDate>
         
-        <guid>http://localhost:1313/p/distributed-systems/</guid>
-        <description>&lt;p&gt;This is my course notes for Distributed Systems. In this post, I will cover:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The challenges faced in constructing client/server software: partial system failures, multiple address spaces, absence of a single clock, latency of communication, heterogeneity, absence of a trusted operating system, system management, binding and naming.&lt;/li&gt;
-&lt;li&gt;Techniques for meeting these challenges: RPC and middleware, naming and directory services, distributed transaction processing, &amp;rsquo;thin&amp;rsquo; clients, data replication, cryptographic security, mobile code.&lt;/li&gt;
-&lt;li&gt;Introduction to Java RMI.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br /&gt;
+        <guid>https://jiajun2001.github.io/p/distributed-systems/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/distributed-systems/picture.png" alt="Featured image of post Distributed Systems" /&gt;&lt;br /&gt;
 &lt;h3 id=&#34;what-is-a-distributed-system&#34;&gt;What is a distributed system
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;A system where the software components that make up the system execute on two (or typically more) computers.&lt;/li&gt;
