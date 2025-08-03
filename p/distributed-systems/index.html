@@ -229,13 +229,10 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
-      <ol>
-        <li><a href="#what-is-a-distributed-system">What is a distributed system</a></li>
-        <li><a href="#key-challenges">Key Challenges</a></li>
-        <li><a href="#java-rmi">Java RMI</a></li>
-      </ol>
-    </li>
+    <li><a href="#what-is-a-distributed-system">What is a distributed system</a></li>
+    <li><a href="#key-challenges">Key Challenges</a></li>
+    <li><a href="#rpc">RPC</a></li>
+    <li><a href="#java-rmi">Java RMI</a></li>
   </ol>
 </nav>
         </div>
@@ -332,12 +329,12 @@
     
     
     <br />
-<h3 id="what-is-a-distributed-system">What is a distributed system
-</h3><ul>
+<h2 id="what-is-a-distributed-system">What is a distributed system
+</h2><ul>
 <li>A system where the software components that make up the system execute on two (or typically more) computers.</li>
 </ul>
-<h3 id="key-challenges">Key Challenges
-</h3><ul>
+<h2 id="key-challenges">Key Challenges
+</h2><ul>
 <li>Heterogeneity
 <ul>
 <li>Varieties and differences in networks, computer hardware, OS, programming languages, implementations.</li>
@@ -370,8 +367,20 @@
 </ul>
 </li>
 </ul>
-<h3 id="java-rmi">Java RMI
-</h3><ul>
+<h2 id="rpc">RPC
+</h2><ul>
+<li>Definition: RPC is a protocol that lets a program call a function on a remote machine as if it were a local function call.
+<img src="rpc.png" width=900px align="mid"></li>
+<li>Components:
+<ul>
+<li>Client Stub: Acts like a local function but sends a request over the network</li>
+<li>Server Stub (Skeleton): Receives the request and invokes the real function</li>
+<li>Transport: Often uses HTTP, TCP, or HTTP/2</li>
+</ul>
+</li>
+</ul>
+<h2 id="java-rmi">Java RMI
+</h2><ul>
 <li>A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).</li>
 <li>Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
 <ul>

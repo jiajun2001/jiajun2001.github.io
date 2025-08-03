@@ -13,12 +13,12 @@
         
         <guid>https://jiajun2001.github.io/p/distributed-systems/</guid>
         <description>&lt;img src="https://jiajun2001.github.io/p/distributed-systems/picture.png" alt="Featured image of post Distributed Systems" /&gt;&lt;br /&gt;
-&lt;h3 id=&#34;what-is-a-distributed-system&#34;&gt;What is a distributed system
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;what-is-a-distributed-system&#34;&gt;What is a distributed system
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;A system where the software components that make up the system execute on two (or typically more) computers.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;key-challenges&#34;&gt;Key Challenges
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;key-challenges&#34;&gt;Key Challenges
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Heterogeneity
 &lt;ul&gt;
 &lt;li&gt;Varieties and differences in networks, computer hardware, OS, programming languages, implementations.&lt;/li&gt;
@@ -51,8 +51,20 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;java-rmi&#34;&gt;Java RMI
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;rpc&#34;&gt;RPC
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Definition: RPC is a protocol that lets a program call a function on a remote machine as if it were a local function call.
+&lt;img src=&#34;rpc.png&#34; width=900px align=&#34;mid&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Components:
+&lt;ul&gt;
+&lt;li&gt;Client Stub: Acts like a local function but sends a request over the network&lt;/li&gt;
+&lt;li&gt;Server Stub (Skeleton): Receives the request and invokes the real function&lt;/li&gt;
+&lt;li&gt;Transport: Often uses HTTP, TCP, or HTTP/2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;java-rmi&#34;&gt;Java RMI
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).&lt;/li&gt;
 &lt;li&gt;Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
 &lt;ul&gt;
