@@ -6,124 +6,10 @@
         <description>Recent content in Posts on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 03 Aug 2025 10:27:22 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Distributed Systems</title>
-        <link>https://jiajun2001.github.io/p/distributed-systems/</link>
-        <pubDate>Sun, 03 Aug 2025 10:27:22 +1030</pubDate>
-        
-        <guid>https://jiajun2001.github.io/p/distributed-systems/</guid>
-        <description>&lt;img src="https://jiajun2001.github.io/p/distributed-systems/picture.png" alt="Featured image of post Distributed Systems" /&gt;&lt;br /&gt;
-&lt;h2 id=&#34;what-is-a-distributed-system&#34;&gt;What is a distributed system
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;A system where the software components that make up the system execute on two (or typically more) computers.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;key-challenges&#34;&gt;Key Challenges
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Heterogeneity
-&lt;ul&gt;
-&lt;li&gt;Varieties and differences in networks, computer hardware, OS, programming languages, implementations.&lt;/li&gt;
-&lt;li&gt;Address heterogeneity through the use of middleware.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Scalability
-&lt;ul&gt;
-&lt;li&gt;A scalable system operates effectively when there is a significant increase in the number of resources and the number of users. Scalability is a mean for controlling performance loss and avoiding performance bottlenecks.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Transparency
-&lt;ul&gt;
-&lt;li&gt;Concealment from the user and application programmer of the separation of components in a distributed system.&lt;/li&gt;
-&lt;li&gt;Access transparency: local and remote resources can be accessed using identical operations.&lt;/li&gt;
-&lt;li&gt;Location transparency: resources can be accessed without knowledge of their physical or network location.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Openness
-&lt;ul&gt;
-&lt;li&gt;Can the system be extended and re-implemented&lt;/li&gt;
-&lt;li&gt;Degree to which new resources-sharing services can be added and be made available for use by a variety of client programs.&lt;/li&gt;
-&lt;li&gt;Specification and documentation of key interfaces must be published.&lt;/li&gt;
-&lt;li&gt;Open Systems: An open system is one where the components are built to common public standards.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Security
-&lt;ul&gt;
-&lt;li&gt;A variety of points that need to be protected: data flow, network, coordination and allocation service, data management / consistency service.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;rpc&#34;&gt;RPC
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;Definition: RPC is a protocol that lets a program call a function on a remote machine as if it were a local function call.
-&lt;img src=&#34;rpc.png&#34; width=900px align=&#34;mid&#34;&gt;&lt;/li&gt;
-&lt;li&gt;Components:
-&lt;ul&gt;
-&lt;li&gt;Client Stub: Acts like a local function but sends a request over the network&lt;/li&gt;
-&lt;li&gt;Server Stub (Skeleton): Receives the request and invokes the real function&lt;/li&gt;
-&lt;li&gt;Transport: Often uses HTTP, TCP, or HTTP/2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;java-rmi&#34;&gt;Java RMI
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).&lt;/li&gt;
-&lt;li&gt;Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
-&lt;ul&gt;
-&lt;li&gt;Write code in C -&amp;gt; RPC (Remote Procedure Call)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Connection
-&lt;ul&gt;
-&lt;li&gt;Server publishes its name and location to the RMI Registry
-&lt;ul&gt;
-&lt;li&gt;through the RMI URLs&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Client asks the RMI Registry about the server.&lt;/li&gt;
-&lt;li&gt;Both the RMIRegistry and Server listen on sockets for remote requests.&lt;/li&gt;
-&lt;li&gt;Clients need to identify both the host where the server resides and the socket number (port) that it is listening on.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Invocation
-&lt;ul&gt;
-&lt;li&gt;Server gives its Stub (local proxy) to the RMIRegistry, which gives it to the client.
-&lt;ul&gt;
-&lt;li&gt;Stub implements the same method signatures as the Server.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;The Client invokes methods on the Stab as if it were invoking the methods directly on the Server.&lt;/li&gt;
-&lt;li&gt;The Stub is then response for sending the request to the Server VM.
-&lt;ul&gt;
-&lt;li&gt;The Stab serialises the method invocation across a socket connection connecting the Client and Server.
-&lt;ul&gt;
-&lt;li&gt;It sends the method name, and the parameters of the method invocation.&lt;/li&gt;
-&lt;li&gt;It waits for a return object or exception objects to be sent back.&lt;/li&gt;
-&lt;li&gt;Synchronous method invocation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Server side
-&lt;ul&gt;
-&lt;li&gt;The server has a local proxy (Skeleton) for the Client.&lt;/li&gt;
-&lt;li&gt;Skeleton creates a socket on which to listen for Client requests.&lt;/li&gt;
-&lt;li&gt;Skeleton receives requests, de-serialises them, and invokes the method on the Server on behalf of the Client.&lt;/li&gt;
-&lt;li&gt;Skeleton sends return result or exception objects back to Stub.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;An Open Java RMI System
-&lt;ul&gt;
-&lt;li&gt;The communications protocol used when sending data between the Stub and Skeleton&lt;/li&gt;
-&lt;li&gt;The application specific definition of the methods available for remote method invocation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-        </item>
-        <item>
+        <lastBuildDate>Sun, 07 Sep 2025 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Advanced C&#43;&#43; Topics</title>
         <link>https://jiajun2001.github.io/p/advanced-c-topics/</link>
-        <pubDate>Sun, 13 Jul 2025 15:25:06 +1030</pubDate>
+        <pubDate>Sun, 07 Sep 2025 15:25:06 +1030</pubDate>
         
         <guid>https://jiajun2001.github.io/p/advanced-c-topics/</guid>
         <description>&lt;img src="https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg" alt="Featured image of post Advanced C&#43;&#43; Topics" /&gt;&lt;p&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/p&gt;
@@ -989,6 +875,28 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// -std=c++14
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;understand-decltype&#34;&gt;Understand decltype
+&lt;/h2&gt;&lt;h3 id=&#34;decltype-in-c11&#34;&gt;decltype in C++11
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C++&#34; data-lang=&#34;C++&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Container&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;auto&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;authAndAccess&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Container&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Index&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;decltype&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// In C++11, we must use a trailing return type if the return type depends on function parameters.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// In C++11, auto is just a placeholder
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// In C++14, auto will deduce the return type
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;distinguish-between--and--when-creating-objects&#34;&gt;Distinguish between () and {} when creating objects
 &lt;/h2&gt;&lt;p&gt;Uniform Initialization: Introduced in c++11, a single initialization syntax that can, at least in concept, be used anywhere and express everything. It’s based on braces.&lt;/p&gt;
 &lt;h3 id=&#34;usage-of-uniform-initialization&#34;&gt;Usage of Uniform Initialization
@@ -1455,6 +1363,120 @@
 &lt;/div&gt;&lt;h2 id=&#34;reference&#34;&gt;Reference
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/li&gt;
+&lt;/ul&gt;</description>
+        </item>
+        <item>
+        <title>Distributed Systems</title>
+        <link>https://jiajun2001.github.io/p/distributed-systems/</link>
+        <pubDate>Sun, 03 Aug 2025 10:27:22 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/p/distributed-systems/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/distributed-systems/picture.png" alt="Featured image of post Distributed Systems" /&gt;&lt;br /&gt;
+&lt;h2 id=&#34;what-is-a-distributed-system&#34;&gt;What is a distributed system
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;A system where the software components that make up the system execute on two (or typically more) computers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;key-challenges&#34;&gt;Key Challenges
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Heterogeneity
+&lt;ul&gt;
+&lt;li&gt;Varieties and differences in networks, computer hardware, OS, programming languages, implementations.&lt;/li&gt;
+&lt;li&gt;Address heterogeneity through the use of middleware.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Scalability
+&lt;ul&gt;
+&lt;li&gt;A scalable system operates effectively when there is a significant increase in the number of resources and the number of users. Scalability is a mean for controlling performance loss and avoiding performance bottlenecks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Transparency
+&lt;ul&gt;
+&lt;li&gt;Concealment from the user and application programmer of the separation of components in a distributed system.&lt;/li&gt;
+&lt;li&gt;Access transparency: local and remote resources can be accessed using identical operations.&lt;/li&gt;
+&lt;li&gt;Location transparency: resources can be accessed without knowledge of their physical or network location.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Openness
+&lt;ul&gt;
+&lt;li&gt;Can the system be extended and re-implemented&lt;/li&gt;
+&lt;li&gt;Degree to which new resources-sharing services can be added and be made available for use by a variety of client programs.&lt;/li&gt;
+&lt;li&gt;Specification and documentation of key interfaces must be published.&lt;/li&gt;
+&lt;li&gt;Open Systems: An open system is one where the components are built to common public standards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Security
+&lt;ul&gt;
+&lt;li&gt;A variety of points that need to be protected: data flow, network, coordination and allocation service, data management / consistency service.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;rpc&#34;&gt;RPC
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Definition: RPC is a protocol that lets a program call a function on a remote machine as if it were a local function call.
+&lt;img src=&#34;rpc.png&#34; width=900px align=&#34;mid&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Components:
+&lt;ul&gt;
+&lt;li&gt;Client Stub: Acts like a local function but sends a request over the network&lt;/li&gt;
+&lt;li&gt;Server Stub (Skeleton): Receives the request and invokes the real function&lt;/li&gt;
+&lt;li&gt;Transport: Often uses HTTP, TCP, or HTTP/2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;java-rmi&#34;&gt;Java RMI
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).&lt;/li&gt;
+&lt;li&gt;Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
+&lt;ul&gt;
+&lt;li&gt;Write code in C -&amp;gt; RPC (Remote Procedure Call)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Connection
+&lt;ul&gt;
+&lt;li&gt;Server publishes its name and location to the RMI Registry
+&lt;ul&gt;
+&lt;li&gt;through the RMI URLs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Client asks the RMI Registry about the server.&lt;/li&gt;
+&lt;li&gt;Both the RMIRegistry and Server listen on sockets for remote requests.&lt;/li&gt;
+&lt;li&gt;Clients need to identify both the host where the server resides and the socket number (port) that it is listening on.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Invocation
+&lt;ul&gt;
+&lt;li&gt;Server gives its Stub (local proxy) to the RMIRegistry, which gives it to the client.
+&lt;ul&gt;
+&lt;li&gt;Stub implements the same method signatures as the Server.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The Client invokes methods on the Stab as if it were invoking the methods directly on the Server.&lt;/li&gt;
+&lt;li&gt;The Stub is then response for sending the request to the Server VM.
+&lt;ul&gt;
+&lt;li&gt;The Stab serialises the method invocation across a socket connection connecting the Client and Server.
+&lt;ul&gt;
+&lt;li&gt;It sends the method name, and the parameters of the method invocation.&lt;/li&gt;
+&lt;li&gt;It waits for a return object or exception objects to be sent back.&lt;/li&gt;
+&lt;li&gt;Synchronous method invocation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Server side
+&lt;ul&gt;
+&lt;li&gt;The server has a local proxy (Skeleton) for the Client.&lt;/li&gt;
+&lt;li&gt;Skeleton creates a socket on which to listen for Client requests.&lt;/li&gt;
+&lt;li&gt;Skeleton receives requests, de-serialises them, and invokes the method on the Server on behalf of the Client.&lt;/li&gt;
+&lt;li&gt;Skeleton sends return result or exception objects back to Stub.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;An Open Java RMI System
+&lt;ul&gt;
+&lt;li&gt;The communications protocol used when sending data between the Stub and Skeleton&lt;/li&gt;
+&lt;li&gt;The application specific definition of the methods available for remote method invocation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</description>
         </item>
         <item>

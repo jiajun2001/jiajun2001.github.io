@@ -10,7 +10,7 @@
 <meta property='og:description' content="After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you'll find something useful here.">
 <meta property='og:url' content='https://jiajun2001.github.io/p/advanced-c-topics/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2025-07-13T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2025-07-13T15:25:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2025-09-07T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2025-09-07T15:25:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg' />
 <meta name="twitter:title" content="Advanced C++ Topics">
 <meta name="twitter:description" content="After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you'll find something useful here."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg' />
@@ -268,6 +268,11 @@
         </li>
       </ol>
     </li>
+    <li><a href="#understand-decltype">Understand decltype</a>
+      <ol>
+        <li><a href="#decltype-in-c11">decltype in C++11</a></li>
+      </ol>
+    </li>
     <li><a href="#distinguish-between--and--when-creating-objects">Distinguish between () and {} when creating objects</a>
       <ol>
         <li><a href="#usage-of-uniform-initialization">Usage of Uniform Initialization</a>
@@ -371,7 +376,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jul 13, 2025</time>
+                <time class="article-time--published">Sep 07, 2025</time>
             </div>
         
 
@@ -386,7 +391,7 @@
 
 
                 <time class="article-time--reading">
-                    16 minute read
+                    17 minute read
                 </time>
             </div>
         
@@ -1263,6 +1268,28 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// -std=c++14
 </span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="understand-decltype">Understand decltype
+</h2><h3 id="decltype-in-c11">decltype in C++11
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Container</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Index</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">authAndAccess</span><span class="p">(</span><span class="n">Container</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">,</span> <span class="n">Index</span> <span class="n">i</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// In C++11, we must use a trailing return type if the return type depends on function parameters.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// In C++11, auto is just a placeholder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// In C++14, auto will deduce the return type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="distinguish-between--and--when-creating-objects">Distinguish between () and {} when creating objects
 </h2><p>Uniform Initialization: Introduced in c++11, a single initialization syntax that can, at least in concept, be used anywhere and express everything. It’s based on braces.</p>
