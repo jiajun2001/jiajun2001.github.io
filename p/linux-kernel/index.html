@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
-<title>Links</title>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux.">
+<title>Linux Kernel</title>
 
-<link rel='canonical' href='https://jiajun2001.github.io/links/'>
+<link rel='canonical' href='http://localhost:1313/p/linux-kernel/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Links">
-<meta property='og:description' content="">
-<meta property='og:url' content='https://jiajun2001.github.io/links/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Linux Kernel">
+<meta property='og:description' content="In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux.">
+<meta property='og:url' content='http://localhost:1313/p/linux-kernel/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' />
-<meta name="twitter:title" content="Links">
-<meta name="twitter:description" content="">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:published_time' content='2026-01-01T14:49:06&#43;10:30'/><meta property='article:modified_time' content='2026-01-01T14:49:06&#43;10:30'/><meta property='og:image' content='http://localhost:1313/p/linux-study-note/Linux.png' />
+<meta name="twitter:title" content="Linux Kernel">
+<meta name="twitter:description" content="In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/linux-study-note/Linux.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -159,7 +160,7 @@
         </li>
         
         
-        <li  class='current' >
+        <li >
             <a href='/links/' >
                 
                 
@@ -206,20 +207,80 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#lets-begin">Let&rsquo;s begin</a></li>
+    <li><a href="#references">References:</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/p/linux-kernel/">
+                <img src="/p/linux-study-note/Linux_hu_dc403b7b6815285.png"
+                        srcset="/p/linux-study-note/Linux_hu_dc403b7b6815285.png 800w, /p/linux-study-note/Linux_hu_99a205f27cc4ff2.png 1600w"
+                        width="800" 
+                        height="254" 
+                        loading="lazy"
+                        alt="Featured image of post Linux Kernel" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/basic-concept/" >
+                Basic Concept
+            </a>
+        
+            <a href="/categories/research/" >
+                Research
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/links/">Links</a>
+            <a href="/p/linux-kernel/">Linux Kernel</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            In this post, I explore the Linux boot process—from powering on the system to reaching the login screen. I’ll break down each stage, including BIOS/UEFI, bootloader, kernel initialization, and the transition to user space. This is the beginning of my journey into understanding the inner mechanics of Linux.
+        </h3>
         
     </div>
 
@@ -228,6 +289,19 @@
     
     
     <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 01, 2026</time>
+            </div>
         
 
         
@@ -241,7 +315,7 @@
 
 
                 <time class="article-time--reading">
-                    0 minute read
+                    1 minute read
                 </time>
             </div>
         
@@ -256,28 +330,44 @@
     <section class="article-content">
     
     
-    <!-- To use this feature, add `links` section to frontmatter.
+    <h2 id="lets-begin">Let&rsquo;s begin
+</h2><p>Initially, BIOS (Basic Input/Output System) will load 512 bytes data (aka MBR: Master Boot Record) from the disk into memory at address 0x7c00. BIOS then hands off execution to the bootloader.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">BOOTSEG</span>  <span class="err">=</span> <span class="mi">0x07c0</span>			<span class="p">!</span> <span class="no">original</span> <span class="no">address</span> <span class="no">of</span> <span class="no">boot-sector</span>
+</span></span><span class="line"><span class="cl"><span class="na">...</span>
+</span></span><span class="line"><span class="cl"><span class="nl">start:</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">mov</span>	<span class="no">ax</span><span class="p">,</span><span class="c1">#BOOTSEG
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nf">mov</span>	<span class="no">ds</span><span class="p">,</span><span class="no">ax</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This section of code simply moves 0x07c0 into ds register. So next time when we access ds register with an offset, the result will be (0x07c0 &laquo; 4) + offset =&gt; 0x7c00 + offset. Hence, Linux will be able to execute start-up area code with ds register plus an offset.</p>
+<h2 id="references">References:
+</h2><ol>
+<li>dibingfa (no date) flash-linux0.11-talk. GitHub. Available at: <a class="link" href="https://github.com/dibingfa/flash-linux0.11-talk"  target="_blank" rel="noopener"
+    >https://github.com/dibingfa/flash-linux0.11-talk</a> (Accessed: 21 April 2025).</li>
+<li>lewischeng-ms (no date) linux. GitHub. Available at: <a class="link" href="https://github.com/lewischeng-ms/linux"  target="_blank" rel="noopener"
+    >https://github.com/lewischeng-ms/linux</a> (Accessed: 21 April 2025).</li>
+</ol>
 
-This page's frontmatter:
-
-```yaml
-links:
-  - title: GitHub
-    description: GitHub is the world's largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-```
-
-`image` field accepts both local and external images. -->
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/operating-system/">Operating System</a>
+        
+    </section>
+
 
     </footer>
 
@@ -286,35 +376,141 @@ links:
 </article>
 
     
-        <div class="article-list--compact links">
-    
-        <article>
-            <a href="https://github.com" target="_blank" rel="noopener">
-                <div class="article-details">
-                    <h2 class="article-title">GitHub</h2>
-                    <footer class="article-time">
-                        
-                            GitHub is the world&#39;s largest software development platform.
-                        
-                    </footer>
-                </div>
-        
-                
-                    
-                    
-                    <div class="article-image">
-                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" loading="lazy">
-                    </div>
-                
-            </a>
-        </article>
-    
-</div>
-    
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/advanced-c-topics/">
+        
+        
+            <div class="article-image">
+                <img src="/p/advanced-c-topics/picture.f6e04962e9e01951e53a220eef95190a_hu_d0d3d7a825f23fa4.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Advanced C&#43;&#43; Topics"
+                        
+                        data-hash="md5-9uBJYungGVHlOiIO75UZCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Advanced C&#43;&#43; Topics</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/distributed-systems/">
+        
+        
+            <div class="article-image">
+                <img src="/p/distributed-systems/picture.618932ed670aff47b2f51e78153c476f_hu_cd24d62fd0f5c35c.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Distributed Systems"
+                        
+                        data-hash="md5-YYky7WcK/0ey9R54FTxHbw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Distributed Systems</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/compile-c-program/">
+        
+        
+            <div class="article-image">
+                <img src="/p/compile-c-program/picture.e659a3ff547f54ab3ac979290b391bb6_hu_aae11ca83aa16817.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Compile C&#43;&#43; Program"
+                        
+                        data-hash="md5-5lmj/1R/VKs6yXkpCzkbtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Compile C&#43;&#43; Program</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/parallel-and-distributed-computing/">
+        
+        
+            <div class="article-image">
+                <img src="/p/parallel-and-distributed-computing/background.964aa5ef0b64d0682c9d7236c2df61c9_hu_f188a4450b9a9c65.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Parallel and Distributed Computing"
+                        
+                        data-hash="md5-lkql7wtk0GgsnXI2wt9hyQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Parallel and Distributed Computing</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-study-note/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-study-note/cpp.533311b262df865330ae7c00a0c3a6a0_hu_25279897ae1e5a78.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43; Study Note"
+                        
+                        data-hash="md5-UzMRsmLfhlMwrnwAoMOmoA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; Study Note</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
+    
+        
     
 
     <footer class="site-footer">
@@ -417,7 +613,7 @@ links:
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6f0049651ed38d0ea34e2a09520d95b2c19cb813071139a8d9369f4485e92785.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

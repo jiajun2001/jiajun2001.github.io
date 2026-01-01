@@ -6,7 +6,20 @@
         <description>Recent content on Jason&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 07 Sep 2025 15:25:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 01 Jan 2026 14:49:06 +1030</lastBuildDate><atom:link href="https://jiajun2001.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Understand Linux Kernel</title>
+        <link>https://jiajun2001.github.io/p/understand-linux-kernel/</link>
+        <pubDate>Thu, 01 Jan 2026 14:49:06 +1030</pubDate>
+        
+        <guid>https://jiajun2001.github.io/p/understand-linux-kernel/</guid>
+        <description>&lt;img src="https://jiajun2001.github.io/p/understand-linux-kernel/Linux.png" alt="Featured image of post Understand Linux Kernel" /&gt;&lt;h2 id=&#34;process-management&#34;&gt;Process Management
+&lt;/h2&gt;&lt;h2 id=&#34;reference&#34;&gt;Reference:
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>Advanced C&#43;&#43; Topics</title>
         <link>https://jiajun2001.github.io/p/advanced-c-topics/</link>
         <pubDate>Sun, 07 Sep 2025 15:25:06 +1030</pubDate>
@@ -966,8 +979,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Widget&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;w2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// uses braces, but now calls std::initializer_list ctor (10 and true convert to long double)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;&#34;&gt;
-&lt;/h4&gt;&lt;h2 id=&#34;use-constexpr-whenever-possible&#34;&gt;Use constexpr whenever possible
+&lt;/div&gt;&lt;h2 id=&#34;use-constexpr-whenever-possible&#34;&gt;Use constexpr whenever possible
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Definition: &lt;code&gt;constexpr&lt;/code&gt; is a C++ keyword used to indicate that a value or function can be evaluated at compile time. It helps write faster and safer code by enabling computations to be done during compilation rather than at runtime&lt;/li&gt;
 &lt;/ul&gt;
@@ -1360,7 +1372,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;reference&#34;&gt;Reference
+&lt;/div&gt;&lt;h2 id=&#34;smart-pointers&#34;&gt;Smart Pointers
+&lt;/h2&gt;&lt;h3 id=&#34;stdunique_ptr&#34;&gt;std::unique_ptr
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;std::unique_ptr embodies exclusive ownership semantics&lt;/li&gt;
+&lt;li&gt;Moving a std::unique_ptr transfers ownership, while copying a std::unique_ptr isn’t allowed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;stdshared_ptr&#34;&gt;std::shared_ptr
+&lt;/h3&gt;&lt;h3 id=&#34;stdweak_ptr&#34;&gt;std::weak_ptr
+&lt;/h3&gt;&lt;h2 id=&#34;reference&#34;&gt;Reference
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Many of the insights in this blog are inspired by Scott Meyers&amp;rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.&lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -2401,40 +2421,6 @@ while others lag behind.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>Linux Study Note</title>
-        <link>https://jiajun2001.github.io/p/linux-study-note/</link>
-        <pubDate>Mon, 21 Apr 2025 22:49:06 +1030</pubDate>
-        
-        <guid>https://jiajun2001.github.io/p/linux-study-note/</guid>
-        <description>&lt;img src="https://jiajun2001.github.io/p/linux-study-note/Linux.png" alt="Featured image of post Linux Study Note" /&gt;&lt;h2 id=&#34;lets-begin&#34;&gt;Let&amp;rsquo;s begin
-&lt;/h2&gt;&lt;p&gt;Initially, BIOS (Basic Input/Output System) will load 512 bytes data (aka MBR: Master Boot Record) from the disk into memory at address 0x7c00. BIOS then hands off execution to the bootloader.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-asm&#34; data-lang=&#34;asm&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;BOOTSEG&lt;/span&gt;  &lt;span class=&#34;err&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0x07c0&lt;/span&gt;			&lt;span class=&#34;p&#34;&gt;!&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;original&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;address&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;boot-sector&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;...&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nl&#34;&gt;start:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nf&#34;&gt;mov&lt;/span&gt;	&lt;span class=&#34;no&#34;&gt;ax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;#BOOTSEG
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;nf&#34;&gt;mov&lt;/span&gt;	&lt;span class=&#34;no&#34;&gt;ds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;no&#34;&gt;ax&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;This section of code simply moves 0x07c0 into ds register. So next time when we access ds register with an offset, the result will be (0x07c0 &amp;laquo; 4) + offset =&amp;gt; 0x7c00 + offset. Hence, Linux will be able to execute start-up area code with ds register plus an offset.&lt;/p&gt;
-&lt;h2 id=&#34;references&#34;&gt;References:
-&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;dibingfa (no date) flash-linux0.11-talk. GitHub. Available at: &lt;a class=&#34;link&#34; href=&#34;https://github.com/dibingfa/flash-linux0.11-talk&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/dibingfa/flash-linux0.11-talk&lt;/a&gt; (Accessed: 21 April 2025).&lt;/li&gt;
-&lt;li&gt;lewischeng-ms (no date) linux. GitHub. Available at: &lt;a class=&#34;link&#34; href=&#34;https://github.com/lewischeng-ms/linux&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/lewischeng-ms/linux&lt;/a&gt; (Accessed: 21 April 2025).&lt;/li&gt;
-&lt;/ol&gt;
 </description>
         </item>
         <item>

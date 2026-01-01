@@ -285,7 +285,6 @@
         <li><a href="#drawback-of-uniform-initialization">Drawback of Uniform Initialization</a>
           <ol>
             <li><a href="#strong-preference-the-call-to-the-constructor-of-stdinitializer_list-constructor-overloading">Strong preference the call to the constructor of std::initializer_list (Constructor Overloading)</a></li>
-            <li></li>
           </ol>
         </li>
       </ol>
@@ -308,6 +307,13 @@
         <li><a href="#default-by-reference-capture-can-lead-to-dangling-reference">Default by-reference capture can lead to dangling reference</a></li>
         <li><a href="#default-by-value-capture-is-susceptible-to-dangling-pointers">Default by-value capture is susceptible to dangling pointers</a></li>
         <li><a href="#static-and-global-variables-cannot-be-captured">Static and global variables cannot be captured</a></li>
+      </ol>
+    </li>
+    <li><a href="#smart-pointers">Smart Pointers</a>
+      <ol>
+        <li><a href="#stdunique_ptr">std::unique_ptr</a></li>
+        <li><a href="#stdshared_ptr">std::shared_ptr</a></li>
+        <li><a href="#stdweak_ptr">std::weak_ptr</a></li>
       </ol>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -1360,8 +1366,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Widget</span> <span class="n">w2</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="nb">true</span><span class="p">};</span> <span class="c1">// uses braces, but now calls std::initializer_list ctor (10 and true convert to long double)
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="">
-</h4><h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
+</div><h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
 </h2><ul>
 <li>Definition: <code>constexpr</code> is a C++ keyword used to indicate that a value or function can be evaluated at compile time. It helps write faster and safer code by enabling computations to be done during compilation rather than at runtime</li>
 </ul>
@@ -1754,7 +1759,15 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="reference">Reference
+</div><h2 id="smart-pointers">Smart Pointers
+</h2><h3 id="stdunique_ptr">std::unique_ptr
+</h3><ul>
+<li>std::unique_ptr embodies exclusive ownership semantics</li>
+<li>Moving a std::unique_ptr transfers ownership, while copying a std::unique_ptr isn’t allowed.</li>
+</ul>
+<h3 id="stdshared_ptr">std::shared_ptr
+</h3><h3 id="stdweak_ptr">std::weak_ptr
+</h3><h2 id="reference">Reference
 </h2><ul>
 <li>Many of the insights in this blog are inspired by Scott Meyers&rsquo; Effective Modern C++, a must-read for any developer looking to deepen their understanding of C++11 and C++14.</li>
 </ul>
@@ -1835,6 +1848,30 @@
             
                 
 <article class="has-image">
+    <a href="/p/understand-linux-kernel/">
+        
+        
+            <div class="article-image">
+                <img src="/p/understand-linux-kernel/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Understand Linux Kernel"
+                        
+                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Understand Linux Kernel</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/distributed-systems/">
         
         
@@ -1881,30 +1918,6 @@
 </article>
 
             
-                
-<article class="has-image">
-    <a href="/p/linux-study-note/">
-        
-        
-            <div class="article-image">
-                <img src="/p/linux-study-note/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Linux Study Note"
-                        
-                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Linux Study Note</h2>
-        </div>
-    </a>
-</article>
-
-            
         </div>
     </div>
 </aside>
@@ -1920,7 +1933,7 @@
         
             2022 - 
         
-        2025 Jason&#39;s blog
+        2026 Jason&#39;s blog
     </section>
     
     <section class="powerby">
