@@ -13,7 +13,65 @@
         
         <guid>https://jiajun2001.github.io/p/understand-linux-kernel/</guid>
         <description>&lt;img src="https://jiajun2001.github.io/p/understand-linux-kernel/Linux.png" alt="Featured image of post Understand Linux Kernel" /&gt;&lt;h2 id=&#34;process-management&#34;&gt;Process Management
-&lt;/h2&gt;&lt;h2 id=&#34;reference&#34;&gt;Reference:
+&lt;/h2&gt;&lt;h3 id=&#34;the-process&#34;&gt;The process
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Linux does not differentiate between threads and process.&lt;/li&gt;
+&lt;li&gt;Processes provide two virtualizations, a virtualized processor and virtual memory.&lt;/li&gt;
+&lt;li&gt;Execution Workflow:
+&lt;ul&gt;
+&lt;li&gt;fork(): creates a new process by duplicating an existing one&lt;/li&gt;
+&lt;li&gt;exec(): creates a new address space and loads a new program into it&lt;/li&gt;
+&lt;li&gt;exit(): terminates the process and frees all its resources. When a process exits, it is placed into a special zombie state until the parent calls wait() or waitpid().&lt;/li&gt;
+&lt;li&gt;wait4(): enables a process to wait for the termination of a specific process&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;allocating-the-process-descriptor&#34;&gt;Allocating the Process Descriptor
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;The kernel stores the list of processes in a circular doubly linked list called the task list. Each element in the task list is a process descriptor of the type &lt;code&gt;struct task_struct&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;The process descriptor (&lt;code&gt;struct task_struct&lt;/code&gt;) contains all the information about a specific process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;High address
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+--------------------+  ← start of kernel stack
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|                    |
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|   kernel stack     |  ← function calls, locals
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|                    |
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|        ↓           |
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+--------------------+
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|  thread_info       |  which points to task_struct
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+--------------------+
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Low address
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;manipulating-the-current-process-state&#34;&gt;Manipulating the Current Process State
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;set_task_state(task, state)&lt;/code&gt; sets a process’s state.
+&lt;ul&gt;
+&lt;li&gt;On single-CPU systems, it’s just task-&amp;gt;state = state.&lt;/li&gt;
+&lt;li&gt;On multi-CPU (SMP) systems, it also includes a memory barrier to ensure other CPUs see previous memory writes before the state change.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;the-process-family-tree&#34;&gt;The Process Family Tree
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;All processes are descendants of the init process, whose PID is one.&lt;/li&gt;
+&lt;li&gt;Every process on the system has exactly one parent. Likewise, every process has zero or more children.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference:
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.&lt;/li&gt;
 &lt;/ol&gt;

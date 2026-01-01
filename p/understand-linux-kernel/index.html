@@ -229,7 +229,14 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#process-management">Process Management</a></li>
+    <li><a href="#process-management">Process Management</a>
+      <ol>
+        <li><a href="#the-process">The process</a></li>
+        <li><a href="#allocating-the-process-descriptor">Allocating the Process Descriptor</a></li>
+        <li><a href="#manipulating-the-current-process-state">Manipulating the Current Process State</a></li>
+        <li><a href="#the-process-family-tree">The Process Family Tree</a></li>
+      </ol>
+    </li>
     <li><a href="#reference">Reference:</a></li>
   </ol>
 </nav>
@@ -315,7 +322,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -331,7 +338,65 @@
     
     
     <h2 id="process-management">Process Management
-</h2><h2 id="reference">Reference:
+</h2><h3 id="the-process">The process
+</h3><ul>
+<li>Linux does not differentiate between threads and process.</li>
+<li>Processes provide two virtualizations, a virtualized processor and virtual memory.</li>
+<li>Execution Workflow:
+<ul>
+<li>fork(): creates a new process by duplicating an existing one</li>
+<li>exec(): creates a new address space and loads a new program into it</li>
+<li>exit(): terminates the process and frees all its resources. When a process exits, it is placed into a special zombie state until the parent calls wait() or waitpid().</li>
+<li>wait4(): enables a process to wait for the termination of a specific process</li>
+</ul>
+</li>
+</ul>
+<h3 id="allocating-the-process-descriptor">Allocating the Process Descriptor
+</h3><ul>
+<li>The kernel stores the list of processes in a circular doubly linked list called the task list. Each element in the task list is a process descriptor of the type <code>struct task_struct</code>.</li>
+<li>The process descriptor (<code>struct task_struct</code>) contains all the information about a specific process.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">High address
+</span></span><span class="line"><span class="cl">+--------------------+  ← start of kernel stack
+</span></span><span class="line"><span class="cl">|                    |
+</span></span><span class="line"><span class="cl">|   kernel stack     |  ← function calls, locals
+</span></span><span class="line"><span class="cl">|                    |
+</span></span><span class="line"><span class="cl">|        ↓           |
+</span></span><span class="line"><span class="cl">+--------------------+
+</span></span><span class="line"><span class="cl">|  thread_info       |  which points to task_struct
+</span></span><span class="line"><span class="cl">+--------------------+
+</span></span><span class="line"><span class="cl">Low address
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="manipulating-the-current-process-state">Manipulating the Current Process State
+</h3><ul>
+<li><code>set_task_state(task, state)</code> sets a process’s state.
+<ul>
+<li>On single-CPU systems, it’s just task-&gt;state = state.</li>
+<li>On multi-CPU (SMP) systems, it also includes a memory barrier to ensure other CPUs see previous memory writes before the state change.</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-process-family-tree">The Process Family Tree
+</h3><ul>
+<li>All processes are descendants of the init process, whose PID is one.</li>
+<li>Every process on the system has exactly one parent. Likewise, every process has zero or more children.</li>
+</ul>
+<h2 id="reference">Reference:
 </h2><ol>
 <li>Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.</li>
 </ol>
