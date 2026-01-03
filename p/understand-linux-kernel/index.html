@@ -235,9 +235,13 @@
         <li><a href="#allocating-the-process-descriptor">Allocating the Process Descriptor</a></li>
         <li><a href="#manipulating-the-current-process-state">Manipulating the Current Process State</a></li>
         <li><a href="#the-process-family-tree">The Process Family Tree</a></li>
+        <li><a href="#copy-on-write">Copy-on-write</a></li>
+        <li><a href="#vfork">vfork()</a></li>
+        <li><a href="#kernel-threads">Kernel Threads</a></li>
+        <li><a href="#process-termination">Process Termination</a></li>
       </ol>
     </li>
-    <li><a href="#reference">Reference:</a></li>
+    <li><a href="#reference">Reference</a></li>
   </ol>
 </nav>
         </div>
@@ -322,7 +326,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -396,7 +400,49 @@
 <li>All processes are descendants of the init process, whose PID is one.</li>
 <li>Every process on the system has exactly one parent. Likewise, every process has zero or more children.</li>
 </ul>
-<h2 id="reference">Reference:
+<h3 id="copy-on-write">Copy-on-write
+</h3><ul>
+<li>
+<p>Copy-on-write (or COW) is a technique to delay or altogether prevent copying of the data.</p>
+</li>
+<li>
+<p>The duplication of resources occurs only when they are written.</p>
+</li>
+<li>
+<p>The only overhead incurred by fork() is the duplication of the parent’s page tables and the creation of a unique process descriptor for the child.</p>
+</li>
+</ul>
+<h3 id="vfork">vfork()
+</h3><ul>
+<li>
+<p>The vfork() system call has the same effect as fork(), except that the page table entries of the parent process are not copied.</p>
+</li>
+<li>
+<p>vfork() temporarily allows the child to share the parent’s address space, but the parent’s address space is preserved intact because the parent is suspended and the child either calls exec() (creating a new address space) or _exit().</p>
+</li>
+</ul>
+<h3 id="kernel-threads">Kernel Threads
+</h3><ul>
+<li>
+<p>A kernel-level process that runs entirely in kernel mode.</p>
+</li>
+<li>
+<p>No user address space (<code>mm_struct = NULL</code>).</p>
+</li>
+<li>
+<p>Used for internal OS tasks like scheduling, memory management, and background work.</p>
+</li>
+</ul>
+<h3 id="process-termination">Process Termination
+</h3><ul>
+<li>
+<p><code>do_exit()</code> kills the process and turns it into a zombie for the parent to collect</p>
+</li>
+<li>
+<p><code>release_task()</code> is the final step that frees the task_struct and completely removes the process from the kernel.</p>
+</li>
+</ul>
+<h2 id="reference">Reference
 </h2><ol>
 <li>Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.</li>
 </ol>

@@ -71,7 +71,49 @@
 &lt;li&gt;All processes are descendants of the init process, whose PID is one.&lt;/li&gt;
 &lt;li&gt;Every process on the system has exactly one parent. Likewise, every process has zero or more children.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;reference&#34;&gt;Reference:
+&lt;h3 id=&#34;copy-on-write&#34;&gt;Copy-on-write
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Copy-on-write (or COW) is a technique to delay or altogether prevent copying of the data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The duplication of resources occurs only when they are written.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The only overhead incurred by fork() is the duplication of the parent’s page tables and the creation of a unique process descriptor for the child.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;vfork&#34;&gt;vfork()
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The vfork() system call has the same effect as fork(), except that the page table entries of the parent process are not copied.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;vfork() temporarily allows the child to share the parent’s address space, but the parent’s address space is preserved intact because the parent is suspended and the child either calls exec() (creating a new address space) or _exit().&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;kernel-threads&#34;&gt;Kernel Threads
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A kernel-level process that runs entirely in kernel mode.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No user address space (&lt;code&gt;mm_struct = NULL&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Used for internal OS tasks like scheduling, memory management, and background work.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;process-termination&#34;&gt;Process Termination
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;do_exit()&lt;/code&gt; kills the process and turns it into a zombie for the parent to collect&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;release_task()&lt;/code&gt; is the final step that frees the task_struct and completely removes the process from the kernel.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.&lt;/li&gt;
 &lt;/ol&gt;
