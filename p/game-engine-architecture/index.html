@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.">
-<title>Distributed Systems</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="This blog is my learning notes while reading Game Engine Architecture. I’m using it to understand how game engine works under the hood and to keep track of what I learn along the way.">
+<title>Game Engine Architecture</title>
 
-<link rel='canonical' href='https://jiajun2001.github.io/p/distributed-systems/'>
+<link rel='canonical' href='https://jiajun2001.github.io/p/game-engine-architecture/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Distributed Systems">
-<meta property='og:description' content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.">
-<meta property='og:url' content='https://jiajun2001.github.io/p/distributed-systems/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Game Engine Architecture">
+<meta property='og:description' content="This blog is my learning notes while reading Game Engine Architecture. I’m using it to understand how game engine works under the hood and to keep track of what I learn along the way.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/game-engine-architecture/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Distributed Systems' /><meta property='article:published_time' content='2025-08-03T10:27:22&#43;10:30'/><meta property='article:modified_time' content='2025-08-03T10:27:22&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/distributed-systems/picture.png' />
-<meta name="twitter:title" content="Distributed Systems">
-<meta name="twitter:description" content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jiajun2001.github.io/p/distributed-systems/picture.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Game Engine' /><meta property='article:published_time' content='2026-01-14T14:49:06&#43;10:30'/><meta property='article:modified_time' content='2026-01-14T14:49:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/game-engine-architecture/image.png' />
+<meta name="twitter:title" content="Game Engine Architecture">
+<meta name="twitter:description" content="This blog is my learning notes while reading Game Engine Architecture. I’m using it to understand how game engine works under the hood and to keep track of what I learn along the way."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/game-engine-architecture/image.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -229,10 +229,14 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#what-is-a-distributed-system">What is a distributed system</a></li>
-    <li><a href="#key-challenges">Key Challenges</a></li>
-    <li><a href="#rpc">RPC</a></li>
-    <li><a href="#java-rmi">Java RMI</a></li>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#what-is-a-game-engine">What is a game engine</a></li>
+        <li><a href="#some-basic-concepts">Some Basic Concepts</a></li>
+        <li><a href="#basic-workflow">Basic Workflow</a></li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
   </ol>
 </nav>
         </div>
@@ -247,13 +251,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/distributed-systems/">
-                <img src="/p/distributed-systems/picture_hu_4f3b4babf6cc32bb.png"
-                        srcset="/p/distributed-systems/picture_hu_4f3b4babf6cc32bb.png 800w, /p/distributed-systems/picture_hu_a00a36654affa708.png 1600w"
+            <a href="/p/game-engine-architecture/">
+                <img src="/p/game-engine-architecture/image_hu_b12d2540bb20b01.png"
+                        srcset="/p/game-engine-architecture/image_hu_b12d2540bb20b01.png 800w, /p/game-engine-architecture/image_hu_753da1c87adbdf40.png 1600w"
                         width="800" 
-                        height="485" 
+                        height="277" 
                         loading="lazy"
-                        alt="Featured image of post Distributed Systems" />
+                        alt="Featured image of post Game Engine Architecture" />
                 
             </a>
         </div>
@@ -272,12 +276,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/distributed-systems/">Distributed Systems</a>
+            <a href="/p/game-engine-architecture/">Game Engine Architecture</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.
+            This blog is my learning notes while reading Game Engine Architecture. I’m using it to understand how game engine works under the hood and to keep track of what I learn along the way.
         </h3>
         
     </div>
@@ -298,7 +302,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 03, 2025</time>
+                <time class="article-time--published">Jan 14, 2026</time>
             </div>
         
 
@@ -313,7 +317,7 @@
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -328,113 +332,120 @@
     <section class="article-content">
     
     
-    <br />
-<h2 id="what-is-a-distributed-system">What is a distributed system
-</h2><ul>
-<li>A system where the software components that make up the system execute on two (or typically more) computers.</li>
+    <h2 id="introduction">Introduction
+</h2><h3 id="what-is-a-game-engine">What is a game engine
+</h3><ul>
+<li>Software that is extensible and can be used as the foundation for many different games without major modification.</li>
 </ul>
-<h2 id="key-challenges">Key Challenges
-</h2><ul>
-<li>Heterogeneity
-<ul>
-<li>Varieties and differences in networks, computer hardware, OS, programming languages, implementations.</li>
-<li>Address heterogeneity through the use of middleware.</li>
-</ul>
+<h3 id="some-basic-concepts">Some Basic Concepts
+</h3><ul>
+<li>
+<p>A view frustum is a pyramid-shaped volume representing the camera’s visible space, used to determine whether objects should be rendered based on whether they lie inside or outside this space.</p>
 </li>
-<li>Scalability
-<ul>
-<li>A scalable system operates effectively when there is a significant increase in the number of resources and the number of users. Scalability is a mean for controlling performance loss and avoiding performance bottlenecks.</li>
-</ul>
+<li>
+<p>Frustum Culling is a fundamental visibility optimization that skips rendering objects completely outside the camera’s view frustum, reducing draw calls and CPU/GPU workload at minimal cost.</p>
 </li>
-<li>Transparency
-<ul>
-<li>Concealment from the user and application programmer of the separation of components in a distributed system.</li>
-<li>Access transparency: local and remote resources can be accessed using identical operations.</li>
-<li>Location transparency: resources can be accessed without knowledge of their physical or network location.</li>
-</ul>
+<li>
+<p>Occlusion Culling is a visibility optimization technique that avoids rendering objects fully hidden behind other geometry, significantly reducing overdraw and GPU workload in complex scenes.</p>
 </li>
-<li>Openness
-<ul>
-<li>Can the system be extended and re-implemented</li>
-<li>Degree to which new resources-sharing services can be added and be made available for use by a variety of client programs.</li>
-<li>Specification and documentation of key interfaces must be published.</li>
-<li>Open Systems: An open system is one where the components are built to common public standards.</li>
-</ul>
+<li>
+<p>A bounding volume is a simple geometric shape used to roughly represent a complex object, enabling fast visibility and collision decisions in a game engine, while a Bounding Sphere is one specific type of bounding volume shaped as a sphere.</p>
 </li>
-<li>Security
-<ul>
-<li>A variety of points that need to be protected: data flow, network, coordination and allocation service, data management / consistency service.</li>
-</ul>
+<li>
+<p>A Bounding Volume Hierarchy (BVH) is a tree structure of bounding volumes, allowing efficient visibility and collision tests by quickly excluding entire branches that are outside the camera view or occluded.</p>
 </li>
 </ul>
-<h2 id="rpc">RPC
-</h2><ul>
-<li>Definition: RPC is a protocol that lets a program call a function on a remote machine as if it were a local function call.
-<img src="rpc.png" width=900px align="mid"></li>
-<li>Components:
-<ul>
-<li>Client Stub: Acts like a local function but sends a request over the network</li>
-<li>Server Stub (Skeleton): Receives the request and invokes the real function</li>
-<li>Transport: Often uses HTTP, TCP, or HTTP/2</li>
-</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">      BVH Root
+</span></span><span class="line"><span class="cl">       /   \
+</span></span><span class="line"><span class="cl">   Node1    Node2
+</span></span><span class="line"><span class="cl">   /   \    /   \
+</span></span><span class="line"><span class="cl"> Obj1 Obj2 Obj3 Obj4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>An Axis-Aligned Bounding Box (AABB) is a box-shaped bounding volume with edges aligned to the world axes, used for fast visibility and collision checks. When an object rotates, the AABB may need to enlarge to fully contain it, making the box appear “fatter.”</p>
+</li>
+<li>
+<p>Hierarchical Z-Buffer (HZB) is a GPU optimization technique that builds a multi-resolution depth map to quickly determine if objects are occluded, reducing the need for per-pixel visibility tests.</p>
+</li>
+<li>
+<p>An Oriented Bounding Box (OBB) is a box-shaped bounding volume that can rotate to align with an object, providing a tighter fit for precise collision detection.</p>
 </li>
 </ul>
-<h2 id="java-rmi">Java RMI
-</h2><ul>
-<li>A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).</li>
-<li>Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
-<ul>
-<li>Write code in C -&gt; RPC (Remote Procedure Call)</li>
-</ul>
-</li>
-<li>Connection
-<ul>
-<li>Server publishes its name and location to the RMI Registry
-<ul>
-<li>through the RMI URLs</li>
-</ul>
-</li>
-<li>Client asks the RMI Registry about the server.</li>
-<li>Both the RMIRegistry and Server listen on sockets for remote requests.</li>
-<li>Clients need to identify both the host where the server resides and the socket number (port) that it is listening on.</li>
-</ul>
-</li>
-<li>Invocation
-<ul>
-<li>Server gives its Stub (local proxy) to the RMIRegistry, which gives it to the client.
-<ul>
-<li>Stub implements the same method signatures as the Server.</li>
-</ul>
-</li>
-<li>The Client invokes methods on the Stab as if it were invoking the methods directly on the Server.</li>
-<li>The Stub is then response for sending the request to the Server VM.
-<ul>
-<li>The Stab serialises the method invocation across a socket connection connecting the Client and Server.
-<ul>
-<li>It sends the method name, and the parameters of the method invocation.</li>
-<li>It waits for a return object or exception objects to be sent back.</li>
-<li>Synchronous method invocation</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Server side
-<ul>
-<li>The server has a local proxy (Skeleton) for the Client.</li>
-<li>Skeleton creates a socket on which to listen for Client requests.</li>
-<li>Skeleton receives requests, de-serialises them, and invokes the method on the Server on behalf of the Client.</li>
-<li>Skeleton sends return result or exception objects back to Stub.</li>
-</ul>
-</li>
-<li>An Open Java RMI System
-<ul>
-<li>The communications protocol used when sending data between the Stub and Skeleton</li>
-<li>The application specific definition of the methods available for remote method invocation</li>
-</ul>
-</li>
-</ul>
+<h3 id="basic-workflow">Basic Workflow
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">                        +----------------+
+</span></span><span class="line"><span class="cl">                        |   Camera       |
+</span></span><span class="line"><span class="cl">                        |   View Frustum |
+</span></span><span class="line"><span class="cl">                        +-------+--------+
+</span></span><span class="line"><span class="cl">                                |
+</span></span><span class="line"><span class="cl">                                v
+</span></span><span class="line"><span class="cl">                     +----------------------+
+</span></span><span class="line"><span class="cl">                     |  Frustum Culling     |
+</span></span><span class="line"><span class="cl">                     |  (Bounding Sphere)   |
+</span></span><span class="line"><span class="cl">                     +----------------------+
+</span></span><span class="line"><span class="cl">                                |
+</span></span><span class="line"><span class="cl">                                v
+</span></span><span class="line"><span class="cl">                     +----------------------+
+</span></span><span class="line"><span class="cl">                     |  Occlusion Culling   |
+</span></span><span class="line"><span class="cl">                     |  (AABB / OBB + HZB)  |
+</span></span><span class="line"><span class="cl">                     +----------------------+
+</span></span><span class="line"><span class="cl">                                |
+</span></span><span class="line"><span class="cl">                                v
+</span></span><span class="line"><span class="cl">                     +----------------------+
+</span></span><span class="line"><span class="cl">                     |   Render List        |
+</span></span><span class="line"><span class="cl">                     +----------------------+
+</span></span><span class="line"><span class="cl">                                |
+</span></span><span class="line"><span class="cl">                                v
+</span></span><span class="line"><span class="cl">                      +-----------------+
+</span></span><span class="line"><span class="cl">                      |     GPU Draw    |
+</span></span><span class="line"><span class="cl">                      +-----------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference
+</h2><ol>
+<li>Gregory, J. (2018). Game Engine Architecture (3rd ed.). CRC Press.</li>
+</ol>
+
 </section>
 
 
@@ -442,7 +453,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/distributed-systems/">Distributed Systems</a>
+            <a href="/tags/game-engine/">Game Engine</a>
         
     </section>
 
@@ -461,30 +472,6 @@
     <h2 class="section-title">Related content</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/game-engine-architecture/">
-        
-        
-            <div class="article-image">
-                <img src="/p/game-engine-architecture/image.a3110b84295eb4394625d4aa38b35a21_hu_588b957cef99d36c.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Game Engine Architecture"
-                        
-                        data-hash="md5-oxELhCletDlGJdSqOLNaIQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Game Engine Architecture</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -529,6 +516,30 @@
 
         <div class="article-details">
             <h2 class="article-title">Understand Linux Kernel</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/distributed-systems/">
+        
+        
+            <div class="article-image">
+                <img src="/p/distributed-systems/picture.618932ed670aff47b2f51e78153c476f_hu_cd24d62fd0f5c35c.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Distributed Systems"
+                        
+                        data-hash="md5-YYky7WcK/0ey9R54FTxHbw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Distributed Systems</h2>
         </div>
     </a>
 </article>
