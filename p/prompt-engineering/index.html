@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way.">
-<title>Understand Linux Kernel</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Prompt engineering is about asking AI the right way. As AI tools become part of daily work and learning, the quality of their output depends largely on how clearly we communicate our intent. This blog shares simple, practical techniques for writing better prompts so you can get more accurate, useful, and consistent results from AI.">
+<title>Prompt Engineering</title>
 
-<link rel='canonical' href='https://jiajun2001.github.io/p/understand-linux-kernel/'>
+<link rel='canonical' href='https://jiajun2001.github.io/p/prompt-engineering/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Understand Linux Kernel">
-<meta property='og:description' content="This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way.">
-<meta property='og:url' content='https://jiajun2001.github.io/p/understand-linux-kernel/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Prompt Engineering">
+<meta property='og:description' content="Prompt engineering is about asking AI the right way. As AI tools become part of daily work and learning, the quality of their output depends largely on how clearly we communicate our intent. This blog shares simple, practical techniques for writing better prompts so you can get more accurate, useful, and consistent results from AI.">
+<meta property='og:url' content='https://jiajun2001.github.io/p/prompt-engineering/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:published_time' content='2026-01-01T14:49:06&#43;10:30'/><meta property='article:modified_time' content='2026-01-01T14:49:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/understand-linux-kernel/Linux.png' />
-<meta name="twitter:title" content="Understand Linux Kernel">
-<meta name="twitter:description" content="This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jiajun2001.github.io/p/understand-linux-kernel/Linux.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='AI' /><meta property='article:published_time' content='2026-01-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-01-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://jiajun2001.github.io/p/prompt-engineering/image.png' />
+<meta name="twitter:title" content="Prompt Engineering">
+<meta name="twitter:description" content="Prompt engineering is about asking AI the right way. As AI tools become part of daily work and learning, the quality of their output depends largely on how clearly we communicate our intent. This blog shares simple, practical techniques for writing better prompts so you can get more accurate, useful, and consistent results from AI."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jiajun2001.github.io/p/prompt-engineering/image.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -229,18 +229,7 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#process-management">Process Management</a>
-      <ol>
-        <li><a href="#the-process">The process</a></li>
-        <li><a href="#allocating-the-process-descriptor">Allocating the Process Descriptor</a></li>
-        <li><a href="#manipulating-the-current-process-state">Manipulating the Current Process State</a></li>
-        <li><a href="#the-process-family-tree">The Process Family Tree</a></li>
-        <li><a href="#copy-on-write">Copy-on-write</a></li>
-        <li><a href="#vfork">vfork()</a></li>
-        <li><a href="#kernel-threads">Kernel Threads</a></li>
-        <li><a href="#process-termination">Process Termination</a></li>
-      </ol>
-    </li>
+    <li><a href="#the-six-prompt-components">The Six Prompt Components</a></li>
     <li><a href="#reference">Reference</a></li>
   </ol>
 </nav>
@@ -256,13 +245,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/understand-linux-kernel/">
-                <img src="/p/understand-linux-kernel/Linux_hu_dc403b7b6815285.png"
-                        srcset="/p/understand-linux-kernel/Linux_hu_dc403b7b6815285.png 800w, /p/understand-linux-kernel/Linux_hu_99a205f27cc4ff2.png 1600w"
+            <a href="/p/prompt-engineering/">
+                <img src="/p/prompt-engineering/image_hu_ed46c100297630be.png"
+                        srcset="/p/prompt-engineering/image_hu_ed46c100297630be.png 800w, /p/prompt-engineering/image_hu_4201236c788a6b10.png 1600w"
                         width="800" 
-                        height="254" 
+                        height="450" 
                         loading="lazy"
-                        alt="Featured image of post Understand Linux Kernel" />
+                        alt="Featured image of post Prompt Engineering" />
                 
             </a>
         </div>
@@ -271,10 +260,6 @@
     <div class="article-details">
     
     <header class="article-category">
-        
-            <a href="/categories/basic-concept/" >
-                Basic Concept
-            </a>
         
             <a href="/categories/research/" >
                 Research
@@ -285,12 +270,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/understand-linux-kernel/">Understand Linux Kernel</a>
+            <a href="/p/prompt-engineering/">Prompt Engineering</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way.
+            Prompt engineering is about asking AI the right way. As AI tools become part of daily work and learning, the quality of their output depends largely on how clearly we communicate our intent. This blog shares simple, practical techniques for writing better prompts so you can get more accurate, useful, and consistent results from AI.
         </h3>
         
     </div>
@@ -311,7 +296,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jan 01, 2026</time>
+                <time class="article-time--published">Jan 16, 2026</time>
             </div>
         
 
@@ -326,7 +311,7 @@
 
 
                 <time class="article-time--reading">
-                    3 minute read
+                    1 minute read
                 </time>
             </div>
         
@@ -341,112 +326,29 @@
     <section class="article-content">
     
     
-    <h2 id="process-management">Process Management
-</h2><h3 id="the-process">The process
-</h3><ul>
-<li>Linux does not differentiate between threads and process.</li>
-<li>Processes provide two virtualizations, a virtualized processor and virtual memory.</li>
-<li>Execution Workflow:
-<ul>
-<li>fork(): creates a new process by duplicating an existing one</li>
-<li>exec(): creates a new address space and loads a new program into it</li>
-<li>exit(): terminates the process and frees all its resources. When a process exits, it is placed into a special zombie state until the parent calls wait() or waitpid().</li>
-<li>wait4(): enables a process to wait for the termination of a specific process</li>
-</ul>
-</li>
-</ul>
-<h3 id="allocating-the-process-descriptor">Allocating the Process Descriptor
-</h3><ul>
-<li>The kernel stores the list of processes in a circular doubly linked list called the task list. Each element in the task list is a process descriptor of the type <code>struct task_struct</code>.</li>
-<li>The process descriptor (<code>struct task_struct</code>) contains all the information about a specific process.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">High address
-</span></span><span class="line"><span class="cl">+--------------------+  ← start of kernel stack
-</span></span><span class="line"><span class="cl">|                    |
-</span></span><span class="line"><span class="cl">|   kernel stack     |  ← function calls, locals
-</span></span><span class="line"><span class="cl">|                    |
-</span></span><span class="line"><span class="cl">|        ↓           |
-</span></span><span class="line"><span class="cl">+--------------------+
-</span></span><span class="line"><span class="cl">|  thread_info       |  which points to task_struct
-</span></span><span class="line"><span class="cl">+--------------------+
-</span></span><span class="line"><span class="cl">Low address
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="manipulating-the-current-process-state">Manipulating the Current Process State
-</h3><ul>
-<li><code>set_task_state(task, state)</code> sets a process’s state.
-<ul>
-<li>On single-CPU systems, it’s just task-&gt;state = state.</li>
-<li>On multi-CPU (SMP) systems, it also includes a memory barrier to ensure other CPUs see previous memory writes before the state change.</li>
-</ul>
-</li>
-</ul>
-<h3 id="the-process-family-tree">The Process Family Tree
-</h3><ul>
-<li>All processes are descendants of the init process, whose PID is one.</li>
-<li>Every process on the system has exactly one parent. Likewise, every process has zero or more children.</li>
-</ul>
-<h3 id="copy-on-write">Copy-on-write
-</h3><ul>
-<li>
-<p>Copy-on-write (or COW) is a technique to delay or altogether prevent copying of the data.</p>
-</li>
-<li>
-<p>The duplication of resources occurs only when they are written.</p>
-</li>
-<li>
-<p>The only overhead incurred by fork() is the duplication of the parent’s page tables and the creation of a unique process descriptor for the child.</p>
-</li>
-</ul>
-<h3 id="vfork">vfork()
-</h3><ul>
-<li>
-<p>The vfork() system call has the same effect as fork(), except that the page table entries of the parent process are not copied.</p>
-</li>
-<li>
-<p>vfork() temporarily allows the child to share the parent’s address space, but the parent’s address space is preserved intact because the parent is suspended and the child either calls exec() (creating a new address space) or _exit().</p>
-</li>
-</ul>
-<h3 id="kernel-threads">Kernel Threads
-</h3><ul>
-<li>
-<p>A kernel-level process that runs entirely in kernel mode.</p>
-</li>
-<li>
-<p>No user address space (<code>mm_struct = NULL</code>).</p>
-</li>
-<li>
-<p>Used for internal OS tasks like scheduling, memory management, and background work.</p>
-</li>
-</ul>
-<h3 id="process-termination">Process Termination
-</h3><ul>
-<li>
-<p><code>do_exit()</code> kills the process and turns it into a zombie for the parent to collect</p>
-</li>
-<li>
-<p><code>release_task()</code> is the final step that frees the task_struct and completely removes the process from the kernel.</p>
-</li>
-</ul>
-<h2 id="reference">Reference
+    <h2 id="the-six-prompt-components">The Six Prompt Components
 </h2><ol>
-<li>Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.</li>
+<li>
+<p>Task : Start with an action verb.</p>
+</li>
+<li>
+<p>Context: User background, what success looks like, and environment or conditions of user.</p>
+</li>
+<li>
+<p>Examples: Provide examples of the best or real results. It learns very fast through examples.</p>
+</li>
+<li>
+<p>Persona: Act like a ______. (Also add person famous for that).</p>
+</li>
+<li>
+<p>Format: Tell the AI the right output format you want the answer in.</p>
+</li>
+<li>
+<p>Tone: Specify the desired tone, whether casual, formal, enthusiastic, or specific feelings, guiding ChatGPT to match the writing style.</p>
+</li>
 </ol>
-
+<h2 id="reference">Reference
+</h2>
 </section>
 
 
@@ -454,7 +356,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/operating-system/">Operating System</a>
+            <a href="/tags/ai/">AI</a>
         
     </section>
 
@@ -476,23 +378,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/prompt-engineering/">
+    <a href="/p/understand-linux-kernel/">
         
         
             <div class="article-image">
-                <img src="/p/prompt-engineering/image.9e51154a9d4c9b3fd4035ab8ef14c7db_hu_550ef8e28a86742a.png" 
+                <img src="/p/understand-linux-kernel/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Prompt Engineering"
+                        alt="Featured image of post Understand Linux Kernel"
                         
-                        data-hash="md5-nlEVSp1Mmz/UA1q47xTH2w==">
+                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Prompt Engineering</h2>
+            <h2 class="article-title">Understand Linux Kernel</h2>
         </div>
     </a>
 </article>
@@ -500,95 +402,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/game-engine-architecture/">
+    <a href="/p/adelaide-summer-research-project/">
         
         
             <div class="article-image">
-                <img src="/p/game-engine-architecture/image.a3110b84295eb4394625d4aa38b35a21_hu_588b957cef99d36c.png" 
+                <img src="/p/adelaide-summer-research-project/background.58fba13d820e9902a5084a6fecdfe765_hu_3e67bc4c4cf30444.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Game Engine Architecture"
+                        alt="Featured image of post Adelaide Summer Research Project"
                         
-                        data-hash="md5-oxELhCletDlGJdSqOLNaIQ==">
+                        data-hash="md5-WPuhPYIOmQKlCEpv7N/nZQ==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Game Engine Architecture</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/advanced-c-topics/">
-        
-        
-            <div class="article-image">
-                <img src="/p/advanced-c-topics/picture.f6e04962e9e01951e53a220eef95190a_hu_d0d3d7a825f23fa4.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Advanced C&#43;&#43; Topics"
-                        
-                        data-hash="md5-9uBJYungGVHlOiIO75UZCg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Advanced C&#43;&#43; Topics</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/distributed-systems/">
-        
-        
-            <div class="article-image">
-                <img src="/p/distributed-systems/picture.618932ed670aff47b2f51e78153c476f_hu_cd24d62fd0f5c35c.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Distributed Systems"
-                        
-                        data-hash="md5-YYky7WcK/0ey9R54FTxHbw==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Distributed Systems</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/compile-c-program/">
-        
-        
-            <div class="article-image">
-                <img src="/p/compile-c-program/picture.e659a3ff547f54ab3ac979290b391bb6_hu_aae11ca83aa16817.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Compile C&#43;&#43; Program"
-                        
-                        data-hash="md5-5lmj/1R/VKs6yXkpCzkbtg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Compile C&#43;&#43; Program</h2>
+            <h2 class="article-title">Adelaide Summer Research Project</h2>
         </div>
     </a>
 </article>
