@@ -266,6 +266,7 @@
             <li><a href="#auto-in-a-lambda-parameter">auto in a lambda parameter</a></li>
           </ol>
         </li>
+        <li><a href="#one-example-showing-template-type-deduction-is-working">One Example showing template type deduction is working</a></li>
       </ol>
     </li>
     <li><a href="#understand-decltype">Understand decltype</a>
@@ -399,7 +400,7 @@
 
 
                 <time class="article-time--reading">
-                    17 minute read
+                    18 minute read
                 </time>
             </div>
         
@@ -1289,6 +1290,59 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// -std=c++14
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><h3 id="one-example-showing-template-type-deduction-is-working">One Example showing template type deduction is working
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Lambda returning decltype(auto) → preserves reference &amp; const
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">get_ref</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// preserves reference &amp; constness
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Using with a const int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">get_ref</span><span class="p">(</span><span class="n">ci</span><span class="p">);</span>  <span class="c1">// type deduced as const int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 42
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// r = 100; // ❌ ERROR: r is const
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Using with a non-const int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">&amp;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">get_ref</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>          <span class="c1">// type deduced as int&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">s</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>                       <span class="c1">// modifies i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 20 ✅
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h2 id="understand-decltype">Understand decltype
 </h2><h3 id="decltype-in-c11">decltype in C++11
 </h3><div class="highlight"><div class="chroma">
@@ -1343,15 +1397,17 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">decltype</span><span class="p">(</span><span class="k">auto</span><span class="p">)</span> <span class="n">f1</span><span class="p">()</span> <span class="p">{</span>
@@ -1361,7 +1417,9 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">decltype</span><span class="p">(</span><span class="k">auto</span><span class="p">)</span> <span class="n">f2</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// decltype((x)) -&gt; int&amp; (Undefined Behaviour)
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// decltype((x)) -&gt; int&amp; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Undefined Behaviour
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// The lifetime of x ends as soon as the function returns
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
