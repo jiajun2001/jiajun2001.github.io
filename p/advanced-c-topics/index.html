@@ -10,7 +10,7 @@
 <meta property='og:description' content="After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you'll find something useful here.">
 <meta property='og:url' content='https://jiajun2001.github.io/p/advanced-c-topics/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2026-01-11T15:25:06&#43;10:30'/><meta property='article:modified_time' content='2026-01-11T15:25:06&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Programming Language' /><meta property='article:published_time' content='2026-01-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-01-17T00:00:00&#43;00:00'/><meta property='og:image' content='https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg' />
 <meta name="twitter:title" content="Advanced C++ Topics">
 <meta name="twitter:description" content="After 2.5 years of working professionally as a software engineer, I’ve come to realize how deep and nuanced modern C++ can be—far beyond the basics most of us learn in school or pick up on the job. This blog is my personal space to revisit, revise, and strengthen my understanding of advanced C++ topics. I hope you'll find something useful here."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://jiajun2001.github.io/p/advanced-c-topics/picture.jpg' />
@@ -73,7 +73,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Jason&#39;s blog</a></h1>
-            <h2 class="site-description">ARM Architecture Simulation C/C&#43;&#43; Low-Level Programming Python Java Assembly Linux University of Adelaide (BSc CS) jiajunyu@yahoo.com</h2>
+            <h2 class="site-description">ARM Architecture Simulation | C/C&#43;&#43; Low-Level Programming | Python | Java | Assembly | Linux | University of Adelaide (BSc CS) | jiajunyu@yahoo.com</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -384,7 +384,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jan 11, 2026</time>
+                <time class="article-time--published">Jan 17, 2026</time>
             </div>
         
 
@@ -1091,18 +1091,30 @@
 <p>An interesting case:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">);</span> <span class="c1">// param is still passed by value
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="k">const</span> <span class="n">ptr</span> <span class="o">=</span> <span class="s">&#34;Fun with pointers&#34;</span><span class="p">;</span> <span class="c1">// ptr is const pointer to const object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// The rightmost const: ptr itself is const. 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Once ptr is initialized, you cannot change what it points to.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// The left const: the data being pointed to is const
+</span></span></span><span class="line"><span class="cl"><span class="c1">// We cannot modify the characters through ptr.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span> <span class="c1">// pass arg of type const char * const
 </span></span></span></code></pre></td></tr></table>
@@ -1993,6 +2005,8 @@
     </section>
     
     <section class="powerby">
+        
+            Kernel panic - not syncing: footer overloaded <br/>
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
