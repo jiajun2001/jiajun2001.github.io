@@ -257,6 +257,7 @@
         <li><a href="#function-arguments">Function Arguments</a></li>
       </ol>
     </li>
+    <li><a href="#view-deducted-types-by-compiler-diagnostics">View Deducted Types by Compiler Diagnostics</a></li>
     <li><a href="#auto-type-deduction">auto type deduction</a>
       <ol>
         <li><a href="#equivalence-between-template-type-deduction-and-auto-type-deduction">Equivalence Between Template Type Deduction and auto Type Deduction</a></li>
@@ -1257,7 +1258,46 @@
 <ol>
 <li>Function-to-pointer decay rule.</li>
 </ol>
-<h2 id="auto-type-deduction">auto type deduction
+<h2 id="view-deducted-types-by-compiler-diagnostics">View Deducted Types by Compiler Diagnostics
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">// declare a class template that we don’t define
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TD</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TD</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">obj</span><span class="p">;</span> <span class="c1">// This will cause a compilation error 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// compiler_diagnostics.cpp:7:25: 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// error: implicit instantiation of undefined template &#39;TD&lt;const int *const &amp;&gt;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="auto-type-deduction">auto type deduction
 </h2><h3 id="equivalence-between-template-type-deduction-and-auto-type-deduction">Equivalence Between Template Type Deduction and auto Type Deduction
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
