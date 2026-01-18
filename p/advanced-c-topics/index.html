@@ -259,6 +259,7 @@
     </li>
     <li><a href="#auto-type-deduction">auto type deduction</a>
       <ol>
+        <li><a href="#equivalence-between-template-type-deduction-and-auto-type-deduction">Equivalence Between Template Type Deduction and auto Type Deduction</a></li>
         <li><a href="#a-special-type-deduction-rule-for-auto">A special type deduction rule for auto</a></li>
         <li><a href="#2-cases-when-auto-employs-template-type-deduction">2 cases when auto employs template type deduction</a>
           <ol>
@@ -400,7 +401,7 @@
 
 
                 <time class="article-time--reading">
-                    18 minute read
+                    19 minute read
                 </time>
             </div>
         
@@ -1121,8 +1122,60 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>const-ness of ptr will be ignored, and the type deduced for param will be const char*</li>
+<li>const-ness of ptr will be ignored, and the type deduced for param will be <code>const char*</code></li>
 <li>The const-ness of what ptr points to is preserved during type deduction, but the const-ness of ptr itself is ignored when copying it to create the new pointer, param.</li>
+</ul>
+<p>Another interesting case</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">param</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// param is of type: const int* const&amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1) Attempting to modify the pointer itself (top-level const):
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// param = nullptr; // Compilation error: pointer itself is const
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 2) Attempting to modify the value pointed to (low-level const):
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// *param = 100;    // Compilation error: pointer points to const int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;*param = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">param</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// Prints 42
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>T is deduced as <code>const int*</code>, so param becomes <code>const T&amp;</code> → <code>const (const int*)&amp;</code>
+<ul>
+<li>First const → top-level const, applies to T itself → pointer cannot be reassigned</li>
+<li>(const int*) → pointer points to a const int → low-level const</li>
+</ul>
+</li>
+<li>Merge repeated const: param : <code>const int* const&amp;</code>  // reference to const pointer to const int</li>
 </ul>
 <h3 id="array-arguments">Array Arguments
 </h3><p>Example 1:</p>
@@ -1205,7 +1258,22 @@
 <li>Function-to-pointer decay rule.</li>
 </ol>
 <h2 id="auto-type-deduction">auto type deduction
-</h2><h3 id="a-special-type-deduction-rule-for-auto">A special type deduction rule for auto
+</h2><h3 id="equivalence-between-template-type-deduction-and-auto-type-deduction">Equivalence Between Template Type Deduction and auto Type Deduction
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>        <span class="err">⇔</span> <span class="k">auto</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="p">);</span>       <span class="err">⇔</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">);</span> <span class="err">⇔</span> <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">);</span>      <span class="err">⇔</span> <span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="n">x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="a-special-type-deduction-rule-for-auto">A special type deduction rule for auto
 </h3><p>When the initializer for an auto-declared variable is enclosed in braces, the deduced type is always a <code>std::initializer_list</code>, but template type deduction doesn’t.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1332,12 +1400,12 @@
 </span></span><span class="line"><span class="cl">    <span class="c1">// Using with a const int
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">get_ref</span><span class="p">(</span><span class="n">ci</span><span class="p">);</span>  <span class="c1">// type deduced as const int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 42
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// r = 100; // ❌ ERROR: r is const
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// r = 100; // ERROR: r is const
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Using with a non-const int
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">&amp;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">get_ref</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>          <span class="c1">// type deduced as int&amp;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">s</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>                       <span class="c1">// modifies i
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 20 ✅
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 20
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
