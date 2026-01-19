@@ -278,6 +278,13 @@
         <li><a href="#decltypex">decltype((x))</a></li>
       </ol>
     </li>
+    <li><a href="#prefer-auto-to-explicit-type-declarations">Prefer auto to explicit type declarations</a>
+      <ol>
+        <li><a href="#auto-variables-must-be-initialized">Auto variables must be initialized</a></li>
+        <li><a href="#ability-to-directly-hold-closures">Ability to directly hold closures</a></li>
+        <li><a href="#less-subtle-errors">Less subtle errors</a></li>
+      </ol>
+    </li>
     <li><a href="#distinguish-between--and--when-creating-objects">Distinguish between () and {} when creating objects</a>
       <ol>
         <li><a href="#usage-of-uniform-initialization">Usage of Uniform Initialization</a>
@@ -402,7 +409,7 @@
 
 
                 <time class="article-time--reading">
-                    19 minute read
+                    21 minute read
                 </time>
             </div>
         
@@ -1530,6 +1537,165 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// The lifetime of x ends as soon as the function returns
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="prefer-auto-to-explicit-type-declarations">Prefer auto to explicit type declarations
+</h2><h3 id="auto-variables-must-be-initialized">Auto variables must be initialized
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">x2</span><span class="p">;</span> <span class="c1">// error! initializer required
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="n">x3</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// fine, x&#39;s value is well-defined
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ability-to-directly-hold-closures">Ability to directly hold closures
+</h3><ul>
+<li>
+<p>Directly holding closures with auto is smaller, faster, and simpler.</p>
+</li>
+<li>
+<p>Using <code>auto</code></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">addX</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">__lambda_addX</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// captured variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>  <span class="c1">// direct access
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 1) Compiler generates a unique type for the lambda 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// -&gt; Memory used = exactly what lambda needs (size of captured variables)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2) Call is direct → can be inlined and is very fast
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Using <code>std::function</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">addXFunc</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">callable_base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">call</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">callable_base</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">F</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">callable_wrapper</span> <span class="o">:</span> <span class="n">callable_base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">F</span> <span class="n">f</span><span class="p">;</span> <span class="c1">// store the actual lambda
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">callable_wrapper</span><span class="p">(</span><span class="n">F</span> <span class="n">func</span><span class="p">)</span> <span class="o">:</span> <span class="n">f</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">call</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 1) Memory used = larger, may allocate on heap for bigger closures
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2) Call is indirect via virtual function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">addXFunc(5) -&gt; std::function::operator()(5)
+</span></span></span><span class="line"><span class="cl"><span class="cm">             -&gt; ptr-&gt;call(5)   // virtual call
+</span></span></span><span class="line"><span class="cl"><span class="cm">             -&gt; callable_wrapper::call(5)
+</span></span></span><span class="line"><span class="cl"><span class="cm">             -&gt; lambda.operator()(5)
+</span></span></span><span class="line"><span class="cl"><span class="cm">             -&gt; 10 + 5 = 15
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="less-subtle-errors">Less subtle errors
+</h3><ul>
+<li>Example 1:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// Returns std::vector&lt;int&gt;::size_type,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="c1">// On 64-bit Windows, unsigned is 32 bits
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="c1">// While std::vector&lt;int&gt;::size_type is 64 bits.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="c1">// Better to just use auto
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Example 2:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="nl">p</span> <span class="p">:</span> <span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// do something with p
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// unordered_map actually contains std::pair&lt;const std::string, int&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// C++ creates a temporary std::pair&lt;std::string, int&gt; by copying the key and value from the map’s std::pair&lt;const std::string, int&gt;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="distinguish-between--and--when-creating-objects">Distinguish between () and {} when creating objects
 </h2><p>Uniform Initialization: Introduced in c++11, a single initialization syntax that can, at least in concept, be used anywhere and express everything. It’s based on braces.</p>
