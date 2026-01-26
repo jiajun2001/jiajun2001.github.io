@@ -306,6 +306,7 @@
         </li>
       </ol>
     </li>
+    <li><a href="#prefer-nullptr-to-0-and-null">Prefer <code>nullptr</code> to 0 and null</a></li>
     <li><a href="#use-constexpr-whenever-possible">Use constexpr whenever possible</a>
       <ol>
         <li><a href="#constexpr-object">constexpr object</a></li>
@@ -414,7 +415,7 @@
 
 
                 <time class="article-time--reading">
-                    22 minute read
+                    23 minute read
                 </time>
             </div>
         
@@ -1875,7 +1876,19 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Widget</span> <span class="n">w2</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="nb">true</span><span class="p">};</span> <span class="c1">// uses braces, but now calls std::initializer_list ctor (10 and true convert to long double)
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
+</div><h2 id="prefer-nullptr-to-0-and-null">Prefer <code>nullptr</code> to 0 and null
+</h2><ul>
+<li>
+<p>In C++98, both <code>0</code> and <code>NULL</code> are integral values, not pointers. Although the language allows them to be interpreted as null pointers in pointer contexts, this is only a fallback rule.</p>
+</li>
+<li>
+<p>As a result, overloading functions on pointer and integral types can lead to surprising and counterintuitive behavior: passing 0 or NULL often selects an integer overload, never a pointer one.</p>
+</li>
+<li>
+<p>C++11 introduced <code>nullptr</code> to fix this problem. <code>nullptr</code> has its own type, <code>std::nullptr_t</code>, which is not an integral type but can implicitly convert to any pointer type.</p>
+</li>
+</ul>
+<h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
 </h2><ul>
 <li>Definition: <code>constexpr</code> is a C++ keyword used to indicate that a value or function can be evaluated at compile time. It helps write faster and safer code by enabling computations to be done during compilation rather than at runtime</li>
 </ul>

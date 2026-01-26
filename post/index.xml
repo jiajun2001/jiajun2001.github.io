@@ -1458,7 +1458,19 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Widget&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;w2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// uses braces, but now calls std::initializer_list ctor (10 and true convert to long double)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;use-constexpr-whenever-possible&#34;&gt;Use constexpr whenever possible
+&lt;/div&gt;&lt;h2 id=&#34;prefer-nullptr-to-0-and-null&#34;&gt;Prefer &lt;code&gt;nullptr&lt;/code&gt; to 0 and null
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In C++98, both &lt;code&gt;0&lt;/code&gt; and &lt;code&gt;NULL&lt;/code&gt; are integral values, not pointers. Although the language allows them to be interpreted as null pointers in pointer contexts, this is only a fallback rule.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;As a result, overloading functions on pointer and integral types can lead to surprising and counterintuitive behavior: passing 0 or NULL often selects an integer overload, never a pointer one.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;C++11 introduced &lt;code&gt;nullptr&lt;/code&gt; to fix this problem. &lt;code&gt;nullptr&lt;/code&gt; has its own type, &lt;code&gt;std::nullptr_t&lt;/code&gt;, which is not an integral type but can implicitly convert to any pointer type.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;use-constexpr-whenever-possible&#34;&gt;Use constexpr whenever possible
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Definition: &lt;code&gt;constexpr&lt;/code&gt; is a C++ keyword used to indicate that a value or function can be evaluated at compile time. It helps write faster and safer code by enabling computations to be done during compilation rather than at runtime&lt;/li&gt;
 &lt;/ul&gt;
