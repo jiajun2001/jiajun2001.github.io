@@ -308,6 +308,12 @@
     </li>
     <li><a href="#prefer-nullptr-to-0-and-null">Prefer <code>nullptr</code> to 0 and null</a></li>
     <li><a href="#prefer-alias-declarations-to-typedefs">Prefer alias declarations to <code>typedefs</code></a></li>
+    <li><a href="#declare-overriding-functions-override">Declare overriding functions override</a>
+      <ol>
+        <li><a href="#several-requirements-for-overriding-to-occur">Several requirements for overriding to occur</a></li>
+        <li><a href="#declare-a-derived-class-function-to-be-override">Declare a derived class function to be <code>override</code></a></li>
+      </ol>
+    </li>
     <li><a href="#use-constexpr-whenever-possible">Use constexpr whenever possible</a>
       <ol>
         <li><a href="#constexpr-object">constexpr object</a></li>
@@ -1977,7 +1983,38 @@
 </div>
 </div></li>
 </ul>
-<h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
+<h2 id="declare-overriding-functions-override">Declare overriding functions override
+</h2><h3 id="several-requirements-for-overriding-to-occur">Several requirements for overriding to occur
+</h3><ul>
+<li>
+<p>The base class function must be virtual</p>
+</li>
+<li>
+<p>Base and derived functions must be identical in terms of: name / parameter types / constness / return types / exception specifications / reference qualifiers</p>
+</li>
+</ul>
+<h3 id="declare-a-derived-class-function-to-be-override">Declare a derived class function to be <code>override</code>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Derived</span><span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"> <span class="k">virtual</span> <span class="kt">void</span> <span class="n">mf1</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">mf2</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">mf3</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">mf4</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="use-constexpr-whenever-possible">Use constexpr whenever possible
 </h2><ul>
 <li>Definition: <code>constexpr</code> is a C++ keyword used to indicate that a value or function can be evaluated at compile time. It helps write faster and safer code by enabling computations to be done during compilation rather than at runtime</li>
 </ul>
