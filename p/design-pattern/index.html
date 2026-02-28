@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.">
-<title>Distributed Systems</title>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way.">
+<title>Design Pattern</title>
 
-<link rel='canonical' href='https://jiajun2001.github.io/p/distributed-systems/'>
+<link rel='canonical' href='http://localhost:1313/p/design-pattern/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Distributed Systems">
-<meta property='og:description' content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.">
-<meta property='og:url' content='https://jiajun2001.github.io/p/distributed-systems/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Design Pattern">
+<meta property='og:description' content="This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way.">
+<meta property='og:url' content='http://localhost:1313/p/design-pattern/'>
 <meta property='og:site_name' content='Jason&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Distributed Systems' /><meta property='article:published_time' content='2025-08-03T10:27:22&#43;10:30'/><meta property='article:modified_time' content='2025-08-03T10:27:22&#43;10:30'/><meta property='og:image' content='https://jiajun2001.github.io/p/distributed-systems/picture.png' />
-<meta name="twitter:title" content="Distributed Systems">
-<meta name="twitter:description" content="Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://jiajun2001.github.io/p/distributed-systems/picture.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Operating System' /><meta property='article:published_time' content='2026-01-01T14:49:06&#43;10:30'/><meta property='article:modified_time' content='2026-01-01T14:49:06&#43;10:30'/><meta property='og:image' content='http://localhost:1313/p/understand-linux-kernel/Linux.png' />
+<meta name="twitter:title" content="Design Pattern">
+<meta name="twitter:description" content="This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/understand-linux-kernel/Linux.png' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -229,10 +229,19 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#what-is-a-distributed-system">What is a distributed system</a></li>
-    <li><a href="#key-challenges">Key Challenges</a></li>
-    <li><a href="#rpc">RPC</a></li>
-    <li><a href="#java-rmi">Java RMI</a></li>
+    <li><a href="#process-management">Process Management</a>
+      <ol>
+        <li><a href="#the-process">The process</a></li>
+        <li><a href="#allocating-the-process-descriptor">Allocating the Process Descriptor</a></li>
+        <li><a href="#manipulating-the-current-process-state">Manipulating the Current Process State</a></li>
+        <li><a href="#the-process-family-tree">The Process Family Tree</a></li>
+        <li><a href="#copy-on-write">Copy-on-write</a></li>
+        <li><a href="#vfork">vfork()</a></li>
+        <li><a href="#kernel-threads">Kernel Threads</a></li>
+        <li><a href="#process-termination">Process Termination</a></li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
   </ol>
 </nav>
         </div>
@@ -247,13 +256,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/distributed-systems/">
-                <img src="/p/distributed-systems/picture_hu_4f3b4babf6cc32bb.png"
-                        srcset="/p/distributed-systems/picture_hu_4f3b4babf6cc32bb.png 800w, /p/distributed-systems/picture_hu_a00a36654affa708.png 1600w"
+            <a href="/p/design-pattern/">
+                <img src="/p/understand-linux-kernel/Linux_hu_dc403b7b6815285.png"
+                        srcset="/p/understand-linux-kernel/Linux_hu_dc403b7b6815285.png 800w, /p/understand-linux-kernel/Linux_hu_99a205f27cc4ff2.png 1600w"
                         width="800" 
-                        height="485" 
+                        height="254" 
                         loading="lazy"
-                        alt="Featured image of post Distributed Systems" />
+                        alt="Featured image of post Design Pattern" />
                 
             </a>
         </div>
@@ -267,17 +276,21 @@
                 Basic Concept
             </a>
         
+            <a href="/categories/research/" >
+                Research
+            </a>
+        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/distributed-systems/">Distributed Systems</a>
+            <a href="/p/design-pattern/">Design Pattern</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Distributed systems run across multiple machines to deliver reliable, scalable services. They bring unique challenges like communication, coordination, and fault tolerance. In this post, I’ll cover some core ideas to build a basic understanding of how they work.
+            This blog is my learning notes while reading Linux Kernel Development. I’m using it to understand how Linux works under the hood and to keep track of what I learn along the way.
         </h3>
         
     </div>
@@ -298,7 +311,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Aug 03, 2025</time>
+                <time class="article-time--published">Jan 01, 2026</time>
             </div>
         
 
@@ -328,113 +341,112 @@
     <section class="article-content">
     
     
-    <br />
-<h2 id="what-is-a-distributed-system">What is a distributed system
-</h2><ul>
-<li>A system where the software components that make up the system execute on two (or typically more) computers.</li>
-</ul>
-<h2 id="key-challenges">Key Challenges
-</h2><ul>
-<li>Heterogeneity
+    <h2 id="process-management">Process Management
+</h2><h3 id="the-process">The process
+</h3><ul>
+<li>Linux does not differentiate between threads and process.</li>
+<li>Processes provide two virtualizations, a virtualized processor and virtual memory.</li>
+<li>Execution Workflow:
 <ul>
-<li>Varieties and differences in networks, computer hardware, OS, programming languages, implementations.</li>
-<li>Address heterogeneity through the use of middleware.</li>
-</ul>
-</li>
-<li>Scalability
-<ul>
-<li>A scalable system operates effectively when there is a significant increase in the number of resources and the number of users. Scalability is a mean for controlling performance loss and avoiding performance bottlenecks.</li>
-</ul>
-</li>
-<li>Transparency
-<ul>
-<li>Concealment from the user and application programmer of the separation of components in a distributed system.</li>
-<li>Access transparency: local and remote resources can be accessed using identical operations.</li>
-<li>Location transparency: resources can be accessed without knowledge of their physical or network location.</li>
-</ul>
-</li>
-<li>Openness
-<ul>
-<li>Can the system be extended and re-implemented</li>
-<li>Degree to which new resources-sharing services can be added and be made available for use by a variety of client programs.</li>
-<li>Specification and documentation of key interfaces must be published.</li>
-<li>Open Systems: An open system is one where the components are built to common public standards.</li>
-</ul>
-</li>
-<li>Security
-<ul>
-<li>A variety of points that need to be protected: data flow, network, coordination and allocation service, data management / consistency service.</li>
+<li>fork(): creates a new process by duplicating an existing one</li>
+<li>exec(): creates a new address space and loads a new program into it</li>
+<li>exit(): terminates the process and frees all its resources. When a process exits, it is placed into a special zombie state until the parent calls wait() or waitpid().</li>
+<li>wait4(): enables a process to wait for the termination of a specific process</li>
 </ul>
 </li>
 </ul>
-<h2 id="rpc">RPC
-</h2><ul>
-<li>Definition: RPC is a protocol that lets a program call a function on a remote machine as if it were a local function call.
-<img src="rpc.png" width=900px align="mid"></li>
-<li>Components:
+<h3 id="allocating-the-process-descriptor">Allocating the Process Descriptor
+</h3><ul>
+<li>The kernel stores the list of processes in a circular doubly linked list called the task list. Each element in the task list is a process descriptor of the type <code>struct task_struct</code>.</li>
+<li>The process descriptor (<code>struct task_struct</code>) contains all the information about a specific process.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">High address
+</span></span><span class="line"><span class="cl">+--------------------+  ← start of kernel stack
+</span></span><span class="line"><span class="cl">|                    |
+</span></span><span class="line"><span class="cl">|   kernel stack     |  ← function calls, locals
+</span></span><span class="line"><span class="cl">|                    |
+</span></span><span class="line"><span class="cl">|        ↓           |
+</span></span><span class="line"><span class="cl">+--------------------+
+</span></span><span class="line"><span class="cl">|  thread_info       |  which points to task_struct
+</span></span><span class="line"><span class="cl">+--------------------+
+</span></span><span class="line"><span class="cl">Low address
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="manipulating-the-current-process-state">Manipulating the Current Process State
+</h3><ul>
+<li><code>set_task_state(task, state)</code> sets a process’s state.
 <ul>
-<li>Client Stub: Acts like a local function but sends a request over the network</li>
-<li>Server Stub (Skeleton): Receives the request and invokes the real function</li>
-<li>Transport: Often uses HTTP, TCP, or HTTP/2</li>
+<li>On single-CPU systems, it’s just task-&gt;state = state.</li>
+<li>On multi-CPU (SMP) systems, it also includes a memory barrier to ensure other CPUs see previous memory writes before the state change.</li>
 </ul>
 </li>
 </ul>
-<h2 id="java-rmi">Java RMI
-</h2><ul>
-<li>A distributed Java program is one which the objects making up the program reside on two or more separate computers (virtual machines).</li>
-<li>Java Remote Method Invocation (for object oriented programming) provides support for clients invoking methods on remote servers.
-<ul>
-<li>Write code in C -&gt; RPC (Remote Procedure Call)</li>
+<h3 id="the-process-family-tree">The Process Family Tree
+</h3><ul>
+<li>All processes are descendants of the init process, whose PID is one.</li>
+<li>Every process on the system has exactly one parent. Likewise, every process has zero or more children.</li>
 </ul>
+<h3 id="copy-on-write">Copy-on-write
+</h3><ul>
+<li>
+<p>Copy-on-write (or COW) is a technique to delay or altogether prevent copying of the data.</p>
 </li>
-<li>Connection
-<ul>
-<li>Server publishes its name and location to the RMI Registry
-<ul>
-<li>through the RMI URLs</li>
-</ul>
+<li>
+<p>The duplication of resources occurs only when they are written.</p>
 </li>
-<li>Client asks the RMI Registry about the server.</li>
-<li>Both the RMIRegistry and Server listen on sockets for remote requests.</li>
-<li>Clients need to identify both the host where the server resides and the socket number (port) that it is listening on.</li>
-</ul>
-</li>
-<li>Invocation
-<ul>
-<li>Server gives its Stub (local proxy) to the RMIRegistry, which gives it to the client.
-<ul>
-<li>Stub implements the same method signatures as the Server.</li>
-</ul>
-</li>
-<li>The Client invokes methods on the Stab as if it were invoking the methods directly on the Server.</li>
-<li>The Stub is then response for sending the request to the Server VM.
-<ul>
-<li>The Stab serialises the method invocation across a socket connection connecting the Client and Server.
-<ul>
-<li>It sends the method name, and the parameters of the method invocation.</li>
-<li>It waits for a return object or exception objects to be sent back.</li>
-<li>Synchronous method invocation</li>
-</ul>
+<li>
+<p>The only overhead incurred by fork() is the duplication of the parent’s page tables and the creation of a unique process descriptor for the child.</p>
 </li>
 </ul>
+<h3 id="vfork">vfork()
+</h3><ul>
+<li>
+<p>The vfork() system call has the same effect as fork(), except that the page table entries of the parent process are not copied.</p>
+</li>
+<li>
+<p>vfork() temporarily allows the child to share the parent’s address space, but the parent’s address space is preserved intact because the parent is suspended and the child either calls exec() (creating a new address space) or _exit().</p>
 </li>
 </ul>
+<h3 id="kernel-threads">Kernel Threads
+</h3><ul>
+<li>
+<p>A kernel-level process that runs entirely in kernel mode.</p>
 </li>
-<li>Server side
-<ul>
-<li>The server has a local proxy (Skeleton) for the Client.</li>
-<li>Skeleton creates a socket on which to listen for Client requests.</li>
-<li>Skeleton receives requests, de-serialises them, and invokes the method on the Server on behalf of the Client.</li>
-<li>Skeleton sends return result or exception objects back to Stub.</li>
-</ul>
+<li>
+<p>No user address space (<code>mm_struct = NULL</code>).</p>
 </li>
-<li>An Open Java RMI System
-<ul>
-<li>The communications protocol used when sending data between the Stub and Skeleton</li>
-<li>The application specific definition of the methods available for remote method invocation</li>
-</ul>
+<li>
+<p>Used for internal OS tasks like scheduling, memory management, and background work.</p>
 </li>
 </ul>
+<h3 id="process-termination">Process Termination
+</h3><ul>
+<li>
+<p><code>do_exit()</code> kills the process and turns it into a zombie for the parent to collect</p>
+</li>
+<li>
+<p><code>release_task()</code> is the final step that frees the task_struct and completely removes the process from the kernel.</p>
+</li>
+</ul>
+<h2 id="reference">Reference
+</h2><ol>
+<li>Love, Robert. Linux Kernel Development. 3rd ed., Addison-Wesley Professional, 2010.</li>
+</ol>
+
 </section>
 
 
@@ -442,7 +454,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/distributed-systems/">Distributed Systems</a>
+            <a href="/tags/operating-system/">Operating System</a>
         
     </section>
 
@@ -464,23 +476,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/design-patterns/">
+    <a href="/p/understand-linux-kernel/">
         
         
             <div class="article-image">
-                <img src="/p/design-patterns/image.49f4837c17a8c9b0d8c1c42e9a1019be_hu_c5aa9d5cd8f6c026.png" 
+                <img src="/p/understand-linux-kernel/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Design Patterns"
+                        alt="Featured image of post Understand Linux Kernel"
                         
-                        data-hash="md5-SfSDfBeoybDYwcQumhAZvg==">
+                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Design Patterns</h2>
+            <h2 class="article-title">Understand Linux Kernel</h2>
         </div>
     </a>
 </article>
@@ -512,6 +524,30 @@
             
                 
 <article class="has-image">
+    <a href="/p/prompt-engineering/">
+        
+        
+            <div class="article-image">
+                <img src="/p/prompt-engineering/image.9e51154a9d4c9b3fd4035ab8ef14c7db_hu_550ef8e28a86742a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Prompt Engineering"
+                        
+                        data-hash="md5-nlEVSp1Mmz/UA1q47xTH2w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Prompt Engineering</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/game-engine-architecture/">
         
         
@@ -536,47 +572,23 @@
             
                 
 <article class="has-image">
-    <a href="/p/understand-linux-kernel/">
+    <a href="/p/distributed-systems/">
         
         
             <div class="article-image">
-                <img src="/p/understand-linux-kernel/Linux.4a3148e7e8b6cc9bf5e35dd1ccb59c0a_hu_e3b91f04b6cb39aa.png" 
+                <img src="/p/distributed-systems/picture.618932ed670aff47b2f51e78153c476f_hu_cd24d62fd0f5c35c.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Understand Linux Kernel"
+                        alt="Featured image of post Distributed Systems"
                         
-                        data-hash="md5-SjFI5&#43;i2zJv1413RzLWcCg==">
+                        data-hash="md5-YYky7WcK/0ey9R54FTxHbw==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Understand Linux Kernel</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/compile-c-program/">
-        
-        
-            <div class="article-image">
-                <img src="/p/compile-c-program/picture.e659a3ff547f54ab3ac979290b391bb6_hu_aae11ca83aa16817.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Compile C&#43;&#43; Program"
-                        
-                        data-hash="md5-5lmj/1R/VKs6yXkpCzkbtg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Compile C&#43;&#43; Program</h2>
+            <h2 class="article-title">Distributed Systems</h2>
         </div>
     </a>
 </article>
@@ -693,7 +705,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.6f0049651ed38d0ea34e2a09520d95b2c19cb813071139a8d9369f4485e92785.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
